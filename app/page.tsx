@@ -51,7 +51,6 @@ const SassProduct = () => {
                   we have the expertise and tools to make it happen.
                 </p>
                 <Link
-                style={{bottom:'190px'}}
                   href="/pages-menu/about-us-v1"
                   className="btn-four fw-500"
                 >
@@ -126,9 +125,8 @@ const SassProduct = () => {
                   create personalized, high impact advertisement that drives
                   research.
                 </p>
-                <Link  style = {{
-                  bottom:'185px'
-                }}href="/sign-up" className="btn-four fw-500">
+                <Link 
+                href="/sign-up" className="btn-four fw-500">
                   Try Free Now
                 </Link>
               </div>
@@ -159,7 +157,7 @@ const SassProduct = () => {
         Feature Section Six
         ============================================== 
         */}
-      <div style={{bottom:'380px'}} className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80">
+      <div className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80">
         <div className="container">
           <div className="row gx-xxl-5 align-items-center">
             <div className="col-lg-4 col-md-6 mt-40" data-aos="fade-up">
