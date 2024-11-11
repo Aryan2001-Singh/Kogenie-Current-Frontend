@@ -99,7 +99,8 @@ const DynamicBlogDetails: React.FC<DynamicBlogDetailsProps> = ({ params }) => {
                         {blog.faq.map((faqItem, index) => (
                           <div key={index} className={styles.faqItem}>
                             <h4 className={styles.faqQuestion}>{faqItem.question}</h4>
-                            <p className={styles.faqAnswer}>{faqItem.answer}</p>
+                            <p className={styles.faqAnswer}
+                            dangerouslySetInnerHTML={{ __html: faqItem.answer }}/>
                           </div>
                         ))}
                       </div>
