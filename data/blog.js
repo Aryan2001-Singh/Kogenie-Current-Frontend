@@ -243,7 +243,7 @@ module.exports = [
       {
         title: `Here's how they usually work:`,
         content: ``,
-      },  
+      },
       {
         title: "Data Collection and Analysis",
         content: `Ai ad copy generators start by gathering huge scales of data, including target audience, demographics, user intent, and past ad performance ( in the case of old companies or from competitors’ performance). The AI then sorts this data to process it to further understand the patterns and predict what type of ad will resonate with the desired target persona. 
@@ -257,45 +257,42 @@ Gartner predicts that organizations using AI across marketing functions will shi
       },
       {
         title: "Ad Content Creation",
-        content:
-          `After understanding, it uses natural language generation (NLG) to create ad copy and chooses photos and videos based on buyer personas. This includes generating various <b>AI-generated ad examples</b> for different demographics and double-checking the messaging and creative aspects with user choice. However, this is done by providing prompts to the AI ad copy generators for the desired result. 
-<ul>
+        content: `After understanding, it uses natural language generation (NLG) to create ad copy and chooses photos and videos based on buyer personas. This includes generating various <b>AI-generated ad examples</b> for different demographics and double-checking the messaging and creative aspects with user choice. However, this is done by providing prompts to the AI ad copy generators for the desired result. 
+
  <li style="margin-left: 10px;"> Personalisation: These ads are hyper-personalised with a focused headline, design, and graphics, keeping age, gender, location, and real-time data, which also helps the language be trendy.</li>
- </ul>
+
 `,
       },
       {
         title: "A/B Testing and Evolution",
-        content:
-          `A/B Testing, in a nutshell, is a method for comparing two or more versions of a website or app to determine which performs better. This mantra also applies in marketing and advertising where advertisers produce and test different versions of ad-altering ad copy or design placements. This is done by the intelligence of <b>AI-powered ad</b> personalization that goes through CTR and conversions. 
-Because at the end of the day, we need engagements! <ul><li style="margin-left: 12px";> Better performance: AI algorithms believe in lifting high-performing ads and keeping a check on underperforming ones for higher ROI.</li></ul>`,
-
-
+        content: `A/B Testing, in a nutshell, is a method for comparing two or more versions of a website or app to determine which performs better. This mantra also applies in marketing and advertising where advertisers produce and test different versions of ad-altering ad copy or design placements. This is done by the intelligence of <b>AI-powered ad</b> personalization that goes through CTR and conversions. 
+Because at the end of the day, we need engagements! <li style="margin-left: 12px";> Better performance: AI algorithms believe in lifting high-performing ads and keeping a check on underperforming ones for higher ROI.</li>`,
       },
       {
         title: "Auto Cross-Posting on Social Platforms",
-        content:
-          `Ai ad copy generators facilitate the option of directly posting the ad creatives on desired social media platforms once they are ready to export on platforms like Google ads, Facebook, Instagram, and Linkedin <ul><li style="margin-left: 12px";>This also helps in making specific sizes of posts for dedicated social platforms.</li></ul>`,
+        content: `Ai ad copy generators facilitate the option of directly posting the ad creatives on desired social media platforms once they are ready to export on platforms like Google ads, Facebook, Instagram, and Linkedin <li style="margin-left: 12px";>This also helps in making specific sizes of posts for dedicated social platforms.</li>`,
       },
       {
         title: "With AI ad creators, ideas don't stop here.",
-        content:
-          `AI ad copy generators are not only built with machine learning models but are also fed with extensive knowledge of marketing principles that can change over time. With AI-based hyper-targeted ads, we can see the growth and customise the new data accordingly to refine it for future ad campaigns.<ul><li style="margin-left: 12px";>Real-time Data feeding: One can always change, alter, define, refocus the direction of campaigns with AI ad creator and its proficiency in the shortest time by getting more and diverse results. </li></ul>`,
+        content: `<b>AI ad copy generators</b> are not only built with machine learning models but are also fed with extensive knowledge of marketing principles that can change over time. <b>With AI-based hyper-targeted ads</b>, we can see the growth and customise the new data accordingly to refine it for future ad campaigns.<li style="margin-left: 12px";>Real-time Data feeding: One can always change, alter, define, refocus the direction of campaigns with <b>AI ad creator</b> and its proficiency in the shortest time by getting more and diverse results. </li>`,
       },
       {
         title: "Benefits of AI Ad Copy Generators",
-        content:
-          "AI tools provide significant advantages such as speed, cost-effectiveness, personalization, data-driven insights, and scalability, making them ideal for businesses large and small.",
+        content: `<li><b>Speed:</b> Who doesn't love fast and furious deployment cutting down all the hassle of posting on thousands of social media platforms with specific layouts for each one? These Ai ad copy generators make ad posting smooth across various channels efficiently.</li> 
+
+<li><b>Cost-effectiveness:</b> As these are mostly automated, the human resources cost gets decreased helping small businesses to create ad copy by these <b>Free AI ad makers</b> for startups in a cost-effective way democratising ad making.</li>
+
+<li><b>Personalisation:</b> One of the best features of AI-powered ad personalization is to generate <b>AI-based hyper-targeted ads</b> that are tailored for every audience by connecting them with the product and brand for a defined and personalised experience.</li>
+<li><b>Better Performance:</b> AI algorithms beleive in lifting high performing ads and keeping a check on underperfomring ones for higher ROI.</li>
+<li><b>Data-driven Insights:</b> AI tools simultaneously keep a check on the performance of the ads, comparing them with the past campaign performance and competitors by keeping a record of insights. </li>
+
+<li><b>Scalability: AI-generated ads</b> for small businesses allow to produce n number of ad creatives within a short time frame. </li>
+`,
       },
       {
-        title: "Industries Leveraging AI for Targeting and Engagement",
-        content:
-          "Industries like eCommerce, real estate, and tech are increasingly leveraging AI for personalized targeting and customer engagement, with examples from Amazon, Zillow, and IBM Watson.",
-      },
-      {
-        title: "The Future of AI in Advertising",
-        content:
-          "AI's presence in advertising is only growing, providing opportunities for improved personalization, real-time adaptability, and enhanced user experience, which positions it as an essential tool for future marketing strategies.",
+        title: "How AI Ad Copy Generators are used by Key Industries",
+        content: `Industries like <b>eCommerce</b>, <b>real estate, and tech</b> are increasingly leveraging the best <b>AI commercial generators</b> for personalised targeting and customer engagement: <li>eCommerce: Companies like <b>Amazon</b> use <b>AI-powered ad personalization</b> to deliver tailored product recommendations and personalised ads, improving conversion rates by up to <b>20%</b>​.</li><li><b>Real Estate: Zillow</b> uses AI to target potential buyers based on property preferences, driving engagement through virtual tours and predictive analytics​. 
+</li><li><b>Tech:</b> Tech companies, including <b>IBM Watson</b>, utilise <b>AI Ad Creator free</b> for advanced audience segmentation, hyper-targeted ads, and real-time personalization, leading to improved engagement and sales performance​. </li>`,
       },
     ],
     faq: [
@@ -316,8 +313,13 @@ Because at the end of the day, we need engagements! <ul><li style="margin-left: 
       },
       {
         question: "How Often Is AI Wrong?",
-        answer:
-          "AI has an error rate of 15-20% in complex tasks, but accuracy can reach 85-90% in high-stakes fields like healthcare.",
+        answer: `AI has an error rate of 15-20% in complex tasks, but accuracy can reach <a href="https://jamanetwork.com/journals/jama/fullarticle/2807166" style='color: #007BFF;'> 85-90%</a> in high-stakes fields like healthcare.
+          <li><b>Better Performance:</b> AI algorithms believe in lifting high performing ads and keeping a check on underperforming ones for higher ROI</li>
+          AI is not the future anymore; it exists now and in the present! 
+From generating hyper-personalised static and video ads to making them on a big scale, <b>AI ad copy generators</b> are surely democratising the way how marketing works and making it more accessible to big and small businesses. Big companies are vouching for mass production to boost conversion rates, cut labour costs and enhance experience. 
+The conclusion? If marketing is the backbone of the business, <b>AI-based hyper-targeted ads are the fuel</b> that powers it forward! Start it for your freelancing career, big and small business because it's too late. 
+Don't hesitate to grow your business with KOgenie’s hyper-personalised <b>AI ad copy generator</b>. Check us out to democratise your advertising with super personalised Ad campaigns. 
+`,
       },
     ],
   },
