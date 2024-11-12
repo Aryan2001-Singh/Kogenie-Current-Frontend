@@ -286,7 +286,7 @@ Because at the end of the day, we need engagements! <li style="margin-left: 12px
 <li  style="margin-left: 10px;"><b>Better Performance:</b> AI algorithms beleive in lifting high performing ads and keeping a check on underperfomring ones for higher ROI.</li>
 <li  style="margin-left: 10px;"><b>Data-driven Insights:</b> AI tools simultaneously keep a check on the performance of the ads, comparing them with the past campaign performance and competitors by keeping a record of insights. </li>
 
-<li><b>Scalability: AI-generated ads</b> for small businesses allow to produce n number of ad creatives within a short time frame. </li>
+<li style="margin-left: 10px;"><b>Scalability: AI-generated ads</b> for small businesses allow to produce n number of ad creatives within a short time frame. </li>
 `,
       },
       {
