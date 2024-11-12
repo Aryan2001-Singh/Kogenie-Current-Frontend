@@ -278,13 +278,13 @@ Because at the end of the day, we need engagements! <li style="margin-left: 12px
       },
       {
         title: "Benefits of AI Ad Copy Generators",
-        content: `<li><b>Speed:</b> Who doesn't love fast and furious deployment cutting down all the hassle of posting on thousands of social media platforms with specific layouts for each one? These Ai ad copy generators make ad posting smooth across various channels efficiently.</li> 
+        content: `<li style="margin-left: 10px;"><b>Speed:</b> Who doesn't love fast and furious deployment cutting down all the hassle of posting on thousands of social media platforms with specific layouts for each one? These Ai ad copy generators make ad posting smooth across various channels efficiently.</li> 
 
-<li><b>Cost-effectiveness:</b> As these are mostly automated, the human resources cost gets decreased helping small businesses to create ad copy by these <b>Free AI ad makers</b> for startups in a cost-effective way democratising ad making.</li>
+<li style="margin-left: 10px;"><b>Cost-effectiveness:</b> As these are mostly automated, the human resources cost gets decreased helping small businesses to create ad copy by these <b>Free AI ad makers</b> for startups in a cost-effective way democratising ad making.</li>
 
-<li><b>Personalisation:</b> One of the best features of AI-powered ad personalization is to generate <b>AI-based hyper-targeted ads</b> that are tailored for every audience by connecting them with the product and brand for a defined and personalised experience.</li>
-<li><b>Better Performance:</b> AI algorithms beleive in lifting high performing ads and keeping a check on underperfomring ones for higher ROI.</li>
-<li><b>Data-driven Insights:</b> AI tools simultaneously keep a check on the performance of the ads, comparing them with the past campaign performance and competitors by keeping a record of insights. </li>
+<li  style="margin-left: 10px;"><b>Personalisation:</b> One of the best features of AI-powered ad personalization is to generate <b>AI-based hyper-targeted ads</b> that are tailored for every audience by connecting them with the product and brand for a defined and personalised experience.</li>
+<li  style="margin-left: 10px;"><b>Better Performance:</b> AI algorithms beleive in lifting high performing ads and keeping a check on underperfomring ones for higher ROI.</li>
+<li  style="margin-left: 10px;"><b>Data-driven Insights:</b> AI tools simultaneously keep a check on the performance of the ads, comparing them with the past campaign performance and competitors by keeping a record of insights. </li>
 
 <li><b>Scalability: AI-generated ads</b> for small businesses allow to produce n number of ad creatives within a short time frame. </li>
 `,
