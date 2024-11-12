@@ -47,7 +47,7 @@ const DynamicBlogDetails: React.FC<DynamicBlogDetailsProps> = ({ params }) => {
                 </a>
               </p>
               {/* Apply the CSS module class for the title */}
-              <h2 className={`${styles.blogHeading} tx-dark`} style={{marginBottom:'-250px'}}>{blog?.title}</h2>
+              <h2 className={`${styles.blogHeading} tx-dark`}>{blog?.title}</h2>
             </div>
           </div>
         </div>
