@@ -250,8 +250,8 @@ module.exports = [
 
 For example: this can help analyse engagement metrics from previous ad campaigns to determine which ad elements work best. (and gives opportunities for better A/B testing results which you will read later in this blog).
 
-<ul style=color:coral;list-style-position: inside;><li style="margin-left: 12px;">1. Data Source: Customer interactions, purchasing history, social media engagement, browsing habits.</li>
-<li style="margin-left: 12px;">2. Purpose: To target the desired audiences and know their marketing psychology.</li></ul>
+<li style="margin-left: 12px;"> Data Source: Customer interactions, purchasing history, social media engagement, browsing habits.</li>
+<li style="margin-left: 12px;">Purpose: To target the desired audiences and know their marketing psychology.</li>
 
 Gartner predicts that organizations using AI across marketing functions will shift <a href="https://www.gartner.com/en/marketing/topics/ai-in-marketing" style=color:#007BFF;>75% of their staff’s operations</a> from production to strategic activities by 2025, thanks to automation and optimization provided by AI.`,
       },
