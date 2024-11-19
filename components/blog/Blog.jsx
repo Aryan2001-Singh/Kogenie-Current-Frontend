@@ -14,7 +14,8 @@ const Blog = () => {
         >
           <article className="blog-meta-three mb-60 lg-mb-40">
             <figure className="post-img m0">
-              <Link href={`/blog/${post.id}`} className="w-100 d-block">
+              {/* Use the slug in the URL */}
+              <Link href={`/blog/${post.slug}`} className="w-100 d-block">
                 <Image
                   width={380}
                   height={280}
@@ -28,14 +29,16 @@ const Blog = () => {
               <div className="post-date opacity-75 text-uppercase">
                 {post.date}
               </div>
-              <Link href={`/blog/${post.id}`} className="mt-10 mb-15">
+              {/* Use the slug in the URL */}
+              <Link href={`/blog/${post.slug}`} className="mt-10 mb-15">
                 <h4 className="tran3s blog-title fw-normal tx-dark">
                   {post.title}
                 </h4>
               </Link>
               <div>
+                {/* Use the slug in the URL */}
                 <Link
-                  href={`/blog/${post.id}`}
+                  href={`/blog/${post.slug}`}
                   className="read-btn-two fw-500 tran3s"
                 >
                   Read More

@@ -4,33 +4,32 @@ import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import SearchBox from "@/components/blog/SearchBox";
 import Category from "@/components/blog/Category";
 import RecentPost from "@/components/blog/RecentPost";
-// import BannerPost from "@/components/blog/BannerPost";
 import Tag from "@/components/blog/blog-details/Tag";
 import SocialShare from "@/components/blog/blog-details/SocialShare";
-// import SingleComments from "@/components/blog/blog-details/SingleComments";
-// import CommentBox from "@/components/blog/blog-details/CommentBox";
-// import Link from "next/link";
-import blogsData from "@/data/blog.js";
+import blogsData from "@/data/blog";
 import Image from "next/image";
 import styles from "./DynamicBlogDetails.module.css"; // Import CSS module
 
-// interface Metadata {
-//   title: string;
-// }
-
-// export const metadata: Metadata = {
-//   title: "Dynamic Blog Details || Jano - Creative Multipurpose React NextJS Template",
-// };
-
 interface DynamicBlogDetailsProps {
   params: {
-    id: string;
+    slug: string;
   };
 }
 
 const DynamicBlogDetails: React.FC<DynamicBlogDetailsProps> = ({ params }) => {
-  const id = params.id;
-  const blog = blogsData.find((item) => item.id.toString() === id) || blogsData[0];
+  const { slug } = params;
+
+  console.log("Received slug from URL:", slug); // Log the slug passed from the URL
+  console.log("Available blogs slugs:", blogsData.map((item) => item.slug)); // List all slugs in blogsData
+
+
+  // Find the blog using the slug
+  const blog = blogsData.find((item) => item.slug === slug);
+
+  if (!blog) {
+    console.error("Blog not found for slug:", slug);
+    return <h1>404 - Blog Not Found</h1>;
+  }
 
   return (
     <>
@@ -47,7 +46,7 @@ const DynamicBlogDetails: React.FC<DynamicBlogDetailsProps> = ({ params }) => {
                 </a>
               </p>
               {/* Apply the CSS module class for the title */}
-              <h2 className={`${styles.blogHeading} tx-dark`}>{blog?.title}</h2>
+              <h2 className={`${styles.blogHeading} tx-dark`} >{blog?.title}</h2>
             </div>
           </div>
         </div>
@@ -99,8 +98,7 @@ const DynamicBlogDetails: React.FC<DynamicBlogDetailsProps> = ({ params }) => {
                         {blog.faq.map((faqItem, index) => (
                           <div key={index} className={styles.faqItem}>
                             <h4 className={styles.faqQuestion}>{faqItem.question}</h4>
-                            <p className={styles.faqAnswer}
-                            dangerouslySetInnerHTML={{ __html: faqItem.answer }}/>
+                            <p className={styles.faqAnswer}>{faqItem.answer}</p>
                           </div>
                         ))}
                       </div>
