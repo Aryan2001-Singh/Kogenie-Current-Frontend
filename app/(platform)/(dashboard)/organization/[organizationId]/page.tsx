@@ -68,7 +68,7 @@ const OrganizationIdPage = () => {
     }
 
     try {
-      const response = await fetch("https://kogenie-server-f078f630bb40.herokuapp.com/createAd", {
+      const response = await fetch("https://kogenie-backend-0cd1c9313886.herokuapp.com/createAd", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, gender, ageGroup }), // Send gender and ageGroup along with the URL
