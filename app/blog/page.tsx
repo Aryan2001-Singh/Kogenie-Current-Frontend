@@ -52,7 +52,7 @@ const GridWithSidebar = () => {
 				Blog Section Five
 			=====================================================
 			*/}
-      <div className="blog-section-five mt-70 lg-mt-30">
+      {/* <div className="blog-section-five mt-70 lg-mt-30">
         <div className="container">
           <div className="border-bottom pb-130 lg-pb-60">
             <div className="row gx-xl-5">
@@ -61,42 +61,42 @@ const GridWithSidebar = () => {
                   <div className="row">
                     <Blog2 />
                   </div>
-                </div>
+                </div> */}
                 {/* /.blog-meta-wrapper */}
                 {/* <div className="page-pagination-one pt-15">
                   <Pagination />
                 </div> */}
-              </div>
+              {/* </div> */}
               {/* End .col-lg-8 */}
 
-              <div className="col-lg-4 col-md-8">
+              {/* <div className="col-lg-4 col-md-8">
                 <div className="blog-sidebar md-mt-70">
                   <div className="blog-sidebar-search mb-55 md-mb-40">
                     <SearchBox />
-                  </div>
+                  </div> */}
                   {/* /.blog-sidebar-search */}
 
-                  <div className="blog-sidebar-category mb-60 md-mb-50">
+                  {/* <div className="blog-sidebar-category mb-60 md-mb-50">
                     <h4 className="sidebar-title">Category</h4>
                     <Category />
-                  </div>
+                  </div> */}
                   {/* /.blog-sidebar-category */}
 
-                  <div className="sidebar-recent-news mb-60 md-mb-50">
-                    <h4 className="sidebar-title">Recent News</h4>
-                    <RecentPost />
-                  </div>
+                  {/* // <div className="sidebar-recent-news mb-60 md-mb-50">
+                  //   <h4 className="sidebar-title">Recent News</h4>
+                  //   <RecentPost />
+                  // </div> */}
                   {/* /.sidebar-recent-news */}
 
                   {/* <BannerPost /> */}
                   {/* /.sidebar-banner-add */}
-                </div>
+                {/* // </div> */}
                 {/* /.blog-sidebar */}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* //         </div> */}
+             {/* </div>
+           </div>
+         </div>
+       </div> */}
 
       {/* Footer */}
       <div className="footer-style-two theme-basic-footer">
