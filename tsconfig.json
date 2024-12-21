@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages-menu/about-us-v1/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages-menu/about-us-v1/page.jsx", "components/BlogItem.jsx", "components/BlogList.jsx", "app/blogs/[slug]/page", "app/api/blog/route.js", "app/api/email/route.js"],
   "exclude": ["node_modules"]
 }

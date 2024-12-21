@@ -7,6 +7,7 @@ import ScrollToTop from "@/components/common/ScrollTop";
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Aos from 'aos'; // Normal import for aos
+// import { Description } from '@radix-ui/react-dialog';
 
 // Dynamically import Bootstrap to avoid loading on the server
 // import dynamic from 'next/dynamic';// 

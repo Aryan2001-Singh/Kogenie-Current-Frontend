@@ -16,7 +16,7 @@ const MainMenu = () => {
     { title: "Home", link: "/" },
     { title: "About", link: "/pages-menu/about-us-v1" },
     { title: "Service", link: "/pages-menu/service-v4" },
-    { title: "Blog", link: "/blog" },
+    { title: "Blog", link: "/blogs" },
     { title: "Contact Us", link: "/contact" },
   ];
 
