@@ -7,3 +7,16 @@ Host: https://www.kogenie.com/
 
 # Sitemaps
 Sitemap: https://www.kogenie.com/sitemap.xml
+
+# Explicit Page Listing
+# Add all pages explicitly here
+https://www.kogenie.com/
+https://www.kogenie.com/about
+https://www.kogenie.com/contact
+https://www.kogenie.com/services
+https://www.kogenie.com/blog
+https://www.kogenie.com/blog/post-1
+https://www.kogenie.com/blog/post-2
+https://www.kogenie.com/faq
+https://www.kogenie.com/terms
+https://www.kogenie.com/privacy-policy
