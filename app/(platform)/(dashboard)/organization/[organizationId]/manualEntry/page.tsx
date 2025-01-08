@@ -41,7 +41,7 @@ const ManualEntryPage: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         setAdData(data); // Update the store with the ad data for display on CreateAdPage
-        router.push(`/organization/${organizationId}/manualEntry`);
+        router.push(`/organization/${organizationId}/createAd`);
       } else {
         throw new Error(data.error || "Failed to create ad based on input");
       }
