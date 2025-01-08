@@ -3,7 +3,6 @@
 import React, { useState, CSSProperties, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
-import { Button } from "@/components/ui/button";
 
 const ManualEntryPage: React.FC = () => {
   const [brandName, setBrandName] = useState("");
@@ -46,7 +45,8 @@ const ManualEntryPage: React.FC = () => {
       } else {
         throw new Error(data.error || "Failed to create ad based on input");
       }
-    } catch (err) {
+    } catch {
+      // Removed 'err' and replaced with a general error handler
       setError("An error occurred while creating the ad.");
     } finally {
       setLoading(false);

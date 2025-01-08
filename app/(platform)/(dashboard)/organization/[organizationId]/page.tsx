@@ -2,11 +2,11 @@
 
 import { useState, useEffect, FormEvent, CSSProperties } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { useAdStore } from "@/store/useAdStore";
 
 const advertisementFacts = [
-  "Ad spending worldwide reached over $600 billion in 2023.",
+  "Ad spending worldwide reached over \$600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
   "Instagram ads can reach over 1.4 billion people globally.",
   "Over 80% of people recall a video ad they watched in the past 30 days.",
@@ -16,7 +16,7 @@ const advertisementFacts = [
   "Carousel ads can drive 72% more clicks than single-image ads.",
   "Users are more likely to purchase after seeing retargeted ads.",
   "Native ads outperform traditional display ads by 53%.",
-  "Social media ad spending is expected to reach $268 billion by 2024.",
+  "Social media ad spending is expected to reach \$268 billion by 2024.",
   "People spend 3 hours daily on social media, making it a key platform for advertising.",
   "Colorful ads can increase brand recognition by up to 80%.",
   "Personalized ads lead to a 20% increase in sales.",
@@ -79,7 +79,8 @@ const OrganizationIdPage = () => {
       } else {
         throw new Error(data.error || "Failed to generate ad");
       }
-    } catch (err) {
+    } catch (error) {
+      console.error("Error occurred:", error); // Log the error for debugging
       setError("An error occurred while generating the ad.");
     } finally {
       setLoading(false);
@@ -142,14 +143,9 @@ const OrganizationIdPage = () => {
     padding: "8px 20px",
     background: "#DB4A2B",
     color: "white",
-    borderRadius:"5px",
+    borderRadius: "5px",
     boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease",
-  };
-
-  const skipButtonStyle: CSSProperties = {
-    ...buttonStyle,
-    background: "#808080",
   };
 
   return (
