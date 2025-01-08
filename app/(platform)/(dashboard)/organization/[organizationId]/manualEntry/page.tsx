@@ -32,7 +32,7 @@ const ManualEntryPage: React.FC = () => {
     };
   
     try {
-      const response = await fetch("https://kogenie-backend-0cd1c9313886.herokuapp.com/createAd", {
+      const response = await fetch("https://kogenie-backend-0cd1c9313886.herokuapp.com/manualEntry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
@@ -41,7 +41,7 @@ const ManualEntryPage: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         setAdData(data); // Update the store with the ad data for display on CreateAdPage
-        router.push(`/organization/${organizationId}/createAd`);
+        router.push(`/organization/${organizationId}/manualEntry`);
       } else {
         throw new Error(data.error || "Failed to create ad based on input");
       }
