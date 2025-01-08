@@ -88,7 +88,7 @@ const OrganizationIdPage = () => {
   };
 
   const handleSkip = () => {
-    router.push(`/organization/${organizationId}/createAd`);
+    router.push(`/organization/${organizationId}/manualEntry`);
   };
 
   const containerStyle: CSSProperties = {
