@@ -1,10 +1,11 @@
-// store/useAdStore.ts
 import { create } from 'zustand';
 
 interface AdData {
   brandName: string;
   productName: string;
   productDescription: string;
+  targetAudience: string;
+  uniqueSellingPoints: string;
   adCopy: string;
 }
 
