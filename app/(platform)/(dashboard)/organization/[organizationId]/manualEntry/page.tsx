@@ -32,7 +32,7 @@ const ManualEntryPage: React.FC = () => {
     };
   
     try {
-      const response = await fetch("https://kogenie-backend-0cd1c9313886.herokuapp.com/manualEntry", {
+      const response = await fetch("https://kogenie-backend-0cd1c9313886.herokuapp.com/createAd", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
