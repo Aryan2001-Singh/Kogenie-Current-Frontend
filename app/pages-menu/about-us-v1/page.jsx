@@ -1,5 +1,5 @@
 'use client';
-import Testimonial from "@/components/home-page/home-3/Testimonial";
+// import Testimonial from "@/components/home-page/home-3/Testimonial";
 import Block from "@/components/services/Block";
 import Team1 from "@/components/team/Team1";
 import Link from "next/link";
