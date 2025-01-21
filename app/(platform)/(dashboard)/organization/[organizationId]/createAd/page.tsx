@@ -1,55 +1,41 @@
 "use client";
 
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
-import Image from "next/image";
 import { useAdStore } from "@/store/useAdStore";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faComment,
-  faPaperPlane,
-  faBookmark,
-} from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@/components/ui/button";
+import PublishButton from "./PublishButton";
+import AuthButton from "./AuthButton";
 
-const CreateAdPage = () => {
-  const adDataFromStore = useAdStore((state) => state.adData); // Get data from store
+const CreateAdPage: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const adDataFromStore = useAdStore((state) => state.adData); // Get ad data from store
   const [adData, setAdData] = useState({
     brandName: "",
     productName: "",
     productDescription: "",
     adCopy: "",
   });
-  const [isMounted, setIsMounted] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-
-  const [aspectRatio] = useState("16:9"); // Default aspect ratio for Instagram landscape posts
 
   useEffect(() => {
-    setIsMounted(true);
+    // Populate ad data from store
     if (adDataFromStore) {
-      setAdData(adDataFromStore); // Set initial ad data from the store
+      setAdData(adDataFromStore);
     }
-  }, [adDataFromStore]);
 
-  useEffect(() => {
-    const generateAdCopy = () => {
-      if (adData.brandName && adData.productName && adData.productDescription) {
-        return `Introducing ${adData.productName} from ${adData.brandName}! ${adData.productDescription}`;
+    // Check if the user has been redirected back with an auth code
+    const handleAuthCallback = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const authCode = urlParams.get("code");
+
+      if (authCode) {
+        console.log("User authenticated with code:", authCode);
+        setIsAuthenticated(true);
       }
-      return "Caption of the post goes here...";
     };
 
-    const updatedAdCopy = generateAdCopy();
-    setAdData((prevState) => ({
-      ...prevState,
-      adCopy: updatedAdCopy,
-    }));
-  }, [adData.brandName, adData.productName, adData.productDescription]);
+    handleAuthCallback();
+  }, [adDataFromStore]);
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setAdData((prevState) => ({
       ...prevState,
@@ -57,152 +43,76 @@ const CreateAdPage = () => {
     }));
   };
 
-  // Crop and resize image to match aspect ratio
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new window.Image();
-        img.src = e.target?.result as string;
-        img.onload = () => {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
-
-          // Define aspect ratios: 1:1 (square), 4:5 (portrait), 16:9 (landscape)
-          let targetWidth = 1080;
-          let targetHeight = 608; // Default for 16:9
-
-          if (aspectRatio === "1:1") {
-            targetWidth = 1080;
-            targetHeight = 1080;
-          } else if (aspectRatio === "4:5") {
-            targetWidth = 1080;
-            targetHeight = 1350;
-          }
-
-          canvas.width = targetWidth;
-          canvas.height = targetHeight;
-
-          // Calculate cropping area based on the image's original aspect ratio
-          const imgAspectRatio = img.width / img.height;
-          let sourceWidth = img.width;
-          let sourceHeight = img.height;
-
-          if (imgAspectRatio > targetWidth / targetHeight) {
-            sourceWidth = img.height * (targetWidth / targetHeight);
-          } else {
-            sourceHeight = img.width / (targetWidth / targetHeight);
-          }
-
-          // Center the crop
-          const startX = (img.width - sourceWidth) / 2;
-          const startY = (img.height - sourceHeight) / 2;
-
-          ctx?.drawImage(
-            img,
-            startX,
-            startY,
-            sourceWidth,
-            sourceHeight,
-            0,
-            0,
-            targetWidth,
-            targetHeight
-          );
-
-          const resizedImageUrl = canvas.toDataURL("image/jpeg", 1.0);
-          setImageUrl(resizedImageUrl);
-        };
-      };
-      reader.readAsDataURL(file);
+  const handlePublishAd = () => {
+    if (!isAuthenticated) {
+      alert("You must authenticate first!");
+      return;
     }
+
+    console.log("Publishing ad...");
+    alert("Ad published successfully!");
   };
 
-  const handleDownload = () => {
-    if (imageUrl) {
-      const link = document.createElement("a");
-      link.href = imageUrl;
-      link.download = "instagram_post.jpg";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+  // Styling
+  const parentContainerStyle: CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    width: "90%",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    padding: "20px 0",
   };
 
-  if (!isMounted) return <div>Loading...</div>;
+  const containerStyle: CSSProperties = {
+    padding: "30px",
+    background: "#FFFFFF",
+    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
+    borderRadius: "10px",
+    width: "100%",
+    maxWidth: "600px",
+    fontFamily: "'Inter', sans-serif",
+  };
+
+  const labelStyle: CSSProperties = {
+    fontWeight: "600",
+    color: "#333",
+    marginTop: "20px",
+    display: "block",
+  };
 
   const inputStyle: CSSProperties = {
-    border: "2px solid #CBD5E1",
     padding: "12px",
     width: "100%",
     borderRadius: "8px",
-    marginBottom: "12px",
-    backgroundColor: "#F8FAFC",
+    border: "1px solid #CBD5E1",
+    marginBottom: "15px",
     fontSize: "16px",
-    color: "#334155",
-    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-    transition: "border-color 0.2s ease",
   };
 
   const textAreaStyle: CSSProperties = {
     ...inputStyle,
-    minHeight: "220px",
+    minHeight: "150px",
     resize: "vertical",
   };
 
-  const containerStyle: CSSProperties = {
-    borderRadius: "16px",
-    padding: "30px",
-    backgroundColor: "#FFFFFF",
-    boxShadow: "0 6px 30px rgba(0, 0, 0, 0.12)",
-    fontFamily: "'Inter', sans-serif",
-    border: "1px solid rgba(0, 0, 0, 0.05)",
-    width: "50%",
-    transition: "box-shadow 0.3s ease, transform 0.3s ease",
-    position: "relative",
-    minHeight: "400px",
+  const adCopyTextAreaStyle: CSSProperties = {
+    ...textAreaStyle,
+    minHeight: "200px",
   };
 
-  const hoverEffect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.currentTarget.style.boxShadow = "0 10px 40px rgba(0, 0, 0, 0.15)";
-    e.currentTarget.style.transform = "translateY(-5px)";
-  };
-
-  const resetHoverEffect = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    e.currentTarget.style.boxShadow = "0 6px 30px rgba(0, 0, 0, 0.12)";
-    e.currentTarget.style.transform = "translateY(0)";
+  const publishButtonContainerStyle: CSSProperties = {
+    marginLeft: "20px",
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        margin: "40px auto",
-        maxWidth: "1200px",
-      }}
-    >
-      {/* Form Section */}
-      <div
-        style={containerStyle}
-        onMouseOver={hoverEffect}
-        onMouseOut={resetHoverEffect}
-      >
+    <div style={parentContainerStyle}>
+      {/* Main Container for Ad Content */}
+      <div style={containerStyle}>
+        <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
+
         <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{
-              display: "block",
-              fontSize: "16px",
-              color: "#DB4A2B",
-              marginBottom: "8px",
-              fontWeight: "600",
-            }}
-          >
-            Brand Name:
-          </label>
+          <label style={labelStyle}>Brand Name</label>
           <input
             type="text"
             name="brandName"
@@ -214,17 +124,7 @@ const CreateAdPage = () => {
         </div>
 
         <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{
-              display: "block",
-              fontSize: "16px",
-              color: "#DB4A2B",
-              marginBottom: "8px",
-              fontWeight: "600",
-            }}
-          >
-            Product Name:
-          </label>
+          <label style={labelStyle}>Product Name</label>
           <input
             type="text"
             name="productName"
@@ -236,231 +136,34 @@ const CreateAdPage = () => {
         </div>
 
         <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{
-              display: "block",
-              fontSize: "16px",
-              color: "#DB4A2B",
-              marginBottom: "8px",
-              fontWeight: "600",
-            }}
-          >
-            Product Description:
-          </label>
+          <label style={labelStyle}>Product Description</label>
           <textarea
             name="productDescription"
-            value={adData.productDescription}
             placeholder="Describe your product..."
+            value={adData.productDescription}
             onChange={handleInputChange}
             style={textAreaStyle}
           />
         </div>
 
         <div style={{ marginBottom: "20px" }}>
-          <label
-            style={{
-              display: "block",
-              fontSize: "16px",
-              color: "#DB4A2B",
-              marginBottom: "8px",
-              fontWeight: "600",
-            }}
-          >
-            Your Ad Copy:
-          </label>
+          <label style={labelStyle}>Your Ad Copy</label>
           <textarea
             name="adCopy"
-            value={adData.adCopy}
             placeholder="Edit your ad copy..."
+            value={adData.adCopy}
             onChange={handleInputChange}
-            style={textAreaStyle}
+            style={adCopyTextAreaStyle}
           />
         </div>
       </div>
 
-      {/* Image Upload and Preview Section */}
-      <div
-        style={{
-          ...containerStyle,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-        onMouseOver={hoverEffect}
-        onMouseOut={resetHoverEffect}
-      >
-        <p style={{ fontSize: "14px", color: "#6b7280", marginBottom: "10px" }}>
-          Tip: For the best Instagram preview, use an image with a 16:9 aspect
-          ratio (1080x608 pixels).
-        </p>
+      {/* Authentication Button */}
+      <AuthButton />
 
-        <label
-          htmlFor="file-upload"
-          className="custom-file-upload"
-          style={{
-            cursor: "pointer",
-            padding: "10px 20px",
-            background: "#DB4A2B",
-            boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
-            color: "#fff",
-            borderRadius: "8px",
-            fontWeight: "600",
-            marginBottom: "10px",
-          }}
-        >
-          Upload Image
-        </label>
-        <input
-          id="file-upload"
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          style={{ display: "none" }}
-        />
-
-        <h1
-          style={{ marginBottom: "1px", fontSize: "20px", fontWeight: "600" }}
-        >
-          Instagram Post Preview
-        </h1>
-
-        {!imageUrl && (
-          <div
-            className="post-image-container"
-            style={{ textAlign: "center", marginBottom: "20px" }}
-          >
-            <Image
-              src="/images/media/img_86.jpg"
-              alt="Placeholder"
-              width={1080}
-              height={aspectRatio === "4:5" ? 1350 : aspectRatio === "1:1" ? 1080 : 608}
-              style={{ borderRadius: "12px" }}
-            />
-          </div>
-        )}
-
-        {imageUrl && (
-          <div
-            className="instagram-post"
-            style={{
-              marginTop: "50px",
-              width: "100%",
-              border: "2px solid #4f46e5",
-              borderRadius: "12px",
-              overflow: "hidden",
-              marginBottom: "70px",
-            }}
-          >
-            <div
-              className="header"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "10px",
-              }}
-            >
-              <Image
-                src="/insta-logo.jpg"
-                alt="Profile"
-                width={40}
-                height={40}
-                style={{ borderRadius: "50%" }}
-              />
-              <span className="username" style={{ fontWeight: "bold" }}>
-                Brand Name
-              </span>
-              <span className="menu-icon">•••</span>
-            </div>
-
-            <div
-              className="post-image-container"
-              style={{ textAlign: "center" }}
-            >
-              <Image
-                src={imageUrl}
-                alt="Uploaded"
-                width={1080}
-                height={aspectRatio === "4:5" ? 1350 : aspectRatio === "1:1" ? 1080 : 608}
-                style={{ borderRadius: "12px" }}
-              />
-            </div>
-
-            <div className="post-footer" style={{ padding: "10px" }}>
-              <div
-                className="icons"
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className="icon heart-icon"
-                  style={{ color: "red" }}
-                />
-                <FontAwesomeIcon
-                  icon={faComment}
-                  className="icon black-icon"
-                  style={{ color: "black" }}
-                />
-                <FontAwesomeIcon
-                  icon={faPaperPlane}
-                  className="icon black-icon"
-                  style={{ color: "black" }}
-                />
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  className="icon black-icon save"
-                  style={{ color: "black" }}
-                />
-              </div>
-              <span
-                className="likes-count"
-                style={{
-                  fontWeight: "bold",
-                  marginTop: "8px",
-                  display: "block",
-                }}
-              >
-                100 likes
-              </span>
-
-              <div className="description" style={{ marginTop: "8px" }}>
-                <span className="username" style={{ fontWeight: "bold" }}>
-                  Brand Name
-                </span>{" "}
-                {adData.adCopy}
-              </div>
-
-              <div
-                className="time-posted"
-                style={{ marginTop: "8px", color: "#6b7280" }}
-              >
-                2 hours ago
-              </div>
-            </div>
-          </div>
-        )}
-
-        {imageUrl && (
-          <Button
-            className="bg-[#DB4A2B] hover:bg-[#DB4A2B]/90"
-            onClick={handleDownload}
-            style={{
-              marginTop: "10px",
-              padding: "10px 20px",
-              background: "#DB4A2B",
-              boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              textAlign: "center",
-              display: "block",
-            }}
-          >
-            Download Image
-          </Button>
-        )}
+      {/* Publish Button */}
+      <div style={publishButtonContainerStyle}>
+        <PublishButton onClick={handlePublishAd} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const ManualEntryPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  const setAdData = useAdStore((state) => state.setAdData);
+  const setAdData = useAdStore((state) => state.setAdData); // Save data for CreateAdPage
   const params = useParams();
   const organizationId = params.organizationId;
 
@@ -22,7 +22,7 @@ const ManualEntryPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-  
+
     const adInputData = {
       brandName,
       productName,
@@ -30,28 +30,28 @@ const ManualEntryPage: React.FC = () => {
       targetAudience,
       uniqueSellingPoints,
     };
-  
+
     try {
-      const response = await fetch("https://kogenie-backend-0cd1c9313886.herokuapp.com/createAd", {
+      const response = await fetch("http://localhost:5001/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
       });
-  
+
       const data = await response.json();
       if (response.ok) {
-        setAdData(data); // Update the store with the ad data for display on CreateAdPage
-        router.push(`/organization/${organizationId}/createAd`);
+        setAdData({ ...adInputData, adCopy: data.adCopy }); // Store all data including generated ad copy
+        router.push(`/organization/${organizationId}/createAd`); // Navigate to CreateAdPage
       } else {
-        throw new Error(data.error || "Failed to create ad based on input");
+        throw new Error(data.message || "Failed to create ad based on input.");
       }
-    } catch {
-      // Removed 'err' and replaced with a general error handler
-      setError("An error occurred while creating the ad.");
+    } catch (err) {
+      console.error('Error occurred:', err); 
+      setError("An error occurred while generating the ad.");
     } finally {
       setLoading(false);
     }
-  };  
+  };
 
   const containerStyle: CSSProperties = {
     padding: "30px",
@@ -78,7 +78,6 @@ const ManualEntryPage: React.FC = () => {
     border: "1px solid #CBD5E1",
     marginBottom: "15px",
     fontSize: "16px",
-    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
   };
 
   const textareaStyle: CSSProperties = {
@@ -94,8 +93,6 @@ const ManualEntryPage: React.FC = () => {
     borderRadius: "8px",
     fontWeight: "600",
     marginTop: "10px",
-    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
-    transition: "all 0.3s ease",
   };
 
   return (
