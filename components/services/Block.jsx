@@ -25,7 +25,7 @@ const Block = () => {
 
       <div className="row gx-xxl-5" data-aos="fade-down">
         <div className="col-sm-7" data-aos="fade-down">
-          <div className="block-wrapper block-two position-relative mt-50 sm-mt-30">
+          <div style={{backgroundColor:"white"}}className="block-wrapper block-two position-relative mt-50 sm-mt-30">
             <h3 style={{ color: "#9650EF" }}>
               Lets <br />
               <span>Get Into</span>

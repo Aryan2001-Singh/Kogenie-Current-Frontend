@@ -70,14 +70,15 @@ const Features = () => {
               />
             </div>
             <h4 className="mt-25 mb-20">{feature.title}</h4>
-            <p className="mb-50">{feature.description}</p>
-            <Link href="/pages-menu/service-details">
-              <Image
+            <p style={{color:"gray"}}className="mb-50">{feature.description}</p>
+            <Link  href="/pages-menu/service-details">
+              <Image 
                 src="/images/icon/icon_18.svg"
                 alt="icon"
                 className="lazy-img"
                 width={39}  // Provide width for this image
                 height={15}  // Provide height for this image
+               
               />
             </Link>
           </div>

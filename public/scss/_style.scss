@@ -31,7 +31,7 @@
   --text-color: #48494e;
   --heading: #090f32;
   --prime-one: #ff8c24;
-  --prime-two: #ff733b;
+  --prime-two: #4a5abb;
   --prime-three: #6a45ff;
   --prime-four: #ffcd45;
   --prime-five: #007bff;
@@ -319,7 +319,7 @@ p {
   bottom: -17px;
   font-size: 13px;
   line-height: 20px;
-  color: #ff4d44;
+  color: #4a5abb;
 }
 #contact-form .form-group .help-block ul {
   margin-bottom: 0;
@@ -347,7 +347,7 @@ p {
   font-size: 25px;
   cursor: pointer;
   border-radius: 50%;
-  background: #db4a2b;
+  background: #4a5abb;
   transition: all 0.3s ease-in-out;
 }
 .scroll-top:after {
@@ -390,7 +390,7 @@ p {
 .title-style-two .sc-title {
   font-size: 20px;
   padding-bottom: 5px;
-  color: #f96f60;
+  color: #4a5abb;
 }
 .title-style-two .main-title {
   font-size: 48px;
@@ -502,7 +502,7 @@ p {
   font-size: 15px;
   letter-spacing: 2px;
   padding-bottom: 8px;
-  color: #db4a2b;
+  color: #4a5abb;
 }
 .title-style-six .main-title {
   font-size: 62px;
@@ -695,7 +695,7 @@ body .btn-three {
   border-radius: 28px;
   padding: 0 40px;
   position: relative;
-  background: #db4a2b; /* Changed background color to #DB4A2B */
+  background: #4a5abb; /* Changed background color to #DB4A2B */
   transition: all 0.3s ease-in-out;
 }
 
@@ -708,7 +708,7 @@ body .btn-four {
   border-radius: 7px;
   padding: 0 40px;
   position: relative;
-  background: #db4a2b;
+  background:#4a5abb;
   transition: all 0.3s ease-in-out;
 }
 body .btn-four:hover {
@@ -727,13 +727,13 @@ body .btn-five:hover {
 body .btn-six {
   line-height: 50px;
   border-radius: 4px;
-  border: 2px solid #db4a2b;
-  color: #db4a2b;
+  border: 2px solid #4a5abb;
+  color: #4a5abb;
   padding: 0 40px;
   transition: all 0.3s ease-in-out;
 }
 body .btn-six:hover {
-  background: #db4a2b;
+  background: #4a5abb;
   color: #fff;
 }
 body .btn-seven {
@@ -986,7 +986,7 @@ body .btn-twentyOne {
   line-height: 50px;
   padding: 0 35px;
   border-radius: 30px;
-  background: #db4a2b;
+  background: #4a5abb;
   color: #fff;
   letter-spacing: -0.36px;
 }
@@ -997,7 +997,7 @@ body .btn-twentyTwo {
   line-height: 55px;
   padding: 0 42px;
   border-radius: 7px;
-  background: #db4a2b;
+  background: #4a5abb;
   color: #fff;
   letter-spacing: -0.2px;
 }
@@ -1162,12 +1162,12 @@ body .btn-twentySix:hover:after {
 .theme-main-menu .contact-btn-two {
   line-height: 48px;
   border: 1px solid var(--prime-two);
-  color: #db4a2b;
+  color: #4a5abb;
   border-radius: 30px;
   padding: 0 35px;
 }
 .theme-main-menu .contact-btn-two:hover {
-  background: #db4a2b;
+  background: #4a5abb;
   color: #fff;
 }
 .theme-main-menu .contact-btn-three {
@@ -1239,8 +1239,9 @@ body .btn-twentySix:hover:after {
   padding: 0 35px;
 }
 .theme-main-menu .login-btn-one:hover {
-  background: #db4a2b;
+  background: #4a5abb;
   color: #fff;
+  
 }
 .theme-main-menu .login-btn-two {
   font-size: 18px;
@@ -1896,7 +1897,7 @@ body .btn-twentySix:hover:after {
 .fancy-feature-two .img-meta .shape-three {
   width: 57px;
   height: 57px;
-  background: #ff8c24;
+  background: #8693e3;
   border-radius: 13px;
   transform: rotate(15deg);
   right: -5%;
@@ -1989,7 +1990,7 @@ body .btn-twentySix:hover:after {
   position: absolute;
   width: 60px;
   height: 60px;
-  background: #ff7a2b;
+  background: #8693e3;
   box-shadow: 0px 10px 20px rgba(255, 96, 55, 0.320437);
   z-index: 1;
   top: -30px;
@@ -2032,7 +2033,7 @@ body .btn-twentySix:hover:after {
 .feedback-section-one .bg-wrapper .shape-two {
   width: 80px;
   height: 80px;
-  background: #ff8c24;
+  background: #8693e3;
   border-radius: 15px;
   right: 10%;
   top: -4%;
@@ -2133,7 +2134,7 @@ body .btn-twentySix:hover:after {
 .blog-section-one .shape-three {
   width: 70px;
   height: 70px;
-  background: #ff8c24;
+  background: #8693e3;
   border-radius: 13px;
   left: 11%;
   bottom: -3%;
@@ -2200,7 +2201,7 @@ body .btn-twentySix:hover:after {
   color: #fff;
   width: 160px;
   border-radius: 6px;
-  background: #db4a2b;
+  background: #546aec;
 }
 .fancy-short-banner-one form button:hover {
   background: #212121;
@@ -2233,7 +2234,7 @@ body .btn-twentySix:hover:after {
 .footer-style-one .shape-one {
   width: 85px;
   height: 85px;
-  background: #ff8c24;
+  background: #8693e3;
   border-radius: 15px;
   left: -2%;
   bottom: 10%;
@@ -2569,12 +2570,12 @@ body .btn-twentySix:hover:after {
   border: 1px solid #f1f1f1;
   border-radius: 10px;
   padding: 42px 10px 30px 45px;
-  background: #fff;
+  background: rgba(247, 248, 254, 1);
   transition: all 0.3s ease-in-out;
 }
 .card-style-three:hover {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
-  border-color: #fff;
+  border-color: #4a5abb;
 }
 .card-style-three .icon {
   height: 65px;
@@ -2723,7 +2724,7 @@ body .btn-twentySix:hover:after {
   border-radius: 0 45px 45px 0;
 }
 .pricing-nav-one .nav-item .nav-link.active {
-  background: #db4a2b;
+  background: #4a5abb;
   color: #fff;
 }
 .pricing-table-area-one .pr-table-wrapper {
@@ -2946,7 +2947,7 @@ body .btn-twentySix:hover:after {
   color: #000;
 }
 .footer-style-two .mobile {
-  color: #db4a2b;
+  color: #546aec;
 }
 .footer-style-two .mobile:hover {
   text-decoration: underline;

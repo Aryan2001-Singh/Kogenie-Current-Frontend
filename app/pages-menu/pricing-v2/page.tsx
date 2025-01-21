@@ -67,12 +67,12 @@ const PricingV2 = () => {
         </div>
         {/* End container */}
 
-        <div className="shapes shape-one rounded-circle" />
-        <Image
+        <div className="" />
+        {/* <Image
           src="/images/shape/shape_40.svg"
           alt="shape"
           className="lazy-img shapes shape-two"
-        />
+        /> */}
       </div>
       {/* /.pricing-section-one */}
 
@@ -200,9 +200,9 @@ const PricingV2 = () => {
             </div>
             {/* /.inner-wrapper */}
           </div>
-          <div className="shapes shape-one rounded-circle" />
-          <div className="shapes shape-two rounded-circle" />
-          <Image
+          <div className="" />
+          <div className="" />
+          {/* <Image
             src="/images/shape/shape_42.svg"
             alt="shape"
             className="lazy-img shapes shape-three"
@@ -211,7 +211,7 @@ const PricingV2 = () => {
             src="/images/shape/shape_43.svg"
             alt="shape"
             className="lazy-img shapes shape-four"
-          />
+          /> */}
         </div>
         {/* /.top-footer */}
         <CopyrightFooter2 />
