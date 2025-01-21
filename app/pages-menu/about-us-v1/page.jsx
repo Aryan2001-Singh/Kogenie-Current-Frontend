@@ -76,7 +76,7 @@ const AboutUsV1 = () => {
                       Democratizing the Power of Marketing
                     </h2>
                   </div>
-                  <p
+                  <div
                     className="text-lg mt-15 mb-60 lg-mb-40"
                     style={{
                       fontSize: "16px",
@@ -99,9 +99,9 @@ const AboutUsV1 = () => {
                       we&apos;re levelling the playing field. In this cluttered world, we&apos;re the signal in the noise,
                       giving everyone the chance to shine.
                     </p>
+                  </div>
 
-
-                  </p>
+                  
 
                 </div>
 
@@ -472,6 +472,7 @@ const AboutUsV1 = () => {
                     to execute what already exists well. But that&apos;s not us. That&apos;s
                     KOgenie.
                   </p>
+                 
                   <p
                     className="text-lg mt-15 mb-60 lg-mb-40"
                     style={{
@@ -607,13 +608,15 @@ const AboutUsV1 = () => {
               <Image
                 src="/path-to-your-image.jpg" // Replace with your image path
                 alt="Blurred Background"
+                width={300}  // Provide numeric pixel values
+                height={300} 
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  filter: "blur(8px)",
-                  transform: "scale(1.1)",
-                }}
+                width: "100%",  // This styling is fine for responsiveness
+                height: "100%", 
+                objectFit: "cover",
+                filter: "blur(8px)",
+                transform: "scale(1.1)",
+  }}
               />
               <div
                 style={{
@@ -860,6 +863,8 @@ const AboutUsV1 = () => {
               <Image
                 src="/images/assets/ils_07.png" // Corrected path for the image
                 alt="Person"
+                width={300}  // Provide numeric pixel values
+                height={300} 
                 style={{
                   width: "100%",
                   height: "100%",
@@ -1026,30 +1031,7 @@ const AboutUsV1 = () => {
       </div>
 
       {/* Client Feedback Section */}
-      <div
-        className="feedback-section-eleven position-relative mt-50 pt-100 pb-70 lg-pt-70 lg-pb-50"
-        data-aos="fade-up"
-      >
-        <div className="container">
-          <div className="title-style-one text-center mb-50 lg-mb-20">
-            <h2
-              style={{
-                fontSize: "50px",
-              }}
-              className="main-title fw-500 tx-dark m0 font-recoleta"
-            >
-              Client Feedback
-            </h2>
-          </div>
-        </div>
-        <div className="inner-content">
-          <div className="slider-wrapper">
-            <div className="feedback_slider_seven">
-              <Testimonial />
-            </div>
-          </div>
-        </div>
-      </div>
+     
 
 
       {/* Footer */}

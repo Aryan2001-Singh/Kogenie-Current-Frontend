@@ -11,6 +11,10 @@ const ClientReviews = () => {
       text: "Lavv Digital's visual design is excellent!",
       author: "Rachel Jules",
       image: "/author_img.png",
+      alt: "Author Image",
+      width: 500, // Corrected to number
+      height: 500, // Corrected to number
+      layout: "intrinsic",
       rating: 5, // Star rating for this review
     },
     {
@@ -18,6 +22,10 @@ const ClientReviews = () => {
       text: "They deliver incredible branding results.",
       author: "Rachel Jules",
       image: "/author_img.png",
+      alt: "Author Image",
+      width: 500, // Corrected to number
+      height: 500, // Corrected to number
+      layout: "intrinsic",
       rating: 4, // Star rating for this review
     },
     {
@@ -25,6 +33,10 @@ const ClientReviews = () => {
       text: "Lavv makes web design easy and enjoyable!",
       author: "Rachel Jules",
       image: "/author_img.png",
+      alt: "Author Image",
+      width: 500, // Corrected to number
+      height: 500, // Corrected to number
+      layout: "intrinsic",
       rating: 3, // Star rating for this review
     },
   ];
@@ -80,7 +92,13 @@ const ClientReviews = () => {
                     <p>{review.text}</p>
                     <div>{renderStars(review.rating)}</div>
                     <div className="review-author">
-                      <Image src={review.image} alt={review.author} />
+                      <Image 
+                        src={review.image} 
+                        alt={review.alt} 
+                        width={review.width} 
+                        height={review.height} 
+                        layout={review.layout}
+                      />
                       <span>{review.author}</span>
                     </div>
                   </div>
@@ -176,12 +194,12 @@ const ClientReviews = () => {
           font-family:calibri;
         }
 
-        .review-author img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
+        // .review-author img {
+        //   width: 40px;
+        //   height: 40px;
+        //   border-radius: 50%;
+        //   object-fit: cover;
+        // }
 
         /* Review Cards */
         .review-cards {
