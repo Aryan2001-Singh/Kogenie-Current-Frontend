@@ -94,7 +94,7 @@ const ClientReviews = () => {
       <div className="reviews-track" ref={reviewsTrackRef}>
         {duplicatedReviews.map((review, index) => (
           <div key={index} className="review-card">
-            <p className="review-text">"{review.text}"</p>
+            <p className="review-text">&quot;{review.text}&quot;</p>
             <div className="stars">{renderStars(review.rating)}</div>
             <div className="review-author">
               <Image

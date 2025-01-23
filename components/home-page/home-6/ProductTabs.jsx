@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const tabData = [
   { id: 1, title: "Plan", subtitle: "Set your goals", icon: "/step1.png" },
@@ -27,40 +28,44 @@ const ProductTabs = () => {
 
   return (
     <div className="product-tabs">
-       <div className="tab-content">
+      <div className="tab-content">
         {tabData.map((tab) => (
           <div
             key={tab.id}
-            className={`tab-pane ${tab.id === activeTab ? "active" : ""}`
-          }
+            className={`tab-pane ${tab.id === activeTab ? "active" : ""}`}
           >
-            <h2 style={{fontSize:'40px'}}>{tab.title}</h2>
+            <h2 style={{ fontSize: "40px" }}>{tab.title}</h2>
             <p>{tab.subtitle}</p>
           </div>
         ))}
-      <ul className="tab-list">
-        {tabData.map((tab) => (
-          <motion.li
-            className={`tab-item ${tab.id === activeTab ? "active" : ""}`}
-            key={tab.id}
-            initial="hidden"
-            animate="visible"
-            variants={fadeInVariants}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            <img src={tab.icon} alt={`${tab.title} icon`} className="tab-icon" />
-            <h3 className="tab-title">{tab.title}</h3>
-            <p className="tab-subtitle">{tab.subtitle}</p>
-          </motion.li>
-        ))}
-      </ul>
-     
+        <ul className="tab-list">
+          {tabData.map((tab) => (
+            <motion.li
+              className={`tab-item ${tab.id === activeTab ? "active" : ""}`}
+              key={tab.id}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              <Image
+                src={tab.icon}
+                alt={`${tab.title} icon`}
+                width={50}
+                height={50}
+                className="tab-icon"
+              />
+              <h3 className="tab-title">{tab.title}</h3>
+              <p className="tab-subtitle">{tab.subtitle}</p>
+            </motion.li>
+          ))}
+        </ul>
       </div>
       <style jsx>{`
         .product-tabs {
           text-align: center;
           padding: 20px;
-          margin-bottom:30px;
+          margin-bottom: 30px;
         }
 
         .tab-list {
@@ -106,7 +111,7 @@ const ProductTabs = () => {
           font-size: 18px;
           font-weight: medium;
           margin-bottom: 5px;
-          color:#546aec;
+          color: #546aec;
         }
 
         .tab-subtitle {
@@ -120,8 +125,8 @@ const ProductTabs = () => {
 
         .tab-pane {
           display: none;
-          margin-bottom:20px;
-          margin-top:20px;
+          margin-bottom: 20px;
+          margin-top: 20px;
         }
 
         .tab-pane.active {

@@ -692,7 +692,7 @@ const SassProduct = () => {
               <span className="faq-question">How can I get support?</span>
               <p className="faq-answer">
                 You can reach out via our Contact page or email us directly.
-                We're here to help!
+                We&apos;re here to help!
               </p>
             </li>
           </ul>
