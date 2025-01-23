@@ -1,9 +1,9 @@
-'use client';
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 
 const ClientReviews = () => {
-  const [activeReview, setActiveReview] = useState(0);
+  const reviewsTrackRef = useRef(null);
 
   const reviews = [
     {
@@ -11,54 +11,76 @@ const ClientReviews = () => {
       text: "Lavv Digital's visual design is excellent!",
       author: "Rachel Jules",
       image: "/author_img.png",
-      alt: "Author Image",
-      width: 500, // Corrected to number
-      height: 500, // Corrected to number
-      layout: "intrinsic",
-      rating: 5, // Star rating for this review
+      rating: 5,
     },
     {
       id: 2,
       text: "They deliver incredible branding results.",
       author: "Rachel Jules",
       image: "/author_img.png",
-      alt: "Author Image",
-      width: 500, // Corrected to number
-      height: 500, // Corrected to number
-      layout: "intrinsic",
-      rating: 4, // Star rating for this review
+      rating: 4,
     },
     {
       id: 3,
       text: "Lavv makes web design easy and enjoyable!",
       author: "Rachel Jules",
       image: "/author_img.png",
-      alt: "Author Image",
-      width: 500, // Corrected to number
-      height: 500, // Corrected to number
-      layout: "intrinsic",
-      rating: 3, // Star rating for this review
+      rating: 3,
+    },
+    {
+      id: 4,
+      text: "Outstanding creativity and professionalism.",
+      author: "Samuel L.",
+      image: "/author_img.png",
+      rating: 5,
+    },
+    {
+      id: 5,
+      text: "Reliable and efficient branding solutions.",
+      author: "Amanda T.",
+      image: "/author_img.png",
+      rating: 4,
+    },
+    {
+      id: 6,
+      text: "Impressive attention to detail!",
+      author: "John D.",
+      image: "/author_img.png",
+      rating: 5,
     },
   ];
 
-  // Automatic review focus animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveReview((prev) => (prev + 1) % reviews.length);
-    }, 3000); // Change review every 3 seconds
+  // Duplicate the reviews to ensure seamless flow
+  const duplicatedReviews = [...reviews, ...reviews];
 
+  useEffect(() => {
+    const reviewsTrack = reviewsTrackRef.current;
+    const reviewWidth = 320; // Card width + gap
+    const totalWidth = duplicatedReviews.length * reviewWidth;
+
+    let position = 0;
+
+    const slide = () => {
+      position -= 2; // Slide speed (pixels per frame)
+      if (Math.abs(position) >= totalWidth / 2) {
+        position = 0; // Reset the position when half the track has scrolled
+      }
+
+      reviewsTrack.style.transform = `translateX(${position}px)`;
+    };
+
+    const interval = setInterval(slide, 16); // 60 FPS for smooth animation
     return () => clearInterval(interval);
-  }, [reviews.length]);
+  }, [duplicatedReviews.length]);
 
   const renderStars = (rating) => {
-    const totalStars = 5; // Maximum number of stars
+    const totalStars = 5;
     return Array.from({ length: totalStars }, (_, index) => (
       <span
         key={index}
         style={{
-          color: index < rating ? "#ffb400" : "#ccc", // Highlight stars for the rating
-          fontSize: "18px",
-          marginRight: "2px",
+          color: index < rating ? "#ffb400" : "#ccc",
+          fontSize: "16px",
         }}
       >
         ★
@@ -67,122 +89,67 @@ const ClientReviews = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage:
-          "url('')",
-        backgroundSize: "contain",
-        backgroundPosition: "top center",
-        backgroundRepeat: "no-repeat",
-      }}
-      className="feedback-section-two position-relative pt-150 pb-150"
-    >
-      <div className="container">
-        <div className="row align-items-center">
-          {/* Phone Container */}
-          <div className="col-lg-6 d-flex justify-content-center">
-            <div className="phone-container">
-              <div className="phone-screen">
-                {reviews.map((review, index) => (
-                  <div
-                    key={review.id}
-                    className={`review ${index === activeReview ? "active" : "inactive"
-                      }`}
-                  >
-                    <p>{review.text}</p>
-                    <div>{renderStars(review.rating)}</div>
-                    <div className="review-author">
-                      <Image 
-                        src={review.image} 
-                        alt={review.alt} 
-                        width={review.width} 
-                        height={review.height} 
-                        layout={review.layout}
-                      />
-                      <span>{review.author}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+    <div className="client-reviews-container">
+      {/* Sliding Reviews */}
+      <div className="reviews-track" ref={reviewsTrackRef}>
+        {duplicatedReviews.map((review, index) => (
+          <div key={index} className="review-card">
+            <p className="review-text">"{review.text}"</p>
+            <div className="stars">{renderStars(review.rating)}</div>
+            <div className="review-author">
+              <Image
+                src={review.image}
+                alt={review.author}
+                width={40}
+                height={40}
+                style={{ borderRadius: "50%", objectFit: "cover" }}
+              />
+              <span>{review.author}</span>
             </div>
           </div>
-
-          {/* Review Cards - Now on the right side */}
-          <div className="col-lg-6">
-            <div className="review-cards">
-              {reviews.map((review, index) => (
-                <div
-                  key={review.id}
-                  className={`review-card ${index === activeReview ? "highlighted" : ""
-                    }`}
-                >
-                  <p>{review.text}</p>
-                  {/* <div>{renderStars(review.rating)}</div> */}
-                  {/* <span>- {review.author}</span>  */}
-                </div>
-              ))}
-            </div>
-          </div>
-          <button>view more</button>
-        </div>
+        ))}
       </div>
 
-      {/* Additional Styles */}
       <style jsx>{`
-        .feedback-section-two {
-          padding: 40px 20px;
-          text-align: center;
-        }
-
-        /* Phone Design */
-        .phone-container {
-          position: relative;
-          width: 220px;
-          height: 440px;
-          border: 10px solid black;
-          border-radius: 40px;
-          background-color: white;
-          box-shadow: 0 4px 20px rgba(41, 42, 43, 0.28);
-          overflow: hidden;
-           display: flex; /* Enables flexbox */
-  flex-direction: column; /* Align items in a column */
-  align-items: center; /* Horizontal centering */
-  justify-content: center; /* Vertical centering */
-        }
-
-        .phone-screen {
+        .client-reviews-container {
           width: 100%;
-          height: 100%;
-          background-color:#8693e3;
-          border-radius: 20px;
-          padding: 10px;
+          height: 100vh;
           overflow: hidden;
           position: relative;
-         
-        }
-
-        .review {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+          background: linear-gradient(135deg, #f7f9fc, #e5eaf3);
           display: flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
-          opacity: 0;
-          transform: scale(0.8);
-          transition: all 0.8s ease;
         }
 
-        .review.active {
-          opacity: 1;
-          transform: scale(1);
+        /* Sliding Background */
+        .reviews-track {
+          position: absolute;
+          display: flex;
+          gap: 20px; /* Small gap between review cards */
+          will-change: transform;
         }
 
-        .review p {
+        .review-card {
+          width: 300px; /* Card width */
+          height: 200px;
+          background: rgba(255, 255, 255, 0.9);
+          border-radius: 15px;
+          padding: 20px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          backdrop-filter: blur(10px);
+          transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .review-text {
           font-size: 16px;
+          margin-bottom: 10px;
+          color: #333;
+          font-style: italic;
+        }
+
+        .stars {
           margin-bottom: 10px;
         }
 
@@ -190,71 +157,18 @@ const ClientReviews = () => {
           display: flex;
           align-items: center;
           gap: 10px;
-          color:rgba(53, 57, 68, 1);
-          font-family:calibri;
-        }
-
-        // .review-author img {
-        //   width: 40px;
-        //   height: 40px;
-        //   border-radius: 50%;
-        //   object-fit: cover;
-        // }
-
-        /* Review Cards */
-        .review-cards {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 20px;
-          justify-content: flex-start;
-        }
-
-        .review-card {
-          background: #fff;
-          border: 2px solidrgba(48, 48, 50, 0.44);
-          border-radius: 30px;
-          padding: 15px;
-          width: 180px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.74);
-          text-align: center;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          margin-bottom:5px;
-          margin-top:15px;
-          font-weight:16px;
-          font-family:calibri;
-        }
-
-        .review-card.highlighted {
-          transform: scale(1.1);
-          background-color:rgb(255, 183, 0);
-          color: white;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+          font-size: 14px;
+          color: #666;
         }
 
         @media (max-width: 768px) {
-          .phone-container {
-            width: 200px;
-            height: 400px;
-          }
-
           .review-card {
-            width: 150px;
-          }
-        }
-
-        @media (max-width: 576px) {
-          .phone-container {
-            width: 160px;
-            height: 320px;
+            width: 260px; /* Adjust card width for smaller screens */
           }
 
-          .review-card {
-            width: 120px;
+          .review-text {
+            font-size: 14px;
           }
-
-          .review-cards {
-            justify-content: center;
-          } 
         }
       `}</style>
     </div>

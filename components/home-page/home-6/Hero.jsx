@@ -16,7 +16,7 @@ const Hero = () => {
         videoId="20QUNgFIrK0"
         onClose={() => setOpen(false)}
       />
-      
+
       <div
         className="hero-banner-two position-relative pt-170 lg-pt-200 md-pt-150"
         style={{ position: "relative" }}
@@ -38,9 +38,9 @@ const Hero = () => {
             zIndex: "-1",
             backgroundColor: "rgba(255, 255, 255, 0)",
             backdropFilter: "blur(50px)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
+            // border: "1px solid rgba(255, 255, 255, 0.2)",
             pointerEvents: "none",
-            
+
           }}
         >
           <source src="/vecteezy_4k-light-grey-abstract-moving-geometri-with-white-dots_55005964.mov" type="video/mp4" />
@@ -53,7 +53,7 @@ const Hero = () => {
               style={{
                 borderRadius: "20px",
                 boxShadow: "0 4px 20px rgba(100, 110, 254, 0.2)",
-                backgroundColor: "rgba(255, 255, 255, 0.7)",
+                backgroundColor: "rgba(134, 147, 227, 0.2)",
                 backdropFilter: "blur(20px)",
                 padding: "30px",
                 margin: "20px",
@@ -69,18 +69,18 @@ const Hero = () => {
                     fontWeight: "lighter",
                   }}
                 >
-                  that boost sales in just
+                  that boost sales in just 5 minutes &amp;
                 </span>
-                <span style={{ color: "rgb(100, 110, 254)" }}> 5 minutes</span>{" "}
+               
                 <span
                   style={{
                     color: "black",
                     fontSize: "56px",
                     fontWeight: "lighter",
-                    
+
                   }}
                 >
-                  &amp; Hassle-free
+                   Hassle-free
                 </span>
               </h1>
 
@@ -102,13 +102,25 @@ const Hero = () => {
                 <Link
                   href="/sign-up"
                   style={{
-                    backgroundColor: "#546aec",
+                    backgroundColor: "#4a5abb",
                     color: "white",
+                    padding: "20px 50px",
+                    textDecoration: "none",
+                    borderRadius: "20px",
+                    transition: "all 0.3s ease", // Smooth hover transition
                   }}
-                  className="tran3s fs-17 fw-500 btn-three mt-1 mb-25 ms-2 me-3 hero-button"
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#3e54c2"; // Darker background on hover
+                    e.target.style.color = "#f0f0f0"; // Slightly lighter text color
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#546aec"; // Original background
+                    e.target.style.color = "white"; // Original text color
+                  }}
                 >
                   Try Free Now
                 </Link>
+
                 <div
                   role="button"
                   className="fancybox video-icon tran3s mb-25 ms-2 me-3 d-flex align-items-center justify-content-center"
@@ -144,31 +156,28 @@ const Hero = () => {
 
       {/* Additional Styles */}
       <style jsx>{`
-        .hero-button {
-          transition: all 0.3s ease;
-          border-radius: 10px;
-          padding: 12px 30px;
-        }
+        // .hero-button {
+        //   transition: all 0.3s ease;
+        //   border-radius: 10px;
+        //   padding: 12px 30px;
+        // }
 
-        .hero-button:hover {
-          background-color: #4056b3;
-          transform: translateY(-2px);
-        }
+        // .hero-button:hover {
+        //   background-color: #4056b3;
+        //   transform: translateY(-2px);
+        // }
 
         .fancybox {
           display: inline-flex;
           cursor: pointer;
-          padding: 10px 20px;
-          background: rgba(255, 255, 255, 0.7);
+          padding: 20px 30px;
+          margin-top: 30px;
           border-radius: 10px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          
           transition: all 0.3s ease;
         }
 
-        .fancybox:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
+      
 
         .hero-heading {
           line-height: 1.3;
