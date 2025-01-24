@@ -1,162 +1,160 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const tabData = [
-  {
-    id: "sp1",
-    title: "Input Audience Data",
-    subtitle: "Select your target audience",
-    image: "/images/media/img_06.jpg",
-    width: 1214,
-    height: 729,
-  },
-  {
-    id: "sp2",
-    title: "Review and Refine",
-    subtitle: "A/B Testing optimizes for best possible outcomes",
-    image: "/images/media/img_05.jpg",
-    width: 1214,
-    height: 729,
-  },
-  {
-    id: "sp3",
-    title: "Deploy and Monitor",
-    subtitle: "Get analysis of insight in realtime",
-    image: "/images/media/img_06.1.jpg",
-    width: 1214,
-    height: 730,
-  },
+  { id: 1, title: "Plan", subtitle: "Set your goals", icon: "/step1.png" },
+  { id: 2, title: "Design", subtitle: "Create visuals", icon: "/step2.png" },
+  { id: 3, title: "Develop", subtitle: "Build your product", icon: "/step3.png" },
+  { id: 4, title: "Launch", subtitle: "Go live", icon: "/step4.png" },
 ];
 
 const ProductTabs = () => {
-  const [activeTab, setActiveTab] = useState("sp1");
+  const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveTab((prevTab) => {
-        const currentIndex = tabData.findIndex((tab) => tab.id === prevTab);
-        const nextIndex = (currentIndex + 1) % tabData.length; // Cycle to the next tab
-        return tabData[nextIndex].id;
-      });
-    }, 3000); // Change tab every 3 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+      setActiveTab((prevTab) => (prevTab % tabData.length) + 1); // Cycle through tabs
+    }, 4000); // Change tab every 4 seconds
+    return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
-    <>
-      <ul
-        className="mx-5 nav nav-tabs d-block d-md-flex justify-content-between"
-        role="tablist"
-        style={{ marginBottom: "10px", gap: "2px" }}
-      >
+    <div className="product-tabs">
+      <div className="tab-content">
         {tabData.map((tab) => (
-          <motion.li
-            className="nav-item"
-            role="presentation"
+          <div
             key={tab.id}
-            initial="hidden"
-            animate="visible"
-            variants={fadeInVariants}
-            style={{ marginBottom: "5px" }}
+            className={`tab-pane ${tab.id === activeTab ? "active" : ""}`}
           >
-            <button
-              className={`nav-link ${tab.id === activeTab ? "active" : ""}`}
+            <h2 style={{ fontSize: "40px" }}>{tab.title}</h2>
+            <p>{tab.subtitle}</p>
+          </div>
+        ))}
+        <ul className="tab-list">
+          {tabData.map((tab) => (
+            <motion.li
+              className={`tab-item ${tab.id === activeTab ? "active" : ""}`}
+              key={tab.id}
+              initial="hidden"
+              animate="visible"
+              variants={fadeInVariants}
               onClick={() => setActiveTab(tab.id)}
-              type="button"
-              role="tab"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "12px 18px",
-                fontSize: "18px",
-                color: tab.id === activeTab ? "#fff" : "#333",
-                backgroundColor: tab.id === activeTab ? "#546aec" : "rgb(255, 255, 255)",
-                border: tab.id === activeTab ? "4px solid #546aec" : "4px solid #546aec",
-                borderRadius: "30px",
-                transition: "all 0.2s ease",
-                width: "30vw",
-                height: "30vh",
-                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.35)",
-                
-              }}
             >
-              {tab.title}
-              <span style={{ fontSize: "16px", color: tab.id === activeTab ? "#fff" : "#555" }}>
-                {tab.subtitle}
-              </span>
-            </button>
-          </motion.li>
-        ))}
-      </ul>
-      <div className="tab-content position-relative" style={{ marginTop: "10px" }}>
-        {tabData.map((tab) => (
-          <motion.div
-            className={`tab-pane ${tab.id === activeTab ? "active show" : ""}`}
-            id={tab.id}
-            key={tab.id}
-            initial="hidden"
-            animate={tab.id === activeTab ? "visible" : "hidden"}
-            variants={fadeInVariants}
-          >
-            <Image
-              src={tab.image}
-              alt="media"
-              className="lazy-img main-screen w-100"
-              width={tab.width}
-              height={tab.height}
-              style={{
-                borderRadius: "10px",
-                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-              }}
-            />
-          </motion.div>
-        ))}
+              <Image
+                src={tab.icon}
+                alt={`${tab.title} icon`}
+                width={50}
+                height={50}
+                className="tab-icon"
+              />
+              <h3 className="tab-title">{tab.title}</h3>
+              <p className="tab-subtitle">{tab.subtitle}</p>
+            </motion.li>
+          ))}
+        </ul>
       </div>
       <style jsx>{`
-        @media (max-width: 1200px) {
-          ul.nav-tabs button {
-            width: 40vw;
-            height: 25vh;
-          }
+        .product-tabs {
+          text-align: center;
+          padding: 20px;
+          margin-bottom: 30px;
+        }
+
+        .tab-list {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 100px;
+          list-style: none;
+          margin: 40px;
+          padding: 10px 20px;
+        }
+
+        .tab-item {
+          background: #f9f9f9;
+          border: 2px solid #ececec;
+          border-radius: 10px;
+          padding: 20px;
+          width: 200px;
+          text-align: center;
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tab-item.active {
+          background: #546aec;
+          color: #fff;
+          transform: translateY(-10px);
+          box-shadow: 0 8px 15px rgba(84, 106, 236, 0.3);
+        }
+
+        .tab-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-icon {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 10px;
+        }
+
+        .tab-title {
+          font-size: 18px;
+          font-weight: medium;
+          margin-bottom: 5px;
+          color: #546aec;
+        }
+
+        .tab-subtitle {
+          font-size: 14px;
+          color: #666;
+        }
+
+        .tab-content {
+          margin-top: 20px;
+        }
+
+        .tab-pane {
+          display: none;
+          margin-bottom: 20px;
+          margin-top: 20px;
+        }
+
+        .tab-pane.active {
+          display: block;
         }
 
         @media (max-width: 768px) {
-          ul.nav-tabs {
-            flex-direction: column;
-            align-items: center;
+          .tab-item {
+            width: 150px;
+            padding: 15px;
           }
 
-          ul.nav-tabs button {
-            width: 70vw;
-            height: 20vh;
-            margin-bottom: 15px;
+          .tab-title {
+            font-size: 16px;
           }
 
-          .tab-content {
-            text-align: center;
+          .tab-subtitle {
+            font-size: 12px;
           }
         }
 
         @media (max-width: 480px) {
-          ul.nav-tabs button {
-            width: 90vw;
-            height: auto;
-            padding: 10px;
+          .tab-item {
+            width: 100%;
           }
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
