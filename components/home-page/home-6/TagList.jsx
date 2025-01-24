@@ -11,7 +11,7 @@ const TagList = () => {
 
   return (
     <div className="tag-list-container">
-      <ul className="tag-list">
+      <ul style={{marginBottom:"50px"}}className="tag-list">
         {tags.map((tag, index) => (
           <li key={index} className="tag-item">
             <a href="#" className="tag-link" style={{ backgroundColor: tag.color }}>

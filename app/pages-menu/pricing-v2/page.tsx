@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 
 import Header from "@/components/home-page/home-6/Header";
@@ -5,7 +6,6 @@ import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Pricing2 from "@/components/pricing/Pricing2";
 import Link from "next/link";
-import Faq2 from "@/components/faqs/Faq2";
 import SocialPartner from "@/components/common/SocialPartner";
 import Image from 'next/image';
 
@@ -134,9 +134,9 @@ const PricingV2 = () => {
             </div>
             {/* End .col */}
 
-            <div className="col-lg-6 ms-auto" data-aos="fade-left">
+            {/* <div className="col-lg-6 ms-auto" data-aos="fade-left">
               <Faq2 />
-            </div>
+            </div> */}
           </div>
         </div>{" "}
         {/* /.container */}

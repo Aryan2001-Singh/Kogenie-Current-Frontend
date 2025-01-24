@@ -5,14 +5,12 @@ import Hero from "@/components/home-page/home-6/Hero";
 import ScreenHolder from "@/components/home-page/home-6/ScreenHolder";
 import Link from "next/link";
 import ProductTabs from "@/components/home-page/home-6/ProductTabs";
-import Subscribe from "@/components/home-page/home-6/Subscribe";
 import TagList from "@/components/home-page/home-6/TagList";
 import Features from "@/components/home-page/home-6/Features";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Image from "next/image";
 import ClientReviews from "./clientreviews/page";
-
 
 const SassProduct = () => {
   return (
@@ -24,13 +22,13 @@ const SassProduct = () => {
       <Hero />
 
       {/* Feature Section Three */}
-      <div className="fancy-feature-three pt-300 lg-pt-200 md-pt-170 sm-pt-120">
+      <div style={{marginTop:"-100px"}}className="fancy-feature-three pt-300 lg-pt-200 md-pt-170 sm-pt-120">
         <div className="container">
           <div className="row align-items-center">
             {/* Left Content Section */}
             <div
               className="col-lg-6 col-md-6"
-              style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}
+              style={{ display: "flex", flexDirection: "column", justifyContent: "center" ,textAlign:"justify"}}
             >
               <div className="title-style-three">
                 <div
@@ -146,7 +144,7 @@ const SassProduct = () => {
         */}
       {/* Feature Section Four */}
       <div className="fancy-feature-four pt-250 lg-pt-120">
-        <div className="container">
+        <div style={{marginTop:"-100px"}} className="container">
           <div className="row justify-content-center">
             <div
               className="col-xxl-7 col-md-8 text-center"
@@ -154,28 +152,14 @@ const SassProduct = () => {
             >
               {/* Title Section */}
               <div className="title-style-three">
-                {/* Subheading */}
-                <div
-                  className="sc-title text-uppercase"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    color: "rgb(84, 106, 236)",
-                    letterSpacing: "1px",
-                    marginBottom: "30px",
-                  }}
-                >
-                  Integrates your tools
-                </div>
-                {/* Main Heading */}
                 <h2
                   style={{
                     fontSize: "36px",
-                    fontWeight: "400",
+                    fontWeight: "500",
                     lineHeight: "2",
                     color: "#333",
-                    marginBottom: "20px",
-                    textAlign: "center", // Ensures the text is centered
+                    marginBottom: "40px",
+                    textAlign: "center",
                   }}
                   className="main-title"
                 >
@@ -199,8 +183,8 @@ const SassProduct = () => {
         style={{
           marginTop: "30px",
           padding: "15px 30px",
-          backgroundColor: "#f5f7ff",
-          borderRadius: "20px",
+          // backgroundColor: "#f5f7ff",
+          borderRadius: "0px",
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
           maxWidth: "600px", // Reduce container width
           margin: "30px auto", // Center the container
@@ -220,24 +204,37 @@ const SassProduct = () => {
 
         {/* Right Side: Button */}
         <div className="col-auto">
-          <button
-            style={{
-              padding: "10px 80px",
-              fontSize: "18px",
-              fontWeight: "600",
-              backgroundColor: "#546aec",
-              color: "#fff",
-              border: "none",
-              borderRadius: "10px",
-              boxShadow: "0 4px 8px rgba(84, 106, 236, 0.4)",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              marginLeft: "15px", // Add space between text and button
-            }}
-          >
-            Generate
-          </button>
-        </div>
+  <button
+    style={{
+      padding: "20px 90px",
+      fontSize: "18px",
+      fontWeight: "600",
+      backgroundColor: " #3c4e99",
+      color: "#fff",
+      border: "none",
+      borderRadius: "10px",
+      boxShadow: "0 4px 8px rgba(84, 106, 236, 0.4)",
+      cursor: "pointer",
+      transition: "all 0.3s ease",
+      marginLeft: "15px", // Add space between text and button
+    }}
+    onMouseEnter={(e) => {
+      const button = e.target as HTMLButtonElement; // Cast e.target to HTMLButtonElement
+      button.style.backgroundColor = "#546aec"; // Darker shade on hover
+      button.style.boxShadow = "0 6px 12px rgba(60, 78, 153, 0.5)";
+      button.style.transform = "translateY(-2px)";
+    }}
+    onMouseLeave={(e) => {
+      const button = e.target as HTMLButtonElement; // Cast e.target to HTMLButtonElement
+      button.style.backgroundColor = "#3c4e99"; // Original color
+      button.style.boxShadow = "0 4px 8px rgba(84, 106, 236, 0.4)";
+      button.style.transform = "translateY(0)";
+    }}
+  >
+    Generate
+  </button>
+</div>
+
       </div>
 
 
@@ -250,14 +247,15 @@ const SassProduct = () => {
   <div className="container">
     <div className="row align-items-center">
       {/* Right Side - Content until the button */}
-      <div className="col-lg-6 order-md-last ms-auto">
+      <div style={{marginTop:"-100px"}}className="col-lg-6 order-md-last ms-auto">
         <div
           className="block-style-two pe-xxl-5 sm-mb-50"
           data-aos="fade-left"
         >
           <div style={{
               marginLeft:"30px",
-              marginRight:"30px"}}
+              marginRight:"30px",
+            }}
               className="title-style-three">
             <div
               className="sc-title text-uppercase"
@@ -309,8 +307,8 @@ const SassProduct = () => {
       </div>
 
       {/* Left Side - Content after the button */}
-      <div className="col-lg-6 order-md-first">
-        <div className="tags-wrapper position-relative stylish-container">
+      <div style={{marginTop:"20px"}}className="col-lg-6 order-md-first">
+        <div style={{marginBottom:"60px"}}className="tags-wrapper position-relative stylish-container">
           <div className="circle-decor"></div>
           <div className="h3 number-highlight fw-bold">13+</div>
           <p className="reason-title">
@@ -433,12 +431,12 @@ const SassProduct = () => {
         Feature Section Six
         ============================================== 
         */}
-  <div className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80">
-  <div style={{marginTop:"-100px"}}className="container">
+  <div style={{marginTop:"-180px"}} className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80">
+  <div className="container">
     <div className="row gx-xxl-5 align-items-center">
       {/* Left Section: Title and Call-to-Action */}
       <div className="col-lg-5 col-md-6 mt-40" data-aos="fade-up">
-        <div className="title-section mb-65 lg-mb-40">
+        <div style={{marginTop:"-100px"}}className="title-section mb-65 lg-mb-40">
           <h2 className="main-title">
             <span className="highlight-text">Explore</span> <br />
             Our <span className="underline-text">Exclusive Features</span>
@@ -448,20 +446,6 @@ const SassProduct = () => {
             tailored features designed to drive growth and success.
           </p>
         </div>
-        <Link style={{
-          backgroundColor:"#4a5abb",
-          color:"white",
-          display: "inline-flex",
-          alignItems: "center",
-          fontWeight: "600",
-          fontSize: "1rem",
-          padding: "12px 20px",
-          borderRadius: "5px",
-          textDecoration: "none",
-          marginBottom:"40px",
-          transition: "all 0.3s ease"}} href="/pages-menu/service-v1" className="cta-btn">
-          Learn More <i className="bi bi-chevron-right" />
-        </Link>
       </div>
     </div>
 
@@ -473,10 +457,10 @@ const SassProduct = () => {
 
   <style jsx>{`
     .fancy-feature-six {
-      background: linear-gradient(135deg, #ffffff 0%, #f3f5fd 100%);
+      // background: linear-gradient(135deg, #ffffff 0%, #f3f5fd 100%);
       padding: 60px 20px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .title-section {
@@ -571,7 +555,7 @@ const SassProduct = () => {
         =====================================================
         */}
       <div
-        className="feedback-section-two position-relative mt-170 pt-150 pb-150 lg-mt-100 lg-pt-100 lg-pb-100 sm-pt-10 sm-pb-10"
+        style={{marginTop:"-30px"}} className="feedback-section-two position-relative mt-170 pt-150 pb-150 lg-mt-100 lg-pt-100 lg-pb-100 sm-pt-10 sm-pb-10"
         data-aos="fade-up"
       >
         <ClientReviews />
@@ -582,17 +566,12 @@ const SassProduct = () => {
         Fancy Short Banner Two
         =====================================================
         */}
-       <div
+      <div
   className="fancy-short-banner-two mt-150 lg-mt-100"
   data-aos="fade-up"
 >
-  <div
-    style={{
-      background:
-        "linear-gradient(135deg, #4a5abb 0%, #8693e3 50%, rgba(84, 106, 236, 0.8) 100%)",
-      borderRadius: "15px",
-      boxShadow: "0 15px 40px rgba(0, 0, 0, 0.2)",
-    }}
+  <div style={{marginTop:"-100px",marginBottom:"40px"}}
+   
     className="container"
   >
     <div
@@ -602,7 +581,7 @@ const SassProduct = () => {
         padding: "50px 40px",
         position: "relative",
         overflow: "hidden",
-        boxShadow: "0 5px 20px rgba(0, 0, 0, 0.1)",
+        // boxShadow: "0 5px 20px rgba(0, 0, 0, 0.1)",
       }}
       className="bg-wrapper ms-xxl-4 me-xxl-4"
     >
@@ -613,24 +592,31 @@ const SassProduct = () => {
 
       {/* Inner Wrapper */}
       <div className="inner-wrapper m-auto">
+        {/* Button at the top right */}
+        <div className="text-end mb-4">
+          <Link href="/contact" className="btn-six fw-500">
+            Contact Us
+          </Link>
+        </div>
+
         <div className="row align-items-center">
           {/* Left Section */}
           <div
-              className="sc-title text-uppercase"
-              style={{
-                fontSize: "14px",
-                fontWeight: "600",
-                color: "rgb(84, 106, 236)",
-                letterSpacing: "1px",
-                marginBottom: "10px",
-              }}
-            >
-              Have Questions?
-            
+            className="sc-title text-uppercase"
+            style={{
+              fontSize: "14px",
+              fontWeight: "500",
+              color: "rgb(84, 106, 236)",
+              letterSpacing: "1px",
+              marginBottom: "10px",
+            }}
+          >
+            Have Questions?
+
             <h3
               style={{
                 fontSize: "2.2rem",
-                fontWeight: "600",
+                fontWeight: "500",
                 lineHeight: "1.4",
                 color: "#333",
                 margin: "0 0 20px 0",
@@ -650,13 +636,6 @@ const SassProduct = () => {
               or Contact Us!
             </h3>
           </div>
-
-          {/* Right Section */}
-          <div className="col-md-6 text-center text-md-end">
-            <Link href="/contact" className="btn-six fw-500">
-              Contact Us
-            </Link>
-          </div>
         </div>
 
         {/* FAQ Section */}
@@ -665,7 +644,7 @@ const SassProduct = () => {
             <h5
               style={{
                 fontSize: "1.4rem",
-                fontWeight: "600",
+                fontWeight: "400",
                 color: "#4a5abb",
                 marginBottom: "25px",
               }}
@@ -673,7 +652,7 @@ const SassProduct = () => {
               Frequently Asked Questions
             </h5>
           </div>
-          <ul className="faq-list">
+          <ul style={{textAlign:"justify"}}className="faq-list">
             <li>
               <span className="faq-question">What services do you provide?</span>
               <p className="faq-answer">
@@ -706,7 +685,7 @@ const SassProduct = () => {
       position: relative;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     .shapes {
@@ -800,7 +779,7 @@ const SassProduct = () => {
     .faq-question {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #4a5abb;
+      color:rgb(154, 161, 214);
       margin-bottom: 5px;
     }
 
@@ -841,58 +820,10 @@ const SassProduct = () => {
         Fancy Short Banner Three
         =====================================================
         */}
-        <div className="fancy-short-banner-three mt-180 mb-200 lg-mt-100 lg-mb-100">
-          <div className="container">
-            <div className="row">
-              <div className="col-xxl-7 col-lg-8 col-md-9 m-auto text-center">
-                <div
-                  className="title-style-three text-center"
-                  data-data-aos="fade-up"
-                >
-                  <h2 className="main-title fw-500">
-                    Ready to take
-                    <span className="d-inline-block position-relative">
-                      plan?
-                      <span
-                        className="mark-bg"
-                      // style={{ backgroundColor: "#C3F0FF" }}
-                      />
-                    </span>
-                    It’s just a matter of clike
-                  </h2>
-                </div>
-                {/* /.title-style-three */}
-                <p
-                  className="text-lg tx-dark pt-30 pb-55 lg-pb-30 "
-                  data-aos="fade-up"
-                >
-                  Try it risk free — we don’t charge cancellation fees.
-                </p>
-                <div
-                  className="subscribe-form m-auto"
-                  data-data-aos="fade-up"
-                  data-aos-delay="200"
-                >
-                  <Subscribe />
-                  <p className="m0 pt-20">
-                    Already a member?
-                    <Link
-                      href="/sign-in"
-                      className="tx-dark text-decoration-underline"
-                    >
-                      Sign in.
-                    </Link>
-                  </p>
-                </div>
-                {/* /.subscribe-form */}
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Footer */}
         <div className="footer-style-two theme-basic-footer">
-          <div className="top-footer position-relative">
+          <div style={{backgroundColor:"rgba(181, 192, 255, 0.1)"}} className="top-footer position-relative">
             <div className="container">
               <div className="inner-wrapper m-auto">
                 <div className="row">
