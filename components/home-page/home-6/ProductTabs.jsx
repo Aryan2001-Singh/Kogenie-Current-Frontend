@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const tabData = [
-  { id: 1, title: "Plan", subtitle: "Set your goals", icon: "/step1.png" },
-  { id: 2, title: "Design", subtitle: "Create visuals", icon: "/step2.png" },
+  { id: 1, title: "Plan", subtitle: "Set your goals", icon: "/step1icon.svg" },
+  { id: 2, title: "Design", subtitle: "Create visuals", icon: "/step2icon.svg" },
   { id: 3, title: "Develop", subtitle: "Build your product", icon: "/step3.png" },
   { id: 4, title: "Launch", subtitle: "Go live", icon: "/step4.png" },
 ];

@@ -17,197 +17,166 @@ const Hero = () => {
         onClose={() => setOpen(false)}
       />
 
+<div
+  className="hero-banner-two position-relative pt-170 lg-pt-200 md-pt-150 d-flex justify-content-center align-items-center text-center"
+  style={{
+    position: "relative",
+    backgroundImage: "url('/1733819818920_blog_pic_15.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Overlay */}
+  <div
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(84, 106, 236, 0.5)", // Blue overlay with transparency
+    }}
+  ></div>
+
+  <div className="container position-relative d-flex flex-column align-items-center text-center">
+    <div className="row">
       <div
-        className="hero-banner-two position-relative pt-170 lg-pt-200 md-pt-150"
-        style={{ position: "relative" }}
+        style={{
+          padding: "30px",
+          margin: "10px",
+          textAlign: "justify",
+        }}
+        className="col-lg-8 col-md-9 text-center"
       >
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <h1 className="max-w-xs mx-auto hero-heading fw-normal font-recoleta position-relative">
+          <span style={{ color: "#FFAA00" }}>Create ads</span>{" "}
+          <span
+            style={{
+              color: "white",
+              fontSize: "56px",
+              fontWeight: "lighter",
+            }}
+          >
+            that boost sales in just 5 minutes &amp;
+          </span>
+          <span
+            style={{
+              color: "#FFAA00",
+              fontSize: "56px",
+              fontWeight: "lighter",
+            }}
+          >
+            Hassle-free
+          </span>
+        </h1>
+
+        <p
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            minWidth: "100%",
-            minHeight: "100%",
-            objectFit: "cover",
-            zIndex: "-1",
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            backdropFilter: "blur(50px)",
-            // border: "1px solid rgba(255, 255, 255, 0.2)",
-            pointerEvents: "none",
-
+            color: "white",
+            fontSize: "16px",
+            margin: "10px 0",
+            fontWeight: "normal",
           }}
+          className="text-center text-lg mb-50 lg-mb-30 lg-pt-8"
         >
-          <source src="/vecteezy_4k-light-grey-abstract-moving-geometri-with-white-dots_55005964.mov" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          KOgenie makes your ad in just 5 minutes so you can launch ad
+          campaigns swiftly, helping you get more people to buy your
+          product/service faster.
+        </p>
 
-        <div className="container">
-          <div className="row">
-            <div
-              style={{
-                borderRadius: "20px",
-                boxShadow: "0 4px 20px rgba(100, 110, 254, 0.2)",
-                backgroundColor: "rgba(134, 147, 227, 0.2)",
-                backdropFilter: "blur(20px)",
-                padding: "30px",
-                margin: "20px",
-              }}
-              className="col-lg-8 col-md-9 m-auto text-center"
-            >
-              <h1 className="max-w-xs mx-3 hero-heading fw-normal font-recoleta position-relative">
-                <span style={{ color: "#546aec" }}>Create ads</span>{" "}
-                <span
-                  style={{
-                    color: "black",
-                    fontSize: "56px",
-                    fontWeight: "lighter",
-                  }}
-                >
-                  that boost sales in just 5 minutes &amp;
-                </span>
-               
-                <span
-                  style={{
-                    color: "black",
-                    fontSize: "56px",
-                    fontWeight: "lighter",
+        <div className="d-sm-flex justify-content-center align-items-center gap-3">
+          <Link
+            href="/sign-up"
+            style={{
+              backgroundColor: "#FFAA00",
+              color: "white",
+              padding: "20px 50px",
+              textDecoration: "none",
+              borderRadius: "20px",
+              transition: "all 0.3s ease",
+              boxShadow: "0px 5px 15px rgba(255, 170, 0, 0.5)",
+              position: "relative",
+              overflow: "hidden",
+            }}
+            className="cta-btn"
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#E69A00";
+              e.target.style.boxShadow = "0px 8px 20px rgba(255, 170, 0, 0.7)";
+              e.target.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#FFAA00";
+              e.target.style.boxShadow = "0px 5px 15px rgba(255, 170, 0, 0.5)";
+              e.target.style.transform = "scale(1)";
+            }}
+          >
+            Try Free Now
+          </Link>
 
-                  }}
-                >
-                   Hassle-free
-                </span>
-              </h1>
-
-              <p
+          <div
+            role="button"
+            className="fancybox video-icon tran3s d-flex align-items-center justify-content-center"
+            onClick={() => setOpen(true)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "transparent",
+              border: "2px solid #FFAA00",
+              borderRadius: "50px",
+              padding: "12px 20px",
+              transition: "all 0.3s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#FFAA00";
+              e.target.style.color = "white";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "transparent";
+              e.target.style.color = "#FFAA00";
+            }}
+          >
+            <div style={{
+              width: "50px",
+              height: "50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              // backgroundColor: "#FFAA00",
+              borderRadius: "50%",
+              boxShadow: "0px 5px 15px rgba(255, 170, 0, 0.5)",
+              transition: "all 0.3s ease"
+            }}>
+              <i className="fas fa-play" style={{ color: "white", fontSize: "22px", textAlign: "center" }} />
+            </div>
+            <div className="ps-3 text-start">
+              <span
                 style={{
-                  color: "black",
+                  color: "#FFAA00",
+                  fontWeight: "medium",
                   fontSize: "16px",
-                  margin: "10px 0",
-                  fontWeight: "normal",
                 }}
-                className="text-center text-lg mb-50 lg-mb-30 lg-pt-8"
+                className="d-block"
               >
-                KOgenie makes your ad in just 5 minutes so you can launch ad
-                campaigns swiftly, helping you get more people to buy your
-                product/service faster.
-              </p>
-
-              <div className="d-sm-flex justify-content-center align-items-center">
-                <Link
-                  href="/sign-up"
-                  style={{
-                    backgroundColor: "#4a5abb",
-                    color: "white",
-                    padding: "20px 50px",
-                    textDecoration: "none",
-                    borderRadius: "20px",
-                    transition: "all 0.3s ease", // Smooth hover transition
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = "#3e54c2"; // Darker background on hover
-                    e.target.style.color = "#f0f0f0"; // Slightly lighter text color
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "#546aec"; // Original background
-                    e.target.style.color = "white"; // Original text color
-                  }}
-                >
-                  Try Free Now
-                </Link>
-
-                <div
-                  role="button"
-                  className="fancybox video-icon tran3s mb-25 ms-2 me-3 d-flex align-items-center justify-content-center"
-                  onClick={() => setOpen(true)}
-                >
-                  <i className="fas fa-play" />
-                  <div className="ps-3 text-start">
-                    <span
-                      style={{
-                        color: "#4a5abb",
-                        fontWeight: "normal",
-                      }}
-                      className="d-block"
-                    >
-                      Watch
-                    </span>
-                    <strong
-                      style={{
-                        color: "black",
-                        fontWeight: "lighter",
-                      }}
-                      className="fs-18 fw-500 tx-dark d-block"
-                    >
-                      Intro video
-                    </strong>
-                  </div>
-                </div>
-              </div>
+                Watch
+              </span>
+              <strong
+                style={{
+                  color: "white",
+                  fontWeight: "normal",
+                  fontSize: "16px",
+                }}
+                className="fs-18 fw-500 tx-dark d-block"
+              >
+                Intro video
+              </strong>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Additional Styles */}
-      <style jsx>{`
-        // .hero-button {
-        //   transition: all 0.3s ease;
-        //   border-radius: 10px;
-        //   padding: 12px 30px;
-        // }
-
-        // .hero-button:hover {
-        //   background-color: #4056b3;
-        //   transform: translateY(-2px);
-        // }
-
-        .fancybox {
-          display: inline-flex;
-          cursor: pointer;
-          padding: 20px 30px;
-          margin-top: 30px;
-          border-radius: 10px;
-          
-          transition: all 0.3s ease;
-        }
-
-      
-
-        .hero-heading {
-          line-height: 1.3;
-        }
-
-        @media (max-width: 768px) {
-          .hero-heading {
-            font-size: 38px;
-          }
-
-          .container {
-            padding: 0 20px;
-          }
-
-          .col-lg-8 {
-            width: 100%;
-          }
-            
-        }
-
-        @media (max-width: 576px) {
-          .hero-heading {
-            font-size: 32px;
-          }
-
-          .container {
-            padding: 0 15px;
-          }
-        }
-      `}</style>
+    </div>
+  </div>
+</div>
     </>
   );
 };
