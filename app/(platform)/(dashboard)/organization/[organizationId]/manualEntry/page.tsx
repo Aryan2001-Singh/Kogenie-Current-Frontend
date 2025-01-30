@@ -3,6 +3,7 @@
 import React, { useState, CSSProperties, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
+import { storeAd } from "@/services/api";
 
 const ManualEntryPage: React.FC = () => {
   const [brandName, setBrandName] = useState("");
@@ -41,6 +42,7 @@ const ManualEntryPage: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         setAdData({ ...adInputData, adCopy: data.adCopy }); // Store all data including generated ad copy
+        await storeAd({ ...adInputData, adCopy: data.adCopy }); // ✅ Store ad in MongoDB
         router.push(`/organization/${organizationId}/createAd`); // Navigate to CreateAdPage
       } else {
         throw new Error(data.message || "Failed to create ad based on input.");
