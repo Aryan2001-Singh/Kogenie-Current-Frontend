@@ -4,6 +4,7 @@ import React, { useState, CSSProperties, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { storeAd } from "@/services/api";
+import { useUser } from "@clerk/nextjs"; // ✅ Import useUser
 
 const ManualEntryPage: React.FC = () => {
   const [brandName, setBrandName] = useState("");
@@ -14,6 +15,9 @@ const ManualEntryPage: React.FC = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { user } = useUser(); // ✅ Get user details inside component
+  const userEmail = user?.primaryEmailAddress?.emailAddress; // ✅ Get user's email safely
+
   const router = useRouter();
   const setAdData = useAdStore((state) => state.setAdData); // Save data for CreateAdPage
   const params = useParams();
@@ -23,7 +27,13 @@ const ManualEntryPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-
+  
+    if (!userEmail) { // ✅ Check if userEmail is available before proceeding
+      setError("User is not authenticated. Please log in.");
+      setLoading(false);
+      return;
+    }
+  
     const adInputData = {
       brandName,
       productName,
@@ -31,29 +41,32 @@ const ManualEntryPage: React.FC = () => {
       targetAudience,
       uniqueSellingPoints,
     };
-
+  
     try {
       const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         setAdData({ ...adInputData, adCopy: data.adCopy }); // Store all data including generated ad copy
-        await storeAd({ ...adInputData, adCopy: data.adCopy }); // ✅ Store ad in MongoDB
+  
+        await storeAd({ ...adInputData, adCopy: data.adCopy }, userEmail); // ✅ Now userEmail is guaranteed to be present
+  
         router.push(`/organization/${organizationId}/createAd`); // Navigate to CreateAdPage
       } else {
         throw new Error(data.message || "Failed to create ad based on input.");
       }
     } catch (err) {
-      console.error('Error occurred:', err); 
+      console.error("Error occurred:", err);
       setError("An error occurred while generating the ad.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   const containerStyle: CSSProperties = {
     padding: "30px",
