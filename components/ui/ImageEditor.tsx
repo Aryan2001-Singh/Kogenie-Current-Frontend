@@ -27,7 +27,7 @@ export default function ImageEditor({ initialText, image }: Props) {
     if (textRef.current) {
       const textElement = textRef.current;
       const { offsetWidth: boxWidth, offsetHeight: boxHeight } = textElement;
-      let newFontSize = Math.min(
+      const newFontSize = Math.min(
         boxHeight / 3,
         boxWidth / (editorText.length || 1)
       );

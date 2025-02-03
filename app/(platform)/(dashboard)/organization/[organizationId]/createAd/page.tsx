@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 // import PublishButton from "./PublishButton";
 // import AuthButton from "./AuthButton";
 import UploadForm from "@/components/UploadForm";
 
 
 const CreateAdPage: React.FC = () => {
-  const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const router = useRouter();
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const adDataFromStore = useAdStore((state) => state.adData); // Get ad data from store
   const [adData, setAdData] = useState({
     brandName: "",
@@ -26,17 +26,17 @@ const CreateAdPage: React.FC = () => {
     }
 
     // Check if the user has been redirected back with an auth code
-    const handleAuthCallback = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const authCode = urlParams.get("code");
+    // const handleAuthCallback = () => {
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const authCode = urlParams.get("code");
 
-      if (authCode) {
-        console.log("User authenticated with code:", authCode);
-        setIsAuthenticated(true);
-      }
-    };
+      // if (authCode) {
+      //   console.log("User authenticated with code:", authCode);
+      //   setIsAuthenticated(true);
+      // }
+    // };
 
-    handleAuthCallback();
+    // handleAuthCallback();
   }, [adDataFromStore]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -47,15 +47,15 @@ const CreateAdPage: React.FC = () => {
     }));
   };
 
-  const handlePublishAd = () => {
-    if (!isAuthenticated) {
-      alert("You must authenticate first!");
-      return;
-    }
+  // const handlePublishAd = () => {
+  //   if (!isAuthenticated) {
+  //     alert("You must authenticate first!");
+  //     return;
+  //   }
 
-    console.log("Publishing ad...");
-    alert("Ad published successfully!");
-  };
+  //   console.log("Publishing ad...");
+  //   alert("Ad published successfully!");
+  // };
 
   // Styling
   const parentContainerStyle: CSSProperties = {
@@ -105,9 +105,9 @@ const CreateAdPage: React.FC = () => {
     minHeight: "200px",
   };
 
-  const publishButtonContainerStyle: CSSProperties = {
-    marginLeft: "20px",
-  };
+  // const publishButtonContainerStyle: CSSProperties = {
+  //   marginLeft: "20px",
+  // };
 
   return (
     <div style={parentContainerStyle}>
