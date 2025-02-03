@@ -1,4 +1,4 @@
-export const storeAd = async (adData: any, userEmail: string) => { // ✅ Accept userEmail as parameter
+export const storeAd = async (adData: any, userEmail: string) => {
   if (!userEmail) {
     console.error("User not authenticated");
     return;
@@ -13,7 +13,7 @@ export const storeAd = async (adData: any, userEmail: string) => { // ✅ Accept
     const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads/store", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(adPayload), // ✅ Corrected JSON.stringify
+      body: JSON.stringify(adPayload),
     });
 
     if (!response.ok) {

@@ -2,10 +2,14 @@
 
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
-import PublishButton from "./PublishButton";
-import AuthButton from "./AuthButton";
+import { useRouter } from "next/navigation";
+// import PublishButton from "./PublishButton";
+// import AuthButton from "./AuthButton";
+import UploadForm from "@/components/UploadForm";
+
 
 const CreateAdPage: React.FC = () => {
+  const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const adDataFromStore = useAdStore((state) => state.adData); // Get ad data from store
   const [adData, setAdData] = useState({
@@ -159,12 +163,21 @@ const CreateAdPage: React.FC = () => {
       </div>
 
       {/* Authentication Button */}
-      <AuthButton />
+      {/* <AuthButton /> */}
 
       {/* Publish Button */}
-      <div style={publishButtonContainerStyle}>
+      {/* <div style={publishButtonContainerStyle}>
         <PublishButton onClick={handlePublishAd} />
-      </div>
+      </div> */}
+      {/* <button onClick={()=> router.push("/upload")}
+      className="bg-blue-500 text-white px-4 py-2 rounded-md">
+        Get Started
+      </button> */}
+<div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <h1 className="text-2xl font-bold mb-4">Create Your Post</h1>
+      <UploadForm />
+    </div>
+
     </div>
   );
 };
