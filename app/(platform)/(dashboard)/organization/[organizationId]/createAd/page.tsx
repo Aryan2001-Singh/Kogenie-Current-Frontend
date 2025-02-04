@@ -5,7 +5,7 @@ import { useAdStore } from "@/store/useAdStore";
 // import { useRouter } from "next/navigation";
 // import PublishButton from "./PublishButton";
 // import AuthButton from "./AuthButton";
-import UploadForm from "@/components/UploadForm";
+
 
 
 const CreateAdPage: React.FC = () => {
