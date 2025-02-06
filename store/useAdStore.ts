@@ -12,9 +12,17 @@ interface AdData {
 interface AdState {
   adData: AdData | null;
   setAdData: (data: AdData) => void;
+  clearAdData: () => void; // ✅ Function to clear ad data
 }
 
 export const useAdStore = create<AdState>((set) => ({
   adData: null,
-  setAdData: (data: AdData) => set({ adData: data }),
+  setAdData: (data: AdData) => {
+    localStorage.setItem("adData", JSON.stringify(data)); // ✅ Persist ad data in localStorage
+    set({ adData: data });
+  },
+  clearAdData: () => {
+    localStorage.removeItem("adData"); // ✅ Clear ad data from localStorage
+    set({ adData: null });
+  },
 }));

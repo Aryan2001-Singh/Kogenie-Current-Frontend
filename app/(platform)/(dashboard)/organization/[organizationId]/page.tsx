@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 // import { Button } from "@/components/ui/button";
 import { useAdStore } from "@/store/useAdStore";
 
+
 const advertisementFacts = [
   "Ad spending worldwide reached over \$600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
@@ -34,8 +35,10 @@ const advertisementFacts = [
   // Additional facts here
 ];
 
+
+
 const OrganizationIdPage = () => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(() => localStorage.getItem("adUrl") || ""); // ✅ Persist input in localStorage
   const [gender, setGender] = useState("global");
   const [ageGroup, setAgeGroup] = useState("9-18");
   const [loading, setLoading] = useState(false);
@@ -45,6 +48,8 @@ const OrganizationIdPage = () => {
   const { organizationId } = useParams();
   const setAdData = useAdStore((state) => state.setAdData);
 
+
+
   useEffect(() => {
     if (loading) {
       const factInterval = setInterval(() => {
@@ -53,6 +58,10 @@ const OrganizationIdPage = () => {
       return () => clearInterval(factInterval);
     }
   }, [loading]);
+
+  useEffect(() => {
+    localStorage.setItem("adUrl", url); // ✅ Save input value to localStorage
+  }, [url]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

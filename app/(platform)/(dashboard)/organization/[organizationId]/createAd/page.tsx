@@ -2,22 +2,33 @@
 
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
+
+
 // import { useRouter } from "next/navigation";
 // import PublishButton from "./PublishButton";
 // import AuthButton from "./AuthButton";
 
 
-
 const CreateAdPage: React.FC = () => {
   // const router = useRouter();
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const adDataFromStore = useAdStore((state) => state.adData); // Get ad data from store
-  const [adData, setAdData] = useState({
-    brandName: "",
-    productName: "",
-    productDescription: "",
-    adCopy: "",
+  const adDataFromStore = useAdStore((state) => state.adData);
+  
+  // ✅ Load saved ad data from localStorage on initial render
+  const [adData, setAdData] = useState(() => {
+    if (typeof window !== "undefined") {
+      // ✅ Only access localStorage on the client side
+      const savedAdData = localStorage.getItem("adData");
+      return savedAdData ? JSON.parse(savedAdData) : {
+        brandName: "",
+        productName: "",
+        productDescription: "",
+        adCopy: "",
+      };
+    }
+    return { brandName: "", productName: "", productDescription: "", adCopy: "" };
   });
+
 
   useEffect(() => {
     // Populate ad data from store
@@ -39,9 +50,14 @@ const CreateAdPage: React.FC = () => {
     // handleAuthCallback();
   }, [adDataFromStore]);
 
+    // ✅ Save form data to localStorage on every input change
+    useEffect(() => {
+      localStorage.setItem("adData", JSON.stringify(adData));
+    }, [adData]);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setAdData((prevState) => ({
+    setAdData((prevState: typeof adData) => ({
       ...prevState,
       [name]: value,
     }));
