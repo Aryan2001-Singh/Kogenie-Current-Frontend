@@ -47,6 +47,8 @@ const nextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" }, // ✅ Prevents MIME type sniffing
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" }, // ✅ Improves referrer security
           { key: "Permissions-Policy", value: "geolocation=(self), microphone=()" }, // ✅ Restrict browser features
+          {key: "X-Robots-Tag", value: "index, follow"}, // Allow indexing 
+
           
         ],
       },
