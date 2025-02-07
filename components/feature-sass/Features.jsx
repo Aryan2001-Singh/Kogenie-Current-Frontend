@@ -48,7 +48,7 @@ const Features = () => {
             </div>
             <h4 className="mt-25 mb-20">{feature.title}</h4>
             <p className="mb-50">{feature.description}</p>
-            <Link href="/pages-menu/service-details">
+            <Link href="/pages/service-details">
               <Image
                 width={39}
                 height={15}

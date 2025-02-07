@@ -7,7 +7,7 @@ import { useAdStore } from "@/store/useAdStore";
 
 
 const advertisementFacts = [
-  "Ad spending worldwide reached over \$600 billion in 2023.",
+  "Ad spending worldwide reached over $600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
   "Instagram ads can reach over 1.4 billion people globally.",
   "Over 80% of people recall a video ad they watched in the past 30 days.",
@@ -17,7 +17,7 @@ const advertisementFacts = [
   "Carousel ads can drive 72% more clicks than single-image ads.",
   "Users are more likely to purchase after seeing retargeted ads.",
   "Native ads outperform traditional display ads by 53%.",
-  "Social media ad spending is expected to reach \$268 billion by 2024.",
+  "Social media ad spending is expected to reach $268 billion by 2024.",
   "People spend 3 hours daily on social media, making it a key platform for advertising.",
   "Colorful ads can increase brand recognition by up to 80%.",
   "Personalized ads lead to a 20% increase in sales.",
@@ -38,7 +38,8 @@ const advertisementFacts = [
 
 
 const OrganizationIdPage = () => {
-  const [url, setUrl] = useState(() => localStorage.getItem("adUrl") || ""); // ✅ Persist input in localStorage
+
+  const [url, setUrl] = useState<string>("");   // ✅ Persist input in localStorage
   const [gender, setGender] = useState("global");
   const [ageGroup, setAgeGroup] = useState("9-18");
   const [loading, setLoading] = useState(false);

@@ -21,7 +21,7 @@ const Hero = () => {
         Jano delivered fast performance &amp; striking soludtion
       </p>
       <Link
-        href="/pages-menu/about-us-v1"
+        href="/pages/about-us"
         className="btn-four fw-500 pe-5 ps-5"
       >
         Try it now

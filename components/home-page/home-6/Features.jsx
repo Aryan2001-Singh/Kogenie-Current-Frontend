@@ -100,7 +100,7 @@ const Features = () => {
               {/* Back Side */}
               <div className="feature-back">
                 <p className="description">{feature.description}</p>
-                <Link href="/pages-menu/service-details" className="cta-link">
+                <Link href="/pages/service-details" className="cta-link">
                   Learn More <i className="bi bi-arrow-right"></i>
                 </Link>
               </div>

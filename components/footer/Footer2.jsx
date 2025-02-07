@@ -3,9 +3,9 @@ const columns = [
     title: "Links",
     links: [
       { label: "Home", url: "/" },
-      { label: "Pricing", url: "/pages-menu/pricing-v2" },
-      { label: "About us", url: "/pages-menu/about-us-v1" },
-      { label: "Service", url: "/pages-menu/service-v4" },
+      { label: "Pricing", url: "/pages/pricing-v2" },
+      { label: "About us", url: "/pages/about-us" },
+      { label: "Service", url: "/pages/OurService" },
       { label: "Blog", url: "/blog" },
     ],
   },

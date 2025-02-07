@@ -71,7 +71,7 @@ const SassProduct = () => {
                 influence emotions, we have the expertise and tools to make it happen.
               </p>
               <Link
-                href="/pages-menu/about-us-v1"
+                href="/pages/about-us"
                 className="btn-four fw-500"
                 style={{
                   display: "inline-block",

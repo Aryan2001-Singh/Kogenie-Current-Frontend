@@ -13,8 +13,8 @@ const MainMenu = () => {
   // Define menu items directly
   const menuItems = [
     { title: "Home", link: "/" },
-    { title: "About", link: "/pages-menu/about-us-v1" },
-    { title: "Service", link: "/pages-menu/service-v4" },
+    { title: "About", link: "/pages/about-us" },
+    { title: "Service", link: "/pages/OurService" },
     { title: "Blog", link: "/blogs" },
     { title: "Contact Us", link: "/contact" },
   ];

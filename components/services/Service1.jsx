@@ -55,7 +55,7 @@ const Service1 = () => {
             <p className="fs-20 m0 pt-20">I want</p>
             <h4 className="tx-dark">{service.title}</h4>
             <Link
-              href="/pages-menu/service-details"
+              href="/pages/service-details"
               className="read-more rounded-circle text-start tran3s"
             >
               <i className="bi bi-arrow-right" />
