@@ -107,7 +107,7 @@ const SassProduct = () => {
                 }}
               >
                 <Image
-                  src="/istockphoto-1611750843-1024x1024.jpg"
+                  src="/kogenie-preview.jpg"
                   alt="Professional Illustration"
                   width={400}
                   height={300}
