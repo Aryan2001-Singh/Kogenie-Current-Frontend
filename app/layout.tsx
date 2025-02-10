@@ -97,7 +97,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           content={`${SITE_URL}/images/kogenie-preview.jpg`}
         />
 
-        <meta property="fb:app_id" content="https://www.facebook.com/kogenie.in"/>
+
 
         {/* ✅ Dynamic Canonical URL for Each Page */}
         <link rel="canonical" href={`${SITE_URL}${pathname}`} />
