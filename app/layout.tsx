@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
@@ -13,6 +13,7 @@ const Hotjar = dynamic(() => import("@/components/Hotjar"), { ssr: false });
 
 const inter = Inter({ subsets: ["latin"] });
 const GA_TRACKING_ID = "G-4GSP62LCVY";
+const SITE_URL = "https://www.kogenie.com"; // ✅ Defined global site URL
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const pathname = usePathname();
+  const currentUrl = `${SITE_URL}${pathname}`; // ✅ Properly constructs the full URL
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,27 +53,30 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Create hyper-targeted AI ads with Kogenie and optimize your marketing campaigns using AI-powered insights." />
+        <meta name="description" content="Create hyper-targeted AI ads with Kogenie and optimize your marketing campaigns using AI-powered insights. Our platform helps businesses scale efficiently with data-driven advertising." />
         <meta name="keywords" content="AI ads, ad targeting, digital marketing, ad optimization, Kogenie" />
         <meta name="author" content="Kogenie" />
 
-        {/* Open Graph Meta Tags (for Facebook & LinkedIn) */}
+        {/* ✅ Open Graph Meta Tags (for Facebook & LinkedIn) */}
         <meta property="og:title" content="Kogenie - AI-Powered Ads" />
-        <meta property="og:description" content="Boost your ad performance with AI-driven insights. Try Kogenie today!" />
-        <meta property="og:image" content="/images/kogenie-preview.jpg" />
-        <meta property="og:url" content={`https://www.kogenie.com${pathname}`} />
+        <meta property="og:description" content="Boost your ad performance with AI-driven insights. Optimize your ad campaigns effortlessly with Kogenie’s intelligent ad solutions." />
+        <meta property="og:image" content={`${SITE_URL}/public/kogenielogo.svg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content={currentUrl} />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Kogenie" />
 
-        {/* Twitter Card Meta Tags */}
+        {/* ✅ Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Kogenie - AI-Powered Ads" />
-        <meta name="twitter:description" content="Boost your ad performance with AI-driven insights. Try Kogenie today!" />
-        <meta name="twitter:image" content="/images/kogenie-preview.jpg" />
+        <meta name="twitter:description" content="Kogenie helps businesses create AI-powered hyper-targeted ads to maximize ad performance and drive better ROI. Try it today!" />
+        <meta name="twitter:image" content={`${SITE_URL}/public/kogenielogo.svg`} />
 
-        {/* Canonical URL */}
-        <link rel="canonical" href={`https://www.kogenie.com${pathname}`} />
+        {/* ✅ Canonical URL */}
+        <link rel="canonical" href={currentUrl} />
 
-        {/* Favicon */}
+        {/* ✅ Favicon */}
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
         <title>Kogenie - AI-Powered Ads</title>
