@@ -16,7 +16,7 @@ const ManualEntryPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const { user } = useUser(); // ✅ Get user details inside component
-  const userEmail = user?.primaryEmailAddress?.emailAddress; // ✅ Get user's email safely
+  const userEmail = user?.primaryEmailAddress?.emailAddress || ""; // ✅ Get user's email safely
 
   const router = useRouter();
   const setAdData = useAdStore((state) => state.setAdData); // Save data for CreateAdPage
@@ -50,10 +50,11 @@ const ManualEntryPage: React.FC = () => {
       });
   
       const data = await response.json();
+      console.log("🟢 Backend API Response:", data); 
       if (response.ok) {
-        setAdData({ ...adInputData, adCopy: data.adCopy, headline: data.headline}); // Store all data including generated ad copy
+        setAdData({ ...adInputData, adCopy: data.adCopy, headline: data.headline ||"Default Headline"}); // Store all data including generated ad copy
   
-        await storeAd({ ...adInputData, adCopy: data.adCopy, headline: data.headline }, userEmail); // ✅ Now userEmail is guaranteed to be present
+        await storeAd({ ...adInputData, adCopy: data.adCopy, headline: data.headline ||"Default Headline" }, userEmail); // ✅ Now userEmail is guaranteed to be present
   
         router.push(`/organization/${organizationId}/createAd`); // Navigate to CreateAdPage
       } else {
@@ -173,7 +174,7 @@ const ManualEntryPage: React.FC = () => {
           />
         </div>
 
-        <button disabled={loading} style={buttonStyle}>
+        <button type="submit" disabled={loading} style={buttonStyle}>
           {loading ? "Submitting..." : "Create Ad"}
         </button>
       </form>
