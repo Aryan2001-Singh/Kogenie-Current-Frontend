@@ -40,7 +40,6 @@ const ManualEntryPage: React.FC = () => {
       productDescription,
       targetAudience,
       uniqueSellingPoints,
-
     };
   
     try {
