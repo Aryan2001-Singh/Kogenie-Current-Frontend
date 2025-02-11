@@ -40,10 +40,11 @@ const ManualEntryPage: React.FC = () => {
       productDescription,
       targetAudience,
       uniqueSellingPoints,
+
     };
   
     try {
-      const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
+      const response = await fetch("http://localhost:5001/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
@@ -51,9 +52,9 @@ const ManualEntryPage: React.FC = () => {
   
       const data = await response.json();
       if (response.ok) {
-        setAdData({ ...adInputData, adCopy: data.adCopy }); // Store all data including generated ad copy
+        setAdData({ ...adInputData, adCopy: data.adCopy, headline: data.headline}); // Store all data including generated ad copy
   
-        await storeAd({ ...adInputData, adCopy: data.adCopy }, userEmail); // ✅ Now userEmail is guaranteed to be present
+        await storeAd({ ...adInputData, adCopy: data.adCopy, headline: data.headline }, userEmail); // ✅ Now userEmail is guaranteed to be present
   
         router.push(`/organization/${organizationId}/createAd`); // Navigate to CreateAdPage
       } else {

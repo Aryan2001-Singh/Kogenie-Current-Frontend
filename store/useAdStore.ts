@@ -7,6 +7,7 @@ interface AdData {
   targetAudience: string;
   uniqueSellingPoints: string;
   adCopy: string;
+  headline?: string;
 }
 
 interface AdState {

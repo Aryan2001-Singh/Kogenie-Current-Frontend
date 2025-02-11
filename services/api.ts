@@ -6,18 +6,20 @@ export const storeAd = async (adData: any, userEmail: string) => {
 
   const adPayload = {
     ...adData,
-    userEmail, // ✅ User email is now passed from the component
+    userEmail, // ✅ Pass the user email for tracking
+
   };
 
   try {
-    const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads/store", {
+    // ✅ Send the ad data (including headline) to the backend for storage
+    const response = await fetch("http://localhost:5001/api/ads/store", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adPayload),
     });
 
     if (!response.ok) {
-      const errorData = await response.json(); // ✅ Fetch error details for better debugging
+      const errorData = await response.json(); // ✅ Fetch error details for debugging
       throw new Error(errorData.message || "Failed to store ad");
     }
 
@@ -30,8 +32,8 @@ export const storeAd = async (adData: any, userEmail: string) => {
 // ✅ Function to fetch all stored ads
 export const fetchAds = async () => {
   try {
-    const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads");
-    
+    const response = await fetch("http://localhost:5001/api/ads");
+
     if (!response.ok) {
       const errorData = await response.json(); // ✅ Fetch error details if request fails
       throw new Error(errorData.message || "Failed to fetch ads");
@@ -43,5 +45,28 @@ export const fetchAds = async () => {
   } catch (error) {
     console.error("❌ Error fetching ads:", error);
     return []; // ✅ Return an empty array to prevent crashes in frontend
+  }
+};
+
+// ✅ Function to generate ad copy & headline using the updated backend API
+export const generateAd = async (adData: any) => {
+  try {
+    const response = await fetch("http://localhost:5001/generateAdPrompt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(adData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to generate ad");
+    }
+
+    const data = await response.json();
+    console.log("✅ Ad generated successfully:", data);
+    return data; // ✅ Includes both `adCopy` and `headline`
+  } catch (error) {
+    console.error("❌ Error generating ad:", error);
+    return null;
   }
 };
