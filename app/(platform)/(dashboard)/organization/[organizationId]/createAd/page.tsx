@@ -1,9 +1,7 @@
-"use client";
+"use client"; // ✅ Ensures this component runs only on the client-side
 
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
-
-
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -11,7 +9,6 @@ const CreateAdPage: React.FC = () => {
   // ✅ Load saved ad data from localStorage on initial render
   const [adData, setAdData] = useState(() => {
     if (typeof window !== "undefined") {
-      // ✅ Only access localStorage on the client side
       const savedAdData = localStorage.getItem("adData");
       return savedAdData
         ? JSON.parse(savedAdData)
@@ -33,9 +30,20 @@ const CreateAdPage: React.FC = () => {
   });
 
   const [image, setImage] = useState<string | null>(null);
+  const [filter, setFilter] = useState<string>("none"); // ✅ Default filter is "none"
+  const [imageSize, setImageSize] = useState<number>(100); // ✅ Default size percentage
+
+  // ✅ Function to Increase Image Size
+  const increaseSize = () => {
+    if (imageSize < 200) setImageSize(imageSize + 10); // ✅ Prevents size from exceeding 200%
+  };
+
+  // ✅ Function to Decrease Image Size
+  const decreaseSize = () => {
+    if (imageSize > 50) setImageSize(imageSize - 10); // ✅ Prevents size from being too small
+  };
 
   useEffect(() => {
-    // Populate ad data from store
     if (adDataFromStore) {
       setAdData(adDataFromStore);
     }
@@ -60,7 +68,7 @@ const CreateAdPage: React.FC = () => {
     }));
   };
 
-
+  // ✅ Image Upload Function (Ensures Image is Displayed)
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -74,16 +82,11 @@ const CreateAdPage: React.FC = () => {
       reader.readAsDataURL(file);
     }
   };
-  const handleImageDownload = (format: string) => {
-    if (!image) return;
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = `downloaded-image.${format}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // ✅ Function to Change Image Filter
+  const handleFilterChange = (selectedFilter: string) => {
+    setFilter(selectedFilter);
   };
-
+  // ✅ Styling
   const parentContainerStyle: CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
@@ -103,7 +106,12 @@ const CreateAdPage: React.FC = () => {
     maxWidth: "600px",
     fontFamily: "'Inter', sans-serif",
   };
-
+  const imageStyle: CSSProperties = {
+    maxWidth: `${imageSize}%`, // ✅ Dynamically changes based on `imageSize` state
+    borderRadius: "10px",
+    filter: filter, // ✅ Applies selected filter dynamically
+    transition: "all 0.3s ease-in-out", // ✅ Smooth transition effect
+  };
   const labelStyle: CSSProperties = {
     fontWeight: "600",
     color: "#333",
@@ -126,15 +134,25 @@ const CreateAdPage: React.FC = () => {
     resize: "vertical",
   };
 
-  const adCopyTextAreaStyle: CSSProperties = {
-    ...textAreaStyle,
-    minHeight: "200px",
-  };
-  
   const headlineTextAreaStyle: CSSProperties = {
     ...textAreaStyle,
     minHeight: "200px",
-  }
+  };
+
+  // ✅ New State for Export Dropdown
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false); // ✅ State for filter dropdown
+
+  // ✅ Function to Handle Image Download
+  const handleImageDownload = (format: string) => {
+    if (image) {
+      const link = document.createElement("a");
+      link.href = image;
+      link.download = `ad_image.${format}`;
+      link.click();
+      setIsExportOpen(false); // Close dropdown after clicking
+    }
+  };
 
   return (
     <div style={parentContainerStyle}>
@@ -142,6 +160,7 @@ const CreateAdPage: React.FC = () => {
       <div style={containerStyle}>
         <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
 
+        {/* Brand Name */}
         <div style={{ marginBottom: "20px" }}>
           <label style={labelStyle}>Brand Name</label>
           <input
@@ -154,6 +173,7 @@ const CreateAdPage: React.FC = () => {
           />
         </div>
 
+        {/* Product Name */}
         <div style={{ marginBottom: "20px" }}>
           <label style={labelStyle}>Product Name</label>
           <input
@@ -166,6 +186,7 @@ const CreateAdPage: React.FC = () => {
           />
         </div>
 
+        {/* Product Description */}
         <div style={{ marginBottom: "20px" }}>
           <label style={labelStyle}>Product Description</label>
           <textarea
@@ -177,63 +198,169 @@ const CreateAdPage: React.FC = () => {
           />
         </div>
 
+        {/* Headline */}
         <div style={{ marginBottom: "20px" }}>
-          <label style={labelStyle}>Your Ad Copy</label>
+          <label style={labelStyle}>Your Headline</label>
           <textarea
-            name="adCopy"
-            placeholder="Edit your ad copy..."
-            value={adData.adCopy}
+            name="headline"
+            placeholder="Headline"
+            value={adData.headline}
             onChange={handleInputChange}
-            style={adCopyTextAreaStyle}
-          />
-          {/* Here the headline should be generated of the product */}
-          <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Your headline</label>
-            <textarea
-              name="headline"
-              placeholder="Headline"
-              value={adData.headline}
-              onChange={handleInputChange}
-              style={headlineTextAreaStyle}
-            />
-          </div>
-          <label className="block font-semibold mt-4">Upload Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="mt-2"
+            style={headlineTextAreaStyle}
           />
         </div>
-        {image && (
-          <div className="p-8 bg-white shadow-md rounded-lg w-full max-w-md text-center">
-            <h2 className="text-xl font-bold mb-4">Image Preview</h2>
-            <img
-              src={image}
-              alt="Uploaded Preview"
-              className="w-full h-auto mb-4 rounded-lg"
-            />
-            <div className="flex justify-center gap-3">
-              <button
-                onClick={() => handleImageDownload("png")}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md"
-              >
-                Download PNG
-              </button>
-              <button
-                onClick={() => handleImageDownload("jpg")}
-                className="px-4 py-2 bg-green-500 text-white rounded-md"
-              >
-                Download JPG
-              </button>
+
+        {/* Image Upload */}
+        <label className="block font-semibold mt-4">Upload Image</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="mt-2"
+        />
+
+        {/* Export Button with Dropdown Menu */}
+        {/* Button Section: Export, Filter, Resize - Aligned VERTICALLY */}
+{image && (
+  <div className="flex flex-col space-y-3 items-start w-full">
+    {/* Export Button */}
+    <button 
+      onClick={() => setIsExportOpen(!isExportOpen)}
+      className="px-4 py-2 bg-blue-600 text-white rounded-md w-full"
+    >
+      Export
+    </button>
+
+    {isExportOpen && (
+      <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
+        <button
+          onClick={() => handleImageDownload("png")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Download PNG
+        </button>
+        <button
+          onClick={() => handleImageDownload("jpg")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Download JPG
+        </button>
+        <button
+          onClick={() => handleImageDownload("svg")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Download SVG
+        </button>
+      </div>
+    )}
+
+    {/* Filter Button */}
+    <button 
+      onClick={() => setIsFilterOpen(!isFilterOpen)}
+      className="px-4 py-2 bg-gray-600 text-white rounded-md w-full"
+    >
+      Filter
+    </button>
+
+    {isFilterOpen && (
+      <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
+        <button
+          onClick={() => handleFilterChange("none")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          None
+        </button>
+        <button
+          onClick={() => handleFilterChange("grayscale(100%)")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Grayscale
+        </button>
+        <button
+          onClick={() => handleFilterChange("sepia(100%)")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Sepia
+        </button>
+        <button
+          onClick={() => handleFilterChange("invert(100%)")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Invert
+        </button>
+        <button
+          onClick={() => handleFilterChange("brightness(150%)")}
+          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+        >
+          Brightness
+        </button>
+      </div>
+    )}
+
+    {/* Resize Buttons */}
+    <div className="flex items-center space-x-2 w-full">
+      <button onClick={decreaseSize} className="px-4 py-2 bg-gray-500 text-white rounded-md w-full">
+        -
+      </button>
+      <span className="px-3 py-2 text-gray-800 bg-gray-200 rounded-md w-full text-center">
+        {imageSize}%
+      </span>
+      <button onClick={increaseSize} className="px-4 py-2 bg-gray-500 text-white rounded-md w-full">
+        +
+      </button>
+    </div>
+
+    {/* Image Preview BELOW the buttons */}
+    <div className="w-full flex flex-col items-center mt-4">
+      <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
+      <img
+        src={image}
+        alt="Uploaded Preview"
+        className="shadow-md rounded-lg"
+        style={imageStyle}
+      />
+    </div>
+  </div>
+)}
+
+              {isFilterOpen && (
+                <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
+                  <button
+                    onClick={() => handleFilterChange("none")}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                  >
+                    None
+                  </button>
+                  <button
+                    onClick={() => handleFilterChange("grayscale(100%)")}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                  >
+                    Grayscale
+                  </button>
+                  <button
+                    onClick={() => handleFilterChange("sepia(100%)")}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                  >
+                    Sepia
+                  </button>
+                  <button
+                    onClick={() => handleFilterChange("invert(100%)")}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                  >
+                    Invert
+                  </button>
+                  <button
+                    onClick={() => handleFilterChange("brightness(150%)")}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                  >
+                    Brightness
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         )}
-      </div>
 
-      <div className="flex flex-col items-center justify-center min-h-screen p-4"></div>
-    </div>
-  );
-};
+
 
 export default CreateAdPage;
