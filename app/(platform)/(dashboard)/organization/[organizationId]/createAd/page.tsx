@@ -1,5 +1,6 @@
-"use client"; // ✅ Ensures this component runs only on the client-side
-
+"use client";
+import { DraggableEvent, DraggableData } from "react-draggable";
+import Draggable from "react-draggable"; // Import Draggable
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
 
@@ -29,20 +30,31 @@ const CreateAdPage: React.FC = () => {
     };
   });
 
+  // New State to Store Text Position
+  const [position, setPosition] = useState({ x: 0, y: -100 });
+
+  // Function to Handle Drag Stop
+  const handleDragStop = (e: DraggableEvent, data: DraggableData) => {
+    setPosition({ x: data.x, y: data.y });
+  };
+
   const [image, setImage] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("none"); // ✅ Default filter is "none"
-  const [imageSize, setImageSize] = useState<number>(100); // ✅ Default size percentage
+  const [imageSize] = useState<number>(100); // ✅ Default size percentage
   const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
+  const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
+  const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
+  const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
 
   // ✅ Function to Increase Image Size
-  const increaseSize = () => {
-    if (imageSize < 200) setImageSize(imageSize + 10); // ✅ Prevents size from exceeding 200%
-  };
+  // const increaseSize = () => {
+  //   if (imageSize < 200) setImageSize(imageSize + 10); // ✅ Prevents size from exceeding 200%
+  // };
 
   // ✅ Function to Decrease Image Size
-  const decreaseSize = () => {
-    if (imageSize > 50) setImageSize(imageSize - 10); // ✅ Prevents size from being too small
-  };
+  // const decreaseSize = () => {
+  //   if (imageSize > 50) setImageSize(imageSize - 10); // ✅ Prevents size from being too small
+  // };
 
   useEffect(() => {
     if (adDataFromStore) {
@@ -202,7 +214,7 @@ const CreateAdPage: React.FC = () => {
 
         {/* Ad Copy */}
         <div style={{ marginBottom: "20px" }}>
-          <label style={labelStyle}>Ad Copy</label>
+          <label style={labelStyle}>Your Ad Copy</label>
           <textarea
             name="adCopy"
             placeholder="Generated ad copy will appear here..."
@@ -311,19 +323,25 @@ const CreateAdPage: React.FC = () => {
             )}
 
             {/* Resize Buttons */}
-            <div className="flex items-center space-x-2 w-full">
+            {/* Font Size Controls */}
+            <div className="flex items-center space-x-2 mt-3">
+              <label className="text-gray-700 font-semibold">Font Size:</label>
               <button
-                onClick={decreaseSize}
-                className="px-4 py-2 bg-gray-500 text-white rounded-md w-full"
+                onClick={() =>
+                  setHeadlineFontSize((prev) => Math.max(prev - 2, 10))
+                }
+                className="px-3 py-1 bg-gray-500 text-white rounded-md"
               >
                 -
               </button>
-              <span className="px-3 py-2 text-gray-800 bg-gray-200 rounded-md w-full text-center">
-                {imageSize}%
+              <span className="px-3 py-1 text-gray-800 bg-gray-200 rounded-md">
+                {headlineFontSize}px
               </span>
               <button
-                onClick={increaseSize}
-                className="px-4 py-2 bg-gray-500 text-white rounded-md w-full"
+                onClick={() =>
+                  setHeadlineFontSize((prev) => Math.min(prev + 2, 50))
+                }
+                className="px-3 py-1 bg-gray-500 text-white rounded-md"
               >
                 +
               </button>
@@ -340,8 +358,34 @@ const CreateAdPage: React.FC = () => {
                 className="w-10 h-10 p-1 border rounded-md cursor-pointer"
               />
             </div>
+            {/* Font Selection for Headline */}
+            <div className="flex items-center space-x-2 mt-3">
+              <label className="text-gray-700 font-semibold">Font Style:</label>
+              <select
+                value={headlineFont}
+                onChange={(e) => setHeadlineFont(e.target.value)}
+                className="p-2 border rounded-md"
+              >
+                <option value="Arial">Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Impact">Impact</option>
+              </select>
+            </div>
 
-            {/* Image Preview BELOW the buttons */}
+            {/* Font Color Selection for Headline */}
+            <div className="flex items-center space-x-2 mt-3">
+              <label className="text-gray-700 font-semibold">Font Color:</label>
+              <input
+                type="color"
+                value={headlineFontColor}
+                onChange={(e) => setHeadlineFontColor(e.target.value)}
+                className="w-10 h-10 p-1 border rounded-md cursor-pointer"
+              />
+            </div>
             {/* Image Preview with Headline Overlay */}
             <div className="w-full flex flex-col items-center mt-4 relative">
               <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
@@ -359,19 +403,33 @@ const CreateAdPage: React.FC = () => {
                 />
 
                 {/* Headline Text Overlay */}
-                {/* Headline Text Overlay */}
+
                 {adData.headline && (
-                  <p
-                    className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-2 text-lg font-semibold rounded-lg opacity-80"
-                    style={{
-                      backgroundColor: headlineBgColor, // ✅ Dynamically update background color
-                      maxWidth: "90%",
-                      textAlign: "center",
-                      zIndex: 10, // Ensures the text stays above the image
-                    }}
-                  >
-                    {adData.headline}
-                  </p>
+                  <Draggable position={position} onDrag={handleDragStop}>
+                    <div
+                      contentEditable
+                      suppressContentEditableWarning
+                      onBlur={(e) =>
+                        setAdData({
+                          ...adData,
+                          headline: e.currentTarget.textContent || "",
+                        })
+                      }
+                      className="absolute cursor-move px-4 py-2 text-lg font-semibold rounded-lg opacity-80"
+                      style={{
+                        backgroundColor: headlineBgColor,
+                        color: headlineFontColor,
+                        fontFamily: headlineFont,
+                        fontSize: `${headlineFontSize}px`, // 🔥 Dynamically applies font size
+                        maxWidth: "90%",
+                        textAlign: "center",
+                        zIndex: 10,
+                        outline: "none",
+                      }}
+                    >
+                      {adData.headline}
+                    </div>
+                  </Draggable>
                 )}
               </div>
             </div>
@@ -381,8 +439,11 @@ const CreateAdPage: React.FC = () => {
         {isFilterOpen && (
           <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
             <button
-              onClick={() => handleFilterChange("none")}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleFilterChange("none");
+
+              }}
             >
               None
             </button>
