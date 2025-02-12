@@ -32,6 +32,7 @@ const CreateAdPage: React.FC = () => {
   const [image, setImage] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("none"); // ✅ Default filter is "none"
   const [imageSize, setImageSize] = useState<number>(100); // ✅ Default size percentage
+  const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
 
   // ✅ Function to Increase Image Size
   const increaseSize = () => {
@@ -85,6 +86,7 @@ const CreateAdPage: React.FC = () => {
   // ✅ Function to Change Image Filter
   const handleFilterChange = (selectedFilter: string) => {
     setFilter(selectedFilter);
+    setIsFilterOpen(false); // ✅ Automatically close the dropdown after selection
   };
   // ✅ Styling
   const parentContainerStyle: CSSProperties = {
@@ -221,146 +223,186 @@ const CreateAdPage: React.FC = () => {
 
         {/* Export Button with Dropdown Menu */}
         {/* Button Section: Export, Filter, Resize - Aligned VERTICALLY */}
-{image && (
-  <div className="flex flex-col space-y-3 items-start w-full">
-    {/* Export Button */}
-    <button 
-      onClick={() => setIsExportOpen(!isExportOpen)}
-      className="px-4 py-2 bg-blue-600 text-white rounded-md w-full"
-    >
-      Export
-    </button>
+        {image && (
+          <div className="flex flex-col space-y-3 items-start w-full">
+            {/* Export Button */}
+            <button
+              onClick={() => setIsExportOpen(!isExportOpen)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md w-full"
+            >
+              Export
+            </button>
 
-    {isExportOpen && (
-      <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
-        <button
-          onClick={() => handleImageDownload("png")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Download PNG
-        </button>
-        <button
-          onClick={() => handleImageDownload("jpg")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Download JPG
-        </button>
-        <button
-          onClick={() => handleImageDownload("svg")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Download SVG
-        </button>
-      </div>
-    )}
+            {isExportOpen && (
+              <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                <button
+                  onClick={() => handleImageDownload("png")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Download PNG
+                </button>
+                <button
+                  onClick={() => handleImageDownload("jpg")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Download JPG
+                </button>
+                <button
+                  onClick={() => handleImageDownload("svg")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Download SVG
+                </button>
+              </div>
+            )}
+            {/* Filter Button */}
+            <button
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className="px-4 py-2 bg-gray-600 text-white rounded-md w-full"
+            >
+              Filter
+            </button>
 
-    {/* Filter Button */}
-    <button 
-      onClick={() => setIsFilterOpen(!isFilterOpen)}
-      className="px-4 py-2 bg-gray-600 text-white rounded-md w-full"
-    >
-      Filter
-    </button>
+            {isFilterOpen && (
+              <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
+                <button
+                  onClick={() => handleFilterChange("none")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  None
+                </button>
+                <button
+                  onClick={() => handleFilterChange("grayscale(100%)")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Grayscale
+                </button>
+                <button
+                  onClick={() => handleFilterChange("sepia(100%)")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Sepia
+                </button>
+                <button
+                  onClick={() => handleFilterChange("invert(100%)")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Invert
+                </button>
+                <button
+                  onClick={() => handleFilterChange("brightness(150%)")}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                >
+                  Brightness
+                </button>
+              </div>
+            )}
 
-    {isFilterOpen && (
-      <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
-        <button
-          onClick={() => handleFilterChange("none")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          None
-        </button>
-        <button
-          onClick={() => handleFilterChange("grayscale(100%)")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Grayscale
-        </button>
-        <button
-          onClick={() => handleFilterChange("sepia(100%)")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Sepia
-        </button>
-        <button
-          onClick={() => handleFilterChange("invert(100%)")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Invert
-        </button>
-        <button
-          onClick={() => handleFilterChange("brightness(150%)")}
-          className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-        >
-          Brightness
-        </button>
-      </div>
-    )}
+            {/* Resize Buttons */}
+            <div className="flex items-center space-x-2 w-full">
+              <button
+                onClick={decreaseSize}
+                className="px-4 py-2 bg-gray-500 text-white rounded-md w-full"
+              >
+                -
+              </button>
+              <span className="px-3 py-2 text-gray-800 bg-gray-200 rounded-md w-full text-center">
+                {imageSize}%
+              </span>
+              <button
+                onClick={increaseSize}
+                className="px-4 py-2 bg-gray-500 text-white rounded-md w-full"
+              >
+                +
+              </button>
+            </div>
+            {/* Headline Background Color Picker */}
+            <div className="flex items-center space-x-2 mt-3">
+              <label className="text-gray-700 font-semibold">
+                Headline Background:
+              </label>
+              <input
+                type="color"
+                value={headlineBgColor}
+                onChange={(e) => setHeadlineBgColor(e.target.value)}
+                className="w-10 h-10 p-1 border rounded-md cursor-pointer"
+              />
+            </div>
 
-    {/* Resize Buttons */}
-    <div className="flex items-center space-x-2 w-full">
-      <button onClick={decreaseSize} className="px-4 py-2 bg-gray-500 text-white rounded-md w-full">
-        -
-      </button>
-      <span className="px-3 py-2 text-gray-800 bg-gray-200 rounded-md w-full text-center">
-        {imageSize}%
-      </span>
-      <button onClick={increaseSize} className="px-4 py-2 bg-gray-500 text-white rounded-md w-full">
-        +
-      </button>
-    </div>
+            {/* Image Preview BELOW the buttons */}
+            {/* Image Preview with Headline Overlay */}
+            <div className="w-full flex flex-col items-center mt-4 relative">
+              <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
 
-    {/* Image Preview BELOW the buttons */}
-    <div className="w-full flex flex-col items-center mt-4">
-      <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
-      <img
-        src={image}
-        alt="Uploaded Preview"
-        className="shadow-md rounded-lg"
-        style={imageStyle}
-      />
-    </div>
-  </div>
-)}
+              <div className="relative inline-block">
+                {/* Image with Filter Applied */}
+                <img
+                  src={image}
+                  alt="Uploaded Preview"
+                  className="shadow-md rounded-lg"
+                  style={{
+                    ...imageStyle,
+                    position: "relative",
+                  }}
+                />
 
-              {isFilterOpen && (
-                <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
-                  <button
-                    onClick={() => handleFilterChange("none")}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                {/* Headline Text Overlay */}
+                {/* Headline Text Overlay */}
+                {adData.headline && (
+                  <p
+                    className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-2 text-lg font-semibold rounded-lg opacity-80"
+                    style={{
+                      backgroundColor: headlineBgColor, // ✅ Dynamically update background color
+                      maxWidth: "90%",
+                      textAlign: "center",
+                      zIndex: 10, // Ensures the text stays above the image
+                    }}
                   >
-                    None
-                  </button>
-                  <button
-                    onClick={() => handleFilterChange("grayscale(100%)")}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                  >
-                    Grayscale
-                  </button>
-                  <button
-                    onClick={() => handleFilterChange("sepia(100%)")}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                  >
-                    Sepia
-                  </button>
-                  <button
-                    onClick={() => handleFilterChange("invert(100%)")}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                  >
-                    Invert
-                  </button>
-                  <button
-                    onClick={() => handleFilterChange("brightness(150%)")}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                  >
-                    Brightness
-                  </button>
-                </div>
-              )}
+                    {adData.headline}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         )}
 
-
+        {isFilterOpen && (
+          <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
+            <button
+              onClick={() => handleFilterChange("none")}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+            >
+              None
+            </button>
+            <button
+              onClick={() => handleFilterChange("grayscale(100%)")}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+            >
+              Grayscale
+            </button>
+            <button
+              onClick={() => handleFilterChange("sepia(100%)")}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+            >
+              Sepia
+            </button>
+            <button
+              onClick={() => handleFilterChange("invert(100%)")}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+            >
+              Invert
+            </button>
+            <button
+              onClick={() => handleFilterChange("brightness(150%)")}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+            >
+              Brightness
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default CreateAdPage;
