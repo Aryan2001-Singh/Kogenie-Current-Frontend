@@ -200,6 +200,18 @@ const CreateAdPage: React.FC = () => {
           />
         </div>
 
+        {/* Ad Copy */}
+        <div style={{ marginBottom: "20px" }}>
+          <label style={labelStyle}>Ad Copy</label>
+          <textarea
+            name="adCopy"
+            placeholder="Generated ad copy will appear here..."
+            value={adData.adCopy}
+            onChange={handleInputChange}
+            style={textAreaStyle}
+          />
+        </div>
+
         {/* Headline */}
         <div style={{ marginBottom: "20px" }}>
           <label style={labelStyle}>Your Headline</label>
