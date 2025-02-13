@@ -6,6 +6,8 @@ import { useAdStore } from "@/store/useAdStore";
 import html2canvas from "html2canvas";
 import Head from "next/head";
 import InstagramPreview from "@/components/InstagramPreview";
+import SocialMediaPost from "@/components/SocialMedia";
+
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
 
@@ -518,6 +520,8 @@ const CreateAdPage: React.FC = () => {
               headline={clientHeadline}
             />
           </div>
+          {/* Social Media Posting Buttons */}
+          <SocialMediaPost image={image} caption={clientCaption} />
         </div>
       </div>
     </>
