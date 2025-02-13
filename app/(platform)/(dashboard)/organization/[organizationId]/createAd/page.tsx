@@ -3,6 +3,7 @@ import { DraggableEvent, DraggableData } from "react-draggable";
 import Draggable from "react-draggable"; // Import Draggable
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
+import html2canvas from "html2canvas";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -40,13 +41,15 @@ const CreateAdPage: React.FC = () => {
 
   const [image, setImage] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("none"); // ✅ Default filter is "none"
-  const [imageSize] = useState<number>(100); // ✅ Default size percentage
+  // const [imageSize] = useState<number>(100); // ✅ Default size percentage
   const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
   const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
   const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
   const [customFont, setCustomFont] = useState<string | null>(null); // Custom fonts
-
+  const [isBold, setIsBold] = useState<boolean>(false);
+  const [isItalic, setIsItalic] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
 
   // ✅ Function to Increase Image Size
   // const increaseSize = () => {
@@ -57,6 +60,11 @@ const CreateAdPage: React.FC = () => {
   // const decreaseSize = () => {
   //   if (imageSize > 50) setImageSize(imageSize - 10); // ✅ Prevents size from being too small
   // };
+
+  // ✅ Ensure Draggable loads only on client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (adDataFromStore) {
@@ -69,12 +77,19 @@ const CreateAdPage: React.FC = () => {
   }, [adDataFromStore]);
 
   useEffect(() => {
+    console.log("Selected Font:", headlineFont);
+  }, [headlineFont]);
+
+  useEffect(() => {
     const savedFont = localStorage.getItem("uploadedFont");
     if (savedFont) {
       const fontFace = new FontFace("CustomFont", `url(${savedFont})`);
       fontFace.load().then(() => {
         document.fonts.add(fontFace);
         setCustomFont("CustomFont");
+        setTimeout(() => {
+          document.body.style.fontFamily = `"CustomFont", sans-serif`;
+        }, 500); // Small delay to ensure the font is applied properly
       });
     }
   }, []);
@@ -99,10 +114,15 @@ const CreateAdPage: React.FC = () => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         if (typeof reader.result === "string") {
           setImage(reader.result);
           localStorage.setItem("uploadedImage", reader.result);
+
+          // Ensure the image fully loads before continuing
+          const img = new Image();
+          img.src = reader.result;
+          await new Promise((resolve) => (img.onload = resolve));
         }
       };
       reader.readAsDataURL(file);
@@ -129,12 +149,87 @@ const CreateAdPage: React.FC = () => {
       reader.readAsDataURL(file);
     }
   };
-  // ✅ Function to Change Image Filter
   const handleFilterChange = (selectedFilter: string) => {
     setFilter(selectedFilter);
-    setIsFilterOpen(false); // ✅ Automatically close the dropdown after selection
+    setTimeout(() => setIsFilterOpen(false), 200); // ✅ Small delay ensures state updates
   };
+  const handleDownload = async () => {
+    const adPreview = document.getElementById("ad-preview");
 
+    if (adPreview) {
+      const imgElement = adPreview.querySelector("img");
+      if (imgElement && !imgElement.complete) {
+        await new Promise((resolve) => (imgElement.onload = resolve));
+      }
+
+      setTimeout(async () => {
+        // Create a temporary canvas to manually apply filters
+        const tempCanvas = document.createElement("canvas");
+        const tempCtx = tempCanvas.getContext("2d");
+
+        if (!tempCtx || !imgElement) return;
+
+        // Set the canvas size
+        tempCanvas.width = imgElement.naturalWidth;
+        tempCanvas.height = imgElement.naturalHeight;
+
+        // Apply the filter directly before drawing the image
+        tempCtx.filter = filter; // ✅ This applies the grayscale, sepia, etc.
+        tempCtx.drawImage(
+          imgElement,
+          0,
+          0,
+          tempCanvas.width,
+          tempCanvas.height
+        );
+
+        // Convert the filtered image to a Data URL
+        const filteredImage = tempCanvas.toDataURL("image/png");
+
+        // Replace the original image in the DOM with the filtered version
+        imgElement.src = filteredImage;
+
+        // Wait for the filtered image to load
+        await new Promise((resolve) => (imgElement.onload = resolve));
+
+        // Now use html2canvas to capture everything including text overlays
+        const canvas = await html2canvas(adPreview, {
+          useCORS: true,
+          scale: 2,
+          backgroundColor: "#ffffff",
+          logging: true,
+          onclone: (documentClone) => {
+            const clonedElement = documentClone.getElementById("ad-preview");
+            if (clonedElement) {
+              // ✅ Apply font styles properly
+              const textElements =
+                clonedElement.querySelectorAll("div, span, p");
+              textElements.forEach((el) => {
+                (el as HTMLElement).style.fontFamily = customFont
+                  ? `"${customFont}", sans-serif`
+                  : `"${headlineFont}", sans-serif`;
+              });
+
+              // ✅ Set background color properly
+              clonedElement.style.backgroundColor = "#ffffff";
+            }
+          },
+        });
+
+        // Convert canvas to image
+        const image = canvas.toDataURL("image/png");
+
+        // Restore the original image source to avoid modifying the preview
+        imgElement.src = localStorage.getItem("uploadedImage") || "";
+
+        // Download the final image
+        const link = document.createElement("a");
+        link.href = image;
+        link.download = "ad_design.png";
+        link.click();
+      }, 500);
+    }
+  };
   // ✅ Styling
   const parentContainerStyle: CSSProperties = {
     display: "flex",
@@ -155,12 +250,12 @@ const CreateAdPage: React.FC = () => {
     maxWidth: "600px",
     fontFamily: "'Inter', sans-serif",
   };
-  const imageStyle: CSSProperties = {
-    maxWidth: `${imageSize}%`, // ✅ Dynamically changes based on `imageSize` state
-    borderRadius: "10px",
-    filter: filter, // ✅ Applies selected filter dynamically
-    transition: "all 0.3s ease-in-out", // ✅ Smooth transition effect
-  };
+  // const imageStyle: CSSProperties = {
+  //   maxWidth: `${imageSize}%`, // ✅ Dynamically changes based on `imageSize` state
+  //   borderRadius: "10px",
+  //   filter: filter, // ✅ Applies selected filter dynamically
+  //   transition: "all 0.3s ease-in-out", // ✅ Smooth transition effect
+  // };
   const labelStyle: CSSProperties = {
     fontWeight: "600",
     color: "#333",
@@ -189,19 +284,8 @@ const CreateAdPage: React.FC = () => {
   };
 
   // ✅ New State for Export Dropdown
-  const [isExportOpen, setIsExportOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // ✅ State for filter dropdown
 
-  // ✅ Function to Handle Image Download
-  const handleImageDownload = (format: string) => {
-    if (image) {
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = `ad_image.${format}`;
-      link.click();
-      setIsExportOpen(false); // Close dropdown after clicking
-    }
-  };
+  const [isFilterOpen, setIsFilterOpen] = useState(false); // ✅ State for filter dropdown
 
   return (
     <div style={parentContainerStyle}>
@@ -291,204 +375,19 @@ const CreateAdPage: React.FC = () => {
         <br />
         <br />
 
-        {/* Export Button with Dropdown Menu */}
-        {/* Button Section: Export, Filter, Resize - Aligned VERTICALLY */}
-        {image && (
-          <div className="flex flex-col space-y-3 items-start w-full">
-            {/* Export Button */}
-            <button
-              onClick={() => setIsExportOpen(!isExportOpen)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md w-full"
-            >
-              Export
-            </button>
-
-            {isExportOpen && (
-              <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
-                <button
-                  onClick={() => handleImageDownload("png")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Download PNG
-                </button>
-                <button
-                  onClick={() => handleImageDownload("jpg")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Download JPG
-                </button>
-                <button
-                  onClick={() => handleImageDownload("svg")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Download SVG
-                </button>
-              </div>
-            )}
-            {/* Filter Button */}
-            <button
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="px-4 py-2 bg-gray-600 text-white rounded-md w-full"
-            >
-              Filter
-            </button>
-
-            {isFilterOpen && (
-              <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
-                <button
-                  onClick={() => handleFilterChange("none")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  None
-                </button>
-                <button
-                  onClick={() => handleFilterChange("grayscale(100%)")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Grayscale
-                </button>
-                <button
-                  onClick={() => handleFilterChange("sepia(100%)")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Sepia
-                </button>
-                <button
-                  onClick={() => handleFilterChange("invert(100%)")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Invert
-                </button>
-                <button
-                  onClick={() => handleFilterChange("brightness(150%)")}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-                >
-                  Brightness
-                </button>
-              </div>
-            )}
-
-            {/* Resize Buttons */}
-            {/* Font Size Controls */}
-            <div className="flex items-center space-x-2 mt-3">
-              <label className="text-gray-700 font-semibold">Font Size:</label>
-              <button
-                onClick={() =>
-                  setHeadlineFontSize((prev) => Math.max(prev - 2, 10))
-                }
-                className="px-3 py-1 bg-gray-500 text-white rounded-md"
-              >
-                -
-              </button>
-              <span className="px-3 py-1 text-gray-800 bg-gray-200 rounded-md">
-                {headlineFontSize}px
-              </span>
-              <button
-                onClick={() =>
-                  setHeadlineFontSize((prev) => Math.min(prev + 2, 50))
-                }
-                className="px-3 py-1 bg-gray-500 text-white rounded-md"
-              >
-                +
-              </button>
-            </div>
-            {/* Headline Background Color Picker */}
-            <div className="flex items-center space-x-2 mt-3">
-              <label className="text-gray-700 font-semibold">
-                Headline Background:
-              </label>
-              <input
-                type="color"
-                value={headlineBgColor}
-                onChange={(e) => setHeadlineBgColor(e.target.value)}
-                className="w-10 h-10 p-1 border rounded-md cursor-pointer"
-              />
-            </div>
-            {/* Font Selection for Headline */}
-            <div className="flex items-center space-x-2 mt-3">
-              <label className="text-gray-700 font-semibold">Font Style:</label>
-              <select
-                value={headlineFont}
-                onChange={(e) => setHeadlineFont(e.target.value)}
-                className="p-2 border rounded-md"
-              >
-                <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Courier New">Courier New</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Comic Sans MS">Comic Sans MS</option>
-                <option value="Impact">Impact</option>
-              </select>
-            </div>
-
-            {/* Font Color Selection for Headline */}
-            <div className="flex items-center space-x-2 mt-3">
-              <label className="text-gray-700 font-semibold">Font Color:</label>
-              <input
-                type="color"
-                value={headlineFontColor}
-                onChange={(e) => setHeadlineFontColor(e.target.value)}
-                className="w-10 h-10 p-1 border rounded-md cursor-pointer"
-              />
-            </div>
-            {/* Image Preview with Headline Overlay */}
-            <div className="w-full flex flex-col items-center mt-4 relative">
-              <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
-
-              <div className="relative inline-block">
-                {/* Image with Filter Applied */}
-                <img
-                  src={image}
-                  alt="Uploaded Preview"
-                  className="shadow-md rounded-lg"
-                  style={{
-                    ...imageStyle,
-                    position: "relative",
-                  }}
-                />
-
-                {/* Headline Text Overlay */}
-
-                {adData.headline && (
-                  <Draggable position={position} onDrag={handleDragStop}>
-                    <div
-                      contentEditable
-                      suppressContentEditableWarning
-                      onBlur={(e) =>
-                        setAdData({
-                          ...adData,
-                          headline: e.currentTarget.textContent || "",
-                        })
-                      }
-                      className="absolute cursor-move px-4 py-2 text-lg font-semibold rounded-lg opacity-80"
-                      style={{
-                        backgroundColor: headlineBgColor,
-                        color: headlineFontColor,
-                        fontFamily: customFont ? customFont : headlineFont, // ✅ Apply uploaded font
-                        fontSize: `${headlineFontSize}px`,
-                        maxWidth: "90%",
-                        textAlign: "center",
-                        zIndex: 10,
-                        outline: "none",
-                      }}
-                    >
-                      {adData.headline}
-                    </div>
-                  </Draggable>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Filter Button */}
+        <button
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          className="px-4 py-2 bg-gray-600 text-white rounded-md w-full"
+        >
+          Filter
+        </button>
 
         {isFilterOpen && (
-          <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
+          <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleFilterChange("none");
-              }}
+              onClick={() => handleFilterChange("none")}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
             >
               None
             </button>
@@ -518,7 +417,188 @@ const CreateAdPage: React.FC = () => {
             </button>
           </div>
         )}
+
+        {/* Resize Buttons */}
+        {/* Font Size Controls */}
+        <div className="flex items-center space-x-2 mt-3">
+          <label className="text-gray-700 font-semibold">Font Size:</label>
+          <button
+            onClick={() =>
+              setHeadlineFontSize((prev) => Math.max(prev - 2, 10))
+            }
+            className="px-3 py-1 bg-gray-500 text-white rounded-md"
+          >
+            -
+          </button>
+          <span className="px-3 py-1 text-gray-800 bg-gray-200 rounded-md">
+            {headlineFontSize}px
+          </span>
+          <button
+            onClick={() =>
+              setHeadlineFontSize((prev) => Math.min(prev + 2, 50))
+            }
+            className="px-3 py-1 bg-gray-500 text-white rounded-md"
+          >
+            +
+          </button>
+        </div>
+        {/* Headline Background Color Picker */}
+        <div className="flex items-center space-x-2 mt-3">
+          <label className="text-gray-700 font-semibold">
+            Headline Background:
+          </label>
+          <input
+            type="color"
+            value={headlineBgColor}
+            onChange={(e) => setHeadlineBgColor(e.target.value)}
+            className="w-10 h-10 p-1 border rounded-md cursor-pointer"
+          />
+        </div>
+        {/* Font Selection for Headline */}
+        <div className="flex items-center space-x-2 mt-3">
+          <label className="text-gray-700 font-semibold">Font Style:</label>
+          <select
+            value={headlineFont}
+            onChange={(e) => setHeadlineFont(e.target.value)}
+            className="p-2 border rounded-md"
+          >
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Impact">Impact</option>
+          </select>
+        </div>
+
+        {/* Font Color Selection for Headline */}
+        <div className="flex items-center space-x-2 mt-3">
+          <label className="text-gray-700 font-semibold">Font Color:</label>
+          <input
+            type="color"
+            value={headlineFontColor}
+            onChange={(e) => setHeadlineFontColor(e.target.value)}
+            className="w-10 h-10 p-1 border rounded-md cursor-pointer"
+          />
+        </div>
+
+        {/* Bold and Italic Toggle Buttons */}
+        <div className="flex items-center space-x-2 mt-3">
+          <label className="text-gray-700 font-semibold">Font Style:</label>
+
+          {/* Bold Button */}
+          <button
+            onClick={() => setIsBold((prev) => !prev)}
+            className={`px-3 py-1 border rounded-md ${
+              isBold ? "bg-gray-800 text-white" : "bg-gray-200"
+            }`}
+          >
+            B
+          </button>
+
+          {/* Italic Button */}
+          <button
+            onClick={() => setIsItalic((prev) => !prev)}
+            className={`px-3 py-1 border rounded-md ${
+              isItalic ? "bg-gray-800 text-white" : "bg-gray-200"
+            }`}
+          >
+            I
+          </button>
+        </div>
+        {/* Image Preview with Headline Overlay */}
+        <div className="w-full flex flex-col items-center mt-4 relative">
+          <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
+
+          <div id="ad-preview" className="relative inline-block">
+            {/* Image */}
+            <img
+              src={image ?? ""}
+              alt="Uploaded Preview"
+              className="shadow-md rounded-lg"
+              style={{
+                maxWidth: "100%",
+                borderRadius: "10px",
+                display: "block",
+                marginBottom: "10px",
+                filter: filter, // ✅ Apply the selected filter
+              }}
+            />
+
+            {/* Draggable Headline */}
+            {isClient && adData.headline && (
+              <Draggable position={position} onDrag={handleDragStop}>
+                <div
+                  contentEditable
+                  suppressContentEditableWarning
+                  className="absolute cursor-move px-4 py-2 text-lg rounded-lg opacity-80"
+                  style={{
+                    backgroundColor: headlineBgColor,
+                    color: headlineFontColor,
+                    fontFamily: customFont
+                      ? `"${customFont}", sans-serif !important`
+                      : `"${headlineFont}", sans-serif !important`,
+                    fontSize: `${headlineFontSize}px`,
+                    fontWeight: isBold ? "bold" : "normal",
+                    fontStyle: isItalic ? "italic" : "normal",
+                    maxWidth: "90%",
+                    textAlign: "center",
+                    zIndex: 10,
+                    outline: "none",
+                  }}
+                >
+                  {adData.headline}
+                </div>
+              </Draggable>
+            )}
+          </div>
+          {/* Download Button */}
+          <button
+            onClick={handleDownload}
+            className="bg-green-500 text-white p-2"
+          >
+            Download Ad
+          </button>
+        </div>
       </div>
+
+      {isFilterOpen && (
+        <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFilterChange("none");
+            }}
+          >
+            None
+          </button>
+          <button
+            onClick={() => handleFilterChange("grayscale(100%)")}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+          >
+            Grayscale
+          </button>
+          <button
+            onClick={() => handleFilterChange("sepia(100%)")}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+          >
+            Sepia
+          </button>
+          <button
+            onClick={() => handleFilterChange("invert(100%)")}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+          >
+            Invert
+          </button>
+          <button
+            onClick={() => handleFilterChange("brightness(150%)")}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+          >
+            Brightness
+          </button>
+        </div>
+      )}
     </div>
   );
 };
