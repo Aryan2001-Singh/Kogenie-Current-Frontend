@@ -43,10 +43,10 @@ const CreateAdPage: React.FC = () => {
   const [filter, setFilter] = useState<string>("none"); // ✅ Default filter is "none"
   // const [imageSize] = useState<number>(100); // ✅ Default size percentage
   const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
-  const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
+  const [headlineFont] = useState<string>("Arial"); // Default font
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
   const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
-  const [customFont, setCustomFont] = useState<string | null>(null); // Custom fonts
+  // const [customFont, setCustomFont] = useState<string | null>(null); // Custom fonts
   const [isBold, setIsBold] = useState<boolean>(false);
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
@@ -76,23 +76,13 @@ const CreateAdPage: React.FC = () => {
     }
   }, [adDataFromStore]);
 
-  useEffect(() => {
-    console.log("Selected Font:", headlineFont);
-  }, [headlineFont]);
+  // useEffect(() => {
+  //   console.log("Applying Font:", headlineFont);
+  //   setPosition((prev) => ({ ...prev })); // ✅ Forces React to re-render
+  // }, [headlineFont]);
 
-  useEffect(() => {
-    const savedFont = localStorage.getItem("uploadedFont");
-    if (savedFont) {
-      const fontFace = new FontFace("CustomFont", `url(${savedFont})`);
-      fontFace.load().then(() => {
-        document.fonts.add(fontFace);
-        setCustomFont("CustomFont");
-        setTimeout(() => {
-          document.body.style.fontFamily = `"CustomFont", sans-serif`;
-        }, 500); // Small delay to ensure the font is applied properly
-      });
-    }
-  }, []);
+
+
 
   // ✅ Save form data to localStorage on every input change
   useEffect(() => {
@@ -129,26 +119,7 @@ const CreateAdPage: React.FC = () => {
     }
   };
 
-  const handleFontUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result; // ✅ Safe Access
 
-        if (result) {
-          const fontFace = new FontFace("CustomFont", `url(${result})`);
-          fontFace.load().then(() => {
-            document.fonts.add(fontFace);
-            setCustomFont("CustomFont");
-            localStorage.setItem("uploadedFont", result as string);
-            alert("Custom font uploaded successfully! ✅");
-          });
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
   const handleFilterChange = (selectedFilter: string) => {
     setFilter(selectedFilter);
     setTimeout(() => setIsFilterOpen(false), 200); // ✅ Small delay ensures state updates
@@ -198,22 +169,6 @@ const CreateAdPage: React.FC = () => {
           scale: 2,
           backgroundColor: "#ffffff",
           logging: true,
-          onclone: (documentClone) => {
-            const clonedElement = documentClone.getElementById("ad-preview");
-            if (clonedElement) {
-              // ✅ Apply font styles properly
-              const textElements =
-                clonedElement.querySelectorAll("div, span, p");
-              textElements.forEach((el) => {
-                (el as HTMLElement).style.fontFamily = customFont
-                  ? `"${customFont}", sans-serif`
-                  : `"${headlineFont}", sans-serif`;
-              });
-
-              // ✅ Set background color properly
-              clonedElement.style.backgroundColor = "#ffffff";
-            }
-          },
         });
 
         // Convert canvas to image
@@ -364,14 +319,7 @@ const CreateAdPage: React.FC = () => {
           className="mt-2"
         />
 
-        {/* Font Upload */}
-        <label className="block font-semibold mt-4">Upload Custom Font</label>
-        <input
-          type="file"
-          accept=".ttf,.otf,.woff"
-          onChange={handleFontUpload}
-          className="mt-2"
-        />
+
         <br />
         <br />
 
@@ -454,23 +402,7 @@ const CreateAdPage: React.FC = () => {
             className="w-10 h-10 p-1 border rounded-md cursor-pointer"
           />
         </div>
-        {/* Font Selection for Headline */}
-        <div className="flex items-center space-x-2 mt-3">
-          <label className="text-gray-700 font-semibold">Font Style:</label>
-          <select
-            value={headlineFont}
-            onChange={(e) => setHeadlineFont(e.target.value)}
-            className="p-2 border rounded-md"
-          >
-            <option value="Arial">Arial</option>
-            <option value="Verdana">Verdana</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Impact">Impact</option>
-          </select>
-        </div>
+
 
         {/* Font Color Selection for Headline */}
         <div className="flex items-center space-x-2 mt-3">
@@ -528,7 +460,7 @@ const CreateAdPage: React.FC = () => {
 
             {/* Draggable Headline */}
             {isClient && adData.headline && (
-              <Draggable position={position} onDrag={handleDragStop}>
+              <Draggable position={position} onStop={handleDragStop}>
                 <div
                   contentEditable
                   suppressContentEditableWarning
@@ -536,12 +468,10 @@ const CreateAdPage: React.FC = () => {
                   style={{
                     backgroundColor: headlineBgColor,
                     color: headlineFontColor,
-                    fontFamily: customFont
-                      ? `"${customFont}", sans-serif !important`
-                      : `"${headlineFont}", sans-serif !important`,
                     fontSize: `${headlineFontSize}px`,
                     fontWeight: isBold ? "bold" : "normal",
                     fontStyle: isItalic ? "italic" : "normal",
+                    fontFamily: `${headlineFont}, sans-serif !important`,
                     maxWidth: "90%",
                     textAlign: "center",
                     zIndex: 10,
