@@ -45,6 +45,8 @@ const CreateAdPage: React.FC = () => {
   const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
   const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
+  const [customFont, setCustomFont] = useState<string | null>(null); // Custom fonts
+
 
   // ✅ Function to Increase Image Size
   // const increaseSize = () => {
@@ -65,6 +67,17 @@ const CreateAdPage: React.FC = () => {
       setImage(savedImage);
     }
   }, [adDataFromStore]);
+
+  useEffect(() => {
+    const savedFont = localStorage.getItem("uploadedFont");
+    if (savedFont) {
+      const fontFace = new FontFace("CustomFont", `url(${savedFont})`);
+      fontFace.load().then(() => {
+        document.fonts.add(fontFace);
+        setCustomFont("CustomFont");
+      });
+    }
+  }, []);
 
   // ✅ Save form data to localStorage on every input change
   useEffect(() => {
@@ -95,11 +108,33 @@ const CreateAdPage: React.FC = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  const handleFontUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result; // ✅ Safe Access
+
+        if (result) {
+          const fontFace = new FontFace("CustomFont", `url(${result})`);
+          fontFace.load().then(() => {
+            document.fonts.add(fontFace);
+            setCustomFont("CustomFont");
+            localStorage.setItem("uploadedFont", result as string);
+            alert("Custom font uploaded successfully! ✅");
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   // ✅ Function to Change Image Filter
   const handleFilterChange = (selectedFilter: string) => {
     setFilter(selectedFilter);
     setIsFilterOpen(false); // ✅ Automatically close the dropdown after selection
   };
+
   // ✅ Styling
   const parentContainerStyle: CSSProperties = {
     display: "flex",
@@ -244,6 +279,17 @@ const CreateAdPage: React.FC = () => {
           onChange={handleImageUpload}
           className="mt-2"
         />
+
+        {/* Font Upload */}
+        <label className="block font-semibold mt-4">Upload Custom Font</label>
+        <input
+          type="file"
+          accept=".ttf,.otf,.woff"
+          onChange={handleFontUpload}
+          className="mt-2"
+        />
+        <br />
+        <br />
 
         {/* Export Button with Dropdown Menu */}
         {/* Button Section: Export, Filter, Resize - Aligned VERTICALLY */}
@@ -419,8 +465,8 @@ const CreateAdPage: React.FC = () => {
                       style={{
                         backgroundColor: headlineBgColor,
                         color: headlineFontColor,
-                        fontFamily: headlineFont,
-                        fontSize: `${headlineFontSize}px`, // 🔥 Dynamically applies font size
+                        fontFamily: customFont ? customFont : headlineFont, // ✅ Apply uploaded font
+                        fontSize: `${headlineFontSize}px`,
                         maxWidth: "90%",
                         textAlign: "center",
                         zIndex: 10,
@@ -442,7 +488,6 @@ const CreateAdPage: React.FC = () => {
               onClick={(e) => {
                 e.stopPropagation();
                 handleFilterChange("none");
-
               }}
             >
               None
