@@ -40,7 +40,7 @@ const CreateAdPage: React.FC = () => {
   };
 
   const [image, setImage] = useState<string | null>(null);
-  const [filter, setFilter] = useState<string>("none"); // ✅ Default filter is "none"
+
   // const [imageSize] = useState<number>(100); // ✅ Default size percentage
   const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
@@ -50,6 +50,7 @@ const CreateAdPage: React.FC = () => {
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
   const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
+  const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
 
   // ✅ Function to Increase Image Size
   // const increaseSize = () => {
@@ -115,11 +116,6 @@ const CreateAdPage: React.FC = () => {
       reader.readAsDataURL(file);
     }
   };
-
-  const handleFilterChange = (selectedFilter: string) => {
-    setFilter(selectedFilter);
-    setTimeout(() => setIsFilterOpen(false), 200); // ✅ Small delay ensures state updates
-  };
   const handleDownload = async () => {
     const adPreview = document.getElementById("ad-preview");
 
@@ -130,53 +126,23 @@ const CreateAdPage: React.FC = () => {
       }
 
       setTimeout(async () => {
-        // Create a temporary canvas to manually apply filters
-        const tempCanvas = document.createElement("canvas");
-        const tempCtx = tempCanvas.getContext("2d");
-
-        if (!tempCtx || !imgElement) return;
-
-        // Set the canvas size
-        tempCanvas.width = imgElement.naturalWidth;
-        tempCanvas.height = imgElement.naturalHeight;
-
-        // Apply the filter directly before drawing the image
-        tempCtx.filter = filter; // ✅ This applies the grayscale, sepia, etc.
-        tempCtx.drawImage(
-          imgElement,
-          0,
-          0,
-          tempCanvas.width,
-          tempCanvas.height
-        );
-
-        // Convert the filtered image to a Data URL
-        const filteredImage = tempCanvas.toDataURL("image/png");
-
-        // Replace the original image in the DOM with the filtered version
-        imgElement.src = filteredImage;
-
-        // Wait for the filtered image to load
-        await new Promise((resolve) => (imgElement.onload = resolve));
-
-        // Now use html2canvas to capture everything including text overlays
         const canvas = await html2canvas(adPreview, {
           useCORS: true,
           scale: 2,
           backgroundColor: "#ffffff",
           logging: true,
+          width: aspectRatio === "square" ? 500 : 360, // Set the correct width
+          height: aspectRatio === "square" ? 500 : 640, // Set the correct height
         });
 
-        // Convert canvas to image
         const image = canvas.toDataURL("image/png");
 
-        // Restore the original image source to avoid modifying the preview
-        imgElement.src = localStorage.getItem("uploadedImage") || "";
-
-        // Download the final image
         const link = document.createElement("a");
         link.href = image;
-        link.download = "ad_design.png";
+        link.download =
+          aspectRatio === "square"
+            ? "instagram_post.png"
+            : "instagram_story.png";
         link.click();
       }, 500);
     }
@@ -234,9 +200,7 @@ const CreateAdPage: React.FC = () => {
     minHeight: "200px",
   };
 
-  // ✅ New State for Export Dropdown
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // ✅ State for filter dropdown
 
   return (
     <>
@@ -331,49 +295,6 @@ const CreateAdPage: React.FC = () => {
           <br />
           <br />
 
-          {/* Filter Button */}
-          <button
-            onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className="px-4 py-2 bg-gray-600 text-white rounded-md w-full"
-          >
-            Filter
-          </button>
-
-          {isFilterOpen && (
-            <div className="w-full bg-white border border-gray-300 rounded-md shadow-lg">
-              <button
-                onClick={() => handleFilterChange("none")}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                None
-              </button>
-              <button
-                onClick={() => handleFilterChange("grayscale(100%)")}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                Grayscale
-              </button>
-              <button
-                onClick={() => handleFilterChange("sepia(100%)")}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                Sepia
-              </button>
-              <button
-                onClick={() => handleFilterChange("invert(100%)")}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                Invert
-              </button>
-              <button
-                onClick={() => handleFilterChange("brightness(150%)")}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
-                Brightness
-              </button>
-            </div>
-          )}
-
           {/* Resize Buttons */}
           {/* Font Size Controls */}
           <div className="flex items-center space-x-2 mt-3">
@@ -461,24 +382,62 @@ const CreateAdPage: React.FC = () => {
               <option value="'Montserrat', sans-serif">Montserrat</option>
             </select>
           </div>
+
+          <div className="flex items-center space-x-2 mt-3">
+            <label className="text-gray-700 font-semibold">
+              Select Format:
+            </label>
+            <button
+              onClick={() => setAspectRatio("square")}
+              className={`px-3 py-1 border rounded-md ${
+                aspectRatio === "square"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
+              }`}
+            >
+              Instagram Post (1:1)
+            </button>
+            <button
+              onClick={() => setAspectRatio("story")}
+              className={`px-3 py-1 border rounded-md ${
+                aspectRatio === "story"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
+              }`}
+            >
+              Instagram Story/Reel (9:16)
+            </button>
+          </div>
           {/* Image Preview with Headline Overlay */}
           <div className="w-full flex flex-col items-center mt-4 relative">
             <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
 
-            <div id="ad-preview" className="relative inline-block">
+            <div
+              id="ad-preview"
+              className="relative inline-block"
+              style={{
+                width: aspectRatio === "square" ? "500px" : "360px", // Adjust width
+                height: aspectRatio === "square" ? "500px" : "640px", // Adjust height
+                border: "1px solid #ddd",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#f9f9f9",
+              }}
+            >
               {/* Image */}
-              <img
-                src={image ?? ""}
-                alt="Uploaded Preview"
-                className="shadow-md rounded-lg"
-                style={{
-                  maxWidth: "100%",
-                  borderRadius: "10px",
-                  display: "block",
-                  marginBottom: "10px",
-                  filter: filter, // ✅ Apply the selected filter
-                }}
-              />
+              {image && (
+                <img
+                  src={image}
+                  alt="Uploaded Preview"
+                  className="shadow-md rounded-lg"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover", // Ensures the image scales properly
+                  }}
+                />
+              )}
 
               {/* Draggable Headline */}
               {isClient && adData.headline && (
@@ -514,43 +473,7 @@ const CreateAdPage: React.FC = () => {
             </button>
           </div>
         </div>
-
-        {isFilterOpen && (
-          <div className="absolute left-0 mt-2 w-36 bg-white border border-gray-300 rounded-md shadow-lg">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleFilterChange("none");
-              }}
-            >
-              None
-            </button>
-            <button
-              onClick={() => handleFilterChange("grayscale(100%)")}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-            >
-              Grayscale
-            </button>
-            <button
-              onClick={() => handleFilterChange("sepia(100%)")}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-            >
-              Sepia
-            </button>
-            <button
-              onClick={() => handleFilterChange("invert(100%)")}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-            >
-              Invert
-            </button>
-            <button
-              onClick={() => handleFilterChange("brightness(150%)")}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-            >
-              Brightness
-            </button>
-          </div>
-        )}
+      
       </div>
     </>
   );
