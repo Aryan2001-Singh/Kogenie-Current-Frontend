@@ -51,6 +51,7 @@ const CreateAdPage: React.FC = () => {
   const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
   const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
+  const [selectedFilter, setSelectedFilter] = useState<string>("none");
 
   // ✅ Function to Increase Image Size
   // const increaseSize = () => {
@@ -121,8 +122,15 @@ const CreateAdPage: React.FC = () => {
 
     if (adPreview) {
       const imgElement = adPreview.querySelector("img");
-      if (imgElement && !imgElement.complete) {
-        await new Promise((resolve) => (imgElement.onload = resolve));
+
+      // Ensure imgElement exists before proceeding
+      if (imgElement) {
+        if (!imgElement.complete) {
+          await new Promise((resolve) => (imgElement.onload = resolve));
+        }
+
+        // ✅ Apply filter only if imgElement exists
+        imgElement.style.filter = selectedFilter;
       }
 
       setTimeout(async () => {
@@ -131,8 +139,8 @@ const CreateAdPage: React.FC = () => {
           scale: 2,
           backgroundColor: "#ffffff",
           logging: true,
-          width: aspectRatio === "square" ? 500 : 360, // Set the correct width
-          height: aspectRatio === "square" ? 500 : 640, // Set the correct height
+          width: aspectRatio === "square" ? 500 : 360,
+          height: aspectRatio === "square" ? 500 : 640,
         });
 
         const image = canvas.toDataURL("image/png");
@@ -199,8 +207,6 @@ const CreateAdPage: React.FC = () => {
     ...textAreaStyle,
     minHeight: "200px",
   };
-
-
 
   return (
     <>
@@ -383,6 +389,25 @@ const CreateAdPage: React.FC = () => {
             </select>
           </div>
 
+          {/* Filter Selection Dropdown */}
+          <div className="flex items-center space-x-2 mt-3">
+            <label className="text-gray-700 font-semibold">Apply Filter:</label>
+            <select
+              value={selectedFilter}
+              onChange={(e) => setSelectedFilter(e.target.value)}
+              className="border rounded-md px-2 py-1"
+            >
+              <option value="none">None</option>
+              <option value="grayscale(100%)">Grayscale</option>
+              <option value="sepia(100%)">Sepia</option>
+              <option value="invert(100%)">Invert</option>
+              <option value="blur(5px)">Blur</option>
+              <option value="brightness(150%)">Brightness</option>
+              <option value="contrast(200%)">Contrast</option>
+              <option value="saturate(200%)">Saturate</option>
+            </select>
+          </div>
+
           <div className="flex items-center space-x-2 mt-3">
             <label className="text-gray-700 font-semibold">
               Select Format:
@@ -434,7 +459,8 @@ const CreateAdPage: React.FC = () => {
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover", // Ensures the image scales properly
+                    objectFit: "cover",
+                    filter: selectedFilter, // Apply the selected filter here
                   }}
                 />
               )}
@@ -473,7 +499,6 @@ const CreateAdPage: React.FC = () => {
             </button>
           </div>
         </div>
-      
       </div>
     </>
   );
