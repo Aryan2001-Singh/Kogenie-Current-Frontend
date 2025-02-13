@@ -5,6 +5,7 @@ import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
 import html2canvas from "html2canvas";
 import Head from "next/head";
+import InstagramPreview from "@/components/InstagramPreview";
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
 
@@ -52,6 +53,8 @@ const CreateAdPage: React.FC = () => {
   const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
+  const [clientCaption, setClientCaption] = useState("");
+  const [clientHeadline, setClientHeadline] = useState("");
 
   // ✅ Function to Increase Image Size
   // const increaseSize = () => {
@@ -67,6 +70,11 @@ const CreateAdPage: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    setClientCaption(adData.adCopy); // Ensure caption updates only after mounting
+    setClientHeadline(adData.headline); // Ensure headline updates only after mounting
+  }, [adData.adCopy, adData.headline]);
 
   useEffect(() => {
     if (adDataFromStore) {
@@ -490,13 +498,25 @@ const CreateAdPage: React.FC = () => {
                 </Draggable>
               )}
             </div>
+            <br />
             {/* Download Button */}
             <button
               onClick={handleDownload}
-              className="bg-green-500 text-white p-2"
+              className="bg-red-500 text-white p-2"
             >
               Download Ad
             </button>
+          </div>
+          {/* Instagram Post Preview */}
+          <div className="w-full flex flex-col items-center mt-4 relative">
+            <h2 className="text-lg font-semibold mb-2 mt-8">
+              Instagram Post Preview
+            </h2>
+            <InstagramPreview
+              image={image}
+              caption={clientCaption}
+              headline={clientHeadline}
+            />
           </div>
         </div>
       </div>
