@@ -121,16 +121,18 @@ const Features = () => {
           position: relative;
           display: flex;
           align-items: center;
+          width: 100%;
         }
 
         .features-container {
           display: flex;
           flex-wrap: nowrap;
           gap: 15px;
-          overflow-x: hidden; /* Hide horizontal scrollbar */
-          overflow-y: hidden; /* Hide vertical scrollbar */
+          overflow-x: hidden;
+          overflow-y: hidden;
           scroll-behavior: smooth;
           width: 100%;
+          padding-right: 50px; /* Added space for the scroll button */
         }
 
         .feature-card {
@@ -157,14 +159,15 @@ const Features = () => {
           justify-content: center;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
           transition: background 0.3s ease;
+          z-index: 10;
         }
 
         .scroll-button.left {
-          left: 50%; /* Stick to the vertical line */
+          left: -20px;
         }
 
         .scroll-button.right {
-          right: -30px;
+          right: -20px; /* Stick the right arrow to the feature cards */
         }
 
         .vertical-line {
@@ -172,7 +175,7 @@ const Features = () => {
           top: 0;
           bottom: 0;
           width: 5px;
-          background:rgba(13, 13, 14, 0.25);
+          background: rgba(13, 13, 14, 0.25);
           z-index: 15;
         }
 
@@ -182,49 +185,6 @@ const Features = () => {
 
         .vertical-line.right {
           right: 0;
-        }
-
-        @media (max-width: 768px) {
-          .scroll-button {
-            width: 30px;
-            height: 30px;
-            font-size: 1.2rem;
-          }
-
-          .feature-card {
-            width: 200px;
-            height: 200px;
-          }
-
-          .title {
-            font-size: 0.9rem;
-          }
-
-          .description {
-            font-size: 0.8rem;
-          }
-        }
-        .features-wrapper {
-          position: relative;
-          display: flex;
-          align-items: center;
-        }
-
-        .features-container {
-          display: flex;
-          flex-wrap: nowrap;
-          gap: 15px;
-          overflow-x: hidden; /* Hide horizontal scrollbar */
-          overflow-y: hidden; /* Hide vertical scrollbar */
-          scroll-behavior: smooth;
-          width: 100%;
-        }
-
-        .feature-card {
-          width: 220px;
-          height: 220px;
-          perspective: 1000px;
-          flex-shrink: 0;
         }
 
         .feature-inner {
@@ -237,7 +197,7 @@ const Features = () => {
         }
 
         .feature-card:hover .feature-inner {
-          transform: rotateY(180deg); /* Rotate on hover */
+          transform: rotateY(180deg);
         }
 
         .feature-front,
@@ -261,18 +221,6 @@ const Features = () => {
           background: linear-gradient(135deg, rgba(172, 173, 240, 0.7), rgb(246, 221, 221));
           color: #fff;
           box-shadow: 0 8px 15px rgba(74, 106, 236, 0.4);
-          position: relative; 
-        }
-
-        .feature-front::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-          z-index: 0;
         }
 
         .icon-container {
@@ -317,83 +265,6 @@ const Features = () => {
 
         .cta-link:hover {
           color: #3c4e99;
-        }
-
-        .scroll-button {
-          position: absolute;
-          top: 20%;
-          background:rgba(118, 118, 211, 0.74);
-          color: white;
-          border: none;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          font-size: 1.5rem;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-          transition: background 0.3s ease;
-          z-index: 10;
-        }
-        .feature-front {
-    position: relative;
-  
-    color: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .background-blur-mirror {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    background: inherit; /* Inherit the gradient from the parent */
-    transform: scaleY(-1); /* Mirror the background */
-    filter: blur(15px); /* Add blur effect */
-    opacity: 0.5; /* Reduce opacity for a subtle effect */
-    z-index: 0;
-  }
-
-  .icon-container {
-    position: relative;
-    z-index: 1; /* Place above the blur effect */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    padding: 10px;
-  }
-
-  .title {
-    position: relative;
-    z-index: 1; /* Place above the blur effect */
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  .feature-front::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-    z-index: 0;
-  }
-        .scroll-button.left {
-          left: -20px;
-        }
-
-        .scroll-button.right {
-          right: -20px;
-        }
-
-        .scroll-button:hover {
-          background: #3c4e99;
         }
 
         @media (max-width: 768px) {

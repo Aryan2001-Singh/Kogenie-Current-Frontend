@@ -5,7 +5,7 @@ import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Header from "@/components/home-page/home-6/Header";
 import React from "react";
 import BlogList from "@/components/BlogList";
-// import { ToastContainer } from "react-toastify";
+import Image from "next/image";
 import 'react-toastify/dist/ReactToastify.css';
 import '/app/blog.css';
 
@@ -13,72 +13,98 @@ const GridWithSidebar = () => {
   return (
     <>
       <Header />
-      {/* Background Section */}
-      <div className="relative h-screen w-full  px-4 sm:px-8 lg:px-16 
-      flex items-center overflow-hidden">
 
+      {/* Hero Section with Background */}
+      <div
+        className="relative w-full flex items-center justify-center text-center px-4 sm:px-8 lg:px-16 pb-12"
+        style={{ height: '90vh', backgroundColor: '#f7f8fb', position: 'relative' }}
+      >
+        
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image 
+            src="/retrosupply-jLwVAUtLOAQ-unsplash.jpg" 
+            alt="Blog Banner"
+            layout="fill"
+            objectFit="cover"
+            quality={90}
+            className="z-0"
+          />
+          {/* Full Page Overlay */}
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}></div>
+        </div>
 
         {/* Foreground Content */}
-        <div className="relative z-20 max-w-5xl mx-auto text-[#08090a] text-left lg:text-left">
-        {/* </div>
-        <Image src="/images\assets\ils_07.png" alt="Ad Example" className="w-32 h-auto"></Image>
-      </div> */}
-      <h6 className="mt-20 text-black-300 font-semibold text-lg tracking-wide">
-        Welcome To <span className="text-purple-700">Blog Page</span>
-      </h6>
+        <div style={{marginTop:"70px"}}className="relative z-20 max-w-5xl mx-auto text-white mt-16">
+          <h6 className="text-lg font-semibold tracking-wide" style={{ color: '#d1d5db' }}>
+            Welcome to <span style={{ color: '#a78bfa' }}>Our Blog</span>
+          </h6>
 
-
-      <h1
-        className="text-5xl lg:text-7xl font-bold leading-tight tracking-wide mb-4"
-        style={{
-          fontFamily: 'Playfair Display, serif',
-          color: '#08090a',
-        }}
-      >
-        <span className="bg-clip-text text-transparent bg-gradient-to-r
-             from-[#4a5abb] via-[#8693e3] to-[#546aec]">
-          Latest Blogs
-        </span>
-      </h1>
-      <p
-        className="text-lg lg:text-xl font-light max-w-2xl mx-auto lg:mx-0 mb-8"
-        style={{
-          fontFamily: 'Inter, sans-serif',
-          lineHeight: '1.8',
-          color: 'grey',
-        }}
-      >
-        Discover insights, trends, and industry updates with our curated blogs.
-        Stay ahead and informed with the latest content from experts.
-      </p>
-      <div className="mt-8 flex justify-left">
-        <form className="flex items-left bg-white rounded-full shadow-lg 
-            overflow-hidden max-w-lg w-full justify-left">
-          <input
-            type="email"
-            placeholder="Your email address"
-            className="flex-1 px-4 py-3 rounded-full text-gray-700 focus:outline-none
-                 focus:ring-2 focus:ring-[#4a5abb]"
-            required
-          />
-          <button
-            type="submit"
-            className="bg-gradient-to-r from-[#4a5abb] to-[#8693e3] 
-                text-white px-6 py-3 font-medium rounded-full hover:from-[#4a5abb]
-                 hover:to-[#546aec] transition-all"
+          <h1
+            className="text-5xl lg:text-7xl font-bold leading-tight tracking-wide mb-6"
+            style={{ fontFamily: 'Playfair Display, serif', backgroundClip: 'text', color: 'transparent', backgroundImage: 'linear-gradient(to right, #4a5abb, #8693e3, #546aec)' }}
           >
-            Subscribe
-          </button>
-        </form>
+            Latest Insights & Trends
+          </h1>
+
+          <p 
+            className="text-lg lg:text-xl font-light max-w-3xl mx-auto mb-10"
+            style={{ color: '#d1d5db' }}
+          >
+            Stay informed with expert opinions, industry trends, and insightful content to help you navigate the latest updates.
+          </p>
+
+          {/* Subscription Form */}
+          <div className="mt-10 flex justify-center">
+            <form 
+              className="flex items-center rounded-xl shadow-lg overflow-hidden max-w-lg w-full"
+              style={{ backgroundColor: 'white', padding: '10px', borderRadius: '30px' }}
+            >
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-6 py-4 text-gray-700 border-none focus:outline-none focus:ring-2"
+                style={{ borderRadius: '12px', fontSize: '16px' }}
+                required
+              />
+             <button
+  type="submit"
+  className="px-8 py-4 font-medium text-lg transition-all"
+  style={{ 
+    backgroundColor: '#4a5abb', 
+    color: 'white', 
+    borderRadius: '20px', 
+    boxShadow: '0px 4px 15px rgba(74, 90, 187, 0.5)', 
+    transform: 'scale(1)',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+  }}
+  onMouseEnter={(e) => {
+    const target = e.currentTarget as HTMLButtonElement; // ✅ Explicitly cast target
+    target.style.transform = 'scale(1.1)';
+    target.style.boxShadow = '0px 6px 20px rgba(74, 90, 187, 0.7)';
+  }}
+  onMouseLeave={(e) => {
+    const target = e.currentTarget as HTMLButtonElement; // ✅ Explicitly cast target
+    target.style.transform = 'scale(1)';
+    target.style.boxShadow = '0px 4px 15px rgba(74, 90, 187, 0.5)';
+  }}
+>
+  Subscribe
+</button>
+
+            </form>
+          </div>
+        </div>
       </div>
-  </div>
-  </div>
 
 
-      <BlogList />
+      {/* Main Blog Content */}
+      <div className="container mx-auto px-4 sm:px-8 lg:px-16 py-8">
+        <BlogList />
+      </div>
 
       {/* Footer */}
-      <div className="footer-style-two theme-basic-footer mt-10" style={{ backgroundColor: '#f7f8fb' }}>
+      <div className="footer-style-two theme-basic-footer mt-6" style={{ backgroundColor: '#f7f8fb' }}>
         <div className="top-footer position-relative">
           <div className="container">
             <div className="inner-wrapper m-auto">
@@ -88,7 +114,7 @@ const GridWithSidebar = () => {
             </div>
           </div>
         </div>
-        <CopyrightFooter2 />
+        <CopyrightFooter2 />x
       </div>
     </>
   );

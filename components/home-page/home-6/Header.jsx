@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -28,13 +27,17 @@ const Header = () => {
     <header
       className={`theme-main-menu sticky-menu theme-menu-two ${navbar ? "fixed" : ""}`}
     >
-      <div className="inner-content position-relative">
+      <div
+        className="inner-content position-relative"
+        style={{ width: "100vw", maxWidth: "100%" }}
+      >
         <div
           style={{
             backgroundColor: "rgba(247, 248, 254, 1)",
-            padding: "10px",
-            borderRadius: "10px",
-            boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.25)",
+            padding: "20px 40px",
+            borderRadius: "0px",
+            width: "100vw", // Ensuring full width inside inner-content
+            maxWidth: "100%"
           }}
           className="d-flex align-items-center justify-content-between"
         >
@@ -45,7 +48,7 @@ const Header = () => {
                 alt="logo"
                 width={95}
                 height={30}
-                style={{ backgroundColor: "E8EAF9" }}
+                style={{ backgroundColor: "#E8EAF9" }}
               />
             </Link>
           </div>
@@ -56,7 +59,7 @@ const Header = () => {
               style={{
                 border: "2px solid #4A5ABB",
                 color: "black",
-                padding: "1px 20px", // Adjust padding for better button size
+                padding: "1px 20px",
                 borderRadius: "20px",
               }}
               onMouseEnter={(e) => (e.target.style.color = "white")}
@@ -72,16 +75,16 @@ const Header = () => {
                 backgroundColor: "#4A5ABB",
                 color: "#FFF",
                 border: "none",
-                padding: "1px 20px", // Adjust padding for better button size
+                padding: "1px 20px",
                 borderRadius: "20px",
                 transition: "all 0.3s ease",
               }}
               onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#3b4a91"; // Darker shade for hover
-                e.target.style.color = "#FFFFFF"; // Keep the text white
+                e.target.style.backgroundColor = "#3b4a91";
+                e.target.style.color = "#FFFFFF";
               }}
               onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#4A5ABB"; // Original color
+                e.target.style.backgroundColor = "#4A5ABB";
                 e.target.style.color = "#FFF";
               }}
             >
@@ -96,4 +99,3 @@ const Header = () => {
 };
 
 export default Header;
-
