@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
 import html2canvas from "html2canvas";
 import Head from "next/head";
@@ -64,18 +64,6 @@ const CreateAdPage: React.FC = () => {
 
   const [clientCaption, setClientCaption] = useState("");
   const [clientHeadline, setClientHeadline] = useState("");
-
-  // ✅ Function to Increase Image Size
-  // const increaseSize = () => {
-  //   if (imageSize < 200) setImageSize(imageSize + 10); // ✅ Prevents size from exceeding 200%
-  // };
-
-  // ✅ Function to Decrease Image Size
-  // const decreaseSize = () => {
-  //   if (imageSize > 50) setImageSize(imageSize - 10); // ✅ Prevents size from being too small
-  // };
-
-  // ✅ Ensure Draggable loads only on client
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -95,45 +83,13 @@ const CreateAdPage: React.FC = () => {
     }
   }, [adDataFromStore]);
 
-  // useEffect(() => {
-  //   console.log("Applying Font:", headlineFont);
-  //   setPosition((prev) => ({ ...prev })); // ✅ Forces React to re-render
-  // }, [headlineFont]);
+
 
   // ✅ Save form data to localStorage on every input change
   useEffect(() => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
 
-  // const handleInputChange = (
-  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setAdData((prevState: typeof adData) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
-
-  // ✅ Image Upload Function (Ensures Image is Displayed)
-  const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        if (typeof reader.result === "string") {
-          setImage(reader.result);
-          localStorage.setItem("uploadedImage", reader.result);
-
-          // Ensure the image fully loads before continuing
-          const img = new Image();
-          img.src = reader.result;
-          await new Promise((resolve) => (img.onload = resolve));
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
   const handleDownload = async () => {
     const adPreview = document.getElementById("ad-preview");
 
@@ -213,7 +169,7 @@ const CreateAdPage: React.FC = () => {
           <AdForm adData={adData} setAdData={setAdData} />
 
           {/* Image Upload */}
-          <ImageUploader handleImageUpload={handleImageUpload} />
+          <ImageUploader setImage={setImage} />
           <br />
           <br />
 
