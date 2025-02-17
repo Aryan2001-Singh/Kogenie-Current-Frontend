@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, CSSProperties } from "react";
+import React, { useState, useEffect } from "react";
 import { useAdStore } from "@/store/useAdStore";
-import html2canvas from "html2canvas";
+import styles from "@/styles/CreateAdPage.module.css"; // Import the styles
 import Head from "next/head";
 import SocialMediaPost from "@/components/createAd/SocialMedia";
 import EditorTools from "@/components/createAd/EditorTools";
@@ -39,17 +39,7 @@ const CreateAdPage: React.FC = () => {
     };
   });
 
-  // New State to Store Text Position
-  const [position, setPosition] = useState({ x: 0, y: -100 });
-
-  // // Function to Handle Drag Stop
-  // const handleDragStop = (e: DraggableEvent, data: DraggableData) => {
-  //   setPosition({ x: data.x, y: data.y });
-  // };
-
   const [image, setImage] = useState<string | null>(null);
-
-
   const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
   const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
@@ -83,71 +73,11 @@ const CreateAdPage: React.FC = () => {
     }
   }, [adDataFromStore]);
 
-
-
   // ✅ Save form data to localStorage on every input change
   useEffect(() => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
 
-  const handleDownload = async () => {
-    const adPreview = document.getElementById("ad-preview");
-
-    if (adPreview) {
-      const imgElement = adPreview.querySelector("img");
-
-      // Ensure imgElement exists before proceeding
-      if (imgElement) {
-        if (!imgElement.complete) {
-          await new Promise((resolve) => (imgElement.onload = resolve));
-        }
-
-        // ✅ Apply filter only if imgElement exists
-        imgElement.style.filter = selectedFilter;
-      }
-
-      setTimeout(async () => {
-        const canvas = await html2canvas(adPreview, {
-          useCORS: true,
-          scale: 2,
-          backgroundColor: "#ffffff",
-          logging: true,
-          width: aspectRatio === "square" ? 500 : 360,
-          height: aspectRatio === "square" ? 500 : 640,
-        });
-
-        const image = canvas.toDataURL("image/png");
-
-        const link = document.createElement("a");
-        link.href = image;
-        link.download =
-          aspectRatio === "square"
-            ? "instagram_post.png"
-            : "instagram_story.png";
-        link.click();
-      }, 500);
-    }
-  };
-  // ✅ Styling
-  const parentContainerStyle: CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    width: "90%",
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "20px 0",
-  };
-
-  const containerStyle: CSSProperties = {
-    padding: "30px",
-    background: "#FFFFFF",
-    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
-    borderRadius: "10px",
-    width: "100%",
-    maxWidth: "600px",
-    fontFamily: "'Inter', sans-serif",
-  };
   return (
     <>
       <Head>
@@ -162,9 +92,8 @@ const CreateAdPage: React.FC = () => {
           rel="stylesheet"
         /> */}
       </Head>
-      <div style={parentContainerStyle}>
-        {/* Main Container for Ad Content */}
-        <div style={containerStyle}>
+      <div className={styles.parentContainer}>
+        <div className={styles.container}>
           <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
           <AdForm adData={adData} setAdData={setAdData} />
 
@@ -203,16 +132,9 @@ const CreateAdPage: React.FC = () => {
 
             <div
               id="ad-preview"
-              className="relative inline-block"
-              style={{
-                width: aspectRatio === "square" ? "500px" : "360px", // Adjust width
-                height: aspectRatio === "square" ? "500px" : "640px", // Adjust height
-                border: "1px solid #ddd",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#f9f9f9",
-              }}
+              className={`${styles.adPreview} ${
+                aspectRatio === "square" ? styles.square : styles.story
+              }`}
             >
               {/* Image */}
               {image && (
@@ -232,8 +154,6 @@ const CreateAdPage: React.FC = () => {
               {/* Draggable Headline */}
               {isClient && adData.headline && (
                 <DraggableHeadline
-                  position={position}
-                  setPosition={setPosition}
                   headlineText={adData.headline}
                   headlineBgColor={headlineBgColor}
                   headlineFontColor={headlineFontColor}
@@ -246,7 +166,10 @@ const CreateAdPage: React.FC = () => {
             </div>
             <br />
             {/* Download Button */}
-            <DownloadButton handleDownload={handleDownload} />
+            <DownloadButton
+              selectedFilter={selectedFilter}
+              aspectRatio={aspectRatio}
+            />
           </div>
           {/* Instagram Post Preview */}
           <InstagramPostPreview
