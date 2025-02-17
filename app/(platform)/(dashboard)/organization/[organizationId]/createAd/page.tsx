@@ -5,8 +5,11 @@ import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
 import html2canvas from "html2canvas";
 import Head from "next/head";
-import InstagramPreview from "@/components/InstagramPreview";
-import SocialMediaPost from "@/components/SocialMedia";
+import SocialMediaPost from "@/components/createAd/SocialMedia";
+import EditorTools from "@/components/createAd/EditorTools";
+import InstagramPostPreview from "@/components/createAd/InstagramPostPreview";
+import AdForm from "@/components/createAd/AdForm";
+import ImageUploader from "@/components/createAd/ImageUploader";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -53,8 +56,11 @@ const CreateAdPage: React.FC = () => {
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
   const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
+
+  // For adding filter to the images
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
+
   const [clientCaption, setClientCaption] = useState("");
   const [clientHeadline, setClientHeadline] = useState("");
 
@@ -185,39 +191,6 @@ const CreateAdPage: React.FC = () => {
     maxWidth: "600px",
     fontFamily: "'Inter', sans-serif",
   };
-  // const imageStyle: CSSProperties = {
-  //   maxWidth: `${imageSize}%`, // ✅ Dynamically changes based on `imageSize` state
-  //   borderRadius: "10px",
-  //   filter: filter, // ✅ Applies selected filter dynamically
-  //   transition: "all 0.3s ease-in-out", // ✅ Smooth transition effect
-  // };
-  const labelStyle: CSSProperties = {
-    fontWeight: "600",
-    color: "#333",
-    marginTop: "20px",
-    display: "block",
-  };
-
-  const inputStyle: CSSProperties = {
-    padding: "12px",
-    width: "100%",
-    borderRadius: "8px",
-    border: "1px solid #CBD5E1",
-    marginBottom: "15px",
-    fontSize: "16px",
-  };
-
-  const textAreaStyle: CSSProperties = {
-    ...inputStyle,
-    minHeight: "150px",
-    resize: "vertical",
-  };
-
-  const headlineTextAreaStyle: CSSProperties = {
-    ...textAreaStyle,
-    minHeight: "200px",
-  };
-
   return (
     <>
       <Head>
@@ -227,87 +200,19 @@ const CreateAdPage: React.FC = () => {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lobster&family=Roboto:wght@300;500;700&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
       <div style={parentContainerStyle}>
         {/* Main Container for Ad Content */}
         <div style={containerStyle}>
           <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
-
-          {/* Brand Name */}
-          <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Brand Name</label>
-            <input
-              type="text"
-              name="brandName"
-              placeholder="Enter your brand name"
-              value={adData.brandName}
-              onChange={handleInputChange}
-              style={inputStyle}
-            />
-          </div>
-
-          {/* Product Name */}
-          <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Product Name</label>
-            <input
-              type="text"
-              name="productName"
-              placeholder="Enter your product name"
-              value={adData.productName}
-              onChange={handleInputChange}
-              style={inputStyle}
-            />
-          </div>
-
-          {/* Product Description */}
-          <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Product Description</label>
-            <textarea
-              name="productDescription"
-              placeholder="Describe your product..."
-              value={adData.productDescription}
-              onChange={handleInputChange}
-              style={textAreaStyle}
-            />
-          </div>
-
-          {/* Ad Copy */}
-          <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Your Ad Copy</label>
-            <textarea
-              name="adCopy"
-              placeholder="Generated ad copy will appear here..."
-              value={adData.adCopy}
-              onChange={handleInputChange}
-              style={textAreaStyle}
-            />
-          </div>
-
-          {/* Headline */}
-          <div style={{ marginBottom: "20px" }}>
-            <label style={labelStyle}>Your Headline</label>
-            <textarea
-              name="headline"
-              placeholder="Headline"
-              value={adData.headline}
-              onChange={handleInputChange}
-              style={headlineTextAreaStyle}
-            />
-          </div>
+          <AdForm adData={adData} handleInputChange={handleInputChange} />
 
           {/* Image Upload */}
-          <label className="block font-semibold mt-4">Upload Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="mt-2"
-          />
-
+          <ImageUploader handleImageUpload={handleImageUpload} />
           <br />
           <br />
 
@@ -398,51 +303,16 @@ const CreateAdPage: React.FC = () => {
               <option value="'Montserrat', sans-serif">Montserrat</option>
             </select>
           </div>
-
-          {/* Filter Selection Dropdown */}
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">Apply Filter:</label>
-            <select
-              value={selectedFilter}
-              onChange={(e) => setSelectedFilter(e.target.value)}
-              className="border rounded-md px-2 py-1"
-            >
-              <option value="none">None</option>
-              <option value="grayscale(100%)">Grayscale</option>
-              <option value="sepia(100%)">Sepia</option>
-              <option value="invert(100%)">Invert</option>
-              <option value="blur(5px)">Blur</option>
-              <option value="brightness(150%)">Brightness</option>
-              <option value="contrast(200%)">Contrast</option>
-              <option value="saturate(200%)">Saturate</option>
-            </select>
+          {/*Filter Selection dropdown */}
+          <div>
+            <EditorTools
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+              aspectRatio={aspectRatio}
+              setAspectRatio={setAspectRatio}
+            />
           </div>
 
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">
-              Select Format:
-            </label>
-            <button
-              onClick={() => setAspectRatio("square")}
-              className={`px-3 py-1 border rounded-md ${
-                aspectRatio === "square"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              Instagram Post (1:1)
-            </button>
-            <button
-              onClick={() => setAspectRatio("story")}
-              className={`px-3 py-1 border rounded-md ${
-                aspectRatio === "story"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              Instagram Story/Reel (9:16)
-            </button>
-          </div>
           {/* Image Preview with Headline Overlay */}
           <div className="w-full flex flex-col items-center mt-4 relative">
             <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
@@ -510,16 +380,11 @@ const CreateAdPage: React.FC = () => {
             </button>
           </div>
           {/* Instagram Post Preview */}
-          <div className="w-full flex flex-col items-center mt-4 relative">
-            <h2 className="text-lg font-semibold mb-2 mt-8">
-              Instagram Post Preview
-            </h2>
-            <InstagramPreview
-              image={image}
-              caption={clientCaption}
-              headline={clientHeadline}
-            />
-          </div>
+          <InstagramPostPreview
+            image={image}
+            caption={clientCaption}
+            headline={clientHeadline}
+          />
           {/* Social Media Posting Buttons */}
           <SocialMediaPost image={image} caption={clientCaption} />
         </div>
