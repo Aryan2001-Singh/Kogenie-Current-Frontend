@@ -5,7 +5,7 @@ interface SocialMediaPostProps {
   caption: string;
 }
 
-const SocialMediaPost: React.FC<SocialMediaPostProps> = ({ image, caption }) => {
+const SocialMediaPost: React.FC<SocialMediaPostProps> = () => {
   // Redirect to Instagram
   const redirectToInstagram = () => {
     window.open("https://www.instagram.com/", "_blank");
@@ -18,14 +18,7 @@ const SocialMediaPost: React.FC<SocialMediaPostProps> = ({ image, caption }) => 
 
   return (
     <div className="w-full flex flex-col items-center mt-6">
-      <h2 className="text-lg font-semibold mb-3">Share Your Ad on Social Media</h2>
-
-      {/* Show preview of the ad before redirecting */}
-      {image && (
-        <img src={image} alt="Ad Preview" className="w-32 h-32 rounded-lg shadow-md mb-3" />
-      )}
-
-      <p className="text-center text-gray-600 mb-3">{caption}</p>
+     
 
       <div className="flex space-x-4">
         <button 

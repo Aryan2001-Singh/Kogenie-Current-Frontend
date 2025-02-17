@@ -1,6 +1,5 @@
 "use client";
-import { DraggableEvent, DraggableData } from "react-draggable";
-import Draggable from "react-draggable"; // Import Draggable
+
 import React, { useState, useEffect, ChangeEvent, CSSProperties } from "react";
 import { useAdStore } from "@/store/useAdStore";
 import html2canvas from "html2canvas";
@@ -10,6 +9,9 @@ import EditorTools from "@/components/createAd/EditorTools";
 import InstagramPostPreview from "@/components/createAd/InstagramPostPreview";
 import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
+import DownloadButton from "@/components/createAd/DownloadButton";
+import FontSettings from "@/components/createAd/FontSettings";
+import DraggableHeadline from "@/components/createAd/DraggableHeadline";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -40,18 +42,17 @@ const CreateAdPage: React.FC = () => {
   // New State to Store Text Position
   const [position, setPosition] = useState({ x: 0, y: -100 });
 
-  // Function to Handle Drag Stop
-  const handleDragStop = (e: DraggableEvent, data: DraggableData) => {
-    setPosition({ x: data.x, y: data.y });
-  };
+  // // Function to Handle Drag Stop
+  // const handleDragStop = (e: DraggableEvent, data: DraggableData) => {
+  //   setPosition({ x: data.x, y: data.y });
+  // };
 
   const [image, setImage] = useState<string | null>(null);
 
-  // const [imageSize] = useState<number>(100); // ✅ Default size percentage
+
   const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
   const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
-  // const [customFont, setCustomFont] = useState<string | null>(null); // Custom fonts
   const [isBold, setIsBold] = useState<boolean>(false);
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
@@ -216,93 +217,20 @@ const CreateAdPage: React.FC = () => {
           <br />
           <br />
 
-          {/* Resize Buttons */}
-          {/* Font Size Controls */}
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">Font Size:</label>
-            <button
-              onClick={() =>
-                setHeadlineFontSize((prev) => Math.max(prev - 2, 10))
-              }
-              className="px-3 py-1 bg-gray-500 text-white rounded-md"
-            >
-              -
-            </button>
-            <span className="px-3 py-1 text-gray-800 bg-gray-200 rounded-md">
-              {headlineFontSize}px
-            </span>
-            <button
-              onClick={() =>
-                setHeadlineFontSize((prev) => Math.min(prev + 2, 50))
-              }
-              className="px-3 py-1 bg-gray-500 text-white rounded-md"
-            >
-              +
-            </button>
-          </div>
-          {/* Headline Background Color Picker */}
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">
-              Headline Background:
-            </label>
-            <input
-              type="color"
-              value={headlineBgColor}
-              onChange={(e) => setHeadlineBgColor(e.target.value)}
-              className="w-10 h-10 p-1 border rounded-md cursor-pointer"
-            />
-          </div>
-
-          {/* Font Color Selection for Headline */}
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">Font Color:</label>
-            <input
-              type="color"
-              value={headlineFontColor}
-              onChange={(e) => setHeadlineFontColor(e.target.value)}
-              className="w-10 h-10 p-1 border rounded-md cursor-pointer"
-            />
-          </div>
-
-          {/* Bold and Italic Toggle Buttons */}
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">Font Style:</label>
-
-            {/* Bold Button */}
-            <button
-              onClick={() => setIsBold((prev) => !prev)}
-              className={`px-3 py-1 border rounded-md ${
-                isBold ? "bg-gray-800 text-white" : "bg-gray-200"
-              }`}
-            >
-              B
-            </button>
-
-            {/* Italic Button */}
-            <button
-              onClick={() => setIsItalic((prev) => !prev)}
-              className={`px-3 py-1 border rounded-md ${
-                isItalic ? "bg-gray-800 text-white" : "bg-gray-200"
-              }`}
-            >
-              I
-            </button>
-          </div>
-          <div className="flex items-center space-x-2 mt-3">
-            <label className="text-gray-700 font-semibold">Font:</label>
-            <select
-              value={headlineFont}
-              onChange={(e) => setHeadlineFont(e.target.value)}
-              className="border rounded-md px-2 py-1"
-            >
-              <option value="Arial">Arial</option>
-              <option value="Georgia">Georgia</option>
-              <option value="'Poppins', sans-serif">Poppins</option>
-              <option value="'Lobster', cursive">Lobster</option>
-              <option value="'Roboto', sans-serif">Roboto</option>
-              <option value="'Montserrat', sans-serif">Montserrat</option>
-            </select>
-          </div>
+          <FontSettings
+            headlineFontSize={headlineFontSize}
+            setHeadlineFontSize={setHeadlineFontSize}
+            headlineBgColor={headlineBgColor}
+            setHeadlineBgColor={setHeadlineBgColor}
+            headlineFontColor={headlineFontColor}
+            setHeadlineFontColor={setHeadlineFontColor}
+            isBold={isBold}
+            setIsBold={setIsBold}
+            isItalic={isItalic}
+            setIsItalic={setIsItalic}
+            headlineFont={headlineFont}
+            setHeadlineFont={setHeadlineFont}
+          />
           {/*Filter Selection dropdown */}
           <div>
             <EditorTools
@@ -347,37 +275,22 @@ const CreateAdPage: React.FC = () => {
 
               {/* Draggable Headline */}
               {isClient && adData.headline && (
-                <Draggable position={position} onStop={handleDragStop}>
-                  <div
-                    contentEditable
-                    suppressContentEditableWarning
-                    className="absolute cursor-move px-4 py-2 text-lg rounded-lg opacity-80"
-                    style={{
-                      backgroundColor: headlineBgColor,
-                      color: headlineFontColor,
-                      fontSize: `${headlineFontSize}px`,
-                      fontWeight: isBold ? "bold" : "normal",
-                      fontStyle: isItalic ? "italic" : "normal",
-                      fontFamily: `${headlineFont}, sans-serif`,
-                      maxWidth: "90%",
-                      textAlign: "center",
-                      zIndex: 10,
-                      outline: "none",
-                    }}
-                  >
-                    {adData.headline}
-                  </div>
-                </Draggable>
+                <DraggableHeadline
+                  position={position}
+                  setPosition={setPosition}
+                  headlineText={adData.headline}
+                  headlineBgColor={headlineBgColor}
+                  headlineFontColor={headlineFontColor}
+                  headlineFontSize={headlineFontSize}
+                  isBold={isBold}
+                  isItalic={isItalic}
+                  headlineFont={headlineFont}
+                />
               )}
             </div>
             <br />
             {/* Download Button */}
-            <button
-              onClick={handleDownload}
-              className="bg-red-500 text-white p-2"
-            >
-              Download Ad
-            </button>
+            <DownloadButton handleDownload={handleDownload} />
           </div>
           {/* Instagram Post Preview */}
           <InstagramPostPreview
