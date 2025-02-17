@@ -11,15 +11,12 @@ const footerData = [
     links: [
       { label: "Home", href: "/" },
       { label: "Pricing", href: "/pages/pricing-v2" },
-<<<<<<< HEAD
       { label: "About us", href: "/pages/about-us" },
       { label: "Features", href: "/pages/OurService" },
       { label: "Blog", href: "/blog" },
-=======
       { label: "About Us", href: "/pages/about-us" },
       { label: "Features", href: "/pages/OurService" },
       { label: "Blog", href: "/blog" }, // ✅ Ensure this stays
->>>>>>> 721d1aa127dda9b982a961887ac995cc228504e4
     ],
   },
   {

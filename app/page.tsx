@@ -20,9 +20,7 @@ const SassProduct = () => {
       <Hero />
 
       {/* Feature Section Three */}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
       <div style={{marginTop:"-100px"}}className="fancy-feature-three pt-300 lg-pt-200 md-pt-170 sm-pt-120">
         <div className="container">
           <div className="row align-items-center">
@@ -107,7 +105,7 @@ const SassProduct = () => {
                   marginTop: "20px"
                 }}
               >
-                <Image
+                {/* <Image
                   src="/kogenie-preview.jpg"
                   alt="Professional Illustration"
                   width={400}
@@ -117,11 +115,10 @@ const SassProduct = () => {
                     width: "100%",
                     height: "100%",
                   }}
-                />
+                /> */}
               </div>
             </div>
-=======
->>>>>>> 623521e (updated UI of  home,blog page)
+
       <div className="fancy-feature-three pt-70 lg-pt-50 md-pt-30 sm-pt-20">
   <div className="container">
     <div className="row align-items-center">
@@ -145,10 +142,6 @@ const SassProduct = () => {
             }}
           >
             Integrates your tools
-<<<<<<< HEAD
-=======
->>>>>>> da9ad37 (updated UI of  home,blog page)
->>>>>>> 623521e (updated UI of  home,blog page)
           </div>
           <h2
             style={{
@@ -1039,6 +1032,7 @@ const SassProduct = () => {
         </div>
         {/* /.footer-style-two */}
       </div>
+
     </>
 
   );
