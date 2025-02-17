@@ -119,9 +119,9 @@ const AboutUsV1 = () => {
 
         {/* <div className="row">
             <div className="col-xl-8 col-lg-9 ms-auto"> */}
-        <div className="fancy-feature-three pt-150 lg-pt-120 md-pt-120 sm-pt-120">
+        <div className="fancy-feature-three pt-120 lg-pt-80 md-pt-80 sm-pt-80">
           <div
-            style={{ borderRadius: "10px", padding: "30px" }}
+            style={{ borderRadius: "10px", padding: "30px", marginTop:"-100px" }}
             className="container"
           >
             <div className="row align-items-center">
@@ -276,7 +276,8 @@ const AboutUsV1 = () => {
         </div>
 
 
-        <div className="fancy-feature-three pt-150 lg-pt-120 md-pt-120 sm-pt-120">
+        <div className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2">
+
           <div
             style={{
               borderRadius: "20px",
@@ -345,13 +346,13 @@ const AboutUsV1 = () => {
 
               {/* Right Text Section */}
               <div
-                className="col-lg-7 col-md-6"
+                className="col-lg-6 col-md-5"
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   zIndex: 1,
-                  textAlign: "justify"
+                  textAlign: "justify",
                 }}
               >
                 <div className="title-style-three">
@@ -425,7 +426,8 @@ const AboutUsV1 = () => {
           </div>
         </div>
 
-        <div className="features-grid pt-150 lg-pt-120 md-pt-120 sm-pt-120">
+        <div className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2">
+
           <div className="container">
             <div
               className="row align-items-center"
@@ -451,7 +453,7 @@ const AboutUsV1 = () => {
                       fontWeight: "400",
                       lineHeight: "1.5",
                       color: "#333",
-                      marginTop: "40px",
+                      marginTop: "10px",
                       justifyContent: "center",
                       textAlign: "center"
                     }}
@@ -618,7 +620,8 @@ const AboutUsV1 = () => {
         </div>
 
 
-        <div style={{ marginBottom: "60px" }} className="fancy-feature-three pt-150 lg-pt-120 md-pt-120 sm-pt-120">
+        <div style={{ marginBottom: "60px" }} className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2">
+
           <div className="container">
             <div className="row align-items-center">
               {/* Text and Decorative Section */}
@@ -650,9 +653,7 @@ const AboutUsV1 = () => {
                 <div
                   style={{
                     backgroundColor: "#fff",
-                    borderRadius: "15px",
                     padding: "40px",
-                    // boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)",
                     position: "relative",
                     zIndex: 1,
                   }}
@@ -707,6 +708,9 @@ const AboutUsV1 = () => {
                     borderRadius: "20px",
                     overflow: "hidden",
                     boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2)",
+                    marginTop:"30px",
+                    marginLeft:"30px",
+                    marginRight:"30px"
                   }}
                 >
                   <Image
@@ -750,6 +754,7 @@ const AboutUsV1 = () => {
             </div>
           </div>
         </div>
+        </div>
         <div
           style={{
             display: "flex",
@@ -761,8 +766,7 @@ const AboutUsV1 = () => {
             marginLeft: "auto",
             marginRight: "auto",
             maxWidth: "1200px",
-          }}
-        >
+          }} >
           {/* Left Section with Blurred Image */}
           <div
             style={{
@@ -888,7 +892,7 @@ const AboutUsV1 = () => {
               </div>
             ))}
           </div>
-        </div>
+         
 
         <div
           style={{
@@ -900,9 +904,9 @@ const AboutUsV1 = () => {
             gap: "40px",
             margin: "40px auto",
             maxWidth: "1200px",
-            // background: "linear-gradient(135deg, #f5f7fa, #c3cfe2)",
-            borderRadius: "15px",
-            // boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
+            background: "linear-gradient(135deg, #f5f7fa, #c3cfe2)",
+           
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
           }}
         >
           {/* Text Section */}
@@ -1015,23 +1019,28 @@ const AboutUsV1 = () => {
           </div>
         </div>
       </div>
-
       {/* Team Section */}
-      <TeamCards />
+  {/* Team Section */}
+<div className="w-full bg-gray-50 py-16 flex flex-col items-start">
+  <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+    <TeamCards />
+  </div>
+</div>
 
-      {/* Footer */}
-      <div className="footer-style-two theme-basic-footer">
-        <div className="top-footer position-relative">
-          <div className="container">
-            <div className="inner-wrapper m-auto">
-              <div className="row">
-                <FooterMenu />
-              </div>
-            </div>
+
+  {/* Footer */}
+  <div className="footer-style-two theme-basic-footer w-full mt-16">
+    {/* <div className="top-footer position-relative"> */}
+      <div className="container">
+        <div className="inner-wrapper m-auto">
+          <div className="row">
+            <FooterMenu />
           </div>
         </div>
-        <CopyrightFooter2 />
       </div>
+    </div>
+    <CopyrightFooter2 />
+
     </>
   );
 };

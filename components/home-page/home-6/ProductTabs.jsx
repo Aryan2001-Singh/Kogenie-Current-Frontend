@@ -1,141 +1,122 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
 
 const tabData = [
-  { id: 1, title: "Plan", subtitle: "Set your goals", icon: "/step1icon.svg" },
-  { id: 2, title: "Design", subtitle: "Create visuals", icon: "/step2icon.svg" },
-  { id: 3, title: "Develop", subtitle: "Build your product", icon: "/step3.png" },
-  { id: 4, title: "Launch", subtitle: "Go live", icon: "/step4.png" },
+  { id: 1, title: "Plan", subtitle: "Set your goals", icon: "/task.png" },
+  { id: 2, title: "Design", subtitle: "Create visuals", icon: "/design-thinking.png" },
+  { id: 3, title: "Develop", subtitle: "Build your product", icon: "/growth.png" },
+  { id: 4, title: "Launch", subtitle: "Go live", icon: "/startup.png" },
 ];
 
 const ProductTabs = () => {
-  const [activeTab, setActiveTab] = useState(1);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prevTab) => (prevTab % tabData.length) + 1); // Cycle through tabs
-    }, 4000); // Change tab every 4 seconds
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
-
-  const fadeInVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const [activeTab, setActiveTab] = useState(1); // Ensure activeTab is used
 
   return (
     <div className="product-tabs">
-      <div className="tab-content">
+      <ul className="tab-list">
         {tabData.map((tab) => (
-          <div
+          <li
             key={tab.id}
-            className={`tab-pane ${tab.id === activeTab ? "active" : ""}`}
+            className={`tab-item ${tab.id === activeTab ? "active" : ""}`} // Apply active class
+            onClick={() => setActiveTab(tab.id)}
           >
-            <h2 style={{ fontSize: "40px" }}>{tab.title}</h2>
-            <p>{tab.subtitle}</p>
-          </div>
+            <Image src={tab.icon} alt={`${tab.title} icon`} width={50} height={50} />
+            <h3 className="tab-title">{tab.title}</h3>
+            <p className="tab-subtitle">{tab.subtitle}</p>
+          </li>
         ))}
-        <ul className="tab-list">
-          {tabData.map((tab) => (
-            <motion.li
-              className={`tab-item ${tab.id === activeTab ? "active" : ""}`}
-              key={tab.id}
-              initial="hidden"
-              animate="visible"
-              variants={fadeInVariants}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <Image
-                src={tab.icon}
-                alt={`${tab.title} icon`}
-                width={50}
-                height={50}
-                className="tab-icon"
-              />
-              <h3 className="tab-title">{tab.title}</h3>
-              <p className="tab-subtitle">{tab.subtitle}</p>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+      </ul>
+    
+  
+
       <style jsx>{`
         .product-tabs {
           text-align: center;
-          padding: 20px;
-          margin-bottom: 30px;
+          padding: 40px 20px;
+          background:rgb(249, 249, 249);
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .tab-list {
           display: flex;
           justify-content: center;
-          flex-wrap: wrap;
-          gap: 100px;
+          gap: 40px;
           list-style: none;
-          margin: 40px;
-          padding: 10px 20px;
+          padding: 0;
+          margin: 40px 0;
         }
 
         .tab-item {
-          background: #f9f9f9;
+          background:rgb(255, 255, 255);
           border: 2px solid #ececec;
           border-radius: 10px;
           padding: 20px;
-          width: 200px;
+          width: 220px;
           text-align: center;
           cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .tab-item:hover {
+          background-color: #f0f5ff;
+          transform: translateY(-3px);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-item.animated::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(100, 46, 248, 0.2);
+          opacity: 0;
+          animation: fadeEffect 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeEffect {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
         }
 
         .tab-item.active {
           background: #546aec;
           color: #fff;
-          transform: translateY(-10px);
-          box-shadow: 0 8px 15px rgba(84, 106, 236, 0.3);
-        }
-
-        .tab-item:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          transform: translateY(-6px);
         }
 
         .tab-icon {
           width: 50px;
           height: 50px;
-          margin-bottom: 10px;
+          margin-bottom: 15px;
         }
 
         .tab-title {
           font-size: 18px;
-          font-weight: medium;
+          font-weight: 600;
+          color: #333;
           margin-bottom: 5px;
-          color: #546aec;
         }
 
         .tab-subtitle {
           font-size: 14px;
-          color: #666;
-        }
-
-        .tab-content {
-          margin-top: 20px;
-        }
-
-        .tab-pane {
-          display: none;
-          margin-bottom: 20px;
-          margin-top: 20px;
-        }
-
-        .tab-pane.active {
-          display: block;
+          color: #777;
         }
 
         @media (max-width: 768px) {
           .tab-item {
-            width: 150px;
+            width: 180px;
             padding: 15px;
           }
 
@@ -149,6 +130,11 @@ const ProductTabs = () => {
         }
 
         @media (max-width: 480px) {
+          .tab-list {
+            flex-direction: column;
+            gap: 30px;
+          }
+
           .tab-item {
             width: 100%;
           }

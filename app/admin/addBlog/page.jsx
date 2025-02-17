@@ -5,7 +5,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
-const Page = () => {  // Changed `page` to `Page`
+const Page = () => {
 
     const [image, setImage] = useState(false);
     const [data, setData] = useState({
@@ -13,14 +13,14 @@ const Page = () => {  // Changed `page` to `Page`
         description: "",
         category: "Startup",
         author: "Aayushi Shrivastava",
-        authorImg: "/author_img.png"
+        authorImg: "/author_img.png",
+        date: new Date().toISOString().split('T')[0] // Initialize with the current date
     });
 
     const onChangeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setData(data => ({ ...data, [name]: value }));
-        console.log(data);
     };
 
     const onSubmitHandler = async (e) => {
@@ -31,7 +31,9 @@ const Page = () => {  // Changed `page` to `Page`
         formData.append('category', data.category);
         formData.append('author', data.author);
         formData.append('authorImg', data.authorImg);
+        formData.append('date', data.date); // Include the date in submission
         formData.append('image', image);
+
         const response = await axios.post('/api/blog', formData);
         if (response.data.success) {
             toast.success(response.data.msg);
@@ -41,10 +43,10 @@ const Page = () => {  // Changed `page` to `Page`
                 description: "",
                 category: "Startup",
                 author: "Aayushi Shrivastava",
-                authorImg: "/author_img.png"
+                authorImg: "/author_img.png",
+                date: new Date().toISOString().split('T')[0] // Reset to current date
             });
-        }
-        else {
+        } else {
             toast.error("Error");
         }
     };
@@ -57,16 +59,23 @@ const Page = () => {  // Changed `page` to `Page`
                     <Image className='mt-4' src={!image ? assets.upload_area : URL.createObjectURL(image)} width={140} height={70} alt='' />
                 </label>
                 <input onChange={(e) => setImage(e.target.files[0])} type="file" id='image' hidden required />
-                <p className='text-xl mt-4'>Blog title</p>
+                
+                <p className='text-xl mt-4'>Blog Title</p>
                 <input name='title' onChange={onChangeHandler} value={data.title} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type="text" placeholder='Type here' required />
+                
                 <p className='text-xl mt-4'>Blog Description</p>
-                <textarea name='description' onChange={onChangeHandler} value={data.description} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type="text" placeholder='write content here' rows={6} required />
-                <p className='text-xl mt-4'>Blog category</p>
+                <textarea name='description' onChange={onChangeHandler} value={data.description} className='w-full sm:w-[500px] mt-4 px-4 py-3 border' type="text" placeholder='Write content here' rows={6} required />
+                
+                <p className='text-xl mt-4'>Blog Category</p>
                 <select name="category" onChange={onChangeHandler} value={data.category} className='w-40 mt-4 px-4 py-3 border text-gray-500'>
                     <option value="Startup">Startup</option>
                     <option value="Technology">Technology</option>
                     <option value="Lifestyle">Lifestyle</option>
                 </select>
+                
+                <p className='text-xl mt-4'>Publication Date</p>
+                <input name='date' type="date" value={data.date} onChange={onChangeHandler} className='w-40 mt-4 px-4 py-3 border text-gray-500' required />
+                
                 <br />
                 <button type="submit" className='mt-8 w-40 h-12 bg-black text-white'>ADD</button>
             </form>
@@ -74,4 +83,4 @@ const Page = () => {  // Changed `page` to `Page`
     )
 }
 
-export default Page;  // Ensure `Page` is exported with a capital letter
+export default Page;
