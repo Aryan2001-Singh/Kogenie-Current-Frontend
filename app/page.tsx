@@ -20,6 +20,108 @@ const SassProduct = () => {
       <Hero />
 
       {/* Feature Section Three */}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <div style={{marginTop:"-100px"}}className="fancy-feature-three pt-300 lg-pt-200 md-pt-170 sm-pt-120">
+        <div className="container">
+          <div className="row align-items-center">
+            {/* Left Content Section */}
+            <div
+              className="col-lg-6 col-md-6"
+              style={{ display: "flex", flexDirection: "column", justifyContent: "center" ,textAlign:"justify"}}
+            >
+              <div className="title-style-three">
+                <div
+                  className="sc-title text-uppercase"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    color: "rgb(84, 106, 236)",
+                    letterSpacing: "1px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Integrates your tools
+                </div>
+                <h2
+                  style={{
+                    fontSize: "36px",
+                    fontWeight: "400",
+                    lineHeight: "1.5",
+                    color: "#333",
+                    marginBottom: "20px",
+                  }}
+                  className="max-w-md main-title fw-200"
+                >
+                  Kogenie leads in hyper-targeted influence
+                </h2>
+              </div>
+              <p
+                className="text-lg mt-15 mb-60 lg-mb-40"
+                style={{
+                  fontSize: "16px",
+                  color: "gray",
+                  lineHeight: "1.7",
+                  marginBottom: "30px",
+                }}
+              >
+                At Kogenie, we leverage the power of generative AI, granular data, and
+                Automated A/B testing to deliver advertisements that connect on a deep,
+                instinctive level with your audience. Whether you aim to drive action or
+                influence emotions, we have the expertise and tools to make it happen.
+              </p>
+              <Link
+                href="/pages/about-us"
+                className="btn-four fw-500"
+                style={{
+                  display: "inline-block",
+                  padding: "8px 16px",
+                  backgroundColor: "rgb(84, 106, 236)",
+                  color: "#fff",
+                  fontWeight: "500",
+                  textDecoration: "none",
+                  borderRadius: "5px",
+                  boxShadow: "0 4px 20px rgba(84, 107, 236, 0.57)",
+                  transition: "all 0.3s ease",
+                  fontSize: "20px",
+                  textAlign: "center"
+                }}
+              >
+                Learn More
+              </Link>
+            </div>
+
+            {/* Right Image Section */}
+            <div
+              className="col-lg-6 col-md-6"
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            >
+              <div
+                style={{
+                  width: "400px",
+                  height: "300px",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+                  overflow: "hidden",
+                  marginTop: "20px"
+                }}
+              >
+                <Image
+                  src="/kogenie-preview.jpg"
+                  alt="Professional Illustration"
+                  width={400}
+                  height={300}
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                />
+              </div>
+            </div>
+=======
+>>>>>>> 623521e (updated UI of  home,blog page)
       <div className="fancy-feature-three pt-70 lg-pt-50 md-pt-30 sm-pt-20">
   <div className="container">
     <div className="row align-items-center">
@@ -43,6 +145,10 @@ const SassProduct = () => {
             }}
           >
             Integrates your tools
+<<<<<<< HEAD
+=======
+>>>>>>> da9ad37 (updated UI of  home,blog page)
+>>>>>>> 623521e (updated UI of  home,blog page)
           </div>
           <h2
             style={{

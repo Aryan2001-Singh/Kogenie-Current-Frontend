@@ -1,4 +1,5 @@
 'use client';
+'use client';
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -9,10 +10,10 @@ const footerData = [
     className: "col-lg-3 col-md-4 col-sm-6 mb-4",
     links: [
       { label: "Home", href: "/" },
-      { label: "Pricing", href: "/pages-menu/pricing-v2" },
-      { label: "About Us", href: "/pages-menu/about-us-v1" },
-      { label: "Features", href: "/pages-menu/service-v4" },
-      { label: "Blog", href: "/blog" },
+      { label: "Pricing", href: "/pages/pricing-v2" },
+      { label: "About Us", href: "/pages/about-us" },
+      { label: "Features", href: "/pages/OurService" },
+      { label: "Blog", href: "/blog" }, // ✅ Ensure this stays
     ],
   },
   {
