@@ -8,10 +8,24 @@ interface AdFormProps {
     adCopy: string;
     headline: string;
   };
-  handleInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  setAdData: React.Dispatch<React.SetStateAction<{
+    brandName: string;
+    productName: string;
+    productDescription: string;
+    adCopy: string;
+    headline: string;
+  }>>;
 }
 
-const AdForm: React.FC<AdFormProps> = ({ adData, handleInputChange }) => {
+const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setAdData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="w-full">
       {/* Brand Name */}

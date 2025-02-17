@@ -105,15 +105,15 @@ const CreateAdPage: React.FC = () => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setAdData((prevState: typeof adData) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  // const handleInputChange = (
+  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setAdData((prevState: typeof adData) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
 
   // ✅ Image Upload Function (Ensures Image is Displayed)
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -210,7 +210,7 @@ const CreateAdPage: React.FC = () => {
         {/* Main Container for Ad Content */}
         <div style={containerStyle}>
           <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
-          <AdForm adData={adData} handleInputChange={handleInputChange} />
+          <AdForm adData={adData} setAdData={setAdData} />
 
           {/* Image Upload */}
           <ImageUploader handleImageUpload={handleImageUpload} />
