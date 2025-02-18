@@ -18,18 +18,20 @@ const SassProduct = () => {
 
       {/* Hero Section */}
       <Hero />
+      
 
       {/* Feature Section Three */}
 
       <div style={{marginTop:"-100px"}}className="fancy-feature-three pt-300 lg-pt-200 md-pt-170 sm-pt-120">
         <div className="container">
           <div className="row align-items-center">
+            </div>
             {/* Left Content Section */}
             <div
               className="col-lg-6 col-md-6"
               style={{ display: "flex", flexDirection: "column", justifyContent: "center" ,textAlign:"justify"}}
             >
-              <div className="title-style-three">
+              {/* <div className="title-style-three">
                 <div
                   className="sc-title text-uppercase"
                   style={{
@@ -68,8 +70,10 @@ const SassProduct = () => {
                 Automated A/B testing to deliver advertisements that connect on a deep,
                 instinctive level with your audience. Whether you aim to drive action or
                 influence emotions, we have the expertise and tools to make it happen.
-              </p>
-              <Link
+              </p> */}
+              </div>
+              </div>
+              {/* <Link
                 href="/pages/about-us"
                 className="btn-four fw-500"
                 style={{
@@ -87,7 +91,7 @@ const SassProduct = () => {
                 }}
               >
                 Learn More
-              </Link>
+              </Link> */}
             </div>
 
             {/* Right Image Section */}
@@ -95,7 +99,7 @@ const SassProduct = () => {
               className="col-lg-6 col-md-6"
               style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
-              <div
+              {/* <div
                 style={{
                   width: "400px",
                   height: "300px",
@@ -104,7 +108,7 @@ const SassProduct = () => {
                   overflow: "hidden",
                   marginTop: "20px"
                 }}
-              >
+              > */}
                 {/* <Image
                   src="/kogenie-preview.jpg"
                   alt="Professional Illustration"
@@ -117,7 +121,7 @@ const SassProduct = () => {
                   }}
                 /> */}
               </div>
-            </div>
+            {/* </div> */}
 
       <div className="fancy-feature-three pt-70 lg-pt-50 md-pt-30 sm-pt-20">
   <div className="container">
@@ -1032,10 +1036,11 @@ const SassProduct = () => {
         </div>
         {/* /.footer-style-two */}
       </div>
+      
+</>
+)}
 
-    </>
 
-  );
-};
+
 
 export default SassProduct;
