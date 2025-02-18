@@ -1,12 +1,29 @@
 import React, { useState, useEffect } from "react";
+import DraggableHeadline from "./DraggableHeadline"; // Import DraggableHeadline
 
 interface InstagramPreviewProps {
   image: string | null;
   caption: string;
-  headline: string;
+  headlineText: string;
+  headlineBgColor: string;
+  headlineFontColor: string;
+  headlineFontSize: number;
+  isBold: boolean;
+  isItalic: boolean;
+  headlineFont: string;
 }
 
-const InstagramPreview: React.FC<InstagramPreviewProps> = ({ image, caption, headline }) => {
+const InstagramPreview: React.FC<InstagramPreviewProps> = ({
+  image,
+  caption,
+  headlineText,
+  headlineBgColor,
+  headlineFontColor,
+  headlineFontSize,
+  isBold,
+  isItalic,
+  headlineFont,
+}) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -25,22 +42,22 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({ image, caption, hea
         <span className="ml-2 font-semibold">your_brand_name</span>
       </div>
 
-      {/* Image Preview with Headline Overlay */}
+      {/* Image Preview */}
       <div className="relative">
         {image && (
-          <img
-            src={image}
-            alt="Instagram Post"
-            className="w-full object-cover"
-          />
+          <img src={image} alt="Instagram Post" className="w-full object-cover" />
         )}
 
-        {/* Headline Overlay - FIXED POSITION */}
-        {headline && (
-          <div className="absolute top-0 left-0 w-full text-center bg-black bg-opacity-50 text-white p-2 text-xl font-bold">
-            {isClient ? headline : "Loading headline..."}
-          </div>
-        )}
+        {/* Draggable Headline Component */}
+        <DraggableHeadline
+          headlineText={headlineText}
+          headlineBgColor={headlineBgColor}
+          headlineFontColor={headlineFontColor}
+          headlineFontSize={headlineFontSize}
+          isBold={isBold}
+          isItalic={isItalic}
+          headlineFont={headlineFont}
+        />
       </div>
 
       {/* Like, Comment, Share Icons */}
@@ -53,7 +70,7 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({ image, caption, hea
       {/* Caption Section */}
       <div className="p-3">
         <span className="font-semibold">your_brand_name </span>
-        {isClient ? caption : "Loading..."} {/* Ensure caption updates after mounting */}
+        {isClient ? caption : "Loading..."}
       </div>
     </div>
   );

@@ -100,7 +100,6 @@ const CreateAdPage: React.FC = () => {
           {/* Image Upload */}
           <ImageUploader setImage={setImage} />
           <br />
-          
 
           <FontSettings
             headlineFontSize={headlineFontSize}
@@ -171,14 +170,20 @@ const CreateAdPage: React.FC = () => {
               aspectRatio={aspectRatio}
             />
           </div>
-            <br />
-            <br />
-            <br />
+          <br />
+          <br />
+          <br />
           {/* Instagram Post Preview */}
           <InstagramPostPreview
             image={image}
             caption={clientCaption}
-            headline={clientHeadline}
+            headlineText={clientHeadline}
+            headlineBgColor={headlineBgColor}
+            headlineFontColor={headlineFontColor}
+            headlineFontSize={headlineFontSize}
+            isBold={isBold}
+            isItalic={isItalic}
+            headlineFont={headlineFont}
           />
           {/* Social Media Posting Buttons */}
           <SocialMediaPost image={image} caption={clientCaption} />
