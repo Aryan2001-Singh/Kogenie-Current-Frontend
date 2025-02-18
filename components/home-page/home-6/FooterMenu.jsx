@@ -130,7 +130,7 @@ const FooterLinks = () => {
         }
 
         .footer-link:hover {
-          color:rgb(0, 110, 255);
+          color:rgb(255, 251, 0);
         }
 
         .footer-email,
