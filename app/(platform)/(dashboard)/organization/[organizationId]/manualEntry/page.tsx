@@ -82,7 +82,7 @@ const ManualEntryPage: React.FC = () => {
   // ✅ Form container (No background, just shadow for elevation)
   const formContainerStyle: CSSProperties = {
     padding: "30px",
-    borderRadius: "10px",
+    // borderRadius: "10px",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
     width: "100%",
     maxWidth: "600px",
