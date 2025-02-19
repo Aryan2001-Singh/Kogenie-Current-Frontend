@@ -12,6 +12,7 @@ import ImageUploader from "@/components/createAd/ImageUploader";
 import DownloadButton from "@/components/createAd/DownloadButton";
 import FontSettings from "@/components/createAd/FontSettings";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
+import Image from "next/image";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -137,7 +138,7 @@ const CreateAdPage: React.FC = () => {
             >
               {/* Image */}
               {image && (
-                <img
+                <Image
                   src={image}
                   alt="Uploaded Preview"
                   className="shadow-md rounded-lg"

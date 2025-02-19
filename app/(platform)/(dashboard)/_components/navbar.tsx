@@ -1,16 +1,14 @@
 import { Plus } from "lucide-react";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-
+import { UserButton } from "@clerk/nextjs";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { MobileSidebar } from "./mobile-sidebar";
 
 export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 z-50 w-full h-16 px-6 bg-white text-black flex items-center justify-between shadow-md">
       
       {/* Left section: Mobile sidebar and Organization Switcher */}
-      <div className="flex items-center gap-x-4">
+      {/* <div className="flex items-center gap-x-4">
         <MobileSidebar />
         <OrganizationSwitcher
           hidePersonal
@@ -28,7 +26,7 @@ export const Navbar = () => {
             },
           }}
         />
-      </div>
+      </div> */}
 
       {/* Center section: Logo */}
       <div className="flex justify-center">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DraggableHeadline from "./DraggableHeadline"; // Import DraggableHeadline
+import Image from "next/image";
 
 interface InstagramPreviewProps {
   image: string | null;
@@ -34,7 +35,7 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
     <div className="max-w-md mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden mt-6">
       {/* Header: Instagram Profile Section */}
       <div className="flex items-center p-3">
-        <img
+        <Image
           src="https://via.placeholder.com/40" // Dummy profile picture
           alt="Profile"
           className="w-10 h-10 rounded-full"
@@ -45,7 +46,7 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
       {/* Image Preview */}
       <div className="relative">
         {image && (
-          <img src={image} alt="Instagram Post" className="w-full object-cover" />
+          <Image src={image} alt="Instagram Post" className="w-full object-cover" />
         )}
 
         {/* Draggable Headline Component */}
