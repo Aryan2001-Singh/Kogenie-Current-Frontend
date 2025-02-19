@@ -5,16 +5,15 @@ import { useState, useEffect } from "react";
 import ModalVideo from "react-modal-video";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import styles from './Hero.module.css';
+import styles from "./Hero.module.css";
 
 const Hero = () => {
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
-    document.documentElement.style.setProperty('--text-color', 'white');  // Ensure default text color
+    document.documentElement.style.setProperty("--text-color", "white"); // Ensure default text color
   }, []);
-  
 
   return (
     <>
@@ -29,7 +28,8 @@ const Hero = () => {
       <div
         className={styles["hero-banner"]}
         style={{
-          backgroundImage: "url('/codioful-formerly-gradienta-t-Rt42Wl1RQ-unsplash.jpg')",
+          backgroundImage:
+            "url('/codioful-formerly-gradienta-t-Rt42Wl1RQ-unsplash.jpg')",
         }}
       >
         <div className={styles.overlay}></div>
@@ -41,8 +41,8 @@ const Hero = () => {
               data-aos="fade-up"
             >
               <h1 className={styles["hero-heading"]}>
-                <span className={styles["highlight-text"]}>Create ads</span> that boost
-                sales in just 5 minutes &amp;{" "}
+                <span className={styles["highlight-text"]}>Create ads</span>{" "}
+                that boost sales in just 5 minutes &amp;{" "}
                 <span className={styles["highlight-text"]}>Hassle-free</span>
               </h1>
 
@@ -73,12 +73,15 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="mt-8 text-center">
-  <p className="text-lg font-semibold">What Our Users Say</p>
-  <div className="flex justify-center mt-4">
-    <span className="text-yellow-400 text-2xl">★★★★★</span>
-  </div>
-  <p className="text-gray-600 mt-2">“This platform has completely transformed our marketing efforts!” - <b>John Doe, CEO of XYZ</b></p>
-</div>
+                  <p className="text-lg font-semibold">What Our Users Say</p>
+                  <div className="flex justify-center mt-4">
+                    <span className="text-2xl"style={{color:'rgb(242, 189, 82)'}}>★★★★★</span>
+                  </div>
+                  <p className="text-gray-600 mt-2">
+                    “This platform has completely transformed our marketing
+                    efforts!” - <b>John Doe, CEO of XYZ</b>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
