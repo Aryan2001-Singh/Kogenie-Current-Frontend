@@ -36,8 +36,10 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
       {/* Header: Instagram Profile Section */}
       <div className="flex items-center p-3">
         <Image
-          src="https://via.placeholder.com/40" // Dummy profile picture
+          src="/images/gallery/img_01.jpg" // Dummy profile picture
           alt="Profile"
+          width={40} // Specify width
+          height={40} // Specify height
           className="w-10 h-10 rounded-full"
         />
         <span className="ml-2 font-semibold">your_brand_name</span>
@@ -46,7 +48,11 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
       {/* Image Preview */}
       <div className="relative">
         {image && (
-          <Image src={image} alt="Instagram Post" className="w-full object-cover" />
+          <Image
+            src={image}
+            alt="Instagram Post"
+            className="w-full object-cover"
+          />
         )}
 
         {/* Draggable Headline Component */}

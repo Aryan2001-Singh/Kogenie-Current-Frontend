@@ -75,7 +75,12 @@ const Hero = () => {
                 <div className="mt-8 text-center">
                   <p className="text-lg font-semibold">What Our Users Say</p>
                   <div className="flex justify-center mt-4">
-                    <span className="text-2xl"style={{color:'rgb(242, 189, 82)'}}>★★★★★</span>
+                    <span
+                      className="text-2xl"
+                      style={{ color: "rgb(242, 189, 82)" }}
+                    >
+                      ★★★★★
+                    </span>
                   </div>
                   <p className="text-gray-600 mt-2">
                     “This platform has completely transformed our marketing
