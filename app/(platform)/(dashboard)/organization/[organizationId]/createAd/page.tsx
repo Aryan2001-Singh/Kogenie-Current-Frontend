@@ -16,8 +16,6 @@ import Image from "next/image";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
-
-  // ✅ Load saved ad data from localStorage on initial render
   const [adData, setAdData] = useState(() => {
     if (typeof window !== "undefined") {
       const savedAdData = localStorage.getItem("adData");
@@ -41,15 +39,14 @@ const CreateAdPage: React.FC = () => {
   });
 
   const [image, setImage] = useState<string | null>(null);
-  const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); // Default: Black
-  const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); // Default: 20px
-  const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); // Default: White
+  const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); 
+  const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); 
+  const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); 
   const [isBold, setIsBold] = useState<boolean>(false);
   const [isItalic, setIsItalic] = useState<boolean>(false);
-  const [isClient, setIsClient] = useState(false); // ✅ Fix for hydration error
-  const [headlineFont, setHeadlineFont] = useState<string>("Arial"); // Default font
+  const [isClient, setIsClient] = useState(false); 
+  const [headlineFont, setHeadlineFont] = useState<string>("Arial"); 
 
-  // For adding filter to the images
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
 
@@ -60,8 +57,8 @@ const CreateAdPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setClientCaption(adData.adCopy); // Ensure caption updates only after mounting
-    setClientHeadline(adData.headline); // Ensure headline updates only after mounting
+    setClientCaption(adData.adCopy); 
+    setClientHeadline(adData.headline); 
   }, [adData.adCopy, adData.headline]);
 
   useEffect(() => {
@@ -74,7 +71,7 @@ const CreateAdPage: React.FC = () => {
     }
   }, [adDataFromStore]);
 
-  // ✅ Save form data to localStorage on every input change
+  
   useEffect(() => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
@@ -88,17 +85,11 @@ const CreateAdPage: React.FC = () => {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lobster&family=Roboto:wght@300;500;700&display=swap"
-          rel="stylesheet"
-        /> */}
       </Head>
       <div className={styles.parentContainer}>
         <div className={styles.container}>
           <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
           <AdForm adData={adData} setAdData={setAdData} />
-
-          {/* Image Upload */}
           <ImageUploader setImage={setImage} />
           <br />
 
@@ -116,7 +107,7 @@ const CreateAdPage: React.FC = () => {
             headlineFont={headlineFont}
             setHeadlineFont={setHeadlineFont}
           />
-          {/*Filter Selection dropdown */}
+         
           <div>
             <EditorTools
               selectedFilter={selectedFilter}
@@ -126,7 +117,6 @@ const CreateAdPage: React.FC = () => {
             />
           </div>
 
-          {/* Image Preview with Headline Overlay */}
           <div className="w-full flex flex-col items-center mt-4 relative">
             <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
 
