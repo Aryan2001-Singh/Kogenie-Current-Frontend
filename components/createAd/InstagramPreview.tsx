@@ -47,13 +47,14 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
 
       {/* Image Preview */}
       <div className="relative">
-        {image && (
-          <Image
-            src={image}
-            alt="Instagram Post"
-            className="w-full object-cover"
-          />
-        )}
+      {image && (
+  <img // ✅ Use a normal img tag for base64 images
+    src={image}
+    alt="Instagram Post"
+    className="w-full object-cover"
+  />
+)}
+
 
         {/* Draggable Headline Component */}
         <DraggableHeadline

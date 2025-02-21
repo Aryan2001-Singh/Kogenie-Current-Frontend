@@ -12,8 +12,6 @@ import ImageUploader from "@/components/createAd/ImageUploader";
 import DownloadButton from "@/components/createAd/DownloadButton";
 import FontSettings from "@/components/createAd/FontSettings";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
-import Image from "next/image";
-
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
   const [adData, setAdData] = useState(() => {
@@ -128,18 +126,19 @@ const CreateAdPage: React.FC = () => {
             >
               {/* Image */}
               {image && (
-                <Image
-                  src={image}
-                  alt="Uploaded Preview"
-                  className="shadow-md rounded-lg"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    filter: selectedFilter, // Apply the selected filter here
-                  }}
-                />
-              )}
+  <img
+    src={image}  // ✅ Base64 images work fine with a normal img tag
+    alt="Uploaded Preview"
+    className="shadow-md rounded-lg"
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      filter: selectedFilter,
+    }}
+  />
+)}
+
 
               {/* Draggable Headline */}
               {isClient && adData.headline && (
