@@ -17,7 +17,7 @@ const SocialMediaPost: React.FC<SocialMediaPostProps> = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center mt-6">
+    <div className="w-full flex flex-col items-center mt-0">
      
 
       <div className="flex space-x-4">

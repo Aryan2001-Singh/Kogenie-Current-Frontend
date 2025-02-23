@@ -25,9 +25,17 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
   };
 
   return (
-    <div>
-      <label className="block text-gray-700 font-semibold mb-2">Upload Image</label>
-      <input type="file" onChange={handleImageUpload} className="w-full p-2 border border-gray-300 rounded-md" />
+    <div className="p-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
+      <label className="block text-gray-700 font-semibold mb-2">
+        Upload Image
+      </label>
+      <input
+        type="file"
+        onChange={handleImageUpload}
+        style={{ backgroundColor: "#AAB7D8" }}
+        className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none 
+        focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-500"
+      />
     </div>
   );
 };

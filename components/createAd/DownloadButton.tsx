@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
@@ -9,6 +11,7 @@ interface DownloadButtonProps {
 
 const DownloadButton: React.FC<DownloadButtonProps> = ({ selectedFilter, aspectRatio }) => {
   const [showOptions, setShowOptions] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async (format: "png" | "jpeg" | "pdf") => {
     const adPreview = document.getElementById("ad-preview");
@@ -58,19 +61,31 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ selectedFilter, aspectR
     }
   };
 
+  // Hide dropdown when clicking outside the component
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setShowOptions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [containerRef]);
+
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block" ref={containerRef}>
       {/* Export Button */}
       <button
         onClick={() => setShowOptions(!showOptions)}
-        className="p-2 bg-blue-500 text-white rounded shadow"
+        className="min-w-[130px] p-2 bg-indigo-500 text-white rounded shadow transition-transform duration-200 active:scale-95"
       >
         Export ⬇️
       </button>
 
       {/* Dropdown Menu */}
       {showOptions && (
-        <div className="absolute left-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-md">
+        <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md">
           <button
             onClick={() => handleDownload("png")}
             className="block w-full text-left p-2 hover:bg-gray-200"

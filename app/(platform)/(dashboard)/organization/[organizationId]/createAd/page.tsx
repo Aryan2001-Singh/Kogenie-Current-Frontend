@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAdStore } from "@/store/useAdStore";
-import styles from "@/styles/CreateAdPage.module.css"; // Import the styles
+import styles from "@/styles/CreateAdPage.module.css";
 import Head from "next/head";
 import SocialMediaPost from "@/components/createAd/SocialMedia";
 import EditorTools from "@/components/createAd/EditorTools";
@@ -10,8 +10,8 @@ import InstagramPostPreview from "@/components/createAd/InstagramPostPreview";
 import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
 import DownloadButton from "@/components/createAd/DownloadButton";
-import FontSettings from "@/components/createAd/FontSettings";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
+
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
   const [adData, setAdData] = useState(() => {
@@ -37,26 +37,26 @@ const CreateAdPage: React.FC = () => {
   });
 
   const [image, setImage] = useState<string | null>(null);
-  const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000"); 
-  const [headlineFontSize, setHeadlineFontSize] = useState<number>(20); 
-  const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF"); 
-  const [isBold, setIsBold] = useState<boolean>(false);
-  const [isItalic, setIsItalic] = useState<boolean>(false);
-  const [isClient, setIsClient] = useState(false); 
-  const [headlineFont, setHeadlineFont] = useState<string>("Arial"); 
-
+  const [headlineBgColor] = useState<string>("#000000");
+  const [headlineFontSize] = useState<number>(20);
+  const [headlineFontColor] = useState<string>("#FFFFFF");
+  const [isBold] = useState<boolean>(false);
+  const [isItalic] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false);
+  const [headlineFont] = useState<string>("Arial");
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
 
   const [clientCaption, setClientCaption] = useState("");
   const [clientHeadline, setClientHeadline] = useState("");
+
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   useEffect(() => {
-    setClientCaption(adData.adCopy); 
-    setClientHeadline(adData.headline); 
+    setClientCaption(adData.adCopy);
+    setClientHeadline(adData.headline);
   }, [adData.adCopy, adData.headline]);
 
   useEffect(() => {
@@ -69,10 +69,28 @@ const CreateAdPage: React.FC = () => {
     }
   }, [adDataFromStore]);
 
-  
   useEffect(() => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
+
+  // Left column: only the form (50% width)
+  const leftColumnStyle = {
+    width: "50%",
+    padding: "30px",
+  };
+
+  // Right column: contains the rest of the components (50% width)
+  const rightColumnStyle: React.CSSProperties = {
+    width: "50%",
+    padding: "30px",
+    display: "flex",
+    flexDirection: "row",
+  };
+  
+  // Main content style (100% width of right column content)
+  const mainContentStyle = {
+    width: "100%",
+  };
 
   return (
     <>
@@ -84,99 +102,93 @@ const CreateAdPage: React.FC = () => {
           crossOrigin="anonymous"
         />
       </Head>
-      <div className={styles.parentContainer}>
-        <div className={styles.container}>
-          <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Create Ad</h1>
+      <div
+        className={styles.parentContainer}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          background: "linear-gradient(to bottom right, #a3bffa, #d8b4fe)",
+        }}
+      >
+        {/* Left Column: Only the Form */}
+        <div style={leftColumnStyle}>
+          <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Your Ad</h1>
           <AdForm adData={adData} setAdData={setAdData} />
-          <ImageUploader setImage={setImage} />
-          <br />
-
-          <FontSettings
-            headlineFontSize={headlineFontSize}
-            setHeadlineFontSize={setHeadlineFontSize}
-            headlineBgColor={headlineBgColor}
-            setHeadlineBgColor={setHeadlineBgColor}
-            headlineFontColor={headlineFontColor}
-            setHeadlineFontColor={setHeadlineFontColor}
-            isBold={isBold}
-            setIsBold={setIsBold}
-            isItalic={isItalic}
-            setIsItalic={setIsItalic}
-            headlineFont={headlineFont}
-            setHeadlineFont={setHeadlineFont}
-          />
-         
-          <div>
+        </div>
+        {/* Right Column: All other components */}
+        <div style={rightColumnStyle}>
+          <div style={mainContentStyle}>
+            {/* Export Button Container: Top-right aligned */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}
+            >
+              <DownloadButton
+                selectedFilter={selectedFilter}
+                aspectRatio={aspectRatio}
+              />
+              <SocialMediaPost image={image} caption={clientCaption} />
+            </div>
+            <ImageUploader setImage={setImage} />
             <EditorTools
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
               aspectRatio={aspectRatio}
               setAspectRatio={setAspectRatio}
             />
-          </div>
-
-          <div className="w-full flex flex-col items-center mt-4 relative">
-            <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
-
-            <div
-              id="ad-preview"
-              className={`${styles.adPreview} ${
-                aspectRatio === "square" ? styles.square : styles.story
-              }`}
-            >
-              {/* Image */}
-              {image && (
-  <img
-    src={image}  // ✅ Base64 images work fine with a normal img tag
-    alt="Uploaded Preview"
-    className="shadow-md rounded-lg"
-    style={{
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      filter: selectedFilter,
-    }}
-  />
-)}
-
-
-              {/* Draggable Headline */}
-              {isClient && adData.headline && (
-                <DraggableHeadline
-                  headlineText={adData.headline}
-                  headlineBgColor={headlineBgColor}
-                  headlineFontColor={headlineFontColor}
-                  headlineFontSize={headlineFontSize}
-                  isBold={isBold}
-                  isItalic={isItalic}
-                  headlineFont={headlineFont}
-                />
-              )}
+            <div className="w-full flex flex-col items-center mt-4 relative">
+              <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
+              <div
+                id="ad-preview"
+                className={`${styles.adPreview} ${
+                  aspectRatio === "square" ? styles.square : styles.story
+                }`}
+              >
+                {image && (
+                  <img
+                    src={image}
+                    alt="Uploaded Preview"
+                    className="shadow-md rounded-lg"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      filter: selectedFilter,
+                    }}
+                  />
+                )}
+                {isClient && adData.headline && (
+                  <DraggableHeadline
+                    headlineText={adData.headline}
+                    headlineBgColor={headlineBgColor}
+                    headlineFontColor={headlineFontColor}
+                    headlineFontSize={headlineFontSize}
+                    isBold={isBold}
+                    isItalic={isItalic}
+                    headlineFont={headlineFont}
+                  />
+                )}
+              </div>
+              <br />
             </div>
             <br />
-            {/* Download Button */}
-            <DownloadButton
-              selectedFilter={selectedFilter}
-              aspectRatio={aspectRatio}
+            <br />
+            <br />
+            <InstagramPostPreview
+              image={image}
+              caption={clientCaption}
+              headlineText={clientHeadline}
+              headlineBgColor={headlineBgColor}
+              headlineFontColor={headlineFontColor}
+              headlineFontSize={headlineFontSize}
+              isBold={isBold}
+              isItalic={isItalic}
+              headlineFont={headlineFont}
             />
           </div>
-          <br />
-          <br />
-          <br />
-          {/* Instagram Post Preview */}
-          <InstagramPostPreview
-            image={image}
-            caption={clientCaption}
-            headlineText={clientHeadline}
-            headlineBgColor={headlineBgColor}
-            headlineFontColor={headlineFontColor}
-            headlineFontSize={headlineFontSize}
-            isBold={isBold}
-            isItalic={isItalic}
-            headlineFont={headlineFont}
-          />
-          {/* Social Media Posting Buttons */}
-          <SocialMediaPost image={image} caption={clientCaption} />
         </div>
       </div>
     </>

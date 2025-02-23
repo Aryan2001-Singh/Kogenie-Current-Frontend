@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 interface EditorToolsProps {
@@ -14,14 +16,14 @@ const EditorTools: React.FC<EditorToolsProps> = ({
   setAspectRatio,
 }) => {
   return (
-    <div className="mt-3">
+    <div className="mt-3 p-4 bg-white rounded-lg shadow-lg transition-transform duration-200 hover:scale-105">
       {/* Filter Selection Dropdown */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 mb-3">
         <label className="text-gray-700 font-semibold">Apply Filter:</label>
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
-          className="border rounded-md px-2 py-1"
+          className="border rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105"
         >
           <option value="none">None</option>
           <option value="grayscale(100%)">Grayscale</option>
@@ -39,16 +41,20 @@ const EditorTools: React.FC<EditorToolsProps> = ({
         <label className="text-gray-700 font-semibold">Select Format:</label>
         <button
           onClick={() => setAspectRatio("square")}
-          className={`px-3 py-1 border rounded-md ${
-            aspectRatio === "square" ? "bg-blue-500 text-white" : "bg-gray-200"
+          className={`px-3 py-2 border rounded-md transition-all duration-200 ${
+            aspectRatio === "square"
+              ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg"
+              : "bg-[#C4CDE4] text-gray-700 hover:shadow-md"
           }`}
         >
           Instagram Post (1:1)
         </button>
         <button
           onClick={() => setAspectRatio("story")}
-          className={`px-3 py-1 border rounded-md ${
-            aspectRatio === "story" ? "bg-blue-500 text-white" : "bg-gray-200"
+          className={`px-3 py-2 border rounded-md transition-all duration-200 ${
+            aspectRatio === "story"
+              ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg"
+              : "bg-[#C4CDE4] text-gray-700 hover:shadow-md"
           }`}
         >
           Instagram Story/Reel (9:16)
