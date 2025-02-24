@@ -1,4 +1,5 @@
 import React from "react";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 interface SocialMediaPostProps {
   image: string | null;
@@ -18,21 +19,18 @@ const SocialMediaPost: React.FC<SocialMediaPostProps> = () => {
 
   return (
     <div className="w-full flex flex-col items-center mt-0">
-     
-
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 ml-4">
         <button 
           onClick={redirectToInstagram} 
-          className="px-4 py-2 bg-pink-500 text-white rounded-lg"
+          className="p-2 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition-all transform hover:scale-105 hover:shadow-xl hover:shadow-pink-500"
         >
-          Go to Instagram
+          <FaInstagram size={24} />
         </button>
-
         <button 
           onClick={redirectToFacebook} 
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+          className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-all transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500"
         >
-          Go to Facebook
+          <FaFacebook size={24} />
         </button>
       </div>
     </div>

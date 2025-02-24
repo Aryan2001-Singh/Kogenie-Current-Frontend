@@ -16,14 +16,14 @@ const EditorTools: React.FC<EditorToolsProps> = ({
   setAspectRatio,
 }) => {
   return (
-    <div className="mt-3 p-4 bg-white rounded-lg shadow-lg transition-transform duration-200 hover:scale-105">
+    <div className="mt-2 p-2 bg-white rounded-lg shadow-md transition-transform duration-200 hover:scale-105">
       {/* Filter Selection Dropdown */}
-      <div className="flex items-center space-x-2 mb-3">
-        <label className="text-gray-700 font-semibold">Apply Filter:</label>
+      <div className="flex items-center space-x-1 mb-2">
+        <label className="text-gray-700 font-semibold text-sm">Apply Filter:</label>
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
-          className="border rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:scale-105"
+          className="border rounded-md px-2 py-1 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-sm"
         >
           <option value="none">None</option>
           <option value="grayscale(100%)">Grayscale</option>
@@ -37,28 +37,30 @@ const EditorTools: React.FC<EditorToolsProps> = ({
       </div>
 
       {/* Aspect Ratio Selection */}
-      <div className="flex items-center space-x-2 mt-3">
-        <label className="text-gray-700 font-semibold">Select Format:</label>
-        <button
-          onClick={() => setAspectRatio("square")}
-          className={`px-3 py-2 border rounded-md transition-all duration-200 ${
-            aspectRatio === "square"
-              ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg"
-              : "bg-[#C4CDE4] text-gray-700 hover:shadow-md"
-          }`}
-        >
-          Instagram Post (1:1)
-        </button>
-        <button
-          onClick={() => setAspectRatio("story")}
-          className={`px-3 py-2 border rounded-md transition-all duration-200 ${
-            aspectRatio === "story"
-              ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg"
-              : "bg-[#C4CDE4] text-gray-700 hover:shadow-md"
-          }`}
-        >
-          Instagram Story/Reel (9:16)
-        </button>
+      <div className="flex items-center space-x-1 mt-2">
+        <label className="text-gray-700 font-semibold text-sm">Select Format:</label>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => setAspectRatio("square")}
+            className={`px-2 py-1 border rounded-md transition-all duration-200 text-sm ${
+              aspectRatio === "square"
+                ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-sm"
+                : "bg-[#C4CDE4] text-gray-700 hover:shadow-sm"
+            }`}
+          >
+            Instagram Post (1:1)
+          </button>
+          <button
+            onClick={() => setAspectRatio("story")}
+            className={`px-2 py-1 border rounded-md transition-all duration-200 text-sm ${
+              aspectRatio === "story"
+                ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-sm"
+                : "bg-[#C4CDE4] text-gray-700 hover:shadow-sm"
+            }`}
+          >
+            Instagram Story/Reel (9:16)
+          </button>
+        </div>
       </div>
     </div>
   );
