@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion } from "@/components/ui/accordion";
 import { NavItem, Organization } from "./nav-item";
-import FontSettings from "@/components/createAd/FontSettings";
-import React, { useState } from "react";
+
+// import React, { useState } from "react";
 
 interface SidebarProps {
   storageKey?: string;
@@ -49,12 +49,12 @@ export const Sidebar = ({
   };
 
   // Local state for FontSettings
-  const [headlineFontSize, setHeadlineFontSize] = useState<number>(20);
-  const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000");
-  const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF");
-  const [isBold, setIsBold] = useState<boolean>(false);
-  const [isItalic, setIsItalic] = useState<boolean>(false);
-  const [headlineFont, setHeadlineFont] = useState<string>("Arial");
+  // const [headlineFontSize, setHeadlineFontSize] = useState<number>(20);
+  // const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000");
+  // const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF");
+  // const [isBold, setIsBold] = useState<boolean>(false);
+  // const [isItalic, setIsItalic] = useState<boolean>(false);
+  // const [headlineFont, setHeadlineFont] = useState<string>("Arial");
 
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (
@@ -96,7 +96,7 @@ export const Sidebar = ({
       </Accordion>
 
       {/* Directly render FontSettings (no extra outer container) */}
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <FontSettings
           headlineFontSize={headlineFontSize}
           setHeadlineFontSize={setHeadlineFontSize}
@@ -111,7 +111,7 @@ export const Sidebar = ({
           headlineFont={headlineFont}
           setHeadlineFont={setHeadlineFont}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

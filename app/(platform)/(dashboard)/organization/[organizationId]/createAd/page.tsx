@@ -11,6 +11,7 @@ import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
 import DownloadButton from "@/components/createAd/DownloadButton";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
+import FontSettings from "@/components/createAd/FontSettings";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -36,14 +37,15 @@ const CreateAdPage: React.FC = () => {
     };
   });
 
+  const [headlineFontSize, setHeadlineFontSize] = useState<number>(20);
+  const [headlineBgColor, setHeadlineBgColor] = useState<string>("#000000");
+  const [headlineFontColor, setHeadlineFontColor] = useState<string>("#FFFFFF");
+  const [isBold, setIsBold] = useState<boolean>(false);
+  const [isItalic, setIsItalic] = useState<boolean>(false);
+  const [headlineFont, setHeadlineFont] = useState<string>("Arial");
   const [image, setImage] = useState<string | null>(null);
-  const [headlineBgColor] = useState<string>("#000000");
-  const [headlineFontSize] = useState<number>(20);
-  const [headlineFontColor] = useState<string>("#FFFFFF");
-  const [isBold] = useState<boolean>(false);
-  const [isItalic] = useState<boolean>(false);
+
   const [isClient, setIsClient] = useState(false);
-  const [headlineFont] = useState<string>("Arial");
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
 
@@ -86,7 +88,7 @@ const CreateAdPage: React.FC = () => {
     display: "flex",
     flexDirection: "row",
   };
-  
+
   // Main content style (100% width of right column content)
   const mainContentStyle = {
     width: "100%",
@@ -177,6 +179,21 @@ const CreateAdPage: React.FC = () => {
             <br />
             <br />
             <br />
+            <FontSettings
+              headlineFontSize={headlineFontSize}
+              setHeadlineFontSize={setHeadlineFontSize}
+              headlineBgColor={headlineBgColor}
+              setHeadlineBgColor={setHeadlineBgColor}
+              headlineFontColor={headlineFontColor}
+              setHeadlineFontColor={setHeadlineFontColor}
+              isBold={isBold}
+              setIsBold={setIsBold}
+              isItalic={isItalic}
+              setIsItalic={setIsItalic}
+              headlineFont={headlineFont}
+              setHeadlineFont={setHeadlineFont}
+            />
+
             <InstagramPostPreview
               image={image}
               caption={clientCaption}
