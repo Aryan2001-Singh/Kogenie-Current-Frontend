@@ -393,7 +393,7 @@ const SassProduct = () => {
     }
 
     .stylish-container {
-      background: linear-gradient(135deg, rgb(137, 151, 247), rgb(237, 237, 245));
+    background: "linear-gradient(to right,, #8A2BE2, #ffffff #4B0082)",
       border-radius: 15px;
       padding: 30px 25px;
       position: relative;

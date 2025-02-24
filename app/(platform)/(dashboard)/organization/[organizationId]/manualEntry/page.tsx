@@ -43,18 +43,32 @@ const ManualEntryPage: React.FC = () => {
     };
 
     try {
-      const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(adInputData),
-      });
+      const response = await fetch(
+        "https://kogenie-current-backend.onrender.com/generateAdPrompt",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(adInputData),
+        }
+      );
 
       const data = await response.json();
       console.log("🟢 Backend API Response:", data);
       if (response.ok) {
-        setAdData({ ...adInputData, adCopy: data.adCopy, headline: data.headline || "Default Headline" });
+        setAdData({
+          ...adInputData,
+          adCopy: data.adCopy,
+          headline: data.headline || "Default Headline",
+        });
 
-        await storeAd({ ...adInputData, adCopy: data.adCopy, headline: data.headline || "Default Headline" }, userEmail);
+        await storeAd(
+          {
+            ...adInputData,
+            adCopy: data.adCopy,
+            headline: data.headline || "Default Headline",
+          },
+          userEmail
+        );
 
         router.push(`/organization/${organizationId}/createAd`);
       } else {
@@ -70,32 +84,32 @@ const ManualEntryPage: React.FC = () => {
 
   // ✅ Full-page container with background
   const mainContainerStyle: CSSProperties = {
-    minHeight: "100vh",
+    background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
+    minHeight: "120vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(to bottom right, #a3bffa, #d8b4fe)", // 🔥 Full-page background
     padding: "20px",
   };
 
   // ✅ Form container (No background, just shadow for elevation)
   const formContainerStyle: CSSProperties = {
     padding: "30px",
-    // borderRadius: "10px",
+    borderRadius: "5px",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
     width: "100%",
     maxWidth: "600px",
     fontFamily: "'Roboto', Arial, sans-serif",
     background: "white", // ✅ Adding background back to the form for readability
-  };
+  }; 
 
   const labelStyle: CSSProperties = {
     fontWeight: "600",
     color: "#333",
     marginBottom: "8px",
     display: "block",
-    fontFamily:"serif",
+    fontFamily: "serif",
   };
 
   const inputStyle: CSSProperties = {
@@ -105,8 +119,8 @@ const ManualEntryPage: React.FC = () => {
     border: "1px solid #CBD5E1",
     marginBottom: "15px",
     fontSize: "16px",
-    fontFamily: "'Roboto', Arial, sans-serif",
     transition: "box-shadow 0.3s ease-in-out",
+    fontFamily: "serif",
   };
 
   const inputFocusStyle = "0 0 10px rgba(161, 102, 255, 0.8)";
@@ -127,17 +141,36 @@ const ManualEntryPage: React.FC = () => {
     width: "100%",
     border: "none",
     cursor: "pointer",
-    fontFamily: "'Roboto', Arial, sans-serif",
+    fontFamily: "serif",
     transition: "transform 0.2s ease-in-out",
-    boxShadow:"grey 0px 4px 10px",
+    boxShadow: "grey 0px 4px 10px",
   };
 
   const buttonHoverStyle = "scale(0.95)";
 
   return (
-    <div style={mainContainerStyle}>
-      <div style={formContainerStyle}>
-        <h1 style={{ fontSize: "24px", marginBottom: "20px", textAlign: "center", color: "#333" }}>
+    <div className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden" style={mainContainerStyle}>
+        {/* Floating Background Elements */}
+  <div className="absolute w-80 h-80 bg-white/10 backdrop-blur-lg rounded-full top-10 left-20 animate-pulse"></div>
+  <div className="absolute w-60 h-60 bg-white/20 backdrop-blur-lg rounded-full bottom-20 right-20 animate-pulse"></div>
+  <div className="absolute w-44 h-44 bg-indigo-500/10 backdrop-blur-lg rounded-full top-1/3 left-1/4 animate-pulse"></div>
+
+  {/* Subtle Gradient Overlay for Depth */}
+  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
+
+  {/* Small Floating Dots */}
+  <div className="absolute w-3 h-3 bg-white/20 rounded-full top-1/4 left-1/3 animate-bounce"></div>
+  <div className="absolute w-2 h-2 bg-white/30 rounded-full top-2/3 right-1/4 animate-bounce"></div>
+      <div className="relative z-10"style={formContainerStyle}>
+        <h1
+          style={{
+            fontSize: "24px",
+            marginBottom: "20px",
+            textAlign: "center",
+            color: "#333",
+            fontFamily: "serif",
+          }}
+        >
           Enter Product Information
         </h1>
 
@@ -214,14 +247,20 @@ const ManualEntryPage: React.FC = () => {
             type="submit"
             disabled={loading}
             style={buttonStyle}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = buttonHoverStyle)}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.transform = buttonHoverStyle)
+            }
             onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
-            {loading ? "Submitting..." : "Create Ad"}
+            {loading ? "Fetching Ad..." : "Generate Ad"}
           </button>
         </form>
 
-        {error && <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>{error}</p>}
+        {error && (
+          <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>
+            {error}
+          </p>
+        )}
       </div>
     </div>
   );
