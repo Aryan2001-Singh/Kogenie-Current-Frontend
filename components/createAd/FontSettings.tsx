@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { FaBold, FaItalic } from "react-icons/fa";
+import { MdFormatColorFill, MdFormatColorText, MdFontDownload } from "react-icons/md";
 
 interface FontSettingsProps {
   headlineFontSize: number;
@@ -32,89 +34,107 @@ const FontSettings: React.FC<FontSettingsProps> = ({
   setHeadlineFont,
 }) => {
   return (
-    <div className="mt-4 p-6 border rounded-lg bg-white shadow-md">
-      <h3 className="text-lg font-semibold mb-4 text-indigo-700">* Font Settings *</h3>
+    <div className="mt-4 p-4 border rounded-lg bg-white shadow-md">
+      <div className="flex flex-row items-center space-x-4">
+        {/* Font Size Controls */}
+        <div className="flex items-center space-x-1">
+          <button
+            onClick={() => setHeadlineFontSize((prev) => Math.max(prev - 2, 10))}
+            title="Decrease Font Size"
+            className="w-5 h-5 flex items-center justify-center text-xs bg-gray-500 text-white rounded active:scale-95 transition-transform"
+          >
+            -
+          </button>
+          <span
+            title="Current Font Size"
+            className="w-8 h-5 flex items-center justify-center text-xs text-gray-800 bg-gray-200 rounded"
+          >
+            {headlineFontSize}px
+          </span>
+          <button
+            onClick={() => setHeadlineFontSize((prev) => Math.min(prev + 2, 50))}
+            title="Increase Font Size"
+            className="w-5 h-5 flex items-center justify-center text-xs bg-gray-500 text-white rounded active:scale-95 transition-transform"
+          >
+            +
+          </button>
+        </div>
 
-      {/* Font Size Controls */}
-      <div className="flex items-center space-x-2 mb-3">
-        <label className="text-gray-700 font-semibold">Font Size:</label>
-        <button
-          onClick={() => setHeadlineFontSize((prev) => Math.max(prev - 2, 10))}
-          className="w-8 h-8 flex items-center justify-center text-sm bg-gray-500 text-white rounded-md active:scale-95 transition-transform"
-        >
-          -
-        </button>
-        <span className="w-12 h-8 flex items-center justify-center text-sm text-gray-800 bg-gray-200 rounded-md">
-          {headlineFontSize}px
-        </span>
-        <button
-          onClick={() => setHeadlineFontSize((prev) => Math.min(prev + 2, 50))}
-          className="w-8 h-8 flex items-center justify-center text-sm bg-gray-500 text-white rounded-md active:scale-95 transition-transform"
-        >
-          +
-        </button>
-      </div>
+        {/* Headline Background Color Picker */}
+        <div className="flex items-center space-x-2">
+          <MdFormatColorFill
+            size={16}
+            className="text-gray-700"
+            title="Headline Background Color"
+          />
+          <input
+            type="color"
+            value={headlineBgColor}
+            onChange={(e) => setHeadlineBgColor(e.target.value)}
+            title="Choose Headline Background Color"
+            className="w-5 h-5 border rounded cursor-pointer"
+          />
+        </div>
 
-      {/* Headline Background Color Picker */}
-      <div className="flex items-center space-x-3 mb-3">
-        <label className="text-gray-700 font-semibold">
-          Headline Background:
-        </label>
-        <input
-          type="color"
-          value={headlineBgColor}
-          onChange={(e) => setHeadlineBgColor(e.target.value)}
-          className="w-8 h-8 border rounded-md cursor-pointer"
-        />
-      </div>
+        {/* Font Color Selection */}
+        <div className="flex items-center space-x-2">
+          <MdFormatColorText
+            size={16}
+            className="text-gray-700"
+            title="Font Color"
+          />
+          <input
+            type="color"
+            value={headlineFontColor}
+            onChange={(e) => setHeadlineFontColor(e.target.value)}
+            title="Choose Font Color"
+            className="w-5 h-5 border rounded cursor-pointer"
+          />
+        </div>
 
-      {/* Font Color Selection */}
-      <div className="flex items-center space-x-3 mb-3">
-        <label className="text-gray-700 font-semibold">Font Color:</label>
-        <input
-          type="color"
-          value={headlineFontColor}
-          onChange={(e) => setHeadlineFontColor(e.target.value)}
-          className="w-8 h-8 border rounded-md cursor-pointer"
-        />
-      </div>
+        {/* Bold & Italic Buttons */}
+        <div className="flex items-center space-x-1">
+          <button
+            onClick={() => setIsBold((prev) => !prev)}
+            title="Toggle Bold"
+            className={`w-5 h-5 flex items-center justify-center border rounded active:scale-95 transition-transform ${
+              isBold ? "bg-gray-800 text-white" : "bg-gray-200"
+            }`}
+          >
+            <FaBold size={16} />
+          </button>
+          <button
+            onClick={() => setIsItalic((prev) => !prev)}
+            title="Toggle Italic"
+            className={`w-5 h-5 flex items-center justify-center border rounded active:scale-95 transition-transform ${
+              isItalic ? "bg-gray-800 text-white" : "bg-gray-200"
+            }`}
+          >
+            <FaItalic size={16} />
+          </button>
+        </div>
 
-      {/* Bold & Italic Buttons */}
-      <div className="flex items-center space-x-2 mb-3">
-        <label className="text-gray-700 font-semibold">Font Style:</label>
-        <button
-          onClick={() => setIsBold((prev) => !prev)}
-          className={`w-8 h-8 flex items-center justify-center text-sm border rounded-md active:scale-95 transition-transform ${
-            isBold ? "bg-gray-800 text-white" : "bg-gray-200"
-          }`}
-        >
-          B
-        </button>
-        <button
-          onClick={() => setIsItalic((prev) => !prev)}
-          className={`w-8 h-8 flex items-center justify-center text-sm border rounded-md active:scale-95 transition-transform ${
-            isItalic ? "bg-gray-800 text-white" : "bg-gray-200"
-          }`}
-        >
-          I
-        </button>
-      </div>
-
-      {/* Font Selection */}
-      <div className="flex items-center space-x-2">
-        <label className="text-gray-700 font-semibold">Font:</label>
-        <select
-          value={headlineFont}
-          onChange={(e) => setHeadlineFont(e.target.value)}
-          className="border rounded-md px-2 py-1 text-sm"
-        >
-          <option value="Arial">Arial</option>
-          <option value="Georgia">Georgia</option>
-          <option value="'Poppins', sans-serif">Poppins</option>
-          <option value="'Lobster', cursive">Lobster</option>
-          <option value="'Roboto', sans-serif">Roboto</option>
-          <option value="'Montserrat', sans-serif">Montserrat</option>
-        </select>
+        {/* Font Selection */}
+        <div className="flex items-center space-x-1">
+          <MdFontDownload
+            size={16}
+            className="text-gray-700"
+            title="Select Font"
+          />
+          <select
+            value={headlineFont}
+            onChange={(e) => setHeadlineFont(e.target.value)}
+            title="Choose Font"
+            className="border rounded px-2 py-1 text-xs"
+          >
+            <option value="Arial">Arial</option>
+            <option value="Georgia">Georgia</option>
+            <option value="'Poppins', sans-serif">Poppins</option>
+            <option value="'Lobster', cursive">Lobster</option>
+            <option value="'Roboto', sans-serif">Roboto</option>
+            <option value="'Montserrat', sans-serif">Montserrat</option>
+          </select>
+        </div>
       </div>
     </div>
   );

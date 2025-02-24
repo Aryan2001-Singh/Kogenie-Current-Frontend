@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useAdStore } from "@/store/useAdStore";
 import styles from "@/styles/CreateAdPage.module.css";
 import Head from "next/head";
-import SocialMediaPost from "@/components/createAd/SocialMedia";
+// import SocialMediaPost from "@/components/createAd/SocialMedia";
 import EditorTools from "@/components/createAd/EditorTools";
 import InstagramPostPreview from "@/components/createAd/InstagramPostPreview";
 import AdForm from "@/components/createAd/AdForm";
@@ -142,7 +142,7 @@ const CreateAdPage: React.FC = () => {
                 selectedFilter={selectedFilter}
                 aspectRatio={aspectRatio}
               />
-              <SocialMediaPost image={image} caption={clientCaption} />
+              {/* <SocialMediaPost image={image} caption={clientCaption} /> */}
             </div>
             <ImageUploader image={image} setImage={setImage} />
             <EditorTools
