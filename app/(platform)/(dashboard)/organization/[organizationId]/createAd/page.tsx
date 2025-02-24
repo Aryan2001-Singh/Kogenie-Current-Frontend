@@ -163,9 +163,6 @@ const CreateAdPage: React.FC = () => {
 
             {/* Image Preview Container with ImageUploader overlay */}
             <div className="w-full flex flex-col items-center mt-4 relative">
-              {/* <h2 style={{ fontFamily: "serif", fontSize: "22px" }} className="text-lg mb-4">
-                Image Preview
-              </h2> */}
               <div
                 id="ad-preview"
                 className={`${styles.adPreview} ${
