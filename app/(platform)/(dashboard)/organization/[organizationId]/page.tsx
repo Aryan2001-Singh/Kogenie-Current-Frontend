@@ -57,7 +57,7 @@ const OrganizationIdPage = () => {
           body: JSON.stringify({ url, gender, ageGroup }),
         }
       );
-    
+
       const data = await response.json();
       if (response.ok) {
         setAdData(data);
@@ -71,31 +71,65 @@ const OrganizationIdPage = () => {
     } finally {
       setLoading(false);
     }
-    
   };
 
   return (
-    <div className="flex h-screen w-full bg-gradient-to-br from-indigo-300 to-purple-300 flex-col items-center justify-center relative overflow-hidden">
-      {/* Floating Background Elements */}
-      <div className="absolute w-72 h-72 bg-white/10 backdrop-blur-lg rounded-full top-10 left-10 animate-pulse"></div>
-      <div className="absolute w-52 h-52 bg-white/20 backdrop-blur-lg rounded-full bottom-10 right-10 animate-pulse"></div>
+    <div
+      className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden"
+      style={{
+        background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
+      }}
+    >
+      {/* 🔵 Large Soft Blurred Circles */}
+      <div className="absolute w-96 h-96 bg-white/10 backdrop-blur-2xl rounded-full top-10 left-16 animate-pulse"></div>
+      <div className="absolute w-80 h-80 bg-indigo-400/20 backdrop-blur-2xl rounded-full bottom-20 right-20 animate-pulse"></div>
+
+      {/* ✨ Glowing Floating Elements */}
+      <div className="absolute w-24 h-24 bg-indigo-500/20 blur-xl rounded-full top-1/3 left-1/4 animate-bounce"></div>
+      <div className="absolute w-16 h-16 bg-purple-500/20 blur-lg rounded-full bottom-1/4 right-1/3 animate-bounce"></div>
+
+      {/* 🌫️ Subtle Gradient Overlay for Depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
+
+      {/* 🟡 Small Floating Dots for a Futuristic Look */}
+      <div className="absolute w-3 h-3 bg-white/30 rounded-full top-1/4 left-1/3 animate-spin"></div>
+      <div className="absolute w-2 h-2 bg-white/40 rounded-full top-2/3 right-1/4 animate-ping"></div>
+      <div className="absolute w-2.5 h-2.5 bg-white/20 rounded-full bottom-1/4 left-1/5 animate-pulse"></div>
+
+      {/* 🌟 Center Star-like Glowing Effect */}
+      <div className="absolute w-32 h-32 bg-white/10 rounded-full blur-3xl opacity-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+      {/* Your Main Content */}
+      <div className="relative z-10">
+        {/* Add your actual UI components here */}
+      </div>
 
       {/* Main Content */}
-      <div className="w-[90%] max-w-xl bg-gradient-to-r from-white to-gray-100 
-        p-8 rounded-xl shadow-xl border border-gray-200 relative">
-        
-        <h1 className="text-3xl font-bold mb-4 text-center drop-shadow-lg">
+      <div
+        className="w-[90%] max-w-xl bg-gradient-to-r from-white to-gray-100 
+        p-8 rounded-xl shadow-xl border border-gray-200 relative"
+      >
+        <h1
+          style={{
+            fontFamily: "serif",
+          }}
+          className="text-3xl font-bold mb-4 text-center drop-shadow-lg"
+        >
           Generate AI-Powered Ads
         </h1>
-        
+
         {/* Cycling Advertisement Fact */}
         <p className="text-gray-500 text-sm text-center mb-6 animate-fade">
           {advertisementFacts[currentFact]}
         </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4 w-full">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center space-y-4 w-full"
+        >
           {/* URL Input */}
           <input
+            style={{ fontFamily: "serif" }}
             type="text"
             placeholder="Enter Product URL"
             value={url}
@@ -107,6 +141,7 @@ const OrganizationIdPage = () => {
           {/* Gender & Age Selection */}
           <div className="flex w-full justify-between space-x-4">
             <select
+              style={{ fontFamily: "serif" }}
               value={gender}
               onChange={(e) => setGender(e.target.value)}
               className="flex-1 p-3 rounded-lg text-black border border-gray-300"
@@ -119,6 +154,7 @@ const OrganizationIdPage = () => {
 
             <select
               value={ageGroup}
+              style={{ fontFamily: "serif" }}
               onChange={(e) => setAgeGroup(e.target.value)}
               className="flex-1 p-3 rounded-lg text-black border border-gray-300"
             >
@@ -134,13 +170,20 @@ const OrganizationIdPage = () => {
           <div className="flex w-full justify-center space-x-4 mt-6">
             <div className="relative">
               <button
-                disabled={!isUrlValid(url)} 
+                style={{ fontFamily: "serif" }}
+                disabled={!isUrlValid(url)}
                 onMouseEnter={() => !isUrlValid(url) && setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
-                onClick={() => router.push(`/organization/${organizationId}/createAd`)}
+                onClick={() =>
+                  router.push(`/organization/${organizationId}/createAd`)
+                }
                 className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all transform 
                   font-semibold flex items-center justify-center space-x-2 shadow-lg relative
-                  ${!isUrlValid(url) ? "bg-gray-400 cursor-not-allowed" : "bg-indigo-400 hover:bg-indigo-500 hover:scale-105 text-white"}
+                  ${
+                    !isUrlValid(url)
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-indigo-400 hover:bg-indigo-500 hover:scale-105 text-white"
+                  }
                 `}
               >
                 {loading ? "Generating Ad..." : "Generate Ad"}
@@ -149,8 +192,10 @@ const OrganizationIdPage = () => {
 
               {/* Tooltip (Always Visible When Hovered) */}
               {showTooltip && !isUrlValid(url) && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-12 
-                  bg-black text-white text-xs px-3 py-2 rounded-md shadow-lg z-50 opacity-100">
+                <div
+                  className="absolute left-1/2 transform -translate-x-1/2 -top-12 
+                  bg-black text-white text-xs px-3 py-2 rounded-md shadow-lg z-50 opacity-100"
+                >
                   Enter Product URL to proceed
                 </div>
               )}
@@ -158,7 +203,10 @@ const OrganizationIdPage = () => {
 
             {/* Second Button - Enter Manually */}
             <button
-              onClick={() => router.push(`/organization/${organizationId}/manualEntry`)}
+              style={{ fontFamily: "serif" }}
+              onClick={() =>
+                router.push(`/organization/${organizationId}/manualEntry`)
+              }
               className="w-full md:w-auto px-6 py-3 rounded-lg bg-yellow-300 border-2 border-yellow-500 text-black 
                 hover:bg-yellow-400 hover:text-black transition-all transform hover:scale-110 font-semibold flex items-center 
                 justify-center space-x-2 shadow-lg"
@@ -175,9 +223,17 @@ const OrganizationIdPage = () => {
       {/* Animations */}
       <style jsx>{`
         @keyframes fade {
-          0% { opacity: 0; transform: translateY(-10px); }
-          50% { opacity: 1; transform: translateY(0px); }
-          100% { opacity: 1; }
+          0% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(0px);
+          }
+          100% {
+            opacity: 1;
+          }
         }
 
         .animate-fade {
@@ -207,46 +263,45 @@ export default OrganizationIdPage;
 //   const handleSkip = () => {
 //     router.push(`/organization/${organizationId}/manualEntry`);
 //   };
-  
+
 //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 //     if (!url || !url.startsWith("http")) return;
 //     router.push(`/organization/${organizationId}/createAd`);
 //   };
-  
 
 //   return (
 //     <div className="flex h-full min-h-screen w-full"> {/* Ensures full height */}
-      
+
 //     {/* Main Content */}
-//     <main 
-//   className="relative flex-1 flex flex-col items-center justify-center 
-//   bg-gradient-to-br from-[#5B3679] via-[#C29CE1] to-[#5B3679] 
+//     <main
+//   className="relative flex-1 flex flex-col items-center justify-center
+//   bg-gradient-to-br from-[#5B3679] via-[#C29CE1] to-[#5B3679]
 //   p-10 overflow-hidden"
 // >
 //   {/* Glassmorphism Effect Overlay */}
-//   <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl 
+//   <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl
 //    rounded-lg z-[-1]"></div>
 
 //   {/* Pulsing Neon Lights */}
-//   <div className="absolute top-20 left-10 w-96 h-96 bg-[#C29CE1]/40 
+//   <div className="absolute top-20 left-10 w-96 h-96 bg-[#C29CE1]/40
 //    blur-[150px] rounded-full z-[-1] animate-pulse"></div>
-//   <div className="absolute bottom-12 right-16 w-80 h-80 bg-[#5B3679]/40 
+//   <div className="absolute bottom-12 right-16 w-80 h-80 bg-[#5B3679]/40
 //    blur-[130px] rounded-full z-[-1] animate-pulse"></div>
 
 //   {/* Moving Wave Effect */}
-//   <div className="absolute bottom-0 left-0 w-full h-[250px] bg-gradient-to-t 
+//   <div className="absolute bottom-0 left-0 w-full h-[250px] bg-gradient-to-t
 //    from-[#5B3679] to-transparent opacity-50 animate-bounce"></div>
 
 //   {/* Floating Particle Animation */}
-//   <div className="absolute w-4 h-4 bg-[#C29CE1] rounded-full top-12 left-1/4 
+//   <div className="absolute w-4 h-4 bg-[#C29CE1] rounded-full top-12 left-1/4
 //    blur-[6px] animate-floating"></div>
-//   <div className="absolute w-6 h-6 bg-[#5B3679] rounded-full top-40 right-10 
+//   <div className="absolute w-6 h-6 bg-[#5B3679] rounded-full top-40 right-10
 //    blur-[8px] animate-floating"></div>
 
 //   {/* 3D Styled Neon Text */}
 //   <div className="relative w-full flex flex-col items-center justify-center">
-//     <h1 className="text-white text-5xl font-extrabold drop-shadow-[0_0_20px_#C29CE1] 
+//     <h1 className="text-white text-5xl font-extrabold drop-shadow-[0_0_20px_#C29CE1]
 //      tracking-wide uppercase">
 //       AI-Powered Ad Creation 🚀
 //     </h1>
@@ -255,23 +310,22 @@ export default OrganizationIdPage;
 //     </p>
 //   </div>
 
-
 // <style jsx>{`
 //   @keyframes floating {
 //     0% { transform: translateY(0px); }
 //     50% { transform: translateY(-10px); }
 //     100% { transform: translateY(0px); }
 //   }
-    
+
 // `}</style>
 
 //       <div className="flex space-x-12"> {/* Increased spacing */}
-        
+
 //         {/* Card 1 - Generate Manually */}
-//         <div 
+//         <div
 //   className="w-63 h-80 p-8 rounded-2xl shadow-[0_0_20px_rgba(255,255,255,0.3)]
 //  flex flex-col items-center
-//    justify-center text-center transform transition duration-300 hover:scale-105 
+//    justify-center text-center transform transition duration-300 hover:scale-105
 //    hover:drop-shadow-[0_0_10px_#8000ff] cursor-pointer"
 //   style={{ backgroundColor: "rgba(254, 213, 118, 1)" }}
 //   onClick={() => router.push("/organization/${organizationId}/manualEntry")}
@@ -285,12 +339,11 @@ export default OrganizationIdPage;
 //   <h3 className="mt-6 font-bold text-xl text-black drop-shadow-lg ">Generate Manually</h3>
 // </div>
 
-
 //         {/* Card 2 - Generate with URL */}
-//         <div 
+//         <div
 //   className="w-64 h-80 bg-white p-8 rounded-2xl shadow-[0_0_20px_rgba(255,255,255,0.3)]
 //  flex
-//    flex-col items-center justify-center text-center transform transition duration-300 
+//    flex-col items-center justify-center text-center transform transition duration-300
 //    hover:scale-105 hover:drop-shadow-[0_0_10px_#8000ff]  cursor-pointer"
 //   onClick={() => router.push("/generate-url")}
 // >
@@ -328,7 +381,6 @@ export default OrganizationIdPage;
 // // import { Button } from "@/components/ui/button";
 // import { useAdStore } from "@/store/useAdStore";
 
-
 // const advertisementFacts = [
 //   "Ad spending worldwide reached over $600 billion in 2023.",
 //   "Video ads increase engagement by 49% compared to static ads.",
@@ -358,8 +410,6 @@ export default OrganizationIdPage;
 //   // Additional facts here
 // ];
 
-
-
 // const OrganizationIdPage = () => {
 
 //   const [url, setUrl] = useState<string>("");   // ✅ Persist input in localStorage
@@ -371,8 +421,6 @@ export default OrganizationIdPage;
 //   const router = useRouter();
 //   const { organizationId } = useParams();
 //   const setAdData = useAdStore((state) => state.setAdData);
-
-
 
 //   useEffect(() => {
 //     if (loading) {
