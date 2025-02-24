@@ -34,7 +34,7 @@ const FontSettings: React.FC<FontSettingsProps> = ({
   setHeadlineFont,
 }) => {
   return (
-    <div className="mt-4 p-4 border rounded-lg bg-white shadow-md">
+    <div className="mt-6 p-3 border rounded-lg bg-white shadow-md">
       <div className="flex flex-row items-center space-x-4">
         {/* Font Size Controls */}
         <div className="flex items-center space-x-1">
