@@ -25,7 +25,9 @@ const Header = () => {
 
   return (
     <header
-      className={`theme-main-menu sticky-menu theme-menu-two ${navbar ? "fixed" : ""}`}
+      className={`theme-main-menu sticky-menu theme-menu-two ${
+        navbar ? "fixed" : ""
+      }`}
     >
       <div
         className="inner-content position-relative"
@@ -37,7 +39,7 @@ const Header = () => {
             padding: "20px 40px",
             borderRadius: "0px",
             width: "100vw", // Ensuring full width inside inner-content
-            maxWidth: "100%"
+            maxWidth: "100%",
           }}
           className="d-flex align-items-center justify-content-between"
         >
@@ -52,41 +54,52 @@ const Header = () => {
               />
             </Link>
           </div>
-          <div className="right-widget ms-auto d-flex align-items-center order-lg-3">
+          <div className="right-widget ms-auto d-flex align-items-center order-lg-3 gap-3">
+            {/* Login Button */}
             <Link
               href="/sign-in"
-              className="login-btn-one fs-17 fw-500 tran3s me-3 d-flex align-items-center justify-content-center"
+              className="fs-17 fw-500 tran3s d-flex align-items-center justify-center"
               style={{
+                width: "120px", // ✅ Ensures both buttons have the same width
+                height: "40px", // ✅ Ensures equal height
                 border: "2px solid #4A5ABB",
-                color: "black",
-                padding: "1px 20px",
-                borderRadius: "20px",
+                color: "#4A5ABB",
+                padding: "8px 0px", // ✅ Even padding
+                borderRadius: "5px",
+                textAlign: "center",
+                transition: "all 0.3s ease",
+                fontWeight: "600",
               }}
-              onMouseEnter={(e) => (e.target.style.color = "white")}
-              onMouseLeave={(e) => (e.target.style.color = "black")}
+              onMouseEnter={(e) => (
+                (e.target.style.backgroundColor = "#4A5ABB"),
+                (e.target.style.color = "white")
+              )}
+              onMouseLeave={(e) => (
+                (e.target.style.backgroundColor = "transparent"),
+                (e.target.style.color = "#4A5ABB")
+              )}
             >
               Login
             </Link>
 
+            {/* Signup Button */}
             <Link
               href="/sign-up"
-              className="contact-btn-two fs-17 fw-500 tran3s d-none d-lg-block d-flex align-items-center justify-content-center"
+              className="fs-17 fw-500 tran3s d-flex align-items-center justify-center"
               style={{
+                width: "120px", // ✅ Same width as Login
+                height: "40px", // ✅ Same height as Login
                 backgroundColor: "#4A5ABB",
                 color: "#FFF",
-                border: "none",
-                padding: "1px 20px",
-                borderRadius: "20px",
+                border: "2px solid #4A5ABB", // ✅ Keeps size equal
+                padding: "8px 0px", // ✅ Even padding
+                borderRadius: "5px",
+                textAlign: "center",
                 transition: "all 0.3s ease",
+                fontWeight: "600",
               }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#3b4a91";
-                e.target.style.color = "#FFFFFF";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#4A5ABB";
-                e.target.style.color = "#FFF";
-              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#3b4a91")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#4A5ABB")}
             >
               Signup
             </Link>
