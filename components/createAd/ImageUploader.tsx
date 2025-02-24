@@ -36,7 +36,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
       {/* Small Custom Button with Tooltip */}
       <button
         onClick={() => fileInputRef.current?.click()} // Trigger file input click
-        className="relative flex items-center justify-center p-2 bg-blue-600 text-white rounded-full shadow-md transition-all duration-200 hover:bg-blue-700 group"
+        className="relative flex items-center justify-center p-2 bg-gray-500 text-white rounded-full shadow-md transition-all duration-200 hover:bg-blue-700 group"
       >
         <UploadCloud size={20} /> {/* Upload Icon */}
         {/* Tooltip on Hover */}
