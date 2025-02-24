@@ -32,7 +32,7 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
   }, []);
 
   return (
-    <div className="max-w-md mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden mt-6">
+    <div className="max-w-sm mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden mt-6">
       {/* Header: Instagram Profile Section */}
       <div className="flex items-center p-3">
         <Image
@@ -47,14 +47,13 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
 
       {/* Image Preview */}
       <div className="relative">
-      {image && (
-  <img // ✅ Use a normal img tag for base64 images
-    src={image}
-    alt="Instagram Post"
-    className="w-full object-cover"
-  />
-)}
-
+        {image && (
+          <img // ✅ Use a normal img tag for base64 images
+            src={image}
+            alt="Instagram Post"
+            className="w-full object-cover"
+          />
+        )}
 
         {/* Draggable Headline Component */}
         <DraggableHeadline

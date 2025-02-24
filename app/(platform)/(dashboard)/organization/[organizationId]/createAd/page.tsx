@@ -76,93 +76,101 @@ const CreateAdPage: React.FC = () => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
 
-  // Left column: only the form (50% width)
+  // Use flex-1 to let both columns grow equally.
   const leftColumnStyle = {
-    width: "50%",
+    flex: 1,
     padding: "30px",
   };
 
-  // Right column: contains the rest of the components (50% width)
   const rightColumnStyle: React.CSSProperties = {
-    width: "50%",
+    flex: 1,
     padding: "30px",
     display: "flex",
-    flexDirection: "row",
-  };
-
-  // Main content style (100% width of right column content)
-  const mainContentStyle = {
-    width: "100%",
+    flexDirection: "column",
   };
 
   return (
     <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Head>
-      <div
-        className={styles.parentContainer}
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          background:
-            "linear-gradient(to bottom right,rgba(230, 238, 246, 0.58))",
-        }}
-      >
-        {/* Left Column: Only the Form */}
-        <div style={leftColumnStyle}>
-          <h1
-            style={{
-              fontSize: "24px",
-              marginBottom: "20px",
-              fontFamily: "serif",
-            }}
-          >
-            Your Ad
-          </h1>
-          <AdForm adData={adData} setAdData={setAdData} />
+
+      {/* Main container spans full width */}
+      <div className="w-full">
+        {/* Publish Button at Top Right Corner */}
+        <div className="absolute top-4 right-4">
+          <DownloadButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
         </div>
-        {/* Right Column: All other components */}
-        <div style={rightColumnStyle}>
-          <div style={mainContentStyle}>
-            {/* Export Button Container: Top-right aligned */}
+
+        {/* Main Content Container */}
+        <div
+          className={styles.parentContainer}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "30px", 
+            background: "linear-gradient(to bottom right, rgba(230, 238, 246, 0.58))",
+            width: "100%",
+          }}
+        >
+          {/* Left Column */}
+          <div style={leftColumnStyle}>
+            <h1 style={{ fontSize: "24px", marginBottom: "20px", fontFamily: "serif" }}>
+              Your Ad
+            </h1>
+            <AdForm adData={adData} setAdData={setAdData} />
+          </div>
+
+          {/* Right Column with additional shadow for popup effect */}
+          <div
+            style={rightColumnStyle}
+            className="shadow-lg rounded-lg bg-white"
+          >
+            {/* Top Section: Font Settings */}
             <div
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
+                alignItems: "center",
                 marginBottom: "20px",
+                marginTop: "20px",
               }}
             >
-              <DownloadButton
-                selectedFilter={selectedFilter}
-                aspectRatio={aspectRatio}
+              <FontSettings
+                headlineFontSize={headlineFontSize}
+                setHeadlineFontSize={setHeadlineFontSize}
+                headlineBgColor={headlineBgColor}
+                setHeadlineBgColor={setHeadlineBgColor}
+                headlineFontColor={headlineFontColor}
+                setHeadlineFontColor={setHeadlineFontColor}
+                isBold={isBold}
+                setIsBold={setIsBold}
+                isItalic={isItalic}
+                setIsItalic={setIsItalic}
+                headlineFont={headlineFont}
+                setHeadlineFont={setHeadlineFont}
               />
-              {/* <SocialMediaPost image={image} caption={clientCaption} /> */}
             </div>
-            <ImageUploader image={image} setImage={setImage} />
+
+            {/* Editor Tools */}
             <EditorTools
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
               aspectRatio={aspectRatio}
               setAspectRatio={setAspectRatio}
             />
+
+            {/* Image Preview Container with ImageUploader overlay */}
             <div className="w-full flex flex-col items-center mt-4 relative">
-              <h2
-                style={{ fontFamily: "serif", fontSize: "22px" }}
-                className="text-lg mb-4"
-              >
+              <h2 style={{ fontFamily: "serif", fontSize: "22px" }} className="text-lg mb-4">
                 Image Preview
               </h2>
               <div
                 id="ad-preview"
                 className={`${styles.adPreview} ${
                   aspectRatio === "square" ? styles.square : styles.story
-                }`}
+                } relative`}
               >
                 <img
                   src={image || placeholderImage}
@@ -186,27 +194,14 @@ const CreateAdPage: React.FC = () => {
                     headlineFont={headlineFont}
                   />
                 )}
+                {/* ImageUploader placed at top right of ad-preview container */}
+                <div className="absolute top-2 right-2">
+                  <ImageUploader image={image} setImage={setImage} />
+                </div>
               </div>
-              <br />
             </div>
-            <br />
-            <br />
-            <br />
-            <FontSettings
-              headlineFontSize={headlineFontSize}
-              setHeadlineFontSize={setHeadlineFontSize}
-              headlineBgColor={headlineBgColor}
-              setHeadlineBgColor={setHeadlineBgColor}
-              headlineFontColor={headlineFontColor}
-              setHeadlineFontColor={setHeadlineFontColor}
-              isBold={isBold}
-              setIsBold={setIsBold}
-              isItalic={isItalic}
-              setIsItalic={setIsItalic}
-              headlineFont={headlineFont}
-              setHeadlineFont={setHeadlineFont}
-            />
 
+            <br />
             <InstagramPostPreview
               image={image}
               caption={clientCaption}
