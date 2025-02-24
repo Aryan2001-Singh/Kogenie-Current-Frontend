@@ -1,10 +1,14 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useRef } from "react";
+import { UploadCloud } from "lucide-react"; // Import an upload icon from Lucide React
 
 interface ImageUploaderProps {
+  image: string | null;
   setImage: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -13,11 +17,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
         if (typeof reader.result === "string") {
           setImage(reader.result);
           localStorage.setItem("uploadedImage", reader.result);
-
-          // Ensure the image fully loads before continuing
-          const img = new Image();
-          img.src = reader.result;
-          await new Promise((resolve) => (img.onload = resolve));
         }
       };
       reader.readAsDataURL(file);
@@ -25,16 +24,26 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
   };
 
   return (
-    <div className="p-2 bg-white rounded-lg shadow-lg transition-shadow duration-200 transform hover:scale-105 hover:shadow-xl">
-      <label className="block text-gray-700 font-semibold mb-1 text-sm">
-        Upload Image
-      </label>
+    <div className="flex flex-col items-center space-y-2">
+      {/* Hidden File Input */}
       <input
         type="file"
+        ref={fileInputRef}
         onChange={handleImageUpload}
-        style={{ backgroundColor: "#AAB7D8" }}
-        className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-500 text-sm"
+        className="hidden" // Hides the input
       />
+
+      {/* Small Custom Button with Tooltip */}
+      <button
+        onClick={() => fileInputRef.current?.click()} // Trigger file input click
+        className="relative flex items-center justify-center p-2 bg-blue-600 text-white rounded-full shadow-md transition-all duration-200 hover:bg-blue-700 group"
+      >
+        <UploadCloud size={20} /> {/* Upload Icon */}
+        {/* Tooltip on Hover */}
+        <span className="absolute bottom-full mb-2 hidden text-xs bg-gray-800 text-white py-1 px-2 rounded-md shadow-md group-hover:block">
+          Upload Image
+        </span>
+      </button>
     </div>
   );
 };

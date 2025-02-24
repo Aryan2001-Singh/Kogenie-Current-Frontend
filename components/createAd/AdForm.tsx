@@ -29,6 +29,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
   // Style to justify text in inputs/textareas
   const justifyStyle: CSSProperties = {
     textAlign: "justify",
+    fontFamily:"serif",
   };
 
   // Glass style using a flat pastel color (#E1EAF3) with blur, inset shadow, and justified text
@@ -61,7 +62,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
 
       {/* Brand Name */}
       <div className="mb-6">
-        <label className="block text-gray-700 font-semibold italic text-lg mb-2">
+        <label style={{fontFamily:'serif'}}className="block text-gray-700 text-lg mb-2">
           Brand Name
         </label>
         <input
@@ -77,7 +78,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
 
       {/* Product Name */}
       <div className="mb-6">
-        <label className="block text-gray-700 font-semibold italic text-lg mb-2">
+        <label style={{fontFamily:'serif'}}className="block text-gray-700 text-lg mb-2">
           Product Name
         </label>
         <input
@@ -93,7 +94,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
 
       {/* Product Description */}
       <div className="mb-6">
-        <label className="block text-gray-700 font-semibold italic text-lg mb-2">
+        <label style={{fontFamily:'serif'}}className="block text-gray-700 text-lg mb-2">
           Product Description
         </label>
         <textarea
@@ -108,7 +109,9 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
 
       {/* Ad Copy */}
       <div className="mb-6">
-        <label className="block text-gray-700 font-semibold italic text-lg mb-2">
+        <label style={{
+          fontFamily:"serif",
+        }}className="block text-gray-700 text-lg mb-2">
           Your Ad Copy
         </label>
         <textarea
@@ -123,7 +126,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
 
       {/* Headline */}
       <div className="mb-6">
-        <label className="block text-gray-700 font-semibold italic text-xl mb-2">
+        <label style={{fontFamily:'serif'}}className="block text-gray-700 text-xl mb-2">
           Headline{" "}
           <span className="italic text-base text-gray-500">
             (Editable: Updates preview image on change) *

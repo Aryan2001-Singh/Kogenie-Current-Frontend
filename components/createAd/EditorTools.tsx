@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { Filter } from "lucide-react"; // Import the filter icon
+import { LayoutGrid } from "lucide-react"; // Import format selection icon
 
 interface EditorToolsProps {
   selectedFilter: string;
@@ -17,9 +19,9 @@ const EditorTools: React.FC<EditorToolsProps> = ({
 }) => {
   return (
     <div className="mt-2 p-2 bg-white rounded-lg shadow-md transition-transform duration-200 hover:scale-105">
-      {/* Filter Selection Dropdown */}
-      <div className="flex items-center space-x-1 mb-2">
-        <label className="text-gray-700 font-semibold text-sm">Apply Filter:</label>
+      {/* Filter Selection Dropdown with Icon */}
+      <div className="flex items-center space-x-2 mb-2">
+        <Filter size={22} className="text-blue-600" /> {/* Added icon */}
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
@@ -37,28 +39,30 @@ const EditorTools: React.FC<EditorToolsProps> = ({
       </div>
 
       {/* Aspect Ratio Selection */}
-      <div className="flex items-center space-x-1 mt-2">
-        <label className="text-gray-700 font-semibold text-sm">Select Format:</label>
+      <div className="flex items-center space-x-2 mt-2">
+        {/* Format Selection Icon */}
+        <LayoutGrid size={22} className="text-blue-600" />
+
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setAspectRatio("square")}
-            className={`px-2 py-1 border rounded-md transition-all duration-200 text-sm ${
+            className={`px-2 py-1 text-xs border rounded-lg transition-all duration-200 ${
               aspectRatio === "square"
-                ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-sm"
-                : "bg-[#C4CDE4] text-gray-700 hover:shadow-sm"
+                ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-md"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >
-            Instagram Post (1:1)
+            Post (1:1)
           </button>
           <button
             onClick={() => setAspectRatio("story")}
-            className={`px-2 py-1 border rounded-md transition-all duration-200 text-sm ${
+            className={`px-2 py-1 text-xs border rounded-lg transition-all duration-200 ${
               aspectRatio === "story"
-                ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-sm"
-                : "bg-[#C4CDE4] text-gray-700 hover:shadow-sm"
+                ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-md"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >
-            Instagram Story/Reel (9:16)
+            Story (9:16)
           </button>
         </div>
       </div>

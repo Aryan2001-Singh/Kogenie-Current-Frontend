@@ -95,6 +95,7 @@ const ManualEntryPage: React.FC = () => {
     color: "#333",
     marginBottom: "8px",
     display: "block",
+    fontFamily:"serif",
   };
 
   const inputStyle: CSSProperties = {

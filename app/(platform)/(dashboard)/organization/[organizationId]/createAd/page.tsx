@@ -13,8 +13,6 @@ import DownloadButton from "@/components/createAd/DownloadButton";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
 import FontSettings from "@/components/createAd/FontSettings";
 
-
-
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
   const [adData, setAdData] = useState(() => {
@@ -45,11 +43,14 @@ const CreateAdPage: React.FC = () => {
   const [isBold, setIsBold] = useState<boolean>(false);
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
-  const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
-
-
-
+  const placeholderImage = "/blog7.jpg"; // Path to your placeholder image
+  const [image, setImage] = useState<string | null>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("uploadedImage") || placeholderImage;
+    }
+    return placeholderImage;
+  });
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
@@ -67,13 +68,8 @@ const CreateAdPage: React.FC = () => {
   }, [adData.adCopy, adData.headline]);
 
   useEffect(() => {
-    if (adDataFromStore) {
-      setAdData(adDataFromStore);
-    }
     const savedImage = localStorage.getItem("uploadedImage");
-    if (savedImage) {
-      setImage(savedImage);
-    }
+    setImage(savedImage || placeholderImage);
   }, [adDataFromStore]);
 
   useEffect(() => {
@@ -120,7 +116,15 @@ const CreateAdPage: React.FC = () => {
       >
         {/* Left Column: Only the Form */}
         <div style={leftColumnStyle}>
-          <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>Your Ad</h1>
+          <h1
+            style={{
+              fontSize: "24px",
+              marginBottom: "20px",
+              fontFamily: "serif",
+            }}
+          >
+            Your Ad
+          </h1>
           <AdForm adData={adData} setAdData={setAdData} />
         </div>
         {/* Right Column: All other components */}
@@ -140,7 +144,7 @@ const CreateAdPage: React.FC = () => {
               />
               <SocialMediaPost image={image} caption={clientCaption} />
             </div>
-            <ImageUploader setImage={setImage} />
+            <ImageUploader image={image} setImage={setImage} />
             <EditorTools
               selectedFilter={selectedFilter}
               setSelectedFilter={setSelectedFilter}
@@ -148,26 +152,29 @@ const CreateAdPage: React.FC = () => {
               setAspectRatio={setAspectRatio}
             />
             <div className="w-full flex flex-col items-center mt-4 relative">
-              <h2 className="text-lg font-semibold mb-2">Image Preview</h2>
+              <h2
+                style={{ fontFamily: "serif", fontSize: "22px" }}
+                className="text-lg mb-4"
+              >
+                Image Preview
+              </h2>
               <div
                 id="ad-preview"
                 className={`${styles.adPreview} ${
                   aspectRatio === "square" ? styles.square : styles.story
                 }`}
               >
-                {image && (
-                  <img
-                    src={image}
-                    alt="Uploaded Preview"
-                    className="shadow-md rounded-lg"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      filter: selectedFilter,
-                    }}
-                  />
-                )}
+                <img
+                  src={image || placeholderImage}
+                  alt="Ad Preview"
+                  className="shadow-md rounded-lg"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: selectedFilter,
+                  }}
+                />
                 {isClient && adData.headline && (
                   <DraggableHeadline
                     headlineText={adData.headline}
