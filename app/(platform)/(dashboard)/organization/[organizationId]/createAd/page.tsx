@@ -11,8 +11,9 @@ import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
 import DownloadButton from "@/components/createAd/DownloadButton";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
-
 import FontSettings from "@/components/createAd/FontSettings";
+
+
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -46,6 +47,9 @@ const CreateAdPage: React.FC = () => {
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
   const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+
+
+
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
@@ -195,6 +199,7 @@ const CreateAdPage: React.FC = () => {
               headlineFont={headlineFont}
               setHeadlineFont={setHeadlineFont}
             />
+
             <InstagramPostPreview
               image={image}
               caption={clientCaption}
