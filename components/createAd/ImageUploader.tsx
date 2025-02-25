@@ -30,17 +30,21 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
         type="file"
         ref={fileInputRef}
         onChange={handleImageUpload}
-        className="hidden" // Hides the input
+        className="hidden"
       />
 
-      {/* Small Custom Button with Tooltip */}
+      {/* Custom Button with Icon and Text */}
       <button
-        onClick={() => fileInputRef.current?.click()} // Trigger file input click
-        className="relative flex items-center justify-center p-2 bg-gray-500 text-white rounded-full shadow-md transition-all duration-200 hover:bg-blue-700 group"
+        onClick={() => fileInputRef.current?.click()}
+        className="relative flex flex-col items-center justify-center p-2 text-gray-700 
+        font-bold transition-all duration-200 hover:text-gray-800 hover:ring-2 hover:ring-gray-400 group"
+
       >
-        <UploadCloud size={20} /> {/* Upload Icon */}
+        <UploadCloud size={20} />
+        <span className="mt-1 text-xs">Upload Image</span>
         {/* Tooltip on Hover */}
-        <span className="absolute bottom-full mb-2 hidden text-xs bg-gray-800 text-white py-1 px-2 rounded-md shadow-md group-hover:block">
+        <span className="absolute bottom-full mb-2 hidden text-xs bg-gray-700 text-white 
+        py-1 px-2 rounded-md shadow-md group-hover:block">
           Upload Image
         </span>
       </button>

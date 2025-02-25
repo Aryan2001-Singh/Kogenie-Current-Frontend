@@ -146,7 +146,7 @@ const Features = () => {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background: rgba(134, 129, 237, 0.24);
+          background: rgba(255, 255, 255, 0.24);
           color: white;
           border: none;
           width: 40px;
@@ -175,7 +175,7 @@ const Features = () => {
           top: 0;
           bottom: 0;
           width: 5px;
-          background: rgba(13, 13, 14, 0.25);
+          background: rgba(229, 193, 30, 0.25);
           z-index: 15;
         }
 

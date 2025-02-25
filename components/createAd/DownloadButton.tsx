@@ -46,7 +46,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
       {/* Publish Button */}
       <button
         onClick={() => setShowOptions(!showOptions)}
-       className="min-w-[100px] px-2 py-2 bg-[#4552C1] text-white rounded-lg shadow-lg hover:shadow-2xl
+       className="min-w-[100px] px-2 py-2 bg-[#6e44ff] text-white rounded-lg shadow-lg hover:shadow-2xl
         hover:brightness-110 hover:scale-105 transition-transform duration-200 active:scale-95 flex items-center justify-center"
       >
         Publish ⬆️

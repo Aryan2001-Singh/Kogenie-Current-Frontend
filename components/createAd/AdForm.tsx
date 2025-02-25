@@ -48,7 +48,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="w-full p-4">
       {/* Custom scrollbar styling and glowing focus effect */}
       <style>{`
         .custom-scrollbar::-webkit-scrollbar {
@@ -67,7 +67,10 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
       `}</style>
       
       {/* Unique Heading for the Left Column */}
-      <h2 style={{fontFamily:"serif"}}className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 drop-shadow-lg mb-6">
+      <h2 style={{fontFamily:"serif",
+        marginTop:"-10px"
+      }}className="text-4xl font-medium tracking-wide text-transparent
+       bg-clip-text bg-white drop-shadow-lg mb-6">
         Your Ad
       </h2>
 

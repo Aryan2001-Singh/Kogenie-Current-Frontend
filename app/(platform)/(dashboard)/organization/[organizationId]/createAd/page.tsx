@@ -6,13 +6,14 @@ import styles from "@/styles/CreateAdPage.module.css";
 import Head from "next/head";
 
 import EditorTools from "@/components/createAd/EditorTools";
-import InstagramPostPreview from "@/components/createAd/InstagramPostPreview";
 import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
 import ExportButton from "@/components/createAd/exportButton";
 import DownloadButton from "@/components/createAd/DownloadButton";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
 import FontSettings from "@/components/createAd/FontSettings";
+import PostPreview from "@/components/createAd/PostPreview";
+
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -81,6 +82,7 @@ const CreateAdPage: React.FC = () => {
   const leftColumnStyle = {
     flex: 1,
     padding: "30px",
+    backgroundColor:"#BBD0FF"
   };
 
   // Right column style
@@ -90,46 +92,54 @@ const CreateAdPage: React.FC = () => {
     display: "flex",
     flexDirection: "column",
     position: "relative",
+    backgroundColor:"#BBD0FF"
   };
 
   return (
     <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </Head>
 
-      {/* Main container spanning full width */}
-      <div className="w-full relative">
-        <div style={{marginLeft:"920px"}}>
-         <ExportButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
+      {/* Main container spanning full width with background color */}
+      <div className="w-full relative bg-white min-h-screen">
+        <div style={{ marginLeft: "920px" }}>
+          <ExportButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
           <DownloadButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
-          </div>
+        </div>
         {/* Main Content Container */}
         <div
           className={styles.parentContainer}
           style={{
             display: "flex",
             flexDirection: "row",
-            gap: "30px",
-            background: "linear-gradient(to bottom right, rgba(230, 238, 246, 0.58))",
+            gap: "5px",
+            background: "white",
             width: "100%",
             paddingTop: "20px",
           }}
         >
           {/* Left Column */}
-          <div style={leftColumnStyle}>
+          <div style={leftColumnStyle} className="mt-8 px-2 bg-gradient-to-l from-[#BBD0FF] to-[#c9b9ed]">
             <AdForm adData={adData} setAdData={setAdData} />
           </div>
 
           {/* Right Column */}
-          <div style={rightColumnStyle} className="shadow-lg mt-8 rounded-lg bg-white">
-          <h2 style={{fontFamily:"serif",marginBottom:'-20px'}}className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 drop-shadow-lg mb-6">
-            Ad preview
-          </h2>
+          <div style={rightColumnStyle} className=" mt-8 px-2 bg-gradient-to-r from-[#BBD0FF] to-[#c9b9ed] ">
+            <h2
+              style={{ fontFamily: "serif", marginBottom: "-20px", marginLeft:"30px" }}
+              className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-white drop-shadow-lg mb-6"
+            >
+              Ad preview
+            </h2>
             {/* Top Editing Bar in Right Column */}
             <div className="flex items-center justify-between p-4 border-b">
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 transition-transform duration-200 hover:scale-105">
                 <FontSettings
                   headlineFontSize={headlineFontSize}
                   setHeadlineFontSize={setHeadlineFontSize}
@@ -152,8 +162,19 @@ const CreateAdPage: React.FC = () => {
                 />
               </div>
               {/* Shift ImageUploader slightly downward on the right side */}
-              <div style={{ padding:"20px",marginTop:"-50px"}}>
+              <div style={{ padding: "20px", marginTop: "-50px" }}>
                 <ImageUploader image={image} setImage={setImage} />
+                <PostPreview
+        image={image}
+        caption={clientCaption}
+        headlineText={clientHeadline}
+        headlineBgColor={headlineBgColor}
+        headlineFontColor={headlineFontColor}
+        headlineFontSize={headlineFontSize}
+        isBold={isBold}
+        isItalic={isItalic}
+        headlineFont={headlineFont}
+      />
               </div>
             </div>
 
@@ -191,7 +212,7 @@ const CreateAdPage: React.FC = () => {
             </div>
 
             <br />
-            <InstagramPostPreview
+            {/* <InstagramPostPreview
               image={image}
               caption={clientCaption}
               headlineText={clientHeadline}
@@ -201,7 +222,7 @@ const CreateAdPage: React.FC = () => {
               isBold={isBold}
               isItalic={isItalic}
               headlineFont={headlineFont}
-            />
+            /> */}
           </div>
         </div>
       </div>
