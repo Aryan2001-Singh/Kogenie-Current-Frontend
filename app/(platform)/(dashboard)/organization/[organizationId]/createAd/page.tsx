@@ -46,7 +46,7 @@ const CreateAdPage: React.FC = () => {
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
   const [isClient, setIsClient] = useState(false);
-  const placeholderImage = "/blog7.jpg";
+  const placeholderImage = "/logo.png";
   const [image, setImage] = useState<string | null>(() => {
     if (typeof window !== "undefined") {
       return localStorage.getItem("uploadedImage") || placeholderImage;
