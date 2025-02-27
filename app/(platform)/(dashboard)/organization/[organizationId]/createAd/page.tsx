@@ -82,7 +82,7 @@ const CreateAdPage: React.FC = () => {
   const leftColumnStyle = {
     flex: 1,
     padding: "30px",
-    backgroundColor:"#BBD0FF"
+    backgroundColor:"#f6f3fc"
   };
 
   // Right column style
@@ -92,7 +92,7 @@ const CreateAdPage: React.FC = () => {
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    backgroundColor:"#BBD0FF"
+    backgroundColor:"#f6f3fc"
   };
 
   return (
@@ -125,15 +125,17 @@ const CreateAdPage: React.FC = () => {
           }}
         >
           {/* Left Column */}
-          <div style={leftColumnStyle} className="mt-8 px-2 bg-gradient-to-l from-[#BBD0FF] to-[#c9b9ed]">
+          <div style={leftColumnStyle} className="mt-8 px-2 bg-[#f6f3fc]">
             <AdForm adData={adData} setAdData={setAdData} />
           </div>
 
           {/* Right Column */}
-          <div style={rightColumnStyle} className=" mt-8 px-2 bg-gradient-to-r from-[#BBD0FF] to-[#c9b9ed] ">
+          <div style={rightColumnStyle} className=" mt-8 px-2 bg-[#f6f3fc]">
             <h2
               style={{ fontFamily: "serif", marginBottom: "-20px", marginLeft:"30px" }}
-              className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-white drop-shadow-lg mb-6"
+              className="text-4xl font-medium tracking-wide text-transparent bg-clip-text 
+bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-6"
+
             >
               Ad preview
             </h2>

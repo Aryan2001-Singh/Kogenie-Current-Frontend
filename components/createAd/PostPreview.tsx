@@ -27,14 +27,20 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   return (
-    <div className="mt-4">
-      {/* Post Preview Button */}
-      <button
-        onClick={() => setIsPreviewOpen(true)}
-        className="bg-yellow-400 text-white px-4 py-2 mt-20 rounded-md shadow-md hover:bg-blue-600 transition"
-      >
-        Post Preview
-      </button>
+    <div className="mt-4 relative">
+      {/* Post Preview Button with Tooltip */}
+      <div className="group relative flex justify-center">
+        <button
+          onClick={() => setIsPreviewOpen(true)}
+          className="bg-white text-black text-sm  px-3 py-1 rounded-md shadow-md border border-gray-300 hover:bg-gray-100 transition"
+        >
+          Post Preview
+        </button>
+        {/* Tooltip */}
+        <span className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-900 text-white text-xs px-2 py-1 rounded-md transition-opacity">
+          Instagram Post Preview
+        </span>
+      </div>
 
       {/* Full-Screen Modal */}
       {isPreviewOpen && (
@@ -44,13 +50,13 @@ const PostPreview: React.FC<PostPreviewProps> = ({
             {/* Close Button (Fixed at the top) */}
             <button
               onClick={() => setIsPreviewOpen(false)}
-              className="absolute top-4 right-6 text-gray-600 hover:text-black text-xl font-bold"
+              className="absolute top-4 right-6 text-gray-600 hover:text-black text-lg font-bold"
             >
               ✖
             </button>
 
             {/* Instagram Post Preview */}
-            <div className="w-full max-w-2xl mt-12 mb-8">
+            <div className="w-full max-w-2xl mt-8 mb-6">
               <InstagramPostPreview
                 image={image}
                 caption={caption}

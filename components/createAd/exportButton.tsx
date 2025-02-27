@@ -78,7 +78,7 @@ const ExportButton: React.FC<ExportButtonProps> = ({ selectedFilter, aspectRatio
       {/* Export Button */}
       <button
         onClick={() => setShowOptions(!showOptions)}
-        className="min-w-[100px] mr-2 px-2 py-2 bg-[#db00b6] text-white rounded-lg shadow-lg hover:shadow-2xl 
+        className="min-w-[100px] mr-2 px-2 py-2 bg-indigo-400 text-white rounded-lg shadow-lg hover:shadow-2xl 
         hover:brightness-110 transition-transform duration-200 active:scale-95 flex items-center justify-center"
       >
         Export ⬇️

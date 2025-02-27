@@ -24,7 +24,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-2">
+    <div className="flex flex-col items-center space-y-1">
       {/* Hidden File Input */}
       <input
         type="file"
@@ -32,9 +32,9 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ setImage }) => {
         onChange={handleImageUpload}
         className="hidden"
       />
-
+    
       {/* Custom Button with Icon and Text */}
-      <button
+      <button style={{marginTop:"60px"}}
         onClick={() => fileInputRef.current?.click()}
         className="relative flex flex-col items-center justify-center p-2 text-gray-700 
         font-bold transition-all duration-200 hover:text-gray-800 hover:ring-2 hover:ring-gray-400 group"
