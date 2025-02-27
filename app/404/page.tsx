@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import DefaulHeader from "@/components/header/DefaulHeader";
 import Image from "next/image";
 
 const Pricing = () => {
@@ -11,7 +10,7 @@ const Pricing = () => {
       Theme Default Menu
       ============================================== 	
       --> */}
-      <DefaulHeader />
+    
 
       {/* 
 			=============================================

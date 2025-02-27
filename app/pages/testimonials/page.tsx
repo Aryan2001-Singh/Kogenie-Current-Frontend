@@ -1,4 +1,4 @@
-import DefaulHeader from "@/components/header/DefaulHeader";
+
 import DefaultFooter from "@/components/footer/DefaultFooter";
 import Testimonial from "@/components/home-page/home-3/Testimonial";
 import Testimonial2 from "@/components/home-page/home-5/Testimonial";
@@ -9,7 +9,6 @@ const Testimonials = () => {
   return (
     <>
       {/* Header */}
-      <DefaulHeader />
 
       {/* Feature Section Fifty One */}
       <div className="fancy-feature-fiftyOne position-relative mt-200">

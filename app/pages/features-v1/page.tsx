@@ -4,7 +4,6 @@ import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Image from "next/image";
-import Partner from "@/components/feature-sass/Partner";
 import Blog from "@/components/feature-sass/Blog";
 import Features from "@/components/feature-sass/Features";
 import Features2 from "@/components/feature-sass/Features2";
@@ -217,9 +216,6 @@ const FeaturesV1 = () => {
       >
         <div className="container">
           <div className="wrapper">
-            <div className="partner_slider_one">
-              <Partner />
-            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ import Image from "next/image";
 // Dynamically import components to load only on the client-side
 const Header = dynamic(() => import("@/components/home-page/home-6/Header"), { ssr: false });
 const Block2 = dynamic(() => import("@/components/services/Block2"), { ssr: false });
-const Faq4 = dynamic(() => import("@/components/faqs/Faq4"), { ssr: false });
 const CallToActions = dynamic(() => import("@/components/services/CallToActions"), { ssr: false });
 const FooterMenu = dynamic(() => import("@/components/home-page/home-6/FooterMenu"), { ssr: false });
 const CopyrightFooter2 = dynamic(() => import("@/components/footer/CopyrightFooter2"), { ssr: false });
@@ -88,9 +87,6 @@ const ServiceV4 = () => {
               </div>
 
               <div className="col-lg-7 ms-auto" data-aos="fade-left">
-                <div className="bg-white pe-3 ps-3 pe-lg-5 ps-lg-5 pt-15 pb-15 ms-xxl-4 rounded-3 md-mt-40">
-                  <Faq4 />
-                </div>
               </div>
             </div>
           </div>
