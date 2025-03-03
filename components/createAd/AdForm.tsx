@@ -127,13 +127,13 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
           Your Ad Copy
         </label>
         <textarea
-          name="adCopy"
-          placeholder="Generated ad copy will appear here..."
-          value={adData.adCopy}
-          onChange={handleInputChange}
-          style={glassStyle}
-          className="input-glow font-serif custom-scrollbar w-full p-4 border-2 border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95 resize-none h-40"
-        />
+  name="adCopy"
+  placeholder="Generated ad copy will appear here..."
+  value={adData.adCopy}
+  readOnly // ✅ Prevents editing of AI-generated content
+  style={glassStyle}
+  className="input-glow font-serif custom-scrollbar w-full p-4 border-2 border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95 resize-none h-40"
+/>
       </div>
 
       {/* Headline */}
