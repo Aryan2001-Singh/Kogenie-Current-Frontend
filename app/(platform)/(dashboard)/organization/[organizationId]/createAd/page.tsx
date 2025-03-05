@@ -13,7 +13,7 @@ import DownloadButton from "@/components/createAd/DownloadButton";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
 import FontSettings from "@/components/createAd/FontSettings";
 import PostPreview from "@/components/createAd/PostPreview";
-
+import ScrapedImagesButton from "@/components/createAd/ScrapedImagesButton";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -45,14 +45,17 @@ const CreateAdPage: React.FC = () => {
   const [isBold, setIsBold] = useState<boolean>(false);
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
-  const [isClient, setIsClient] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
   const placeholderImage = "/logo.png";
-  const [image, setImage] = useState<string | null>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("uploadedImage") || placeholderImage;
-    }
-    return placeholderImage;
-  });
+  // const [showScrapedImages, setShowScrapedImages] = useState(false);
+  const [image, setImage] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const savedImage = localStorage.getItem("uploadedImage");
+    setImage(savedImage || placeholderImage);
+  }, []);
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
@@ -78,11 +81,23 @@ const CreateAdPage: React.FC = () => {
     localStorage.setItem("adData", JSON.stringify(adData));
   }, [adData]);
 
+  useEffect(() => {
+    if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
+      console.log("🟢 Loaded Data from Store:", adDataFromStore);
+      setAdData(adDataFromStore);
+      localStorage.setItem("adData", JSON.stringify(adDataFromStore)); // ✅ Store in localStorage
+    } else {
+      const storedAdData = localStorage.getItem("adData");
+      if (storedAdData) {
+        setAdData(JSON.parse(storedAdData)); // ✅ Load from localStorage
+      }
+    }
+  }, [adDataFromStore]);
   // Left column style
   const leftColumnStyle = {
     flex: 1,
     padding: "30px",
-    backgroundColor:"#f6f3fc"
+    backgroundColor: "#f6f3fc",
   };
 
   // Right column style
@@ -92,7 +107,7 @@ const CreateAdPage: React.FC = () => {
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    backgroundColor:"#f6f3fc"
+    backgroundColor: "#f6f3fc",
   };
 
   return (
@@ -109,8 +124,14 @@ const CreateAdPage: React.FC = () => {
       {/* Main container spanning full width with background color */}
       <div className="w-full relative bg-white min-h-screen">
         <div style={{ marginLeft: "920px" }}>
-          <ExportButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
-          <DownloadButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
+          <ExportButton
+            selectedFilter={selectedFilter}
+            aspectRatio={aspectRatio}
+          />
+          <DownloadButton
+            selectedFilter={selectedFilter}
+            aspectRatio={aspectRatio}
+          />
         </div>
         {/* Main Content Container */}
         <div
@@ -132,10 +153,13 @@ const CreateAdPage: React.FC = () => {
           {/* Right Column */}
           <div style={rightColumnStyle} className=" mt-8 px-2 bg-[#f6f3fc]">
             <h2
-              style={{ fontFamily: "serif", marginBottom: "-20px", marginLeft:"30px" }}
+              style={{
+                fontFamily: "serif",
+                marginBottom: "-20px",
+                marginLeft: "30px",
+              }}
               className="text-4xl font-medium tracking-wide text-transparent bg-clip-text 
 bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-6"
-
             >
               Ad preview
             </h2>
@@ -165,19 +189,32 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
               </div>
               {/* Shift ImageUploader slightly downward on the right side */}
               <div style={{ padding: "20px", marginTop: "-50px" }}>
-                <ImageUploader image={image} setImage={setImage} />
                 <PostPreview
-        image={image}
-        caption={clientCaption}
-        headlineText={clientHeadline}
-        headlineBgColor={headlineBgColor}
-        headlineFontColor={headlineFontColor}
-        headlineFontSize={headlineFontSize}
-        isBold={isBold}
-        isItalic={isItalic}
-        headlineFont={headlineFont}
-      />
+                  image={image}
+                  caption={clientCaption}
+                  headlineText={clientHeadline}
+                  headlineBgColor={headlineBgColor}
+                  headlineFontColor={headlineFontColor}
+                  headlineFontSize={headlineFontSize}
+                  isBold={isBold}
+                  isItalic={isItalic}
+                  headlineFont={headlineFont}
+                />
               </div>
+            </div>
+            <div className="flex space-x-4 mt-4">
+              <ImageUploader image={image} setImage={setImage} />
+
+              {/* ✅ Show Scraped Images Button Only on Client */}
+              {isClient && adData?.productImages?.length > 0 && (
+                <ScrapedImagesButton
+                  productImages={adData.productImages} // ✅ Pass scraped images
+                  onSelectImage={(selectedImg) => {
+                    setImage(selectedImg); // ✅ Update selected image
+                    localStorage.setItem("uploadedImage", selectedImg); // ✅ Store selected image
+                  }}
+                />
+              )}
             </div>
 
             {/* Image Preview Container */}

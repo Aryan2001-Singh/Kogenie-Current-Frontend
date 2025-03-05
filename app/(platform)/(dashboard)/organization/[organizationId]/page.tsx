@@ -20,7 +20,7 @@ const OrganizationIdPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [currentFact, setCurrentFact] = useState(0);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip] = useState(false);
   const router = useRouter();
   const { organizationId } = useParams();
   const setAdData = useAdStore((state) => state.setAdData);
@@ -37,42 +37,44 @@ const OrganizationIdPage = () => {
     return url.startsWith("http://") || url.startsWith("https://");
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true); // ✅ Start the loader when button is clicked
 
-    if (!isUrlValid(url)) {
-      setError("Please enter a valid URL.");
-      setLoading(false);
-      return;
-    }
+  if (!isUrlValid(url)) {
+    setError("Please enter a valid URL.");
+    setLoading(false);
+    return;
+  }
 
-    try {
-      const response = await fetch(
-        "https://kogenie-current-backend.onrender.com/createAd",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ url, gender, ageGroup }),
-        }
-      );
+  try {
+    const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url, gender, ageGroup }),
+    });
 
-      const data = await response.json();
-      if (response.ok) {
-        setAdData(data);
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("✅ API Response:", data);
+
+      setAdData(data);
+
+      setTimeout(() => {
         router.push(`/organization/${organizationId}/createAd`);
-      } else {
-        throw new Error(data.error || "Failed to generate ad");
-      }
-    } catch (err) {
-      console.error("An error occurred while generating the ad:", err); // Logs the error
-      setError("An error occurred while generating the ad.");
-    } finally {
-      setLoading(false);
+      }, 500); // ✅ Small delay to ensure Zustand updates state
+    } else {
+      throw new Error(data.error || "Failed to generate ad");
     }
-  };
-
+  } catch (err) {
+    console.error("An error occurred while generating the ad:", err);
+    setError("An error occurred while generating the ad.");
+  } finally {
+    setLoading(false); // ✅ Stop the loader when API call is finished
+  }
+};
   return (
     <div
       className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden"
@@ -169,26 +171,30 @@ const OrganizationIdPage = () => {
           {/* Buttons Section */}
           <div className="flex w-full justify-center space-x-4 mt-6">
             <div className="relative">
-              <button
-                style={{ fontFamily: "serif" }}
-                disabled={!isUrlValid(url)}
-                onMouseEnter={() => !isUrlValid(url) && setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
-                onClick={() =>
-                  router.push(`/organization/${organizationId}/createAd`)
-                }
-                className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all transform 
-                  font-semibold flex items-center justify-center space-x-2 shadow-lg relative
-                  ${
-                    !isUrlValid(url)
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-indigo-400 hover:bg-indigo-500 hover:scale-105 text-white"
-                  }
-                `}
-              >
-                {loading ? "Generating Ad..." : "Generate Ad"}
-                <FaArrowRight className="ml-2" />
-              </button>
+            <button
+  type="submit"
+  disabled={loading || !isUrlValid(url)} // ✅ Disable button while loading
+  className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all transform 
+    font-semibold flex items-center justify-center space-x-2 shadow-lg relative
+    ${
+      loading
+        ? "bg-gray-400 cursor-not-allowed" // ✅ Disabled style while loading
+        : "bg-indigo-400 hover:bg-indigo-500 hover:scale-105 text-white"
+    }
+  `}
+>
+  {loading ? (
+    <div className="flex items-center">
+      <div className="animate-spin rounded-full h-5 w-5 border-t-4 border-white"></div>
+      <span className="ml-2">Generating Ad...</span>
+    </div>
+  ) : (
+    <>
+      Generate Ad
+      <FaArrowRight className="ml-2" />
+    </>
+  )}
+</button>
 
               {/* Tooltip (Always Visible When Hovered) */}
               {showTooltip && !isUrlValid(url) && (

@@ -3,7 +3,7 @@
 import React, { useState, CSSProperties, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
-import { storeAd } from "@/services/api";
+// import { storeAd } from "@/services/api";
 import { useUser } from "@clerk/nextjs";
 
 const ManualEntryPage: React.FC = () => {
@@ -27,13 +27,13 @@ const ManualEntryPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-
+  
     if (!userEmail) {
       setError("User is not authenticated. Please log in.");
       setLoading(false);
       return;
     }
-
+  
     const adInputData = {
       brandName,
       productName,
@@ -41,41 +41,51 @@ const ManualEntryPage: React.FC = () => {
       targetAudience,
       uniqueSellingPoints,
     };
-
+  
     try {
-      const response = await fetch(
-        "https://kogenie-current-backend.onrender.com/generateAdPrompt",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(adInputData),
-        }
-      );
-
+      const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(adInputData),
+      });
+  
       const data = await response.json();
-      console.log("🟢 Backend API Response:", data);
+  
+      console.log("✅ Backend API Response:", data); // Debugging
+  
       if (response.ok) {
+        if (!data.adCopy || !data.headline) {
+          console.error("❌ Missing adCopy or headline from API response:", data);
+          setError("Invalid API response: Missing adCopy or headline.");
+          setLoading(false);
+          return;
+        }
+  
+        console.log("✅ Setting Zustand State", {
+          ...adInputData,
+          adCopy: data.adCopy || "Ad Copy Not Generated",
+          headline: data.headline || "Default Headline",
+          productImages: data.productImages || [], // ✅ Ensure productImages is included
+          selectedImage: data.productImages?.[0] || null, // ✅ Default to first image
+        });
+  
+        // ✅ Update Zustand store
         setAdData({
           ...adInputData,
-          adCopy: data.adCopy,
+          adCopy: data.adCopy || "Ad Copy Not Generated",
           headline: data.headline || "Default Headline",
+          productImages: data.productImages || [], // ✅ Ensure productImages is passed
+          selectedImage: data.productImages?.[0] || null, // ✅ Default to first image
         });
-
-        await storeAd(
-          {
-            ...adInputData,
-            adCopy: data.adCopy,
-            headline: data.headline || "Default Headline",
-          },
-          userEmail
-        );
-
-        router.push(`/organization/${organizationId}/createAd`);
+  
+        setTimeout(() => {
+          router.push(`/organization/${organizationId}/createAd`);
+        }, 200);
       } else {
-        throw new Error(data.message || "Failed to create ad based on input.");
+        throw new Error(data.message || "Failed to create ad.");
       }
     } catch (err) {
-      console.error("Error occurred:", err);
+      console.error("❌ Error occurred:", err);
       setError("An error occurred while generating the ad.");
     } finally {
       setLoading(false);

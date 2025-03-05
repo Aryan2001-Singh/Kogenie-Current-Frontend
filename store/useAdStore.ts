@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface AdData {
   brandName: string;
@@ -8,22 +8,32 @@ interface AdData {
   uniqueSellingPoints: string;
   adCopy: string;
   headline?: string;
+  productImages: string[];  // ✅ Store scraped images
+  selectedImage: string | null; // ✅ Track selected image
 }
 
 interface AdState {
   adData: AdData | null;
   setAdData: (data: AdData) => void;
-  clearAdData: () => void; // ✅ Function to clear ad data
+  setSelectedImage: (image: string) => void; // ✅ Function to set selected image
+  clearAdData: () => void;
 }
 
 export const useAdStore = create<AdState>((set) => ({
   adData: null,
   setAdData: (data: AdData) => {
-    localStorage.setItem("adData", JSON.stringify(data)); // ✅ Persist ad data in localStorage
+    localStorage.setItem("adData", JSON.stringify(data));
     set({ adData: data });
   },
+  setSelectedImage: (image: string) => {
+    localStorage.setItem("selectedImage", image);
+    set((state) => ({
+      adData: state.adData ? { ...state.adData, selectedImage: image } : null,
+    }));
+  },
   clearAdData: () => {
-    localStorage.removeItem("adData"); // ✅ Clear ad data from localStorage
+    localStorage.removeItem("adData");
+    localStorage.removeItem("selectedImage");
     set({ adData: null });
   },
 }));
