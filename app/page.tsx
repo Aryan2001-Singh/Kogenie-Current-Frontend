@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import Header from "@/components/home-page/home-6/Header";
 import Hero from "@/components/home-page/home-6/Hero";
@@ -17,104 +17,24 @@ const SassProduct = () => {
       {/* Hero Section */}
       <Hero />
 
-      <div className="fancy-feature-three pt-70 lg-pt-50 md-pt-30 sm-pt-20">
-        <div className="container">
+      <div className="fancy-feature-three pt-0 lg-pt-0 md-pt-0 sm-pt-0">
+      <div className="container">
           <div className="row align-items-center">
-            {/* Left Content Section */}
-            <div className="col-lg-6 col-md-6"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "justify"
-              }}
-            >
-              <div style={{ textAlign: "justify" }} className="title-style-three">
-                <div
-                  className="sc-title text-uppercase"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    color: "rgb(84, 106, 236)",
-                    letterSpacing: "1px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Integrates your tools
-                </div>
-                <h2
-                  style={{
-                    fontSize: "36px",
-                    fontWeight: "400",
-                    lineHeight: "1.5",
-                    color: "#333",
-                    marginBottom: "20px",
-                  }}
-                  className="max-w-md main-title fw-200"
-                >
-                  Kogenie leads in hyper-targeted influence
-                </h2>
-              </div>
-              <p
-                className="text-lg mt-15 mb-60 lg-mb-40"
-                style={{
-                  fontSize: "16px",
-                  color: "gray",
-                  lineHeight: "1.7",
-                  marginBottom: "30px",
-                  marginTop: "-30px",
-                }}
-              >
-                At Kogenie, we leverage the power of generative AI, granular data, and
-                Automated A/B testing to deliver advertisements that connect on a deep,
-                instinctive level with your audience. Whether you aim to drive action or
-                influence emotions, we have the expertise and tools to make it happen.
-              </p>
-              <Link
-                href="/pages-menu/about-us-v1"
-                className="btn-four fw-500"
-                style={{
-                  display: "inline-block",
-                  padding: "8px 12px",
-                  backgroundColor: "rgb(84, 106, 236)",
-                  color: "#fff",
-                  fontWeight: "500",
-                  textDecoration: "none",
-                  borderRadius: "5px",
-                  boxShadow: "0 4px 15px rgba(84, 107, 236, 0.4)",
-                  transition: "all 0.3s ease-in-out",
-                  fontSize: "16px",
-                  textAlign: "center",
-                  width: "200px",
-                  minWidth: "100px",
-                  transform: "scale(1)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.target as HTMLElement).style.transform = "scale(1.1)";
-                  (e.target as HTMLElement).style.boxShadow = "0 6px 25px rgba(84, 107, 236, 0.7)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.target as HTMLElement).style.transform = "scale(1)";
-                  (e.target as HTMLElement).style.boxShadow = "0 4px 15px rgba(84, 107, 236, 0.4)";
-                }}
-              >
-                Learn More
-              </Link>
-            </div>
-
-            {/* Right Video Section */}
-            <div className="col-lg-6 col-md-6"
+            {/* Right Video Section (Now moved to left side) */}
+            <div
+              className="col-lg-6 col-md-6"
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                marginTop: "30px"
               }}
             >
               <div
                 style={{
                   width: "100%",
-                  maxWidth: "500px", /* Keeps the video container from overflowing */
-                  height: "350px", /* Increased height */
-                  borderRadius: "8px",
+                  maxWidth: "100%",
+                  height: "350px",
                   boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
                   overflow: "hidden",
                   position: "relative",
@@ -127,168 +47,211 @@ const SassProduct = () => {
                   playsInline
                   style={{
                     width: "100%",
-                    height: "100%", /* Ensure it takes full height */
+                    height: "100%" /* Ensure it takes full height */,
                     objectFit: "cover",
-                    borderRadius: "8px",
                   }}
                 >
-                  <source src="/vecteezy_animation-of-clicking-ai-generate-button_47375600.mp4" type="video/mp4" />
+                  <source
+                    src="/Screen Recording 2025-03-05 at 6.41.38 PM.mov"
+                    type="video/mp4"
+                  />
                   Your browser does not support the video tag.
                 </video>
               </div>
             </div>
-
+            
+            {/* Left Content Section (Now moved to right side) */}
+            <div
+              className="col-lg-6 col-md-6"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "justify",
+              }}
+            >
+              <div
+                style={{ textAlign: "justify" }}
+                className="title-style-three"
+              >
+                <div
+                  className="sc-title text-uppercase"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    color: "rgb(84, 106, 236)",
+                  }}
+                >
+                  Integrates your tools
+                </div>
+                <h2
+                  style={{
+                    fontSize: "36px",
+                    fontWeight: "400",
+                    lineHeight: "1.4", // Reduced line height for closer spacing
+                    color: "rgba(0, 0, 0, 0.78)",
+                    marginBottom: "5px", // Reduced margin-bottom to minimize gap
+                  }}
+                  className="max-w-xl main-title fw-200"
+                >
+                  Kogenie leads in hyper-targeted influence
+                </h2>
+              </div>
+              <p
+                className="text-lg mt-10 mb-40 lg-mb-30" // Reduced top margin
+                style={{
+                  fontSize: "clamp(14px, 2vw, 20px)",
+                  color: "rgba(0, 0, 0, 0.459)",
+                  marginTop: "10px", // Slight negative margin to pull closer
+                  marginBottom: "5px", // Controlled bottom spacing
+                  fontWeight: "400",
+                  lineHeight: "1.5", // Slightly reduced line height
+                  textAlign: "justify",
+                  animation: "fadeInUp 1s ease-in-out 0.5s",
+                  opacity: "1",
+                  fontFamily: "sans-serif",
+                  maxWidth: "600px",
+                }}
+              >
+                At Kogenie, we leverage the power of generative AI, granular
+                data, and Automated A/B testing to deliver advertisements that
+                connect on a deep, instinctive level with your audience. Whether
+                you aim to drive action or influence emotions, we have the
+                expertise and tools to make it happen.
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    {/* Feature Section Four */}
-<div className="fancy-feature-four pt-50 lg-pt-30">
-  <div style={{ marginTop: "-50px" }} className="container"></div>
-</div>
+        </div></div>
 
-{/* CTA Section */}
-<div
-  className="full-width-container row justify-content-center align-items-center"
+      {/* Feature Section Four */}
+      <div
+  className="cta-container"
   style={{
-    width: "100%", // Full width of the page
-    marginTop: "40px",
-    padding: "30px 40px",
-    backgroundColor: "#F5F7FF",
-    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    maxWidth: "1100px",
+    margin: "30px auto", // Reduced top margin
+    padding: "40px 30px", // Adjusted padding for better spacing
     display: "flex",
-    justifyContent: "center",
-    marginLeft:"0px",
-    marginRight:"0px"
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: "20px", // Reduced gap to make it more compact
+    textAlign: "left",
+    position: "relative", // Needed for floating elements
   }}
 >
-  {/* Left Side: Text */}
+  {/* Left Side: Text Content & Button */}
   <div
-    className="col-auto text-center"
     style={{
-      fontSize: "20px",
-      fontWeight: "500",
-      color: "#333",
-      maxWidth: "750px", // Keeps text centered in large screens
-      textAlign: "center",
+      flex: "1",
+      minWidth: "320px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
     }}
   >
-    <p
+    <h2
       style={{
-        marginBottom: "10px",
-        fontSize: "22px",
+        fontSize: "clamp(22px, 2.8vw, 30px)", // Slightly reduced font size
+        fontWeight: "700",
         color: "#2C3E50",
-        fontWeight: "600",
+        marginBottom: "8px", // Reduced margin bottom
       }}
     >
-      Ready to generate Ads?
-    </p>
-    <p style={{ color: "#7F8C8D" }}>
-      Start now by following these simple steps to create impactful ads!
-    </p>
-  </div>
+      Boost Engagement with AI-Powered Ads!
+    </h2>
 
-  {/* Right Side: Button */}
-  <div className="col-auto">
+    <p
+  style={{
+    fontSize: "clamp(13px, 1.4vw, 17px)", // Adjusted font size for responsiveness
+    fontWeight: "400",
+    color: "#7F8C8D",
+    lineHeight: "1.5", // Adjusted line height for better spacing
+    maxWidth: "480px", // Slightly reduced max-width
+    opacity: "0.9",
+    marginBottom: "15px", // Added margin to separate text from button
+  }}
+>
+  Generate high-converting ads in seconds. Kogenie&apos;s AI-powered platform
+  helps you craft <strong>engaging, personalized</strong> ads that drive real results.
+</p>
+
+
+    {/* CTA Button */}
     <button
       style={{
-        padding: "18px 60px",
-        fontSize: "18px",
+        padding: "14px 45px", // Reduced padding for a better button size
+        fontSize: "17px",
         fontWeight: "600",
-        backgroundColor: "rgba(254, 213, 118, 1)",
-        color: "#000",
+        backgroundColor: "#4a5abb", // CTA color
+        color: "#fff",
         border: "none",
-        borderRadius: "10px",
-        boxShadow: "0 4px 8px rgba(84, 106, 236, 0.4)",
+        borderRadius: "6px",
+        boxShadow: "0 4px 10px rgba(74, 90, 187, 0.4)",
         cursor: "pointer",
         transition: "all 0.3s ease",
-        marginLeft: "20px",
-        marginTop: "10px",
       }}
       onMouseEnter={(e) => {
-        const button = e.currentTarget as HTMLButtonElement; // ✅ Corrected Here
-        button.style.backgroundColor = "#3C4E99";
-        button.style.boxShadow = "0 6px 12px rgba(60, 78, 153, 0.5)";
-        button.style.transform = "translateY(-2px)";
-        button.style.color = "#fff";
+        e.currentTarget.style.backgroundColor = "#3C4E99";
+        e.currentTarget.style.boxShadow = "0 6px 12px rgba(60, 78, 153, 0.5)";
+        e.currentTarget.style.transform = "translateY(-2px)";
       }}
       onMouseLeave={(e) => {
-        const button = e.currentTarget as HTMLButtonElement; // ✅ Corrected Here
-        button.style.backgroundColor = "rgba(254, 213, 118, 1)";
-        button.style.boxShadow = "0 4px 8px rgba(84, 106, 236, 0.4)";
-        button.style.transform = "translateY(0)";
-        button.style.color = "#000";
+        e.currentTarget.style.backgroundColor = "#4a5abb";
+        e.currentTarget.style.boxShadow = "0 4px 10px rgba(74, 90, 187, 0.4)";
+        e.currentTarget.style.transform = "translateY(0)";
       }}
     >
-      Generate Now
+      Generate Now 
     </button>
   </div>
+
+  {/* Right Side: Enlarged Illustration & Floating Elements */}
+  <div
+    style={{
+      flex: "1",
+      minWidth: "300px", // Increased min width for better scaling
+      display: "flex",
+      justifyContent: "center",
+      position: "relative",
+    }}
+  >
+    <div style={{ position: "relative", display: "inline-block" }}>
+      <img
+        src="/12291062_Wavy_Tech-20_Single-08.jpg" // Replace with your actual image
+        alt="AI Ads Illustration"
+        style={{
+          width: "100%",
+          maxWidth: "320px", // Increased image size
+        }}
+      />
+
+      {/* Floating Elements (Now attached to the enlarged illustration) */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-10px",
+          right: "-20px",
+          width: "60px",
+          height: "60px",
+          backgroundColor: "rgba(74, 90, 187, 0.2)",
+          borderRadius: "50%",
+        }}
+      ></div>
+      
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-10px",
+          left: "-20px",
+          width: "80px",
+          height: "80px",
+          backgroundColor: "rgba(133, 147, 227, 0.3)",
+          borderRadius: "50%",
+        }}
+      ></div>
+    </div>
+  </div>
 </div>
-
-<style>{`
-  .full-width-container {
-    width: 100vw;  // Makes the container span full width of viewport
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-  }
-
-  .title-style-three {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-
-  .main-title {
-    font-size: 36px;
-    font-weight: 600;
-    color: #2c3e50;
-    line-height: 1.5;
-    margin-bottom: 30px;
-  }
-
-  .main-title span {
-    color: #546aec;
-  }
-
-  /* Responsive for small devices */
-  @media (max-width: 768px) {
-    .main-title {
-      font-size: 30px;
-      line-height: 1.4;
-    }
-
-    .full-width-container {
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    .cta-text {
-      font-size: 16px;
-    }
-
-    .cta-button {
-      padding: 15px 50px;
-      font-size: 16px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .main-title {
-      font-size: 26px;
-      line-height: 1.3;
-    }
-
-    .full-width-container {
-      padding: 20px;
-    }
-
-    .cta-button {
-      padding: 12px 40px;
-      font-size: 14px;
-    }
-  }
-`}</style>
 
       {/* /.container */}
 
@@ -297,8 +260,15 @@ const SassProduct = () => {
         <div className="container">
           <div className="row align-items-center">
             {/* Right Side - Content until the button */}
-            <div style={{ marginTop: "-10px", textAlign: "justify" }} className="col-lg-6 order-md-last ms-auto">
-              <div style={{ marginTop: "-10px", textAlign: "justify" }} className="block-style-two pe-xxl-5 sm-mb-50" data-aos="fade-left">
+            <div
+              style={{ marginTop: "-10px", textAlign: "justify" }}
+              className="col-lg-6 order-md-last ms-auto"
+            >
+              <div
+                style={{ marginTop: "-10px", textAlign: "justify" }}
+                className="block-style-two pe-xxl-5 sm-mb-50"
+                data-aos="fade-left"
+              >
                 <div
                   style={{
                     marginLeft: "30px",
@@ -314,7 +284,7 @@ const SassProduct = () => {
                       color: "rgb(84, 106, 236)",
                       letterSpacing: "1px",
                       marginBottom: "10px",
-                      textAlign: "justify"
+                      textAlign: "justify",
                     }}
                   >
                     Personalization of granular data
@@ -326,7 +296,7 @@ const SassProduct = () => {
                       lineHeight: "1.5",
                       color: "#333",
                       marginBottom: "20px",
-                      textAlign: "justify"
+                      textAlign: "justify",
                     }}
                     className="max-w-md main-title fw-200"
                   >
@@ -345,7 +315,9 @@ const SassProduct = () => {
                     marginRight: "30px",
                   }}
                 >
-                  Our Generative AI and Granular Data works hand in hand to create personalized, high impact advertisement that drives research.
+                  Our Generative AI and Granular Data works hand in hand to
+                  create personalized, high impact advertisement that drives
+                  research.
                 </p>
                 {/* Move the button to the left side */}
 
@@ -368,14 +340,18 @@ const SassProduct = () => {
                     style={{ opacity: 0.8 }}
                   ></span>
                 </button>
-
-
               </div>
             </div>
 
             {/* Left Side - Content after the button */}
-            <div style={{ marginTop: "-20px" }} className="col-lg-6 order-md-first">
-              <div style={{ marginBottom: "60px" }} className="tags-wrapper position-relative stylish-container">
+            <div
+              style={{ marginTop: "-20px" }}
+              className="col-lg-6 order-md-first"
+            >
+              <div
+                style={{ marginBottom: "60px" }}
+                className="tags-wrapper position-relative stylish-container"
+              >
                 <div className="circle-decor"></div>
                 <div className="h3 number-highlight fw-bold">13+</div>
                 <p className="reason-title">
@@ -499,26 +475,30 @@ const SassProduct = () => {
   `}</style>
       </div>
 
-
-
       {/* 
         =============================================
         Feature Section Six
         ============================================== 
         */}
-      <div style={{ marginTop: "-180px" }} className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80">
+      <div
+        style={{ marginTop: "-180px" }}
+        className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80"
+      >
         <div className="container">
           <div className="row gx-xxl-5 align-items-center">
             {/* Left Section: Title and Call-to-Action */}
             <div className="col-lg-5 col-md-6 mt-40" data-aos="fade-up">
-              <div style={{ marginTop: "-100px" }} className="title-section mb-65 lg-mb-40">
+              <div
+                style={{ marginTop: "-100px" }}
+                className="title-section mb-65 lg-mb-40"
+              >
                 <h2 className="main-title">
                   <span className="highlight-text">Explore</span> <br />
                   Our <span className="underline-text">Exclusive Features</span>
                 </h2>
                 <p className="description">
-                  Unlock the full potential of your business with our innovative and
-                  tailored features designed to drive growth and success.
+                  Unlock the full potential of your business with our innovative
+                  and tailored features designed to drive growth and success.
                 </p>
               </div>
             </div>
@@ -531,95 +511,90 @@ const SassProduct = () => {
         </div>
 
         <style jsx>{`
-    .fancy-feature-six {
-      // background: linear-gradient(135deg, #ffffff 0%, #f3f5fd 100%);
-      padding: 60px 20px;
-      border-radius: 20px;
-      // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
+          .fancy-feature-six {
+            // background: linear-gradient(135deg, #ffffff 0%, #f3f5fd 100%);
+            padding: 60px 20px;
+            border-radius: 20px;
+            // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          }
 
-    .title-section {
-      max-width: 500px;
-    }
+          .title-section {
+            max-width: 500px;
+          }
 
-    .main-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.4;
-      color: #333;
-      margin-bottom: 20px;
-    }
+          .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #333;
+            margin-bottom: 20px;
+          }
 
-    .highlight-text {
-      color: #4a5abb;
-    }
+          .highlight-text {
+            color: #4a5abb;
+          }
 
-    .underline-text {
-      position: relative;
-      display: inline-block;
-    }
+          .underline-text {
+            position: relative;
+            display: inline-block;
+          }
 
-    .underline-text::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 8px;
-      background-color:#B5C0FF;
-      opacity: 0.5;
-      z-index: -1;
-    }
+          .underline-text::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 8px;
+            background-color: #b5c0ff;
+            opacity: 0.5;
+            z-index: -1;
+          }
 
-    .description {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 30px;
-      line-height: 1.7;
-    }
+          .description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.7;
+          }
 
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      background-color: #4a5abb;
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 12px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+          .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #4a5abb;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+          }
 
-    .cta-btn i {
-      margin-left: 10px;
-      font-size: 1.2rem;
-    }
+          .cta-btn i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+          }
 
-    .cta-btn:hover {
-      background: #3c4e99;
-      box-shadow: 0 8px 15px rgba(58, 70, 157, 0.2);
-    }
+          .cta-btn:hover {
+            background: #3c4e99;
+            box-shadow: 0 8px 15px rgba(58, 70, 157, 0.2);
+          }
 
-   
-  
+          @media (max-width: 768px) {
+            .main-title {
+              font-size: 2rem;
+            }
 
-    @media (max-width: 768px) {
-      .main-title {
-        font-size: 2rem;
-      }
+            .description {
+              font-size: 0.9rem;
+            }
 
-      .description {
-        font-size: 0.9rem;
-      }
-
-      .cta-btn {
-        font-size: 0.9rem;
-      }
-
-      
-    }
-  `}</style>
+            .cta-btn {
+              font-size: 0.9rem;
+            }
+          }
+        `}</style>
       </div>
       {/*
         =====================================================
@@ -642,8 +617,8 @@ const SassProduct = () => {
         className="fancy-short-banner-two mt-100 lg-mt-50"
         data-aos="fade-up"
       >
-        <div style={{ marginTop: "-100px", marginBottom: "40px" }}
-
+        <div
+          style={{ marginTop: "-100px", marginBottom: "40px" }}
           className="container"
         >
           <div
@@ -669,7 +644,6 @@ const SassProduct = () => {
                 <Link href="/contact" className="btn-six fw-500">
                   Contact Us
                 </Link>
-
               </div>
 
               <div className="row align-items-center">
@@ -685,7 +659,6 @@ const SassProduct = () => {
                   }}
                 >
                   Have Questions?
-
                   <h3
                     style={{
                       fontSize: "2.2rem",
@@ -726,24 +699,30 @@ const SassProduct = () => {
                   </div>
                   <ul style={{ textAlign: "justify" }} className="faq-list">
                     <li>
-                      <span className="faq-question">What services do you provide?</span>
+                      <span className="faq-question">
+                        What services do you provide?
+                      </span>
                       <p className="faq-answer">
-                        We specialize in branding, design, AI-powered solutions, and
-                        tailored plans to meet your business needs.
+                        We specialize in branding, design, AI-powered solutions,
+                        and tailored plans to meet your business needs.
                       </p>
                     </li>
                     <li>
-                      <span className="faq-question">Do you offer custom plans?</span>
+                      <span className="faq-question">
+                        Do you offer custom plans?
+                      </span>
                       <p className="faq-answer">
-                        Yes, our team can create personalized plans based on your
-                        requirements.
+                        Yes, our team can create personalized plans based on
+                        your requirements.
                       </p>
                     </li>
                     <li>
-                      <span className="faq-question">How can I get support?</span>
+                      <span className="faq-question">
+                        How can I get support?
+                      </span>
                       <p className="faq-answer">
-                        You can reach out via our Contact page or email us directly.
-                        We&apos;re here to help!
+                        You can reach out via our Contact page or email us
+                        directly. We&apos;re here to help!
                       </p>
                     </li>
                   </ul>
@@ -753,139 +732,138 @@ const SassProduct = () => {
           </div>
 
           <style jsx>{`
-    .bg-wrapper {
-      position: relative;
-      border-radius: 15px;
-      overflow: hidden;
-       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
+            .bg-wrapper {
+              position: relative;
+              border-radius: 15px;
+              overflow: hidden;
+              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
 
-    .shapes {
-      position: absolute;
-      z-index: 0;
-      opacity: 0.4;
-    }
+            .shapes {
+              position: absolute;
+              z-index: 0;
+              opacity: 0.4;
+            }
 
-    .shape-one {
-      top: -50px;
-      left: -50px;
-      width: 150px;
-      height: 150px;
-      background: rgba(84, 106, 236, 0.3);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-    }
+            .shape-one {
+              top: -50px;
+              left: -50px;
+              width: 150px;
+              height: 150px;
+              background: rgba(84, 106, 236, 0.3);
+              border-radius: 50%;
+              animation: float 6s ease-in-out infinite;
+            }
 
-    .shape-two {
-      bottom: -50px;
-      right: -50px;
-      width: 100px;
-      height: 100px;
-      background: rgba(134, 147, 227, 0.3);
-      border-radius: 50%;
-      animation: float 8s ease-in-out infinite;
-    }
+            .shape-two {
+              bottom: -50px;
+              right: -50px;
+              width: 100px;
+              height: 100px;
+              background: rgba(134, 147, 227, 0.3);
+              border-radius: 50%;
+              animation: float 8s ease-in-out infinite;
+            }
 
-    .shape-three {
-      top: 50%;
-      left: 50%;
-      width: 80px;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
+            .shape-three {
+              top: 50%;
+              left: 50%;
+              width: 80px;
+              height: 80px;
+              background: rgba(255, 255, 255, 0.5);
+              border-radius: 50%;
+              transform: translate(-50%, -50%);
+            }
 
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(20px);
-      }
-    }
+            @keyframes float {
+              0%,
+              100% {
+                transform: translateY(0);
+              }
+              50% {
+                transform: translateY(20px);
+              }
+            }
 
-    .btn-six {
-      display: inline-block;
-      padding: 14px 35px;
-      background: linear-gradient(135deg, #546aec, #8693e3);
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      border-radius: 25px;
-      box-shadow: 0 8px 20px rgba(84, 106, 236, 0.3);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+            .btn-six {
+              display: inline-block;
+              padding: 14px 35px;
+              background: linear-gradient(135deg, #546aec, #8693e3);
+              color: #fff;
+              font-weight: 600;
+              font-size: 1.1rem;
+              border-radius: 25px;
+              box-shadow: 0 8px 20px rgba(84, 106, 236, 0.3);
+              text-decoration: none;
+              transition: all 0.3s ease;
+            }
 
-    .btn-six:hover {
-      background: linear-gradient(135deg, #3c4e99, #4a5abb);
-      box-shadow: 0 10px 30px rgba(74, 90, 187, 0.5);
-      transform: translateY(-3px);
-    }
+            .btn-six:hover {
+              background: linear-gradient(135deg, #3c4e99, #4a5abb);
+              box-shadow: 0 10px 30px rgba(74, 90, 187, 0.5);
+              transform: translateY(-3px);
+            }
 
-    .faq-section {
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(247, 248, 254, 1);
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
+            .faq-section {
+              margin-top: 40px;
+              padding: 20px;
+              background: rgba(247, 248, 254, 1);
+              border-radius: 10px;
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
 
-    .faq-title {
-      font-weight: bold;
-      color: #333;
-    }
+            .faq-title {
+              font-weight: bold;
+              color: #333;
+            }
 
-    .faq-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+            .faq-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
 
-    .faq-list li {
-      margin-bottom: 20px;
-    }
+            .faq-list li {
+              margin-bottom: 20px;
+            }
 
-    .faq-question {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color:rgb(154, 161, 214);
-      margin-bottom: 5px;
-    }
+            .faq-question {
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: rgb(154, 161, 214);
+              margin-bottom: 5px;
+            }
 
-    .faq-answer {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.6;
-    }
+            .faq-answer {
+              font-size: 0.95rem;
+              color: #555;
+              line-height: 1.6;
+            }
 
-    @media (max-width: 768px) {
-      .bg-wrapper {
-        padding: 30px 20px;
-      }
+            @media (max-width: 768px) {
+              .bg-wrapper {
+                padding: 30px 20px;
+              }
 
-      h3 {
-        font-size: 1.8rem;
-      }
+              h3 {
+                font-size: 1.8rem;
+              }
 
-      .btn-six {
-        padding: 12px 25px;
-        font-size: 0.95rem;
-      }
+              .btn-six {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+              }
 
-      .faq-question {
-        font-size: 1rem;
-      }
+              .faq-question {
+                font-size: 1rem;
+              }
 
-      .faq-answer {
-        font-size: 0.85rem;
-      }
-    }
-  `}</style>
+              .faq-answer {
+                font-size: 0.85rem;
+              }
+            }
+          `}</style>
         </div>
-
 
         {/*
         =====================================================
@@ -895,7 +873,10 @@ const SassProduct = () => {
 
         {/* Footer */}
         <div className="footer-style-two theme-basic-footer">
-          <div style={{ backgroundColor: "rgba(181, 192, 255, 0.1)" }} className="top-footer position-relative">
+          <div
+            style={{ backgroundColor: "rgba(181, 192, 255, 0.1)" }}
+            className="top-footer position-relative"
+          >
             <div className="container">
               <div className="inner-wrapper m-auto">
                 <div className="row">
@@ -926,12 +907,8 @@ const SassProduct = () => {
         </div>
         {/* /.footer-style-two */}
       </div>
-
     </>
-  )
-}
-
-
-
+  );
+};
 
 export default SassProduct;
