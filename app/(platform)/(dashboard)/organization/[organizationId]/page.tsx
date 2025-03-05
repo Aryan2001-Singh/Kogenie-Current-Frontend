@@ -37,44 +37,51 @@ const OrganizationIdPage = () => {
     return url.startsWith("http://") || url.startsWith("https://");
   };
 
-const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setError("");
-  setLoading(true); // ✅ Start the loader when button is clicked
-
-  if (!isUrlValid(url)) {
-    setError("Please enter a valid URL.");
-    setLoading(false);
-    return;
-  }
-
-  try {
-    const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url, gender, ageGroup }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      console.log("✅ API Response:", data);
-
-      setAdData(data);
-
-      setTimeout(() => {
-        router.push(`/organization/${organizationId}/createAd`);
-      }, 500); // ✅ Small delay to ensure Zustand updates state
-    } else {
-      throw new Error(data.error || "Failed to generate ad");
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true); // ✅ Start the loader when button is clicked
+  
+    if (!isUrlValid(url)) {
+      setError("Please enter a valid URL.");
+      setLoading(false);
+      return;
     }
-  } catch (err) {
-    console.error("An error occurred while generating the ad:", err);
-    setError("An error occurred while generating the ad.");
-  } finally {
-    setLoading(false); // ✅ Stop the loader when API call is finished
-  }
-};
+  
+    // ✅ Log before making the API request
+    console.log("📤 Sending request to backend with:", {
+      url,
+      gender,
+      ageGroup,
+    });
+  
+    try {
+      const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, gender, ageGroup }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log("✅ API Response:", data);
+  
+        setAdData(data);
+  
+        setTimeout(() => {
+          router.push(`/organization/${organizationId}/createAd`);
+        }, 500); // ✅ Small delay to ensure Zustand updates state
+      } else {
+        throw new Error(data.error || "Failed to generate ad");
+      }
+    } catch (err) {
+      console.error("❌ An error occurred while generating the ad:", err);
+      setError("An error occurred while generating the ad.");
+    } finally {
+      setLoading(false); // ✅ Stop the loader when API call is finished
+    }
+  };
   return (
     <div
       className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden"
