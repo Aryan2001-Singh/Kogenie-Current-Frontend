@@ -1,6 +1,6 @@
 module.exports = {
-  siteUrl: 'https://www.kogenie.com/', // Replace with your actual site URL
-  generateRobotsTxt: true, // Generates robots.txt
+  siteUrl: 'https://www.kogenie.com/', // Your actual site URL
+  generateRobotsTxt: false, // Generates robots.txt
   sitemapSize: 5000, // Optional: Split sitemap if there are many URLs
 
   // ✅ Exclude admin-related URLs from the sitemap
@@ -18,5 +18,7 @@ module.exports = {
     additionalSitemaps: [
       'https://www.kogenie.com/sitemap.xml', // Ensures proper sitemap linking
     ],
+    // 🔴 Disable the 'Host:' directive so it doesn't appear again
+    host: null,
   },
 };

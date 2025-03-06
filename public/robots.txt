@@ -7,8 +7,5 @@ User-agent: *
 Disallow: /admin
 Disallow: /admin/*
 
-# Host
-Host: https://www.kogenie.com/
-
 # Sitemaps
 Sitemap: https://www.kogenie.com/sitemap.xml
