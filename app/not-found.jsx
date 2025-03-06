@@ -47,7 +47,7 @@ const NotFoundPage = () => {
               "@type": "WebPage",
               name: "404 - Page Not Found",
               description:
-                "Oops! The page you’re looking for doesn’t exist. Redirecting you to the homepage.",
+                "Oops! The page you are looking for does not exist. Redirecting you to the homepage.",
               url: "https://www.kogenie.com/404",
             }),
           }}
@@ -60,10 +60,10 @@ const NotFoundPage = () => {
           <div className="row">
             <div className="col-xxl-6 col-lg-7 m-auto">
               <h3 className="text-3xl font-semibold text-gray-800">
-                Oops! You’re in the wrong place.
+                Oops! You are in the wrong place.
               </h3>
               <p className="text-gray-600 mt-4">
-                The page you’re looking for doesn’t exist. We’ll redirect you
+                The page you are looking for does not exist. We will redirect you
                 to the homepage in a few seconds.
               </p>
               <Link href="/" className="btn-primary mt-6 inline-block">
