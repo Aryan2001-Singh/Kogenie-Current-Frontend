@@ -18,8 +18,8 @@ const BlockContact5 = () => {
     {
       icon: "/images/icon/icon_180.svg",
       title: "Mail Us",
-      content: "Mail Services",
-      link: "kogenie.marketing@kogenie.com",
+      content: "Mail Services, kogenie.marketing@kogenie.com",
+      link: "",
       delay: "300",
     },
   ];

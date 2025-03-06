@@ -1,25 +1,32 @@
 const TagList = () => {
   const tags = [
-    { color: "rgba(255, 130, 130, 0.13)", text: "Great Interface" },
-    { color: "rgba(73, 230, 213, 0.13)", text: "Experienced" },
-    { color: "rgba(73, 179, 230, 0.13)", text: "Low Price" },
-    { color: "rgba(251, 208, 80, 0.15)", text: "Customizable" },
-    { color: "rgba(213, 126, 255, 0.15)", text: "Trusted" },
-    { color: "rgba(189, 231, 122, 0.15)", text: "Great Support" },
-    { color: "rgba(255, 152, 152, 0.15)", text: "Safe" },
+    { color: "rgb(249, 189, 233)", text: "Great Interface" },
+    { color: "rgba(173, 241, 234, 0.99)", text: "Experienced" },
+    { color: "rgb(162, 212, 235)", text: "Low Price" },
+    { color: "rgba(246, 228, 177, 0.8)", text: "Customizable" },
+    { color: "rgba(225, 183, 246, 0.94)", text: "Trusted" },
+    { color: "rgb(219, 241, 183)", text: "Great Support" },
+    { color: "rgb(249, 185, 185)", text: "Safe" },
   ];
 
   return (
-    <div className="tag-list-container">
-      <ul style={{marginBottom:"50px"}}className="tag-list">
+    <div style={{borderRadius:"0px",}}className="tag-list-container">
+      <ul style={{marginBottom:"50px",
+      }}className="tag-list">
         {tags.map((tag, index) => (
           <li key={index} className="tag-item">
-            <a href="#" className="tag-link" style={{ backgroundColor: tag.color }}>
+            <a href="#" className="tag-link" style={{ backgroundColor: tag.color,
+              borderRadius:"0px", fontFamily:"Inter, sans-serif",
+             }}>
               {tag.text}
             </a>
           </li>
         ))}
-        <li style={{color:"white"}}className="tag-item more-tag">&amp; more…</li>
+        <li style={{color:"grey",
+          marginTop:"30px",
+          fontFamily:"Inter, sans-serif",
+          fontWeight:"regular",
+        }}className="tag-item more-tag">&amp; more…</li>
       </ul>
       <style jsx>{`
         .tag-list-container {
@@ -44,7 +51,6 @@ const TagList = () => {
           align-items: center;
           justify-content: center;
           padding: 8px 15px;
-          border-radius: 20px;
           background-color: #f0f0f0;
           color: #333;
           font-size: 14px;

@@ -12,7 +12,7 @@ const Hero = () => {
 
   useEffect(() => {
     AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
-    document.documentElement.style.setProperty("--text-color", "black"); // Ensure default text color
+    document.documentElement.style.setProperty("--text-color", "black"); 
   }, []);
 
   return (
@@ -44,9 +44,10 @@ const Hero = () => {
                 <span
                   className={styles["highlight-text"]}
                   style={{
-                    background: "linear-gradient(90deg, #4a5abb, #8693e3)",
+                    background: "linear-gradient(90deg, #4a5abb, #8693e3)", 
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
+                    display: "inline-block", 
                   }}
                 >
                   Create ads
@@ -90,7 +91,7 @@ const Hero = () => {
                     <i className="fas fa-play" />
                   </div>
                   <div className={styles["text-container"]}>
-                    <p style={{ fontSize: "clamp(16px, 2vw, 20px)",}}>Watch Intro video</p>
+                    <p style={{ fontSize: "clamp(16px, 2vw, 18px)",}}>Watch Intro video</p>
                   </div>
                 </div>
               </div>

@@ -75,7 +75,7 @@
 
 /* CTA Button */
 .cta-btn {
-    background-color: #642ef8;
+    background-color: #4a5abb;
     color: white;
     padding: 15px 40px;
     text-decoration: none;
@@ -103,19 +103,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: whitesmoke;
-    border-radius: 30px;
-    padding: 10px 20px;
-    /* transition: all 0.3s ease; */
-    cursor: pointer;
-    
-    /* animation: fadeInUp 1s ease-in-out 1.5s; */
+    background: transparent !important; 
+    border-radius: 0; 
+    padding: 0; 
+    box-shadow: none !important; 
+    border: none; 
     flex-direction: row;
 }
 
+
 .video-btn:hover {
-    background-color: rgba(201, 203, 241, 0.849);
-    color: white;
+    color: #4a5abb !important; /* Changes text color on hover */
 }
 
 .play-icon {

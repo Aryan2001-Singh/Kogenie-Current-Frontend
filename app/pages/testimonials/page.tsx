@@ -1,5 +1,4 @@
 
-import DefaultFooter from "@/components/footer/DefaultFooter";
 import Testimonial from "@/components/home-page/home-3/Testimonial";
 import Testimonial2 from "@/components/home-page/home-5/Testimonial";
 import Testimonial3 from "@/components/home-page/home-6/Testimonial";
@@ -217,7 +216,6 @@ const Testimonials = () => {
       </div>
 
       {/* Contact Section One */}
-      <DefaultFooter />
     </>
   );
 };

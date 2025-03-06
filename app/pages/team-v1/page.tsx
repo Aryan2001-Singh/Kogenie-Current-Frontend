@@ -1,5 +1,4 @@
 
-import DefaultFooter from "@/components/footer/DefaultFooter";
 import Team1 from "@/components/team/Team1";
 import CallToAction from "@/components/team/CallToAction";
 import Image from "next/image";
@@ -78,7 +77,6 @@ const TeamV1 = () => {
         Contact Section One
         ============================================== 
         */}
-      <DefaultFooter />
     </>
   );
 };

@@ -61,195 +61,63 @@ const SassProduct = () => {
             </div>
             
             {/* Left Content Section (Now moved to right side) */}
-            <div
-              className="col-lg-6 col-md-6"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "justify",
-              }}
-            >
-              <div
-                style={{ textAlign: "justify" }}
-                className="title-style-three"
-              >
-                <div
-                  className="sc-title text-uppercase"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    color: "rgb(84, 106, 236)",
-                  }}
-                >
-                  Integrates your tools
-                </div>
-                <h2
-                  style={{
-                    fontSize: "36px",
-                    fontWeight: "400",
-                    lineHeight: "1.4", // Reduced line height for closer spacing
-                    color: "rgba(0, 0, 0, 0.78)",
-                    marginBottom: "5px", // Reduced margin-bottom to minimize gap
-                  }}
-                  className="max-w-xl main-title fw-200"
-                >
-                  Kogenie leads in hyper-targeted influence
-                </h2>
-              </div>
-              <p
-                className="text-lg mt-10 mb-40 lg-mb-30" // Reduced top margin
-                style={{
-                  fontSize: "clamp(14px, 2vw, 20px)",
-                  color: "rgba(0, 0, 0, 0.459)",
-                  marginTop: "10px", // Slight negative margin to pull closer
-                  marginBottom: "5px", // Controlled bottom spacing
-                  fontWeight: "400",
-                  lineHeight: "1.5", // Slightly reduced line height
-                  textAlign: "justify",
-                  animation: "fadeInUp 1s ease-in-out 0.5s",
-                  opacity: "1",
-                  fontFamily: "sans-serif",
-                  maxWidth: "600px",
-                }}
-              >
-                At Kogenie, we leverage the power of generative AI, granular
-                data, and Automated A/B testing to deliver advertisements that
-                connect on a deep, instinctive level with your audience. Whether
-                you aim to drive action or influence emotions, we have the
-                expertise and tools to make it happen.
-              </p>
-            </div>
-          </div>
-        </div></div>
+            <div className="col-lg-6 col-md-6 flex flex-col text-justify font-inter">
+  <div className="title-style-three">
+    {/* Section Title */}
+    <div style={{color:"#546aec"}}className="sc-title text-uppercase text-[14px] font-semibold text-[#546aec]">
+      Integrates your tools
+    </div>
+
+    {/* Heading with adjusted spacing */}
+    <h2 className="text-[clamp(28px,2vw,36px)] font-light leading-[1.4] text-gray-800 mb-4 max-w-xl">
+      Kogenie leads in hyper-targeted influence
+    </h2>
+  </div>
+
+  {/* Description with gray text and adjusted spacing */}
+  <p className="text-[clamp(14px,2vw,16px)] text-gray-600 font-normal leading-[1.5] max-w-[600px] mt-2 mb-4 text-justify animate-fadeInUp">
+    At Kogenie, we leverage the power of generative AI, granular data, and Automated A/B testing
+    to deliver advertisements that connect on a deep, instinctive level with your audience.
+    Whether you aim to drive action or influence emotions, we have the expertise and tools to make it happen.
+  </p>
+</div>
+</div></div></div>
 
       {/* Feature Section Four */}
-      <div
-  className="cta-container"
-  style={{
-    width: "100%",
-    maxWidth: "1100px",
-    margin: "30px auto", // Reduced top margin
-    padding: "40px 30px", // Adjusted padding for better spacing
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
-    gap: "20px", // Reduced gap to make it more compact
-    textAlign: "left",
-    position: "relative", // Needed for floating elements
-  }}
->
+      <div className="w-full max-w-[1100px] mx-auto my-6 p-10 flex flex-wrap items-center justify-between gap-5 text-left relative bg-[#DFE1ED] font-inter">
+  {/* Floating Elements */}
+  <div className="absolute top-[-20px] left-[20px] w-[80px] h-[80px] bg-[rgba(74,90,187,0.2)] rounded-full"></div>
+  <div className="absolute bottom-[-20px] right-[20px] w-[60px] h-[60px] bg-[rgba(189,195,234,0.34)] rounded-full"></div>
+
   {/* Left Side: Text Content & Button */}
-  <div
-    style={{
-      flex: "1",
-      minWidth: "320px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-    }}
-  >
-    <h2
-      style={{
-        fontSize: "clamp(22px, 2.8vw, 30px)", // Slightly reduced font size
-        fontWeight: "700",
-        color: "#2C3E50",
-        marginBottom: "8px", // Reduced margin bottom
-      }}
-    >
+  <div className="flex-1 min-w-[320px] flex flex-col items-start">
+    <h2 className="text-[clamp(22px,2.8vw,30px)] font-bold text-gray-800 mb-3">
       Boost Engagement with AI-Powered Ads!
     </h2>
 
-    <p
-  style={{
-    fontSize: "clamp(13px, 1.4vw, 17px)", // Adjusted font size for responsiveness
-    fontWeight: "400",
-    color: "#7F8C8D",
-    lineHeight: "1.5", // Adjusted line height for better spacing
-    maxWidth: "480px", // Slightly reduced max-width
-    opacity: "0.9",
-    marginBottom: "15px", // Added margin to separate text from button
-  }}
->
-  Generate high-converting ads in seconds. Kogenie&apos;s AI-powered platform
-  helps you craft <strong>engaging, personalized</strong> ads that drive real results.
-</p>
-
+    <p className="text-[clamp(14px,1.4vw,17px)] text-gray-700 font-normal leading-[1.5] max-w-[480px] opacity-90 mb-5 text-justify">
+      Generate high-converting ads in seconds. Kogenie&apos;s AI-powered platform helps you craft
+      <strong className="text-[#4a5abb]"> engaging, personalized</strong> ads that drive real results.
+    </p>
 
     {/* CTA Button */}
-    <button
-      style={{
-        padding: "14px 45px", // Reduced padding for a better button size
-        fontSize: "17px",
-        fontWeight: "600",
-        backgroundColor: "#4a5abb", // CTA color
-        color: "#fff",
-        border: "none",
-        borderRadius: "6px",
-        boxShadow: "0 4px 10px rgba(74, 90, 187, 0.4)",
-        cursor: "pointer",
-        transition: "all 0.3s ease",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = "#3C4E99";
-        e.currentTarget.style.boxShadow = "0 6px 12px rgba(60, 78, 153, 0.5)";
-        e.currentTarget.style.transform = "translateY(-2px)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = "#4a5abb";
-        e.currentTarget.style.boxShadow = "0 4px 10px rgba(74, 90, 187, 0.4)";
-        e.currentTarget.style.transform = "translateY(0)";
-      }}
-    >
-      Generate Now 
-    </button>
+    <Link href="/sign-up">
+      <button
+        className="relative px-8 py-3 text-[17px] font-semibold text-white transition-all duration-300 bg-[#4a5abb] shadow-lg hover:bg-[#3C4E99] hover:shadow-xl hover:translate-y-[-2px] active:scale-95"
+      >
+        Join Now - It’s Free!
+        <span className="absolute right-3 top-3 h-3 w-3 bg-white rounded-full animate-ping opacity-80"></span>
+      </button>
+    </Link>
   </div>
 
-  {/* Right Side: Enlarged Illustration & Floating Elements */}
-  <div
-    style={{
-      flex: "1",
-      minWidth: "300px", // Increased min width for better scaling
-      display: "flex",
-      justifyContent: "center",
-      position: "relative",
-    }}
-  >
-    <div style={{ position: "relative", display: "inline-block" }}>
-      <img
-        src="/12291062_Wavy_Tech-20_Single-08.jpg" // Replace with your actual image
-        alt="AI Ads Illustration"
-        style={{
-          width: "100%",
-          maxWidth: "320px", // Increased image size
-        }}
-      />
-
-      {/* Floating Elements (Now attached to the enlarged illustration) */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-10px",
-          right: "-20px",
-          width: "60px",
-          height: "60px",
-          backgroundColor: "rgba(74, 90, 187, 0.2)",
-          borderRadius: "50%",
-        }}
-      ></div>
-      
-      <div
-        style={{
-          position: "absolute",
-          bottom: "-10px",
-          left: "-20px",
-          width: "80px",
-          height: "80px",
-          backgroundColor: "rgba(133, 147, 227, 0.3)",
-          borderRadius: "50%",
-        }}
-      ></div>
-    </div>
+  {/* Right Side: Enlarged Illustration */}
+  <div className="flex-1 min-w-[300px] sm:min-w-[400px] lg:min-w-[500px] flex justify-center relative">
+    <img
+      src="/12291062_Wavy_Tech-20_Single-08.jpg"
+      alt="AI Ads Illustration"
+      className="w-full max-w-[350px]"
+    />
   </div>
 </div>
 
@@ -261,87 +129,53 @@ const SassProduct = () => {
           <div className="row align-items-center">
             {/* Right Side - Content until the button */}
             <div
-              style={{ marginTop: "-10px", textAlign: "justify" }}
-              className="col-lg-6 order-md-last ms-auto"
-            >
-              <div
-                style={{ marginTop: "-10px", textAlign: "justify" }}
-                className="block-style-two pe-xxl-5 sm-mb-50"
-                data-aos="fade-left"
-              >
-                <div
-                  style={{
-                    marginLeft: "30px",
-                    marginRight: "30px",
-                  }}
-                  className="title-style-three"
-                >
-                  <div
-                    className="sc-title text-uppercase"
-                    style={{
-                      fontSize: "14px",
-                      fontWeight: "600",
-                      color: "rgb(84, 106, 236)",
-                      letterSpacing: "1px",
-                      marginBottom: "10px",
-                      textAlign: "justify",
-                    }}
-                  >
-                    Personalization of granular data
-                  </div>
-                  <h2
-                    style={{
-                      fontSize: "36px",
-                      fontWeight: "400",
-                      lineHeight: "1.5",
-                      color: "#333",
-                      marginBottom: "20px",
-                      textAlign: "justify",
-                    }}
-                    className="max-w-md main-title fw-200"
-                  >
-                    The power of Generative AI
-                  </h2>
-                </div>
-                <p
-                  className="text-lg mt-15 mb-60 lg-mb-40"
-                  style={{
-                    fontSize: "16px",
-                    color: "gray",
-                    lineHeight: "1.7",
-                    marginBottom: "30px",
-                    textAlign: "justify",
-                    marginLeft: "30px",
-                    marginRight: "30px",
-                  }}
-                >
-                  Our Generative AI and Granular Data works hand in hand to
-                  create personalized, high impact advertisement that drives
-                  research.
-                </p>
-                {/* Move the button to the left side */}
+  className="col-lg-6 order-md-last ms-auto flex flex-col gap-y-6 lg:text-left sm:text-center"
+>
+  <div className="block-style-two pe-xxl-5 sm-mb-50" data-aos="fade-left">
+    {/* Section Title */}
+    <div className="title-style-three px-6 sm:px-4">
+      <div
+        className="sc-title text-uppercase text-sm font-semibold tracking-wide text-[#546AEC] mb-2"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
+        Personalization of Granular Data
+      </div>
+      <h2
+        className="text-3xl md:text-4xl font-light leading-snug text-gray-900 mb-4"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
+        The power of Generative AI
+      </h2>
+    </div>
 
-                <button
-                  className="relative px-10 py-4 text-lg font-semibold text-white rounded-full transition-all duration-300
-               bg-gradient-to-r from-[#4a5abb] to-[#8693e3] shadow-lg hover:from-[#3d4e9f] hover:to-[#6b79d1] 
-               hover:shadow-2xl hover:scale-105 transform focus:outline-none focus:ring-4 
-               focus:ring-[#4a5abb]/50"
-                  style={{
-                    letterSpacing: "0.5px",
-                    boxShadow: "0 8px 15px rgba(74, 90, 187, 0.3)",
-                    textAlign: "center",
-                    marginLeft: "30px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  🚀 Join Now - It’s Free!
-                  <span
-                    className="absolute right-3 top-3 h-3 w-3 bg-white rounded-full animate-ping"
-                    style={{ opacity: 0.8 }}
-                  ></span>
-                </button>
-              </div>
-            </div>
+    {/* Description */}
+    <p
+      className="text-base text-gray-600 leading-relaxed px-6 sm:px-4 mb-4"
+      style={{ fontFamily: "Inter, sans-serif" }}
+    >
+      Our Generative AI and Granular Data work hand in hand to create personalized, 
+      high-impact advertisements that drive research.
+    </p>
+
+    {/* Button */}
+    <div className="px-6 sm:px-4">
+      <button
+        className="relative px-8 py-3 text-base font-medium text-white transition-all duration-300 
+        bg-gradient-to-r from-[#4a5abb] to-[#8693e3] shadow-lg hover:from-[#3d4e9f] hover:to-[#6b79d1] 
+        hover:shadow-2xl hover:scale-105 transform focus:outline-none focus:ring-4 
+        focus:ring-[#4a5abb]/50"
+        style={{
+          letterSpacing: "0.5px",
+          fontFamily: "Inter, sans-serif",
+          boxShadow: "0 6px 12px rgba(74, 90, 187, 0.3)",
+        }}
+      >
+        Learn More
+      </button>
+    </div>
+  </div>
+</div>
+
 
             {/* Left Side - Content after the button */}
             <div
@@ -349,13 +183,15 @@ const SassProduct = () => {
               className="col-lg-6 order-md-first"
             >
               <div
-                style={{ marginBottom: "60px" }}
+                style={{ marginBottom: "60px",
+                borderRadius:"0px"
+                 }}
                 className="tags-wrapper position-relative stylish-container"
               >
                 <div className="circle-decor"></div>
-                <div className="h3 number-highlight fw-bold">13+</div>
-                <p className="reason-title">
-                  Reason to <span className="highlight-text">choose us</span>
+                <div style={{color:"black"}}className="h3 number-highlight fw-bold">13+</div>
+                <p  style={{color:"gray",fontFamily:"inter, sans-serif"}}className="reason-title">
+                  Reasons to <span className="highlight-text" style={{color:"#546aec"}}>Choose Us</span>
                 </p>
                 <TagList />
               </div>
@@ -365,18 +201,16 @@ const SassProduct = () => {
 
         <style jsx>{`
     .fancy-feature-five {
-      padding: 50px 20px;  /* Reduced padding from the top */
+      padding: 50px 20px;  
     }
 
     .stylish-container {
-    background: "linear-gradient(to right,, #8A2BE2, #ffffff #4B0082)",
-      border-radius: 15px;
-      padding: 30px 25px;
+    
+      padding: 20px 25px;
       position: relative;
-      color: white;
       overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color:white;
     }
 
     .stylish-container:hover {
@@ -390,7 +224,7 @@ const SassProduct = () => {
       left: -50px;
       width: 150px;
       height: 150px;
-      background: rgba(255, 255, 255, 0.2);
+      background:rgba(216, 219, 230, 0.39);
       border-radius: 50%;
       z-index: 1;
     }
@@ -872,17 +706,13 @@ const SassProduct = () => {
         */}
 
         {/* Footer */}
-        <div className="footer-style-two theme-basic-footer">
-          <div
-            style={{ backgroundColor: "rgba(181, 192, 255, 0.1)" }}
-            className="top-footer position-relative"
-          >
+        <div style={{backgroundColor:"linear-gradient(135deg, rgba(0, 1, 7, 0.9), rgba(146, 135, 230, 0.9))"}}className="footer-style-two theme-basic-footer">
             <div className="container">
               <div className="inner-wrapper m-auto">
                 <div className="row">
                   <FooterMenu />
                 </div>
-              </div>
+              
               {/* /.inner-wrapper */}
             </div>
             <div className="" />

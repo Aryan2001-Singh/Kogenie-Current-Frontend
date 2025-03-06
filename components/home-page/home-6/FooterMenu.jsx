@@ -10,13 +10,10 @@ const footerData = [
     className: "col-lg-3 col-md-4 col-sm-6 mb-4",
     links: [
       { label: "Home", href: "/" },
-      { label: "Pricing", href: "/pages/pricing-v2" },
+      // { label: "Pricing", href: "/pages/pricing-v2" },
       { label: "About us", href: "/pages/about-us" },
       { label: "Features", href: "/pages/OurService" },
-      { label: "Blog", href: "/blog" },
-      { label: "About Us", href: "/pages/about-us" },
-      { label: "Features", href: "/pages/OurService" },
-      { label: "Blog", href: "/blog" }, // ✅ Ensure this stays
+      { label: "Blog", href: "/blogs" },
     ],
   },
   {
@@ -70,18 +67,18 @@ const FooterLinks = () => {
 
           {/* Social Media Icons */}
           <div className="col-lg-3 col-md-6 footer-social">
-  <h5 className="footer-title">Follow Us</h5>
+  <h5 className="footer-title">Join Our Community</h5>
   <div className="social-icons">
-    <a href="#" className="social-icon facebook">
+    <a href="https://www.facebook.com/kogenie.in/about/" className="social-icon facebook">
       <i className="fab fa-facebook-f"></i>
     </a>
-    <a href="#" className="social-icon twitter">
+    <a href="https://x.com/kogenie__26" className="social-icon twitter">
       <i className="fab fa-twitter"></i>
     </a>
-    <a href="#" className="social-icon instagram">
+    <a href="https://www.instagram.com/kogenie_official?igsh=MTg4dDEzdnJ0cjE2ag==" className="social-icon instagram">
       <i className="fab fa-instagram"></i>
     </a>
-    <a href="#" className="social-icon linkedin">
+    <a href="https://www.linkedin.com/company/kogenie/" className="social-icon linkedin">
       <i className="fab fa-linkedin-in"></i>
     </a>
   </div>
@@ -90,16 +87,16 @@ const FooterLinks = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="footer-bottom">
+        {/* <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Kogenie. All rights reserved.</p>
-        </div>
+        </div> */}
       </div>
 
       {/* Styles */}
       <style jsx>{`
         .footer-container {
-          background: linear-gradient(135deg, rgba(0, 1, 7, 0.9), rgba(146, 135, 230, 0.9));
-          color: #fff;
+          background: whitesmoke;
+          color: black;
           padding: 50px 0 20px;
           font-family: "Inter", sans-serif;
           backdrop-filter: blur(10px);
@@ -108,7 +105,7 @@ const FooterLinks = () => {
         .footer-title {
           font-size: 18px;
           font-weight: 600;
-          color: #fff;
+          color:black;
           margin-bottom: 15px;
         }
 
@@ -123,29 +120,36 @@ const FooterLinks = () => {
         }
 
         .footer-link {
-          color: rgba(255, 255, 255, 0.8);
+          color: black;
           text-decoration: none;
           font-size: 16px;
           transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-          color:rgb(255, 251, 0);
+          color:#546aec;
         }
 
-        .footer-email,
+        .footer-email{
+          display: inline-block;
+          margin-top: 15px;
+          font-size: 16px;
+          color:#546aec ;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
         .footer-phone {
           display: inline-block;
           margin-top: 15px;
           font-size: 16px;
-          color: rgba(255, 255, 255, 0.8);
+          color: black;
           text-decoration: none;
           transition: color 0.3s ease;
         }
 
         .footer-email:hover,
         .footer-phone:hover {
-          color: #ffe600;
+          color: red ;
         }
 
         .footer-social {
@@ -170,7 +174,7 @@ const FooterLinks = () => {
   }
 
   .social-icon i {
-    color: rgba(255, 255, 255, 0.8);
+    color: black;
     font-size: 18px;
     transition: color 0.3s ease;
   }
