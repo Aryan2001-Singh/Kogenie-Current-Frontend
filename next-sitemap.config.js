@@ -1,24 +1,25 @@
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.kogenie.com/', // Your actual site URL
-  generateRobotsTxt: false, // Generates robots.txt
-  sitemapSize: 5000, // Optional: Split sitemap if there are many URLs
+  siteUrl: "https://www.kogenie.com", // ✅ Your actual site URL (removed extra `/`)
+  generateRobotsTxt: false, // ✅ Generates robots.txt file
+  sitemapSize: 5000, // ✅ Prevents splitting unless necessary
 
-  // ✅ Exclude admin-related URLs from the sitemap
+  // ✅ Exclude specific admin and error pages from indexing
   exclude: [
-    '/admin',
-    '/admin/*', // Excludes all subpages inside /admin
+    "/admin",
+    "/admin/*", // Excludes all subpages inside /admin
+    "/404",
+    "/500",
   ],
 
-  // ✅ Custom robots.txt rules
+  // ✅ Configure robots.txt rules correctly
   robotsTxtOptions: {
     policies: [
-      { userAgent: '*', allow: '/' },
-      { userAgent: '*', disallow: ['/admin', '/admin/*'] }, // Blocks admin pages from search engines
+      { userAgent: "*", allow: "/" }, // ✅ Allow all pages
+      { userAgent: "*", disallow: ["/admin", "/admin/*", "/404", "/500"] }, // ✅ Block admin & error pages
     ],
     additionalSitemaps: [
-      'https://www.kogenie.com/sitemap.xml', // Ensures proper sitemap linking
+      "https://www.kogenie.com/sitemap.xml", // ✅ Single correct sitemap
     ],
-    // 🔴 Disable the 'Host:' directive so it doesn't appear again
-    host: null,
   },
 };
