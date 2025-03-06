@@ -2,8 +2,10 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://www.kogenie.com/
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /admin/*
 
 # Sitemaps
 Sitemap: https://www.kogenie.com/sitemap.xml

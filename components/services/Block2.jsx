@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import React from "react";
 
 const cardData = [
@@ -65,15 +65,15 @@ const Block2 = () => {
               />
             </div>
             <h5 className="fw-500 mt-35 mb-25">
-              <Link
+              {/* <Link
                 href="/pages/service-details"
                 className="tran3s tx-dark"
               >
                 {card.title}
-              </Link>
+              </Link> */}
             </h5>
             <p className="mb-25">{card.description}</p>
-            <Link href="/pages/service-details">
+            {/* <Link href="/pages/service-details">
               <Image
                 width={41}
                 height={14}
@@ -81,7 +81,7 @@ const Block2 = () => {
                 alt="icon"
                 className="lazy-img"
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
       ))}

@@ -5,6 +5,7 @@ import Map2 from "@/components/contact/Map";
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
+import Head from "next/head";
 
 const ContactV4 = () => {
   return (
@@ -14,6 +15,76 @@ const ContactV4 = () => {
       Theme Default Menu
       ============================================== 	
       --> */}
+
+      {/* ✅ Add SEO Meta Tags & Structured Data */}
+      <Head>
+        <title>Contact Us - Kogenie AI</title>
+        <meta
+          name="description"
+          content="Have questions about AI advertising? Get in touch with Kogenie AI for expert insights, support, and inquiries about personalized ad solutions."
+        />
+        <meta
+          name="keywords"
+          content="contact Kogenie, AI ads, AI marketing, digital advertising, AI support"
+        />
+        <meta name="author" content="Kogenie AI" />
+
+        {/* ✅ Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) */}
+        <meta property="og:title" content="Contact Us - Kogenie AI" />
+        <meta
+          property="og:description"
+          content="Have questions? Contact Kogenie AI for AI-driven advertising solutions and expert support."
+        />
+        <meta
+          property="og:image"
+          content="https://www.kogenie.com/images/contact-preview.jpg"
+        />
+        <meta property="og:url" content="https://www.kogenie.com/contact" />
+        <meta property="og:type" content="website" />
+
+        {/* ✅ Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us - Kogenie AI" />
+        <meta
+          name="twitter:description"
+          content="Need help? Reach out to Kogenie AI for AI-powered ad solutions and expert guidance."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.kogenie.com/images/contact-preview.jpg"
+        />
+
+        {/* ✅ Structured Data (Schema Markup) for Google Rich Results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              name: "Contact Us - Kogenie AI",
+              url: "https://www.kogenie.com/contact",
+              description:
+                "Have questions about AI advertising? Contact Kogenie AI for expert support and AI-driven ad solutions.",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+91-XXXXXXXXXX",
+                contactType: "Customer Support",
+                email: "support@kogenie.com",
+                areaServed: "Worldwide",
+                availableLanguage: ["English"],
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "Kogenie",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.kogenie.com/logo.png",
+                },
+              },
+            }),
+          }}
+        />
+      </Head>
       <Header />
       {/* 
 			=============================================
@@ -36,7 +107,10 @@ const ContactV4 = () => {
                 >
                   CONTACT US
                 </div> */}
-                <h2 style={{top:'20px'}}className="main-title font-recoleta fw-normal tx-dark">
+                <h2
+                  style={{ top: "20px" }}
+                  className="main-title font-recoleta fw-normal tx-dark"
+                >
                   Looking for something ?
                 </h2>
 
@@ -51,7 +125,6 @@ const ContactV4 = () => {
                 </h2>
                 <br />
                 <br />
-
 
                 <h2
                   style={{

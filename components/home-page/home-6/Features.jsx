@@ -1,4 +1,4 @@
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -100,9 +100,9 @@ const Features = () => {
               {/* Back Side */}
               <div className="feature-back">
                 <p className="description">{feature.description}</p>
-                <Link href="/pages/service-details" className="cta-link">
+                {/* <Link href="/pages/service-details" className="cta-link">
                   Learn More <i className="bi bi-arrow-right"></i>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

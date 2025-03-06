@@ -1,16 +1,96 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Head from "next/head";
 
 // Dynamically import components to load only on the client-side
-const Header = dynamic(() => import("@/components/home-page/home-6/Header"), { ssr: false });
-const Block2 = dynamic(() => import("@/components/services/Block2"), { ssr: false });
-const CallToActions = dynamic(() => import("@/components/services/CallToActions"), { ssr: false });
-const FooterMenu = dynamic(() => import("@/components/home-page/home-6/FooterMenu"), { ssr: false });
-const CopyrightFooter2 = dynamic(() => import("@/components/footer/CopyrightFooter2"), { ssr: false });
+const Header = dynamic(() => import("@/components/home-page/home-6/Header"), {
+  ssr: false,
+});
+const Block2 = dynamic(() => import("@/components/services/Block2"), {
+  ssr: false,
+});
+const CallToActions = dynamic(
+  () => import("@/components/services/CallToActions"),
+  { ssr: false }
+);
+const FooterMenu = dynamic(
+  () => import("@/components/home-page/home-6/FooterMenu"),
+  { ssr: false }
+);
+const CopyrightFooter2 = dynamic(
+  () => import("@/components/footer/CopyrightFooter2"),
+  { ssr: false }
+);
 
 const ServiceV4 = () => {
   return (
     <>
+      {/* ✅ Add SEO Meta Tags & Structured Data */}
+      <Head>
+        <title>Our Services - Kogenie AI</title>
+        <meta
+          name="description"
+          content="Discover Kogenie AI's innovative services, including AI-powered ad creation, digital marketing, and e-commerce solutions."
+        />
+        <meta
+          name="keywords"
+          content="AI services, digital marketing, AI-powered ads, Kogenie solutions"
+        />
+        <meta name="author" content="Kogenie AI" />
+
+        {/* ✅ Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) */}
+        <meta property="og:title" content="Our Services - Kogenie AI" />
+        <meta
+          property="og:description"
+          content="Explore our AI-driven services to optimize your business with cutting-edge ad creation, marketing, and analytics."
+        />
+        <meta
+          property="og:image"
+          content="https://www.kogenie.com/images/services-preview.jpg"
+        />
+        <meta property="og:url" content="https://www.kogenie.com/services" />
+        <meta property="og:type" content="website" />
+
+        {/* ✅ Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Services - Kogenie AI" />
+        <meta
+          name="twitter:description"
+          content="Learn about Kogenie AI's services, including digital marketing, AI ad creation, and business analytics."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.kogenie.com/images/services-preview.jpg"
+        />
+
+        {/* ✅ Structured Data (Schema Markup) for Google Rich Results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "Kogenie AI Services",
+              description:
+                "AI-powered digital marketing, ad creation, and business analytics.",
+              provider: {
+                "@type": "Organization",
+                name: "Kogenie AI",
+                url: "https://www.kogenie.com",
+              },
+              serviceType: "AI-powered ad creation and digital marketing",
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "USD",
+                price: "Custom",
+                availability: "https://schema.org/InStock",
+                url: "https://www.kogenie.com/services",
+              },
+            }),
+          }}
+        />
+      </Head>
+
       {/* Header */}
       <Header />
 
@@ -86,8 +166,7 @@ const ServiceV4 = () => {
                 />
               </div>
 
-              <div className="col-lg-7 ms-auto" data-aos="fade-left">
-              </div>
+              <div className="col-lg-7 ms-auto" data-aos="fade-left"></div>
             </div>
           </div>
 

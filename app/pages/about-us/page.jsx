@@ -1,14 +1,81 @@
-'use client';
-import TeamCards from "./team/page.jsx"
+"use client";
+import TeamCards from "./team/page.jsx";
 import Header from "@/components/home-page/home-6/Header";
 import Image from "next/image";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
+import Head from "next/head.js";
 const AboutUsV1 = () => {
-
   return (
     <>
       {/* Header */}
+      {/* ✅ Add SEO Meta Tags & Structured Data */}
+      <Head>
+        <title>About Us - Kogenie AI</title>
+        <meta
+          name="description"
+          content="Learn more about Kogenie AI, our mission, vision, and how we are transforming AI-powered advertising for businesses worldwide."
+        />
+        <meta
+          name="keywords"
+          content="About Kogenie, AI advertising, AI-powered marketing, Kogenie mission, digital marketing AI"
+        />
+        <meta name="author" content="Kogenie AI" />
+
+        {/* ✅ Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) */}
+        <meta property="og:title" content="About Us - Kogenie AI" />
+        <meta
+          property="og:description"
+          content="Discover how Kogenie AI is revolutionizing AI-powered marketing and digital advertising."
+        />
+        <meta
+          property="og:image"
+          content="https://www.kogenie.com/images/about-us.jpg"
+        />
+        <meta property="og:url" content="https://www.kogenie.com/about-us" />
+        <meta property="og:type" content="website" />
+
+        {/* ✅ Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us - Kogenie AI" />
+        <meta
+          name="twitter:description"
+          content="We at Kogenie AI are committed to redefining advertising through artificial intelligence and innovative digital solutions."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.kogenie.com/images/about-us.jpg"
+        />
+
+        {/* ✅ Structured Data (Schema Markup) for Google Rich Results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Kogenie AI",
+              url: "https://www.kogenie.com",
+              logo: "https://www.kogenie.com/images/logo.png",
+              description:
+                "Kogenie AI specializes in AI-powered advertising and marketing solutions.",
+              foundingDate: "2024",
+              founders: [
+                {
+                  "@type": "Person",
+                  name: "Founder Name",
+                },
+              ],
+              sameAs: [
+                "https://www.facebook.com/kogenie",
+                "https://twitter.com/kogenie",
+                "https://www.linkedin.com/company/kogenie",
+              ],
+            }),
+          }}
+        />
+      </Head>
+
       <Header />
 
       {/* Feature Section Fifty One */}
@@ -35,7 +102,10 @@ const AboutUsV1 = () => {
             }}
           ></div>
 
-          <div className="container position-relative d-flex flex-column align-items-center text-center" style={{ maxWidth: "1200px", paddingTop: "0" }}>
+          <div
+            className="container position-relative d-flex flex-column align-items-center text-center"
+            style={{ maxWidth: "1200px", paddingTop: "0" }}
+          >
             <div className="title-style-five mb-65 md-mb-40">
               <h2
                 style={{
@@ -46,56 +116,123 @@ const AboutUsV1 = () => {
                   fontWeight: "600",
                   fontSize: "48px",
                   letterSpacing: "1px",
-                  marginTop: "100px"
+                  marginTop: "100px",
                 }}
                 className="main-title fw-600 tx-dark font-recoleta"
               >
                 About Us
               </h2>
             </div>
-            <div className="d-flex flex-wrap justify-content-center gap-5 mt-4" style={{ maxWidth: "900px" }}>
-              <div className="stat-box text-center p-3 rounded shadow-lg" style={{
-                backgroundColor: "rgba(241, 101, 88, 0.2)",
-                borderRadius: "15px",
-                padding: "20px",
-                minWidth: "180px",
-                transition: "transform 0.3s ease-in-out"
-              }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"}
-                onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+            <div
+              className="d-flex flex-wrap justify-content-center gap-5 mt-4"
+              style={{ maxWidth: "900px" }}
+            >
+              <div
+                className="stat-box text-center p-3 rounded shadow-lg"
+                style={{
+                  backgroundColor: "rgba(241, 101, 88, 0.2)",
+                  borderRadius: "15px",
+                  padding: "20px",
+                  minWidth: "180px",
+                  transition: "transform 0.3s ease-in-out",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "scale(1.1)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
               >
-                <h3 style={{ color: "white", fontSize: "36px", fontWeight: "700" }}>5K+</h3>
-                <p style={{ color: "white", fontSize: "18px", fontWeight: "400" }}>Successful Campaigns</p>
+                <h3
+                  style={{
+                    color: "white",
+                    fontSize: "36px",
+                    fontWeight: "700",
+                  }}
+                >
+                  5K+
+                </h3>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "18px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Successful Campaigns
+                </p>
               </div>
-              <div className="stat-box text-center p-3 rounded shadow-lg" style={{
-                backgroundColor: "rgba(241, 221, 88, 0.2)",
-                borderRadius: "15px",
-                padding: "20px",
-                minWidth: "180px",
-                transition: "transform 0.3s ease-in-out"
-              }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"}
-                onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              <div
+                className="stat-box text-center p-3 rounded shadow-lg"
+                style={{
+                  backgroundColor: "rgba(241, 221, 88, 0.2)",
+                  borderRadius: "15px",
+                  padding: "20px",
+                  minWidth: "180px",
+                  transition: "transform 0.3s ease-in-out",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "scale(1.1)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
               >
-                <h3 style={{ color: "white", fontSize: "36px", fontWeight: "700" }}>5K+</h3>
-                <p style={{ color: "white", fontSize: "18px", fontWeight: "400" }}>Ads Generated</p>
+                <h3
+                  style={{
+                    color: "white",
+                    fontSize: "36px",
+                    fontWeight: "700",
+                  }}
+                >
+                  5K+
+                </h3>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "18px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Ads Generated
+                </p>
               </div>
-              <div className="stat-box text-center p-3 rounded shadow-lg" style={{
-                backgroundColor: "rgba(76, 185, 243, 0.2)",
-                borderRadius: "15px",
-                padding: "20px",
-                minWidth: "180px",
-                transition: "transform 0.3s ease-in-out"
-              }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"}
-                onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+              <div
+                className="stat-box text-center p-3 rounded shadow-lg"
+                style={{
+                  backgroundColor: "rgba(76, 185, 243, 0.2)",
+                  borderRadius: "15px",
+                  padding: "20px",
+                  minWidth: "180px",
+                  transition: "transform 0.3s ease-in-out",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "scale(1.1)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
               >
-                <h3 style={{ color: "white", fontSize: "36px", fontWeight: "700" }}>99%</h3>
-                <p style={{ color: "white", fontSize: "18px", fontWeight: "400" }}>Customer Satisfaction</p>
+                <h3
+                  style={{
+                    color: "white",
+                    fontSize: "36px",
+                    fontWeight: "700",
+                  }}
+                >
+                  99%
+                </h3>
+                <p
+                  style={{
+                    color: "white",
+                    fontSize: "18px",
+                    fontWeight: "400",
+                  }}
+                >
+                  Customer Satisfaction
+                </p>
               </div>
             </div>
-
-
 
             <p
               style={{
@@ -106,29 +243,42 @@ const AboutUsV1 = () => {
                 lineHeight: "1.6",
                 fontWeight: "300",
                 textAlign: "justify",
-                marginTop: "50px"
+                marginTop: "50px",
               }}
               className="about-text"
             >
-              At KOgenie, we believe in the power of innovation and simplicity. Our mission is to empower businesses with cutting-edge tools that streamline advertising, boost engagement, and drive conversions—effortlessly. With our intuitive platform, you can create high-converting ads in just minutes, helping you reach your audience faster and more effectively. Join us on this journey towards smarter, more efficient marketing!
+              At KOgenie, we believe in the power of innovation and simplicity.
+              Our mission is to empower businesses with cutting-edge tools that
+              streamline advertising, boost engagement, and drive
+              conversions—effortlessly. With our intuitive platform, you can
+              create high-converting ads in just minutes, helping you reach your
+              audience faster and more effectively. Join us on this journey
+              towards smarter, more efficient marketing!
             </p>
           </div>
         </div>
-
-
 
         {/* <div className="row">
             <div className="col-xl-8 col-lg-9 ms-auto"> */}
         <div className="fancy-feature-three pt-120 lg-pt-80 md-pt-80 sm-pt-80">
           <div
-            style={{ borderRadius: "10px", padding: "30px", marginTop:"-100px" }}
+            style={{
+              borderRadius: "10px",
+              padding: "30px",
+              marginTop: "-100px",
+            }}
             className="container"
           >
             <div className="row align-items-center">
               {/* Left Content Section */}
               <div
                 className="col-lg-6 col-md-6"
-                style={{ display: "flex", flexDirection: "column", justifyContent: "center", textAlign: "justify" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  textAlign: "justify",
+                }}
               >
                 <div className="title-style-three mb-4">
                   <div
@@ -167,75 +317,141 @@ const AboutUsV1 = () => {
                   }}
                 >
                   <p>
-                    In this crowded, noisy world, it&apos;s not about having the loudest
-                    voice—it&apos;s about having the most meaningful one. Today,
-                    the greatest products and solutions, those that truly solve real problems,
-                    often go unheard because they lack the budget to compete with superficial noise.
-                    But at KOgenie, we&apos;re changing that. We&apos;re democratizing the power of marketing and branding,
-                    making it accessible to every dreamer and innovator. We&apos;re the microphone that amplifies
-                    the voices of those who dare to create something truly valuable.
+                    In this crowded, noisy world, it&apos;s not about having the
+                    loudest voice—it&apos;s about having the most meaningful
+                    one. Today, the greatest products and solutions, those that
+                    truly solve real problems, often go unheard because they
+                    lack the budget to compete with superficial noise. But at
+                    KOgenie, we&apos;re changing that. We&apos;re democratizing
+                    the power of marketing and branding, making it accessible to
+                    every dreamer and innovator. We&apos;re the microphone that
+                    amplifies the voices of those who dare to create something
+                    truly valuable.
                   </p>
                 </div>
 
                 {/* Timeline Section */}
                 <div className="timeline d-flex flex-wrap gap-4">
-                  <div className="timeline-item text-center p-4" style={{
-                    background: "linear-gradient(135deg, rgba(90, 103, 191, 0.33) 0%, rgba(105, 117, 195, 0.1) 100%)",
+                  <div
+                    className="timeline-item text-center p-4"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(90, 103, 191, 0.33) 0%, rgba(105, 117, 195, 0.1) 100%)",
 
-                    borderRadius: "15px",
-                    boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                    flex: "1",
-                  }}
+                      borderRadius: "15px",
+                      boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      flex: "1",
+                    }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = "scale(1.05)";
-                      e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.2)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 25px rgba(0, 0, 0, 0.2)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.1)";
+                      e.currentTarget.style.boxShadow =
+                        "0 6px 20px rgba(0, 0, 0, 0.1)";
                     }}
                   >
-                    <h4 style={{ color: "#546aec", fontSize: "26px", fontWeight: "700" }}>2024</h4>
-                    <p style={{ color: "#333", fontSize: "16px", marginTop: "10px" }}>KOgenie was founded.</p>
+                    <h4
+                      style={{
+                        color: "#546aec",
+                        fontSize: "26px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      2024
+                    </h4>
+                    <p
+                      style={{
+                        color: "#333",
+                        fontSize: "16px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      KOgenie was founded.
+                    </p>
                   </div>
-                  <div className="timeline-item text-center p-4" style={{
-                    background: "linear-gradient(135deg, rgba(90, 103, 191, 0.33) 0%, rgba(105, 117, 195, 0.1) 100%)",
-                    borderRadius: "15px",
-                    boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                    flex: "1",
-                  }}
+                  <div
+                    className="timeline-item text-center p-4"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(90, 103, 191, 0.33) 0%, rgba(105, 117, 195, 0.1) 100%)",
+                      borderRadius: "15px",
+                      boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      flex: "1",
+                    }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = "scale(1.05)";
-                      e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.2)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 25px rgba(0, 0, 0, 0.2)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.1)";
+                      e.currentTarget.style.boxShadow =
+                        "0 6px 20px rgba(0, 0, 0, 0.1)";
                     }}
                   >
-                    <h4 style={{ color: "#546aec", fontSize: "26px", fontWeight: "700" }}>2025</h4>
-                    <p style={{ color: "#333", fontSize: "16px", marginTop: "10px" }}>Innovative ad platform launched.</p>
+                    <h4
+                      style={{
+                        color: "#546aec",
+                        fontSize: "26px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      2025
+                    </h4>
+                    <p
+                      style={{
+                        color: "#333",
+                        fontSize: "16px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      Innovative ad platform launched.
+                    </p>
                   </div>
-                  <div className="timeline-item text-center p-4" style={{
-                    background: "linear-gradient(135deg, rgba(90, 103, 191, 0.33) 0%, rgba(105, 117, 195, 0.1) 100%)",
-                    borderRadius: "15px",
-                    boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                    flex: "1",
-                  }}
+                  <div
+                    className="timeline-item text-center p-4"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(90, 103, 191, 0.33) 0%, rgba(105, 117, 195, 0.1) 100%)",
+                      borderRadius: "15px",
+                      boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
+                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      flex: "1",
+                    }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = "scale(1.05)";
-                      e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.2)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 25px rgba(0, 0, 0, 0.2)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.1)";
+                      e.currentTarget.style.boxShadow =
+                        "0 6px 20px rgba(0, 0, 0, 0.1)";
                     }}
                   >
-                    <h4 style={{ color: "#546aec", fontSize: "26px", fontWeight: "700" }}>Target</h4>
-                    <p style={{ color: "#333", fontSize: "16px", marginTop: "10px" }}>Reaching 5M+ ads created globally.</p>
+                    <h4
+                      style={{
+                        color: "#546aec",
+                        fontSize: "26px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      Target
+                    </h4>
+                    <p
+                      style={{
+                        color: "#333",
+                        fontSize: "16px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      Reaching 5M+ ads created globally.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -243,7 +459,11 @@ const AboutUsV1 = () => {
               {/* Right Image Section */}
               <div
                 className="col-lg-6 col-md-6"
-                style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
                 <div
                   style={{
@@ -275,9 +495,7 @@ const AboutUsV1 = () => {
           </div>
         </div>
 
-
         <div className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2">
-
           <div
             style={{
               borderRadius: "20px",
@@ -336,11 +554,27 @@ const AboutUsV1 = () => {
                       marginBottom: "15px",
                     }}
                   />
-                  <h3 style={{ fontSize: "22px", fontWeight: "600", color: "#333", margin: "10px 0" }}>CEO Name</h3>
-                  <p style={{ fontSize: "14px", color: "rgba(0, 0, 0, 0.6)", marginBottom: "10px" }}>
-                    {"Empowering innovation and creativity for a better tomorrow."}
+                  <h3
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: "600",
+                      color: "#333",
+                      margin: "10px 0",
+                    }}
+                  >
+                    CEO Name
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "rgba(0, 0, 0, 0.6)",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    {
+                      "Empowering innovation and creativity for a better tomorrow."
+                    }
                   </p>
-
                 </div>
               </div>
 
@@ -390,9 +624,11 @@ const AboutUsV1 = () => {
                     marginBottom: "30px",
                   }}
                 >
-                  At KOgenie, our journey is driven by solving real-world problems and creating value that matters.
-                  With a clear vision and commitment to innovation, we strive to empower individuals and businesses
-                  to make meaningful progress and achieve their goals.
+                  At KOgenie, our journey is driven by solving real-world
+                  problems and creating value that matters. With a clear vision
+                  and commitment to innovation, we strive to empower individuals
+                  and businesses to make meaningful progress and achieve their
+                  goals.
                 </p>
                 <div>
                   <a
@@ -427,7 +663,6 @@ const AboutUsV1 = () => {
         </div>
 
         <div className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2">
-
           <div className="container">
             <div
               className="row align-items-center"
@@ -455,7 +690,7 @@ const AboutUsV1 = () => {
                       color: "#333",
                       marginTop: "10px",
                       justifyContent: "center",
-                      textAlign: "center"
+                      textAlign: "center",
                     }}
                     className="main-title fw-200"
                   >
@@ -471,13 +706,13 @@ const AboutUsV1 = () => {
                     marginBottom: "30px",
                     maxWidth: "600px",
                     margin: "0 auto",
-                    marginTop: "40px"
+                    marginTop: "40px",
                   }}
                 >
-                  Here’s to the end of marketing as we know it. Marketing—that clumsy,
-                  bloated, and outdated word—is on its way out. And it should be. Why?
-                  Because it’s time for something better. Something seamless. Something
-                  inevitable.
+                  Here’s to the end of marketing as we know it. Marketing—that
+                  clumsy, bloated, and outdated word—is on its way out. And it
+                  should be. Why? Because it’s time for something better.
+                  Something seamless. Something inevitable.
                 </p>
               </div>
             </div>
@@ -490,7 +725,7 @@ const AboutUsV1 = () => {
                 gap: "40px",
                 flexWrap: "wrap",
                 marginTop: "50px",
-                textAlign: "justify"
+                textAlign: "justify",
               }}
             >
               {/* Feature 1 */}
@@ -508,14 +743,22 @@ const AboutUsV1 = () => {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.2)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 25px rgba(0, 0, 0, 0.2)";
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 6px 15px rgba(0, 0, 0, 0.1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 15px rgba(0, 0, 0, 0.1)";
                 }}
               >
-                <div style={{ fontSize: "36px", color: "#546aec", marginBottom: "15px" }}>
+                <div
+                  style={{
+                    fontSize: "36px",
+                    color: "#546aec",
+                    marginBottom: "15px",
+                  }}
+                >
                   <i className="fas fa-envelope"></i>
                 </div>
                 <h3
@@ -529,8 +772,8 @@ const AboutUsV1 = () => {
                   Personalized Messaging
                 </h3>
                 <p style={{ fontSize: "14px", color: "rgba(0, 0, 0, 0.7)" }}>
-                  Deliver ads tailored to the individual, creating deeper connections
-                  with your audience.
+                  Deliver ads tailored to the individual, creating deeper
+                  connections with your audience.
                 </p>
               </a>
 
@@ -549,14 +792,22 @@ const AboutUsV1 = () => {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.2)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 25px rgba(0, 0, 0, 0.2)";
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 6px 15px rgba(0, 0, 0, 0.1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 15px rgba(0, 0, 0, 0.1)";
                 }}
               >
-                <div style={{ fontSize: "36px", color: "#546aec", marginBottom: "15px" }}>
+                <div
+                  style={{
+                    fontSize: "36px",
+                    color: "#546aec",
+                    marginBottom: "15px",
+                  }}
+                >
                   <i className="fas fa-link"></i>
                 </div>
                 <h3
@@ -590,14 +841,22 @@ const AboutUsV1 = () => {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.2)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 25px rgba(0, 0, 0, 0.2)";
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 6px 15px rgba(0, 0, 0, 0.1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 15px rgba(0, 0, 0, 0.1)";
                 }}
               >
-                <div style={{ fontSize: "36px", color: "#546aec", marginBottom: "15px" }}>
+                <div
+                  style={{
+                    fontSize: "36px",
+                    color: "#546aec",
+                    marginBottom: "15px",
+                  }}
+                >
                   <i className="fas fa-chart-bar"></i>
                 </div>
                 <h3
@@ -610,7 +869,7 @@ const AboutUsV1 = () => {
                 >
                   Measurable Results
                 </h3>
-                <p style={{ fontSize: "14px", color: "rgba(0, 0, 0, 0.7)", }}>
+                <p style={{ fontSize: "14px", color: "rgba(0, 0, 0, 0.7)" }}>
                   See the impact of your campaigns with real-time analytics and
                   insights.
                 </p>
@@ -619,9 +878,10 @@ const AboutUsV1 = () => {
           </div>
         </div>
 
-
-        <div style={{ marginBottom: "60px" }} className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2">
-
+        <div
+          style={{ marginBottom: "60px" }}
+          className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2"
+        >
           <div className="container">
             <div className="row align-items-center">
               {/* Text and Decorative Section */}
@@ -676,7 +936,9 @@ const AboutUsV1 = () => {
                       marginBottom: "15px",
                     }}
                   >
-                    Revolutionizing marketing was no easy feat. The challenge of finding visionary minds who dared to think differently was immense. Many people were hesitant to embrace new ideas.
+                    Revolutionizing marketing was no easy feat. The challenge of
+                    finding visionary minds who dared to think differently was
+                    immense. Many people were hesitant to embrace new ideas.
                   </p>
                   <p
                     style={{
@@ -685,7 +947,10 @@ const AboutUsV1 = () => {
                       lineHeight: "1.8",
                     }}
                   >
-                    At KOgenie, we brought together a tribe of bold innovators committed to creating something unique. Our mission to make marketing personal and impactful continues to drive us forward.
+                    At KOgenie, we brought together a tribe of bold innovators
+                    committed to creating something unique. Our mission to make
+                    marketing personal and impactful continues to drive us
+                    forward.
                   </p>
                 </div>
               </div>
@@ -708,9 +973,9 @@ const AboutUsV1 = () => {
                     borderRadius: "20px",
                     overflow: "hidden",
                     boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2)",
-                    marginTop:"30px",
-                    marginLeft:"30px",
-                    marginRight:"30px"
+                    marginTop: "30px",
+                    marginLeft: "30px",
+                    marginRight: "30px",
                   }}
                 >
                   <Image
@@ -754,145 +1019,158 @@ const AboutUsV1 = () => {
             </div>
           </div>
         </div>
-        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px",
+          gap: "20px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          maxWidth: "1200px",
+        }}
+      >
+        {/* Left Section with Blurred Image */}
         <div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "40px",
-            gap: "20px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            maxWidth: "1200px",
-          }} >
-          {/* Left Section with Blurred Image */}
+            position: "relative",
+            width: "100%",
+            maxWidth: "400px",
+            minWidth: "280px",
+            height: "280px",
+            overflow: "hidden",
+            borderRadius: "15px",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          <Image
+            src="/innovation.jpg"
+            alt="Innovation"
+            width={400}
+            height={300}
+            style={{ objectFit: "cover" }}
+          />
           <div
             style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "400px",
-              minWidth: "280px",
-              height: "280px",
-              overflow: "hidden",
-              borderRadius: "15px",
-              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "#fff",
+              fontSize: "16px",
+              fontWeight: "500",
+              textAlign: "center",
+              backgroundColor: "rgba(84, 89, 236, 0.7)",
+              padding: "10px 10px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
             }}
           >
-            <Image
-              src="/innovation.jpg"
-              alt="Innovation"
-              width={400}
-              height={300}
-              style={{ objectFit: "cover" }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "#fff",
-                fontSize: "16px",
-                fontWeight: "500",
-                textAlign: "center",
-                backgroundColor: "rgba(84, 89, 236, 0.7)",
-                padding: "10px 10px",
-                borderRadius: "8px",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-              }}
-            >
-              Innovation Starts Here
-            </div>
+            Innovation Starts Here
           </div>
+        </div>
 
-          {/* Right Section with Text Containers and Connections */}
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "600px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "15px",
-              position: "relative",
-            }}
-          >
-            {[{
+        {/* Right Section with Text Containers and Connections */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "600px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+            position: "relative",
+          }}
+        >
+          {[
+            {
               icon: "fa-map-marker-alt",
               title: "Where are we going?",
               text: "Most companies focus on themselves. We care about one thing: you.",
               bgColor: "rgb(255, 255, 255)",
-              iconColor: "rgb(0, 0, 0)"
-            }, {
+              iconColor: "rgb(0, 0, 0)",
+            },
+            {
               icon: "fa-cogs",
               text: "Our job? To give you the tools to make your product better and sharper.",
               bgColor: "rgb(255, 255, 255)",
-              iconColor: "rgb(0, 0, 0)"
-            }, {
+              iconColor: "rgb(0, 0, 0)",
+            },
+            {
               icon: "fa-star",
               text: "It's not about us. It's about what you can achieve.",
               bgColor: "rgb(255, 255, 255)",
-              iconColor: "rgb(0, 0, 0)"
-            }].map((item, index) => (
+              iconColor: "rgb(0, 0, 0)",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: item.bgColor,
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0 6px 20px rgba(67, 86, 231, 0.13)",
+                display: "flex",
+                alignItems: "center",
+                gap: "15px",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow =
+                  "0 8px 25px rgba(0, 0, 0, 0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow =
+                  "0 6px 20px rgba(0, 0, 0, 0.1)";
+              }}
+            >
               <div
-                key={index}
                 style={{
-                  backgroundColor: item.bgColor,
-                  padding: "20px",
-                  borderRadius: "8px",
-                  boxShadow: "0 6px 20px rgba(67, 86, 231, 0.13)",
+                  width: "45px",
+                  height: "45px",
+                  borderRadius: "50%",
+                  backgroundColor: item.iconColor,
                   display: "flex",
                   alignItems: "center",
-                  gap: "15px",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.1)";
+                  justifyContent: "center",
+                  color: "#fff",
+                  fontSize: "18px",
                 }}
               >
-                <div
+                <i className={`fas ${item.icon}`}></i>
+              </div>
+              <div>
+                {item.title && (
+                  <h6
+                    style={{
+                      margin: "0 0 10px 0",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      color: "#333",
+                    }}
+                  >
+                    {item.title}
+                  </h6>
+                )}
+                <p
                   style={{
-                    width: "45px",
-                    height: "45px",
-                    borderRadius: "50%",
-                    backgroundColor: item.iconColor,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#fff",
-                    fontSize: "18px",
+                    margin: 0,
+                    fontSize: "14px",
+                    color: "gray",
+                    lineHeight: "1.7",
                   }}
                 >
-                  <i className={`fas ${item.icon}`}></i>
-                </div>
-                <div>
-                  {item.title && (
-                    <h6
-                      style={{
-                        margin: "0 0 10px 0",
-                        fontSize: "16px",
-                        fontWeight: "600",
-                        color: "#333",
-                      }}
-                    >
-                      {item.title}
-                    </h6>
-                  )}
-                  <p style={{ margin: 0, fontSize: "14px", color: "gray", lineHeight: "1.7" }}>
-                    {item.text}
-                  </p>
-                </div>
+                  {item.text}
+                </p>
               </div>
-            ))}
-          </div>
-         
+            </div>
+          ))}
+        </div>
 
         <div
           style={{
@@ -905,7 +1183,7 @@ const AboutUsV1 = () => {
             margin: "40px auto",
             maxWidth: "1200px",
             background: "linear-gradient(135deg, #f5f7fa, #c3cfe2)",
-           
+
             boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
           }}
         >
@@ -974,7 +1252,8 @@ const AboutUsV1 = () => {
                 left: "0",
                 width: "100%",
                 height: "100%",
-                background: "linear-gradient(135deg, rgba(84, 106, 236, 0.6), rgba(236, 84, 92, 0.6))",
+                background:
+                  "linear-gradient(135deg, rgba(84, 106, 236, 0.6), rgba(236, 84, 92, 0.6))",
                 zIndex: "-1",
               }}
             ></div>
@@ -1011,36 +1290,39 @@ const AboutUsV1 = () => {
                 transition: "color 0.3s ease",
               }}
               onMouseEnter={(e) => (e.target.style.color = "#0056b3")}
-              onMouseLeave={(e) => (e.target.style.color = "rgba(0, 0, 0, 0.7)")}
+              onMouseLeave={(e) =>
+                (e.target.style.color = "rgba(0, 0, 0, 0.7)")
+              }
             >
               With KOgenie, the world will see you.
-              <span style={{ color: "#546aec", fontWeight: "600" }}> And they’ll click.</span>
+              <span style={{ color: "#546aec", fontWeight: "600" }}>
+                {" "}
+                And they’ll click.
+              </span>
             </a>
           </div>
         </div>
       </div>
       {/* Team Section */}
-  {/* Team Section */}
-<div className="w-full bg-gray-50 py-16 flex flex-col items-start">
-  <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8">
-    <TeamCards />
-  </div>
-</div>
+      {/* Team Section */}
+      <div className="w-full bg-gray-50 py-16 flex flex-col items-start">
+        <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+          <TeamCards />
+        </div>
+      </div>
 
-
-  {/* Footer */}
-  <div className="footer-style-two theme-basic-footer w-full mt-16">
-    {/* <div className="top-footer position-relative"> */}
-      <div className="container">
-        <div className="inner-wrapper m-auto">
-          <div className="row">
-            <FooterMenu />
+      {/* Footer */}
+      <div className="footer-style-two theme-basic-footer w-full mt-16">
+        {/* <div className="top-footer position-relative"> */}
+        <div className="container">
+          <div className="inner-wrapper m-auto">
+            <div className="row">
+              <FooterMenu />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <CopyrightFooter2 />
-
+      <CopyrightFooter2 />
     </>
   );
 };

@@ -96,8 +96,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
           name="twitter:image"
           content={`${SITE_URL}/images/kogenie-preview.jpg`}
         />
-
-
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Kogenie",
+              url: "https://www.kogenie.com",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://www.kogenie.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
 
         {/* ✅ Dynamic Canonical URL for Each Page */}
         <link rel="canonical" href={`${SITE_URL}${pathname}`} />
