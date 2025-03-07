@@ -72,14 +72,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* ✅ Open Graph Meta Tags (Facebook, LinkedIn, WhatsApp) */}
         <meta property="og:title" content="Kogenie - AI-Powered Ads" />
-        <meta
-          property="og:description"
-          content="Boost your ad performance with AI-driven insights. Optimize campaigns effortlessly with Kogenie's advanced ad solutions. Get started today!"
-        />
-        <meta
-          property="og:image"
-          content={`${SITE_URL}/images/kogenie-preview.jpg`}
-        />
+        <meta property="og:description" content="Boost your ad performance with AI-driven insights. Optimize campaigns effortlessly with Kogenie's advanced ad solutions. Get started today!" />
+        <meta property="og:image" content={`${SITE_URL}/images/kogenie-preview.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content={`${SITE_URL}${pathname}`} />
@@ -88,38 +82,43 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* ✅ Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Kogenie - AI-Powered Ads" />
-        <meta
-          name="twitter:description"
-          content="Boost your ad performance with AI-driven insights. Try Kogenie today and maximize your campaign performance with AI technology."
-        />
-        <meta
-          name="twitter:image"
-          content={`${SITE_URL}/images/kogenie-preview.jpg`}
-        />
+        <meta name="twitter:description" content="Boost your ad performance with AI-driven insights. Try Kogenie today and maximize your campaign performance with AI technology." />
+        <meta name="twitter:image" content={`${SITE_URL}/images/kogenie-preview.jpg`} />
+
+        {/* ✅ JSON-LD Structured Data (Fix for Google Rich Results) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Kogenie",
-              url: "https://www.kogenie.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://www.kogenie.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
+              "name": "Kogenie",
+              "url": "https://www.kogenie.com",
+              "description": "Boost your ad performance with AI-driven insights. Optimize campaigns effortlessly with Kogenie's intelligent ad solutions to maximize ROI and engagement.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Kogenie",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.kogenie.com/images/kogenie-logo.png"
+                }
               },
-            }),
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.kogenie.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
           }}
         />
 
-        {/* ✅ Dynamic Canonical URL for Each Page */}
+        {/* ✅ Canonical URL for Each Page to Avoid Duplicates */}
         <link rel="canonical" href={`${SITE_URL}${pathname}`} />
 
         <title>Kogenie - AI-Powered Ads</title>
       </head>
       <body className={inter.className}>
-        <AOSInit /> {/* ✅ This initializes AOS animations */}
+        <AOSInit /> {/* ✅ Initializes AOS animations */}
         <Hotjar /> {/* ✅ Lazy-loaded Hotjar for performance */}
         <div className="main-page-wrapper">{children}</div>
       </body>

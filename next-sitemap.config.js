@@ -1,24 +1,20 @@
+/** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.kogenie.com/', // Your actual site URL
-  generateRobotsTxt: false, // Generates robots.txt
-  sitemapSize: 5000, // Optional: Split sitemap if there are many URLs
+  siteUrl: "https://www.kogenie.com", // ✅ Ensure it's correct
+  generateRobotsTxt: false, // ✅ Generates robots.txt
+  sitemapSize: 5000, // ✅ Keeps all URLs in one sitemap
 
-  // ✅ Exclude admin-related URLs from the sitemap
-  exclude: [
-    '/admin',
-    '/admin/*', // Excludes all subpages inside /admin
-  ],
+  // ✅ Exclude unwanted pages
+  exclude: ["/admin", "/admin/*", "/404", "/500"],
 
-  // ✅ Custom robots.txt rules
+  // ✅ Fix Nested Sitemap issue
   robotsTxtOptions: {
     policies: [
-      { userAgent: '*', allow: '/' },
-      { userAgent: '*', disallow: ['/admin', '/admin/*'] }, // Blocks admin pages from search engines
+      { userAgent: "*", allow: "/" },
+      { userAgent: "*", disallow: ["/admin", "/admin/*", "/404", "/500"] },
     ],
     additionalSitemaps: [
-      'https://www.kogenie.com/sitemap.xml', // Ensures proper sitemap linking
+      "https://www.kogenie.com/sitemap-0.xml", // ✅ Use only this sitemap
     ],
-    // 🔴 Disable the 'Host:' directive so it doesn't appear again
-    host: null,
   },
 };

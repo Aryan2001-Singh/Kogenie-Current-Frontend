@@ -7,10 +7,75 @@ import TagList from "@/components/home-page/home-6/TagList";
 import Features from "@/components/home-page/home-6/Features";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
+import Head from "next/head";
 
 const SassProduct = () => {
   return (
+
     <>
+    <Head>
+    <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kogenie",
+        "url": "https://www.kogenie.com",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Kogenie",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.kogenie.com/images/kogenie-logo.png"
+          }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does Kogenie improve ad performance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kogenie uses AI-driven insights to optimize your ad campaigns, improving ROI and engagement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What services does Kogenie provide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kogenie provides AI-powered ad solutions, helping businesses create high-converting ads effortlessly."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kogenie.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://www.kogenie.com/services"
+          }
+        ]
+      }
+    ])
+  }}
+/>
+    </Head>
       {/* Header */}
       <Header />
 

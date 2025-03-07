@@ -6,6 +6,9 @@ Allow: /
 User-agent: *
 Disallow: /admin
 Disallow: /admin/*
+Disallow: /404
+Disallow: /500
+
 
 # Sitemaps
 Sitemap: https://www.kogenie.com/sitemap.xml
