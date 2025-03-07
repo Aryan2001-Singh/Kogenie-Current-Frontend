@@ -64,7 +64,7 @@ const SassProduct = () => {
             <div className="col-lg-6 col-md-6 flex flex-col text-justify font-inter">
   <div className="title-style-three">
     {/* Section Title */}
-    <div style={{color:"#546aec"}}className="sc-title text-uppercase text-[14px] font-semibold text-[#546aec]">
+    <div style={{color: "#546aec"}} className="sc-title text-uppercase text-[14px] font-semibold text-[#546aec]">
       Integrates your tools
     </div>
 
@@ -74,14 +74,17 @@ const SassProduct = () => {
     </h2>
   </div>
 
-  {/* Description with gray text and adjusted spacing */}
-  <p className="text-[clamp(14px,2vw,16px)] text-gray-600 font-normal leading-[1.5] max-w-[600px] mt-2 mb-4 text-justify animate-fadeInUp">
-    At Kogenie, we leverage the power of generative AI, granular data, and Automated A/B testing
-    to deliver advertisements that connect on a deep, instinctive level with your audience.
-    Whether you aim to drive action or influence emotions, we have the expertise and tools to make it happen.
-  </p>
+  {/* Bullet Points instead of paragraph */}
+  <ul className="list-disc pl-5 text-[clamp(14px,2vw,16px)] text-gray-600 font-inter space-y-2 leading-[1.5] max-w-[600px] mt-2 mb-4 text-justify animate-fadeInUp">
+    <li>Leverages the power of generative AI for highly personalized ads.</li>
+    <li>Utilizes granular data to enhance audience targeting.</li>
+    <li>Implements automated A/B testing for campaign optimization.</li>
+    <li>Creates deep, instinctive connections with your audience.</li>
+    <li>Expert strategies for driving both action and emotions.</li>
+  </ul>
 </div>
-</div></div></div>
+</div>
+</div></div>
 
       {/* Feature Section Four */}
       <div className="w-full max-w-[1100px] mx-auto my-6 p-10 flex flex-wrap items-center justify-between gap-5 text-left relative bg-[#DFE1ED] font-inter">
@@ -90,11 +93,13 @@ const SassProduct = () => {
   <div className="absolute bottom-[-20px] right-[20px] w-[60px] h-[60px] bg-[rgba(189,195,234,0.34)] rounded-full"></div>
 
   {/* Left Side: Text Content & Button */}
-  <div className="flex-1 min-w-[320px] flex flex-col items-start">
-    <h2 className="text-[clamp(22px,2.8vw,30px)] font-bold text-gray-800 mb-3">
-      Boost Engagement with AI-Powered Ads!
+  <div className="flex-1 min-w-[320px] flex flex-col items-start z-10">
+    <h2 className="text-[clamp(28px,3.5vw,42px)] font-extrabold leading-tight text-gray-900 mb-3">
+      <span className="bg-gradient-to-r from-[#4a5abb] to-[#8693e3] text-transparent bg-clip-text">
+        Boost Engagement
+      </span>{" "}
+      with AI-Powered Ads!
     </h2>
-
     <p className="text-[clamp(14px,1.4vw,17px)] text-gray-700 font-normal leading-[1.5] max-w-[480px] opacity-90 mb-5 text-justify">
       Generate high-converting ads in seconds. Kogenie&apos;s AI-powered platform helps you craft
       <strong className="text-[#4a5abb]"> engaging, personalized</strong> ads that drive real results.
@@ -125,59 +130,53 @@ const SassProduct = () => {
 
       {/* Feature Section Five */}
       <div className="fancy-feature-five pt-30 lg-pt-30">
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Right Side - Content until the button */}
-            <div
-  className="col-lg-6 order-md-last ms-auto flex flex-col gap-y-6 lg:text-left sm:text-center"
->
-  <div className="block-style-two pe-xxl-5 sm-mb-50" data-aos="fade-left">
-    {/* Section Title */}
-    <div className="title-style-three px-6 sm:px-4">
+  <div className="container">
+    <div className="row align-items-center">
+      {/* Right Side - Content until the button */}
       <div
-        className="sc-title text-uppercase text-sm font-semibold tracking-wide text-[#546AEC] mb-2"
-        style={{ fontFamily: "Inter, sans-serif" }}
+        style={{marginTop:"-70px"}} className="col-lg-6 order-md-last ms-auto flex flex-col gap-y-6 lg:text-left sm:text-center"
       >
-        Personalization of Granular Data
+        <div className="block-style-two pe-xxl-5 sm-mb-50" data-aos="fade-left">
+          {/* Section Title */}
+          <div className="title-style-three px-6 sm:px-4">
+            <div
+              className="sc-title text-uppercase text-sm font-semibold tracking-wide text-[#546AEC] mb-2 font-inter"
+            style={{color:"#546aec"}}>
+              Personalization of Granular Data
+            </div>
+            <h2
+              className="text-3xl md:text-4xl font-light leading-snug text-gray-900 mb-4 font-inter"
+            >
+              The power of Generative AI
+            </h2>
+          </div>
+
+          {/* Bullet Points */}
+          <ul className="list-disc text-base text-gray-600 leading-relaxed px-8 sm:px-6 mb-4 font-inter space-y-2">
+            <li>AI-driven ad personalization for targeted impact</li>
+            <li>Automated A/B testing to optimize performance</li>
+            <li>Granular data analysis for smarter decision-making</li>
+            <li>Seamless integration with existing ad platforms</li>
+          </ul>
+
+          {/* Button */}
+          <div className="px-6 sm:px-4">
+            <button
+              className="relative px-8 py-3 text-base font-medium text-white transition-all duration-300 
+              bg-gradient-to-r from-[#4a5abb] to-[#8693e3] shadow-lg hover:from-[#3d4e9f] hover:to-[#6b79d1] 
+              hover:shadow-2xl hover:scale-105 transform focus:outline-none focus:ring-4 
+              focus:ring-[#4a5abb]/50 font-inter"
+              style={{
+                letterSpacing: "0.5px",
+                boxShadow: "0 6px 12px rgba(74, 90, 187, 0.3)",
+              }}
+            >
+              Learn More
+            </button>
+          </div>
+        </div>
       </div>
-      <h2
-        className="text-3xl md:text-4xl font-light leading-snug text-gray-900 mb-4"
-        style={{ fontFamily: "Inter, sans-serif" }}
-      >
-        The power of Generative AI
-      </h2>
-    </div>
-
-    {/* Description */}
-    <p
-      className="text-base text-gray-600 leading-relaxed px-6 sm:px-4 mb-4"
-      style={{ fontFamily: "Inter, sans-serif" }}
-    >
-      Our Generative AI and Granular Data work hand in hand to create personalized, 
-      high-impact advertisements that drive research.
-    </p>
-
-    {/* Button */}
-    <div className="px-6 sm:px-4">
-      <button
-        className="relative px-8 py-3 text-base font-medium text-white transition-all duration-300 
-        bg-gradient-to-r from-[#4a5abb] to-[#8693e3] shadow-lg hover:from-[#3d4e9f] hover:to-[#6b79d1] 
-        hover:shadow-2xl hover:scale-105 transform focus:outline-none focus:ring-4 
-        focus:ring-[#4a5abb]/50"
-        style={{
-          letterSpacing: "0.5px",
-          fontFamily: "Inter, sans-serif",
-          boxShadow: "0 6px 12px rgba(74, 90, 187, 0.3)",
-        }}
-      >
-        Learn More
-      </button>
-    </div>
-  </div>
-</div>
-
-
-            {/* Left Side - Content after the button */}
+      {/* Left Side - Content after the button */}
             <div
               style={{ marginTop: "-20px" }}
               className="col-lg-6 order-md-first"
@@ -314,390 +313,279 @@ const SassProduct = () => {
         Feature Section Six
         ============================================== 
         */}
-      <div
-        style={{ marginTop: "-180px" }}
-        className="fancy-feature-six position-relative mt-225 lg-mt-100 xs-mt-80"
-      >
-        <div className="container">
-          <div className="row gx-xxl-5 align-items-center">
-            {/* Left Section: Title and Call-to-Action */}
-            <div className="col-lg-5 col-md-6 mt-40" data-aos="fade-up">
-              <div
-                style={{ marginTop: "-100px" }}
-                className="title-section mb-65 lg-mb-40"
-              >
-                <h2 className="main-title">
-                  <span className="highlight-text">Explore</span> <br />
-                  Our <span className="underline-text">Exclusive Features</span>
-                </h2>
-                <p className="description">
-                  Unlock the full potential of your business with our innovative
-                  and tailored features designed to drive growth and success.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Features Row */}
-          <div className="features-horizontal-row">
-            <Features />
-          </div>
+     <div className="fancy-feature-six position-relative mt-[50px] md:mt-[40px] sm:mt-[30px]">
+  <div className="container">
+    <div className="row gx-xxl-5 align-items-center">
+      {/* Left Section: Title and Call-to-Action */}
+      <div className="col-lg-5 col-md-6" data-aos="fade-up">
+        <div style={{ marginTop: "-100px" }} className="title-section mb-16 lg:mb-12">
+          <h2 className="main-title font-inter">
+            <span className="gradient-text">Explore</span> <br />
+            Our <span className="underline-text">Exclusive Features</span>
+          </h2>
+          <p className="description font-inter">
+            Unlock the full potential of your business with our innovative
+            and tailored features designed to drive growth and success.
+          </p>
         </div>
-
-        <style jsx>{`
-          .fancy-feature-six {
-            // background: linear-gradient(135deg, #ffffff 0%, #f3f5fd 100%);
-            padding: 60px 20px;
-            border-radius: 20px;
-            // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          }
-
-          .title-section {
-            max-width: 500px;
-          }
-
-          .main-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.4;
-            color: #333;
-            margin-bottom: 20px;
-          }
-
-          .highlight-text {
-            color: #4a5abb;
-          }
-
-          .underline-text {
-            position: relative;
-            display: inline-block;
-          }
-
-          .underline-text::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 100%;
-            height: 8px;
-            background-color: #b5c0ff;
-            opacity: 0.5;
-            z-index: -1;
-          }
-
-          .description {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.7;
-          }
-
-          .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            background-color: #4a5abb;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 12px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-          }
-
-          .cta-btn i {
-            margin-left: 10px;
-            font-size: 1.2rem;
-          }
-
-          .cta-btn:hover {
-            background: #3c4e99;
-            box-shadow: 0 8px 15px rgba(58, 70, 157, 0.2);
-          }
-
-          @media (max-width: 768px) {
-            .main-title {
-              font-size: 2rem;
-            }
-
-            .description {
-              font-size: 0.9rem;
-            }
-
-            .cta-btn {
-              font-size: 0.9rem;
-            }
-          }
-        `}</style>
       </div>
-      {/*
-        =====================================================
-        Feedback Section Two
-        =====================================================
-        */}
-      {/* <div
-        style={{ marginTop: "-30px", minHeight: "1000px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} 
-        className="feedback-section-two position-relative mt-170 pt-250 pb-250 lg-mt-120 lg-pt-200 lg-pb-200 sm-pt-80 sm-pb-80"
-        data-aos="fade-up"
-      > */}
-      {/* <ClientReviews /> */}
+    </div>
 
-      {/*
-        =====================================================
-        Fancy Short Banner Two
-        =====================================================
-        */}
-      <div
-        className="fancy-short-banner-two mt-100 lg-mt-50"
-        data-aos="fade-up"
-      >
-        <div
-          style={{ marginTop: "-100px", marginBottom: "40px" }}
-          className="container"
-        >
-          <div
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.95)",
-              borderRadius: "15px",
-              padding: "50px 40px",
-              position: "relative",
-              overflow: "hidden",
-              // boxShadow: "0 5px 20px rgba(0, 0, 0, 0.1)",
-            }}
-            className="bg-wrapper ms-xxl-4 me-xxl-4"
-          >
-            {/* Background Patterns */}
-            <div className="shapes shape-one"></div>
-            <div className="shapes shape-two"></div>
-            <div className="shapes shape-three"></div>
+    {/* Features Row */}
+    <div className="features-horizontal-row">
+      <Features />
+    </div>
+  </div>
 
-            {/* Inner Wrapper */}
-            <div className="inner-wrapper m-auto">
-              {/* Button at the top right */}
-              <div className="text-end mb-4">
-                <Link href="/contact" className="btn-six fw-500">
-                  Contact Us
-                </Link>
-              </div>
+  <style jsx>{`
+    .fancy-feature-six {
+      padding: 10px 20px;
+      border-radius: 20px;
+    }
 
-              <div className="row align-items-center">
-                {/* Left Section */}
-                <div
-                  className="sc-title text-uppercase"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    color: "rgb(84, 106, 236)",
-                    letterSpacing: "1px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Have Questions?
-                  <h3
-                    style={{
-                      fontSize: "2.2rem",
-                      fontWeight: "500",
-                      lineHeight: "1.4",
-                      color: "#333",
-                      margin: "0 0 20px 0",
-                    }}
-                  >
-                    Let us help you explore <br />
-                    <span
-                      style={{
-                        color: "#546aec",
-                        background: "linear-gradient(90deg, #4a5abb, #8693e3)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                      }}
-                    >
-                      FAQs
-                    </span>{" "}
-                    or Contact Us!
-                  </h3>
-                </div>
+    .title-section {
+      max-width: 500px;
+    }
 
-                {/* FAQ Section */}
-                <div className="faq-section mt-4">
-                  <div className="faq-title text-center">
-                    <h5
-                      style={{
-                        fontSize: "1.4rem",
-                        fontWeight: "400",
-                        color: "#4a5abb",
-                        marginBottom: "25px",
-                      }}
-                    >
-                      Frequently Asked Questions
-                    </h5>
-                  </div>
-                  <ul style={{ textAlign: "justify" }} className="faq-list">
-                    <li>
-                      <span className="faq-question">
-                        What services do you provide?
-                      </span>
-                      <p className="faq-answer">
-                        We specialize in branding, design, AI-powered solutions,
-                        and tailored plans to meet your business needs.
-                      </p>
-                    </li>
-                    <li>
-                      <span className="faq-question">
-                        Do you offer custom plans?
-                      </span>
-                      <p className="faq-answer">
-                        Yes, our team can create personalized plans based on
-                        your requirements.
-                      </p>
-                    </li>
-                    <li>
-                      <span className="faq-question">
-                        How can I get support?
-                      </span>
-                      <p className="faq-answer">
-                        You can reach out via our Contact page or email us
-                        directly. We&apos;re here to help!
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+    .main-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: #333;
+      margin-bottom: 20px;
+    }
 
-          <style jsx>{`
-            .bg-wrapper {
-              position: relative;
-              border-radius: 15px;
-              overflow: hidden;
-              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            }
+    .gradient-text {
+      background: linear-gradient(to right, #4a5abb, #8693e3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-            .shapes {
-              position: absolute;
-              z-index: 0;
-              opacity: 0.4;
-            }
+    .underline-text {
+      position: relative;
+      display: inline-block;
+    }
 
-            .shape-one {
-              top: -50px;
-              left: -50px;
-              width: 150px;
-              height: 150px;
-              background: rgba(84, 106, 236, 0.3);
-              border-radius: 50%;
-              animation: float 6s ease-in-out infinite;
-            }
+    .underline-text::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 8px;
+      background-color: #b5c0ff;
+      opacity: 0.5;
+      z-index: -1;
+    }
 
-            .shape-two {
-              bottom: -50px;
-              right: -50px;
-              width: 100px;
-              height: 100px;
-              background: rgba(134, 147, 227, 0.3);
-              border-radius: 50%;
-              animation: float 8s ease-in-out infinite;
-            }
+    .description {
+      font-size: clamp(14px, 1vw, 18px);
+      color: #666;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
 
-            .shape-three {
-              top: 50%;
-              left: 50%;
-              width: 80px;
-              height: 80px;
-              background: rgba(255, 255, 255, 0.5);
-              border-radius: 50%;
-              transform: translate(-50%, -50%);
-            }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: #4a5abb;
+      color: white;
+      font-weight: 600;
+      font-size: clamp(14px, 1vw, 16px);
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
 
-            @keyframes float {
-              0%,
-              100% {
-                transform: translateY(0);
-              }
-              50% {
-                transform: translateY(20px);
-              }
-            }
+    .cta-btn i {
+      margin-left: 10px;
+      font-size: 1.2rem;
+    }
 
-            .btn-six {
-              display: inline-block;
-              padding: 14px 35px;
-              background: linear-gradient(135deg, #546aec, #8693e3);
-              color: #fff;
-              font-weight: 600;
-              font-size: 1.1rem;
-              border-radius: 25px;
-              box-shadow: 0 8px 20px rgba(84, 106, 236, 0.3);
-              text-decoration: none;
-              transition: all 0.3s ease;
-            }
+    .cta-btn:hover {
+      background: #3c4e99;
+      box-shadow: 0 8px 15px rgba(58, 70, 157, 0.2);
+    }
 
-            .btn-six:hover {
-              background: linear-gradient(135deg, #3c4e99, #4a5abb);
-              box-shadow: 0 10px 30px rgba(74, 90, 187, 0.5);
-              transform: translateY(-3px);
-            }
+    @media (max-width: 768px) {
+      .main-title {
+        font-size: clamp(24px, 5vw, 32px);
+      }
 
-            .faq-section {
-              margin-top: 40px;
-              padding: 20px;
-              background: rgba(247, 248, 254, 1);
-              border-radius: 10px;
-              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            }
+      .description {
+        font-size: clamp(12px, 4vw, 16px);
+        text-align: justify;
+      }
 
-            .faq-title {
-              font-weight: bold;
-              color: #333;
-            }
+      .cta-btn {
+        font-size: clamp(12px, 4vw, 14px);
+      }
+    }
+  `}</style>
+</div>
 
-            .faq-list {
-              list-style: none;
-              padding: 0;
-              margin: 0;
-            }
+<div className="faq-wrapper mt-50 lg:mt-30" data-aos="fade-up">
+  <div className="container">
+    <div className="faq-container">
+      {/* Top Right Contact Button (Kept Original Style) */}
+      <div className="text-end mb-3">
+        <Link href="/contact" className="btn-six fw-500">
+          Contact Us
+        </Link>
+      </div>
 
-            .faq-list li {
-              margin-bottom: 20px;
-            }
+      {/* FAQ Header */}
+      <div className="faq-header">
+        <h3 className="faq-title">
+          Have Questions? <br />
+          <span className="faq-highlight">Find Answers</span> in our{" "}
+          <span className="faq-gradient">FAQs</span> or{" "}
+          <Link href="/contact">Contact Us</Link>
+        </h3>
+      </div>
 
-            .faq-question {
-              font-size: 1.1rem;
-              font-weight: 600;
-              color: rgb(154, 161, 214);
-              margin-bottom: 5px;
-            }
+      {/* FAQ Section */}
+      <div className="faq-section">
+        <h5 className="faq-heading">Frequently Asked Questions</h5>
+        <ul className="faq-list">
+          <li>
+            <span className="faq-question">What services do you provide?</span>
+            <p className="faq-answer">
+              We offer branding, AI-driven solutions, and high-performance marketing strategies tailored for businesses.
+            </p>
+          </li>
+          <li>
+            <span className="faq-question">Do you offer custom pricing?</span>
+            <p className="faq-answer">
+              Yes! We provide flexible pricing plans to suit startups, enterprises, and agencies.
+            </p>
+          </li>
+          <li>
+            <span className="faq-question">How do I get started?</span>
+            <p className="faq-answer">
+              Simply sign up, and our AI-powered system will guide you through the process in minutes.
+            </p>
+          </li>
+          <li>
+            <span className="faq-question">What makes your AI different?</span>
+            <p className="faq-answer">
+              Our AI is built for precision marketing—real-time insights, hyper-targeting, and automated A/B testing.
+            </p>
+          </li>
+          <li>
+            <span className="faq-question">Is customer support available?</span>
+            <p className="faq-answer">
+              Yes! Our support team is available 24/7 via email, live chat, and phone support.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-            .faq-answer {
-              font-size: 0.95rem;
-              color: #555;
-              line-height: 1.6;
-            }
+  <style jsx>{`
+    .faq-wrapper {
+      padding: 30px 0; /* Reduced padding from top */
+      background: #f8f9fc;
+      font-family: "Inter", sans-serif;
+      margin-top: 2px;
+    }
 
-            @media (max-width: 768px) {
-              .bg-wrapper {
-                padding: 30px 20px;
-              }
+    .faq-container {
+      background: #ffffff;
+      padding: 30px 35px; /* Reduced height */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      max-width: 1000px; /* Increased width */
+      margin: 0 auto;
+    }
 
-              h3 {
-                font-size: 1.8rem;
-              }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 15px; /* Reduced margin above heading */
+    }
 
-              .btn-six {
-                padding: 12px 25px;
-                font-size: 0.95rem;
-              }
+    .faq-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.3;
+    }
 
-              .faq-question {
-                font-size: 1rem;
-              }
+    .faq-highlight {
+      color: #546aec;
+      font-size: 1rem;
+      font-weight: 600;
+    }
 
-              .faq-answer {
-                font-size: 0.85rem;
-              }
-            }
-          `}</style>
-        </div>
+    .faq-gradient {
+      background: linear-gradient(90deg, #4a5abb, #8693e3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .faq-heading {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4a5abb;
+      text-align: left;
+      margin-bottom: 10px; /* Reduced margin */
+    }
+
+    .faq-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .faq-list li {
+      margin-bottom: 12px; /* Reduced space between questions */
+      padding: 6px 0;
+      border-bottom: 1px solid #e1e5f2;
+    }
+
+    .faq-question {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #333;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .faq-list li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      .faq-container {
+        padding: 20px 20px;
+      }
+
+      .faq-title {
+        font-size: 1.4rem;
+      }
+
+      .faq-heading {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      .faq-question {
+        font-size: 0.9rem;
+      }
+
+      .faq-answer {
+        font-size: 0.85rem;
+      }
+    }
+  `}</style>
+</div>
 
         {/*
         =====================================================
@@ -706,7 +594,7 @@ const SassProduct = () => {
         */}
 
         {/* Footer */}
-        <div style={{backgroundColor:"linear-gradient(135deg, rgba(0, 1, 7, 0.9), rgba(146, 135, 230, 0.9))"}}className="footer-style-two theme-basic-footer">
+        <div style={{backgroundColor:"linear-gradient(135deg, rgba(0, 1, 7, 0.9), rgba(146, 135, 230, 0.9))", marginTop:"10px"}}className="footer-style-two theme-basic-footer">
             <div className="container">
               <div className="inner-wrapper m-auto">
                 <div className="row">
@@ -736,7 +624,6 @@ const SassProduct = () => {
           <CopyrightFooter2 />
         </div>
         {/* /.footer-style-two */}
-      </div>
     </>
   );
 };
