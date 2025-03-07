@@ -12,7 +12,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
 
   try {
     // ✅ Send the ad data (including headline) to the backend for storage
-    const response = await fetch("http://localhost:5001/api/ads/store", {
+    const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads/store", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adPayload),
