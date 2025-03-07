@@ -43,7 +43,7 @@ const ManualEntryPage: React.FC = () => {
     };
   
     try {
-      const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
+      const response = await fetch("http://localhost:5001/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
@@ -73,9 +73,9 @@ const ManualEntryPage: React.FC = () => {
         setAdData({
           ...adInputData,
           adCopy: data.adCopy || "Ad Copy Not Generated",
-          headline: data.headline || "Default Headline",
-          productImages: data.productImages || [], // ✅ Ensure productImages is passed
-          selectedImage: data.productImages?.[0] || null, // ✅ Default to first image
+          headline: data.headline?.trim() || "Headline Not Generated", // ✅ Ensure headline is trimmed
+          productImages: data.productImages || [],
+          selectedImage: data.productImages?.[0] || null,
         });
   
         setTimeout(() => {

@@ -7,9 +7,9 @@ interface AdData {
   targetAudience: string;
   uniqueSellingPoints: string;
   adCopy: string;
-  headline?: string;
-  productImages: string[];  // ✅ Store scraped images
-  selectedImage: string | null; // ✅ Track selected image
+  headline: string;  // ✅ Ensure headline is always a string
+  productImages: string[];
+  selectedImage: string | null;
 }
 
 interface AdState {
@@ -22,8 +22,13 @@ interface AdState {
 export const useAdStore = create<AdState>((set) => ({
   adData: null,
   setAdData: (data: AdData) => {
-    localStorage.setItem("adData", JSON.stringify(data));
-    set({ adData: data });
+    const updatedData = {
+      ...data,
+      headline: data.headline || "Headline Not Generated",  // ✅ Ensure headline is always stored
+    };
+  
+    localStorage.setItem("adData", JSON.stringify(updatedData));
+    set({ adData: updatedData });
   },
   setSelectedImage: (image: string) => {
     localStorage.setItem("selectedImage", image);
