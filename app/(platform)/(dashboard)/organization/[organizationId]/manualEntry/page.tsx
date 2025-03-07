@@ -44,7 +44,7 @@ const ManualEntryPage: React.FC = () => {
   
     try {
       const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/generateAdPrompt", {
-        method: "POST",
+        method: "GET",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
       });
