@@ -58,9 +58,13 @@ const OrganizationIdPage = () => {
     try {
       const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
+        },
+        credentials: "include",  // 🔥 Allow cookies & authentication headers
         body: JSON.stringify({ url, gender, ageGroup }),
-      });
+    });
   
       const data = await response.json();
   
