@@ -60,7 +60,7 @@ const OrganizationIdPage = () => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
+            // "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
         },
         credentials: "include",  // 🔥 Allow cookies & authentication headers
         body: JSON.stringify({ url, gender, ageGroup }),
