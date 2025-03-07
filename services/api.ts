@@ -14,6 +14,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
     // ✅ Send the ad data (including headline) to the backend for storage
     const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads/store", {
       method: "POST",
+      credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adPayload),
     });
@@ -53,6 +54,7 @@ export const generateAd = async (adData: any) => {
   try {
     const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
       method: "POST",
+      credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adData),
     });
