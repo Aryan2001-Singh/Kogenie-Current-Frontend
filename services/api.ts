@@ -13,7 +13,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
   try {
     // ✅ Send the ad data (including headline) to the backend for storage
     const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/api/ads/store", {
-      method: "GET",
+      method: "POST",
       credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adPayload),
@@ -53,7 +53,7 @@ export const fetchAds = async () => {
 export const generateAd = async (adData: any) => {
   try {
     const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/generateAdPrompt", {
-      method: "GET",
+      method: "POST",
       credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adData),
