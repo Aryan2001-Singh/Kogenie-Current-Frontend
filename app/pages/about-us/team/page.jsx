@@ -3,44 +3,42 @@ import React from "react";
 import Image from "next/image";
 
 const TeamCards = () => {
-  console.log("✅ TeamCards component rendered!"); // Debugging
-
   const team = [
     { 
-      name: "John Doe", 
+      name: "Saikat Sengupta", 
       role: "CEO", 
-      img: "/images/media/img_12.jpg", 
-      email: "john@example.com",
+      email: "saikat@kogenie.com",
+      img: "/images/team/ceo.jpg",  
       linkedin: "#",
       twitter: "#",
       instagram: "#",
       facebook: "#"
     },
     { 
-      name: "Jane Smith", 
-      role: "CTO", 
-      img: "/images/team/aryan.jpg", 
-      email: "jane@example.com",
+      name: "Aryan Singh", 
+      role: "Full Stack Developer", 
+      email: "aryan@kogenie.com",
+      img: "/images/team/aryan.jpg",  
       linkedin: "#",
       twitter: "#",
       instagram: "#",
       facebook: "#"
     },
     { 
-      name: "Alice Johnson", 
-      role: "Designer", 
-      img: "/images/team/ayushi.jpg", 
-      email: "alice@example.com",
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#",
-      facebook: "#"
-    },
-    { 
-      name: "Michael Brown", 
+      name: "Ayushi Shrivastava", 
       role: "Marketing Head", 
-      img: "/images/team/ceo.jpg", 
-      email: "michael@example.com",
+      email: "ayushi@kogenie.com",
+      img: "/images/team/ayushi.jpg",  
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#",
+      facebook: "#"
+    },
+    { 
+      name: "Kumkum Saini", 
+      role: "Frontend Developer", 
+      email: "kumkum@kogenie.com",
+      img: "/images/team/Kumkum.jpg",  
       linkedin: "#",
       twitter: "#",
       instagram: "#",
@@ -49,52 +47,78 @@ const TeamCards = () => {
   ];
 
   return (
-    <section className="w-full bg-gray-100 py-16 flex flex-col items-start px-10">
-      <h2 className="text-4xl font-bold text-gray-900 mb-10">
-        Meet Our <span className="text-indigo-600">Team</span>
-      </h2>
+    <section className="w-full bg-gray-50 py-16 px-6 flex flex-col items-center">
+      {/* Section Heading */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">
+          Our <span className="text-indigo-600">Leadership Team</span>
+        </h2>
+        <p style={{marginTop:"30px"}}className="text-gray-500 text-md mt-4 max-w-2xl mx-auto">
+          We are a team of passionate individuals dedicated to revolutionizing marketing. 
+          Meet the people who drive innovation and success at <span className="font-semibold text-indigo-600">Kogenie</span>.
+        </p>
+      </div>
 
-      {/* Flexbox for Horizontal Cards (Left-Aligned) */}
-      <div className="flex flex-wrap justify-start gap-6 w-full">
-        {team.map((member, index) => (
-          <div 
-            key={index} 
-            className="bg-white shadow-lg rounded-xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl w-[300px] h-[420px]"
-          >
-            {/* Image Section */}
-            <div className="relative w-full h-56">
-              <Image
-                src={member.img}
-                alt={member.name}
-                layout="fill"
-                className="object-cover"
+      {/* Centered Flexbox Container */}
+      <div className="w-full flex justify-center">
+        <div style={{marginTop:"30px"}} className="flex flex-wrap justify-center gap-6 max-w-5xl">
+          {team.map((member, index) => (
+            <div 
+              key={index} 
+              className="relative bg-white shadow-lg rounded-xl overflow-hidden w-[280px] sm:w-[300px] md:w-[320px] h-[450px] flex flex-col justify-between transform transition duration-300 hover:scale-105 hover:shadow-xl group"
+            >
+              {/* Image Section */}
+              <div className="relative w-full h-[250px] overflow-hidden">
+                <Image
+                  src={member.img}
+                  alt={member.name}
+                  width={320} 
+                  height={250} 
+                  className="object-cover w-full h-full rounded-t-xl transition-transform duration-300 group-hover:scale-105"
+                  priority
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+
+              {/* Details Section */}
+              <div className="p-4 text-center flex-grow flex flex-col justify-center">
+                <h3 className="text-md font-semibold text-gray-900">{member.name}</h3>
+                <p className="text-sm font-medium text-[#546aec]">{member.role}</p>
+                
+                {/* Email Section */}
+                <a href={`mailto:${member.email}`} className="text-xs text-gray-500 mt-1 hover:underline">
+                  {member.email}
+                </a>
+
+                {/* Social Icons - Updated Hover Effect */}
+                <div className="w-full flex justify-center space-x-4 mt-3">
+                  {[
+                    { link: member.linkedin, icon: "fab fa-linkedin" },
+                    { link: member.twitter, icon: "fab fa-twitter" },
+                    { link: member.instagram, icon: "fab fa-instagram" },
+                    { link: member.facebook, icon: "fab fa-facebook" }
+                  ].map((social, idx) => (
+                    <a 
+                      key={idx} 
+                      href={social.link} 
+                      target="_blank" 
+                      className="text-gray-600 transition-all transform duration-300 hover:text-[#546aec] hover:scale-125 hover:-translate-y-1"
+                    >
+                      <i className={social.icon}></i>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Hover Effect on Entire Card */}
+              <div 
+                className="absolute inset-0 group-hover:bg-black group-hover:bg-opacity-10 transition-opacity duration-300"
               />
             </div>
-
-            {/* Details Section */}
-            <div className="p-4 text-left">
-              <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
-              <p className="text-sm text-gray-500">{member.role}</p>
-              <p className="text-sm text-gray-600 mt-2">{member.email}</p>
-
-              {/* Social Icons */}
-              <div className="flex space-x-4 mt-3">
-                <a href={member.linkedin} target="_blank" className="text-gray-600 hover:text-blue-600 text-lg">
-                  <i className="fab fa-linkedin"></i>
-                </a>
-                <a href={member.twitter} target="_blank" className="text-gray-600 hover:text-blue-400 text-lg">
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href={member.instagram} target="_blank" className="text-gray-600 hover:text-pink-500 text-lg">
-                  <i className="fab fa-instagram"></i>
-                </a>
-                <a href={member.facebook} target="_blank" className="text-gray-600 hover:text-blue-700 text-lg">
-                  <i className="fab fa-facebook"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

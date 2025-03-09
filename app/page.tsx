@@ -248,7 +248,7 @@ const SassProduct = () => {
             >
               <div
                 style={{ marginBottom: "60px",
-                borderRadius:"0px"
+                borderRadius:"0px",
                  }}
                 className="tags-wrapper position-relative stylish-container"
               >
