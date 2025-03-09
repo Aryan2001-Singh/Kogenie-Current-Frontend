@@ -1,5 +1,5 @@
-'use client';
-'use client';
+"use client";
+"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -37,15 +37,23 @@ const FooterLinks = () => {
           <div className="col-lg-4 col-md-6 footer-intro">
             <div className="logo">
               <Link href="/">
-                <Image src="/kogenielogo.svg" alt="logo" width={120} height={60} />
+                <Image
+                  src="/kogenielogo.svg"
+                  alt="logo"
+                  width={120}
+                  height={60}
+                />
               </Link>
             </div>
-            <a href="mailto:kogenie.marketing@kogenie.com" className="footer-email">
+            <a
+              href="mailto:kogenie.marketing@kogenie.com"
+              className="footer-email"
+            >
               kogenie.marketing@kogenie.com
             </a>
             <br />
             <a href="tel:+918826132744" className="footer-phone">
-              +91 88261 32744
+              +91-8826-132-744
             </a>
           </div>
 
@@ -67,23 +75,34 @@ const FooterLinks = () => {
 
           {/* Social Media Icons */}
           <div className="col-lg-3 col-md-6 footer-social">
-  <h5 className="footer-title">Join Our Community</h5>
-  <div className="social-icons">
-    <a href="https://www.facebook.com/kogenie.in/about/" className="social-icon facebook">
-      <i className="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://x.com/kogenie__26" className="social-icon twitter">
-      <i className="fab fa-twitter"></i>
-    </a>
-    <a href="https://www.instagram.com/kogenie_official?igsh=MTg4dDEzdnJ0cjE2ag==" className="social-icon instagram">
-      <i className="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.linkedin.com/company/kogenie/" className="social-icon linkedin">
-      <i className="fab fa-linkedin-in"></i>
-    </a>
-  </div>
-</div>
-
+            <h5 className="footer-title">Join Our Community</h5>
+            <div className="social-icons">
+              <a
+                href="https://www.facebook.com/kogenie.in/about/"
+                className="social-icon facebook"
+              >
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="https://x.com/kogenie__26"
+                className="social-icon twitter"
+              >
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/kogenie_official?igsh=MTg4dDEzdnJ0cjE2ag=="
+                className="social-icon instagram"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/kogenie/"
+                className="social-icon linkedin"
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Footer Bottom */}
@@ -105,7 +124,7 @@ const FooterLinks = () => {
         .footer-title {
           font-size: 18px;
           font-weight: 600;
-          color:black;
+          color: black;
           margin-bottom: 15px;
         }
 
@@ -127,14 +146,14 @@ const FooterLinks = () => {
         }
 
         .footer-link:hover {
-          color:#546aec;
+          color: #546aec;
         }
 
-        .footer-email{
+        .footer-email {
           display: inline-block;
           margin-top: 15px;
           font-size: 16px;
-          color:#546aec ;
+          color: #546aec;
           text-decoration: none;
           transition: color 0.3s ease;
         }
@@ -149,72 +168,72 @@ const FooterLinks = () => {
 
         .footer-email:hover,
         .footer-phone:hover {
-          color: red ;
+          color: red;
         }
 
         .footer-social {
           text-align: left;
         }
 
-       .social-icons {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-  }
+        .social-icons {
+          display: flex;
+          gap: 12px;
+          margin-top: 10px;
+        }
 
-  .social-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
+        .social-icon {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 50%;
+          transition: background 0.3s ease, transform 0.3s ease;
+        }
 
-  .social-icon i {
-    color: black;
-    font-size: 18px;
-    transition: color 0.3s ease;
-  }
+        .social-icon i {
+          color: black;
+          font-size: 18px;
+          transition: color 0.3s ease;
+        }
 
-  /* Facebook Hover */
-  .facebook:hover {
-    background: #1877f2;
-  }
-  .facebook:hover i {
-    color: #fff;
-  }
+        /* Facebook Hover */
+        .facebook:hover {
+          background: #1877f2;
+        }
+        .facebook:hover i {
+          color: #fff;
+        }
 
-  /* Twitter Hover */
-  .twitter:hover {
-    background: #1da1f2;
-  }
-  .twitter:hover i {
-    color: #fff;
-  }
+        /* Twitter Hover */
+        .twitter:hover {
+          background: #1da1f2;
+        }
+        .twitter:hover i {
+          color: #fff;
+        }
 
-  /* Instagram Hover */
-  .instagram:hover {
-    background: #e4405f;
-  }
-  .instagram:hover i {
-    color: #fff;
-  }
+        /* Instagram Hover */
+        .instagram:hover {
+          background: #e4405f;
+        }
+        .instagram:hover i {
+          color: #fff;
+        }
 
-  /* LinkedIn Hover */
-  .linkedin:hover {
-    background: #0077b5;
-  }
-  .linkedin:hover i {
-    color: #fff;
-  }
+        /* LinkedIn Hover */
+        .linkedin:hover {
+          background: #0077b5;
+        }
+        .linkedin:hover i {
+          color: #fff;
+        }
 
-  /* Hover Scale Effect */
-  .social-icon:hover {
-    transform: scale(1.1);
-  }
+        /* Hover Scale Effect */
+        .social-icon:hover {
+          transform: scale(1.1);
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
           .footer-intro {
