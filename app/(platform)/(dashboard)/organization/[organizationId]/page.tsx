@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
 
+
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
@@ -56,11 +57,15 @@ const OrganizationIdPage = () => {
     });
   
     try {
-      const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
+      const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/createAd", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+            // "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
+        },
+        credentials: "include",  // 🔥 Allow cookies & authentication headers
         body: JSON.stringify({ url, gender, ageGroup }),
-      });
+    });
   
       const data = await response.json();
   

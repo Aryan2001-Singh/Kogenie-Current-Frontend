@@ -12,8 +12,9 @@ export const storeAd = async (adData: any, userEmail: string) => {
 
   try {
     // ✅ Send the ad data (including headline) to the backend for storage
-    const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads/store", {
+    const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/api/ads/store", {
       method: "POST",
+      credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adPayload),
     });
@@ -32,7 +33,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
 // ✅ Function to fetch all stored ads
 export const fetchAds = async () => {
   try {
-    const response = await fetch("https://kogenie-current-backend.onrender.com/api/ads");
+    const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/api/ads");
 
     if (!response.ok) {
       const errorData = await response.json(); // ✅ Fetch error details if request fails
@@ -51,8 +52,9 @@ export const fetchAds = async () => {
 // ✅ Function to generate ad copy & headline using the updated backend API
 export const generateAd = async (adData: any) => {
   try {
-    const response = await fetch("https://kogenie-current-backend.onrender.com/generateAdPrompt", {
+    const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/generateAdPrompt", {
       method: "POST",
+      credentials:"include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adData),
     });

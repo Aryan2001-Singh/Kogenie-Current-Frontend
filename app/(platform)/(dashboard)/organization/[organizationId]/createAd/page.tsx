@@ -68,8 +68,8 @@ const CreateAdPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setClientCaption(adData.adCopy);
-    setClientHeadline(adData.headline);
+    setClientCaption(adData.adCopy || "Ad Copy Not Generated");
+    setClientHeadline(adData.headline || "Headline Not Generated");
   }, [adData.adCopy, adData.headline]);
 
   useEffect(() => {
@@ -236,9 +236,9 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                     filter: selectedFilter,
                   }}
                 />
-                {isClient && adData.headline && (
+                {isClient && clientHeadline && (
                   <DraggableHeadline
-                    headlineText={adData.headline}
+                    headlineText={clientHeadline}
                     headlineBgColor={headlineBgColor}
                     headlineFontColor={headlineFontColor}
                     headlineFontSize={headlineFontSize}
