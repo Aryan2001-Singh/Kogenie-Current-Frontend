@@ -57,7 +57,7 @@ const OrganizationIdPage = () => {
     });
   
     try {
-      const response = await fetch("https://kogenie-current-backend-0204db8f94f9.herokuapp.com/createAd", {
+      const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
