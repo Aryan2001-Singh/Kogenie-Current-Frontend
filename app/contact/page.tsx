@@ -49,7 +49,7 @@ const ContactV4 = () => {
           {/* Left Side: Contact Details & Map */}
           <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col h-full transition-all hover:shadow-xl">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">
-              📍 Contact Information
+             Contact Information
             </h3>
             <p className="text-gray-600 mb-5 leading-relaxed">
               <span className="font-medium text-gray-800">Reach out to us</span>{" "}
@@ -85,7 +85,7 @@ const ContactV4 = () => {
           {/* Right Side: Contact Form */}
           <div className="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-xl flex flex-col justify-between h-full">
             <h3 className="text-2xl font-bold text-gray-900 mb-3">
-              💬 Send Us a Message
+             Send Us a Message
             </h3>
             <ContactForm4 />
           </div>

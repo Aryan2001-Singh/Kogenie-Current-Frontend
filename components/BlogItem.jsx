@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { FaRegCalendarAlt } from 'react-icons/fa'; // ✅ Import Calendar Icon
 
 const BlogItem = ({ title, description, category, image, id, date }) => {
   return (
     <div
       style={{
-        borderRadius: '10px',
+       
         overflow: 'hidden',
         width: '100%',
         maxWidth: '100%',
@@ -50,7 +51,7 @@ const BlogItem = ({ title, description, category, image, id, date }) => {
               position: 'absolute',
               top: '10px',
               left: '10px',
-              backgroundColor: '#df2826',
+              background: 'transparent',
               color: '#fff',
               fontSize: '12px',
               padding: '5px 10px',
@@ -77,39 +78,49 @@ const BlogItem = ({ title, description, category, image, id, date }) => {
           style={{
             fontSize: '16px',
             fontWeight: 'bold',
-            color: '#546aec',
+            color: 'black',
             textAlign: 'center',
+            fontFamily: 'Inter, sans-serif',
           }}
         >
           {title}
         </h5>
 
+        {/* Blog Description */}
         <p
           style={{
-            fontSize: '14px',
-            color: '#555',
-            textAlign: 'center',
-            margin: '8px 0',
-            overflow: 'hidden',
-            display: '-webkit-box',
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: 'vertical',
+            fontSize: "16px", 
+            color: "#333", 
+            textAlign: "justify", 
+            margin: "8px 0",
+            fontFamily: "Inter, sans-serif", 
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 3, 
+            WebkitBoxOrient: "vertical",
+            lineHeight: "1.6",
+            wordSpacing: "1px", 
+            letterSpacing: "0.2px", 
+            padding: "0 10px",
           }}
           dangerouslySetInnerHTML={{
             __html: description,
           }}
         ></p>
 
-        {/* Publication Date */}
-        <p
-          style={{
-            fontSize: '12px',
-            color: '#777',
-            textAlign: 'center',
-          }}
-        >
-          Published on: {date}
-        </p>
+        {/* ✅ Publication Date with Calendar Icon */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+          <FaRegCalendarAlt style={{ color: '#4a5abb', fontSize: '14px' }} /> {/* Calendar Icon 📅 */}
+          <p
+            style={{
+              fontSize: '13px',
+              fontWeight: '500',
+              color: '#000', // "Published on:" in Black
+            }}
+          >
+            Published on: <span style={{ color: '#4a5abb', fontWeight: '600' }}>{date}</span> {/* ✅ Date in Indigo */}
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -25,48 +25,60 @@ const BlogList = () => {
   return (
     <div className="px-4">
       {/* Category Buttons with Further Reduced Top Margin */}
-      <div className="flex justify-center gap-8 p-2 mt-[-10px] mb-2 flex-wrap">
-        {['All', 'Technology', 'Startup', 'Lifestyle'].map((category) => (
-          <button
-            key={category}
-            onClick={() => setMenu(category)}
-            className={`
-              py-3 px-14 rounded-lg text-lg font-semibold transition duration-300 ease-in-out 
-              transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50
-              ${menu === category ? 'bg-indigo-600 text-white shadow-lg' : 'bg-gray-200 text-black hover:bg-gray-300'}
-            `}
-            style={{
-              borderRadius: '8px',
-              padding: '12px 32px',
-              backgroundColor: menu === category ? '#4F46E5' : '#E5E7EB',
-              color: menu === category ? '#FFFFFF' : '#000000',
-              boxShadow: menu === category ? '0px 0px 12px rgba(79, 70, 229, 0.8)' : 'none',
-              transition: 'all 0.3s ease-in-out',
-              margin: '0 10px',
-            }}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <div className="flex justify-center gap-4 sm:gap-6 p-2 mt-[-10px] mb-4 flex-wrap">
+  {["All", "Technology", "Startup", "Lifestyle"].map((category) => (
+    <button
+      key={category}
+      onClick={() => setMenu(category)}
+      className={`
+        py-3 px-8 rounded-md text-lg font-semibold transition duration-300 ease-in-out 
+        transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50
+        ${
+          menu === category
+            ? "bg-indigo-500 bg-opacity-20 text-indigo-600 shadow-lg "
+            : "bg-gray-300 bg-opacity-10 text-gray-900  hover:bg-gray-200 hover:bg-opacity-20"
+        }
+      `}
+      style={{
+        backdropFilter: "blur(12px)", 
+        WebkitBackdropFilter: "blur(12px)", 
+        transition: "all 0.3s ease-in-out",
+        boxShadow:
+          menu === category ? "0px 0px 12px rgba(79, 70, 229, 0.5)" : "none",
+      }}
+    >
+      {category}
+    </button>
+  ))}
+</div>
+
 
       {/* Blog Items */}
       <div
   style={{
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)', // Forces 3 equal columns
-    gap: '20px', // Space between blogs
-    width: '100vw', // Takes full viewport width
-    maxWidth: '100%', // Ensures no restrictions
-    padding: '0 20px', // Small padding on sides to prevent overflow
-    justifyContent: 'center', // Ensures content is centered properly
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '20px', 
+    width: '100vw', 
+    maxWidth: '100%', 
+    padding: '0 20px', 
+    justifyContent: 'center', 
     alignItems: 'start',
   }}
 >
-  {blogs.length > 0 ? (
-    blogs
-      .filter((item) => (menu === 'All' ? true : item.category === menu))
-      .map((item, index) => (
+{blogs.length > 0 ? (
+  blogs
+    .filter((item) => (menu === 'All' ? true : item.category === menu))
+    .map((item, index) => {
+      // ✅ Format the date
+      const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
+        weekday: "short", 
+        month: "short",   
+        day: "2-digit",   
+        year: "numeric",  
+      });
+
+      return (
         <BlogItem
           key={index}
           id={item._id}
@@ -74,8 +86,10 @@ const BlogList = () => {
           title={item.title}
           description={item.description}
           category={item.category}
+          date={formattedDate} 
         />
-      ))
+      );
+    })
   ) : (
     <p
       style={{

@@ -75,7 +75,7 @@ const TeamCards = () => {
                   width={320} 
                   height={250} 
                   className="object-cover w-full h-full rounded-t-xl transition-transform duration-300 group-hover:scale-105"
-                  priority
+                
                 />
 
                 {/* Hover Overlay */}
@@ -83,7 +83,10 @@ const TeamCards = () => {
               </div>
 
               {/* Details Section */}
-              <div className="p-4 text-center flex-grow flex flex-col justify-center">
+              <div 
+              style={{
+                marginBottom: "30px"
+              }}className="p-4 text-center flex-grow flex flex-col justify-center">
                 <h3 className="text-md font-semibold text-gray-900">{member.name}</h3>
                 <p className="text-sm font-medium text-[#546aec]">{member.role}</p>
                 
