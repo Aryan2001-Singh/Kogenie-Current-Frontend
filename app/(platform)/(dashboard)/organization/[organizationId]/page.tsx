@@ -57,7 +57,7 @@ const OrganizationIdPage = () => {
     });
   
     try {
-      const response = await fetch("https://kogenie-current-backend.onrender.com/createAd", {
+      const response = await fetch("http://16.171.150.188:5001/createAd", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
