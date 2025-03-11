@@ -4,7 +4,6 @@ import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Header from "@/components/home-page/home-6/Header";
 import React from "react";
 import BlogList from "@/components/BlogList";
-import Image from "next/image";
 import Head from "next/head";
 
 const GridWithSidebar = () => {
@@ -24,68 +23,59 @@ const GridWithSidebar = () => {
       <Header />
 
       {/* ✅ Blog Hero Section */}
-      <div className="relative w-full flex items-center mt-10px justify-center text-center px-6 sm:px-12 lg:px-20 pb-12">
-  {/* ✅ Background Image */}
-  <div className="absolute inset-0">
-  <Image
-    src="/niloy-tesla-H5l6niMTWFE-unsplash.jpg"
-    alt="Blog Banner"
-    layout="fill"
-    objectFit="cover"
-    quality={90}
-    className="z-0 filter brightness-105 blur-[2px] contrast-110"
-  />
-  </div>
+      <div 
+  className="relative w-full flex items-center justify-center text-center px-6 sm:px-12 lg:px-20 pb-12"
+  style={{
+    backgroundColor: "#ffffff", // White background
+    backgroundImage: "radial-gradient(rgba(74, 90, 187, 0.4) 1px, transparent 1px)", // Indigo small dots
+    backgroundSize: "10px 10px", // Small dot spacing for better density
+    position: "relative",
+    overflow: "hidden",
+    height: "400px", // Increased height slightly
+  }}
+>
+  {/* ✅ Smooth Opacity Fade for Dots at Bottom */}
+  <div
+    className="absolute bottom-0 left-0 w-full"
+    style={{
+      height: "300px", // Increased height for a better fade effect
+      background: "linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.1) 90%, rgba(255,255,255,0) 100%)",
+    }}
+  ></div>
 
-  {/* ✅ Foreground Content */}
-  <div style={{marginTop:"100px",backdropFilter: "blur(4px)"}} className="relative z-20 w-full max-w-4xl mx-auto text-white px-4 sm:px-6 lg:px-8 mt-10 sm:mt-20">
-    {/* Blog Title with Responsive Gradient */}
+  {/* ✅ Foreground Content without Blur */}
+  <div 
+    className="relative z-20 w-full max-w-4xl mx-auto text-black px-4 sm:px-6 lg:px-8"
+    style={{
+      marginTop: "120px", // More spacing from top
+    }}
+  >
+    {/* Blog Title with Larger Font Size */}
     <h1
-      className="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-wide mt-3"
+      className="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-tight tracking-wide"
       style={{
-        background: "linear-gradient(to right, #000000, #4a5abb)",
+        background: "linear-gradient(to right,rgb(77, 95, 255),rgba(74, 89, 187, 0.85))",
         WebkitBackgroundClip: "text",
         color: "transparent",
-        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.4)",
+        textShadow: "3px 3px 6px rgba(0, 0, 0, 0.2)", // Softer shadow for better readability
+        marginTop: "40px",
+        fontFamily: "Inter, sans-serif",
       }}
     >
-      Latest Insights & Trends
+      Read our most popular articles
     </h1>
-
-    {/* Blog Description - More Readable on Mobile */}
-    <p  className="text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto mt-3 text-black opacity-90 leading-relaxed px-2 sm:px-4">
-      Stay ahead with expert opinions, AI marketing insights, and the latest trends in advertising.
-    </p>
-
-    {/* ✅ Subscription Box - Fully Responsive */}
-    <div className="mt-6 flex justify-center w-full px-2 sm:px-0">
-      <form className="flex flex-col sm:flex-row items-center bg-white shadow-md rounded-md overflow-hidden w-full max-w-lg p-2">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="flex-1 px-4 py-3 text-gray-700 border-none focus:outline-none focus:ring-2 focus:ring-indigo-400 w-full sm:w-auto"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full sm:w-auto px-6 py-3 font-semibold text-lg bg-[#4a5abb] hover:bg-[#3d4ca0] text-white transition-all duration-300"
-        >
-          Subscribe
-        </button>
-      </form>
-    </div>
   </div>
 </div>
 
 
       {/* ✅ Main Blog Content */}
-      <div style={{marginTop:"20px"}} className="container mx-auto px-4 sm:px-8 lg:px-16 py-8">
+      <div className="container mx-auto px-4 sm:px-8 lg:px-16 py-8">
         <BlogList />
       </div>
 
       {/* ✅ Footer */}
       <div className="footer-style-two theme-basic-footer mt-6 bg-gray-50">
-        <div className="top-footer position-relative">
+        
           <div className="container">
             <div className="inner-wrapper m-auto">
               <div className="row">
@@ -93,7 +83,7 @@ const GridWithSidebar = () => {
               </div>
             </div>
           </div>
-        </div>
+        
         <CopyrightFooter2 />
       </div>
     </>

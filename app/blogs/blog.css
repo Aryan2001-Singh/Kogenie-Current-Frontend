@@ -1,0 +1,165 @@
+/* ========== Blog Page Styling ========== */
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9fafb;
+    min-height: 100vh;
+    padding-top: 10px;
+  }
+  
+  /* ✅ Floating Progress Bar */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(to right, #4a5abb, #7066ff);
+    z-index: 50;
+  }
+  
+  /* ✅ Blog Main Layout */
+  .blog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+  
+  @media (min-width: 1024px) {
+    .blog-content {
+      flex-direction: row;
+    }
+  }
+  
+  /* ✅ Blog Article Section */
+  .blog-article {
+    flex: 2;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  .blog-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .blog-image {
+    width: 100%;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-text {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.8;
+  }
+  
+  /* ✅ Sidebar Section */
+  .sidebar {
+    flex: 1;
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+  }
+  
+  .sidebar-box {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+  
+  .sidebar-box h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-list li {
+    padding: 8px 0;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+  }
+  
+  .sidebar-list li:hover {
+    border-left: 4px solid #4a5abb;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  
+  /* ✅ Social Share Icons */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 1rem;
+  }
+  
+  .social-icons img {
+    width: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .social-icons img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* ✅ Placeholder Skeleton Loaders */
+  .skeleton {
+    background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  
+  .skeleton-title {
+    height: 30px;
+    width: 70%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .skeleton-text {
+    height: 18px;
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+  
+  .skeleton-image {
+    height: 300px;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+  

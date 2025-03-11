@@ -24,7 +24,6 @@ const BlogList = () => {
 
   return (
     <div className="px-4">
-      {/* Category Buttons with Further Reduced Top Margin */}
       <div className="flex justify-center gap-4 sm:gap-6 p-2 mt-[-10px] mb-4 flex-wrap">
   {["All", "Technology", "Startup", "Lifestyle"].map((category) => (
     <button
@@ -70,7 +69,6 @@ const BlogList = () => {
   blogs
     .filter((item) => (menu === 'All' ? true : item.category === menu))
     .map((item, index) => {
-      // ✅ Format the date
       const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
         weekday: "short", 
         month: "short",   
@@ -84,8 +82,8 @@ const BlogList = () => {
           id={item._id}
           image={item.image}
           title={item.title}
-          description={item.description}
           category={item.category}
+          readTime={item.readTime}
           date={formattedDate} 
         />
       );
