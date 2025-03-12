@@ -57,7 +57,7 @@ const OrganizationIdPage = () => {
     });
   
     try {
-      const response = await fetch("http://51.20.1.194:5001/createAd", {
+      const response = await fetch("https://web-production-7b70.up.railway.app//createAd", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
