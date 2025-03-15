@@ -3,7 +3,6 @@
 import { assets } from "@/Assets/assets";
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState, useCallback } from "react";
@@ -111,19 +110,31 @@ const Page = ({ params }) => {
       </div>
 
       {/* Footer */}
-      <div className="footer-style-two theme-basic-footer mt-16">
-        <div className="top-footer position-relative">
-          <div className="container">
-            <div className="inner-wrapper m-auto">
-              <div className="row">
-                <FooterMenu />
-              </div>
-            </div>
-          </div>
-        </div>
-        <CopyrightFooter2 />
+      <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
       </div>
     </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+</div>
   ) : (
     <div className="flex items-center justify-center min-h-screen">
       <p className="text-xl font-semibold text-gray-600">Loading...</p>

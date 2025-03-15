@@ -1,8 +1,7 @@
+'use client';
 import React from "react";
-
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Image from "next/image";
 // import Blog from "@/components/feature-sass/Blog";
 // import Features from "@/components/feature-sass/Features";
@@ -226,33 +225,31 @@ const FeaturesV1 = () => {
         Footer
         =====================================================
         */}
-      <div className="footer-style-two theme-basic-footer">
-        <div className="top-footer position-relative">
-          <div className="container">
-            <div className="inner-wrapper m-auto">
-              <div className="row">
-                <FooterMenu />
-              </div>
-            </div>
-            {/* /.inner-wrapper */}
-          </div>
-          <div className="" />
-          <div className="" />
-          {/* <Image
-            src="/images/shape/shape_42.svg"
-            alt="shape"
-            className="lazy-img shapes shape-three"
-          />
-          <Image
-            src="/images/shape/shape_43.svg"
-            alt="shape"
-            className="lazy-img shapes shape-four"
-          /> */}
-        </div>
-        {/* /.top-footer */}
-        <CopyrightFooter2 />
+        <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
       </div>
-      {/* /.footer-style-two */}
+    </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+
     </>
   );
 };

@@ -1,6 +1,5 @@
 "use client";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Header from "@/components/home-page/home-6/Header";
 import React from "react";
 import BlogList from "@/components/BlogList";
@@ -74,18 +73,31 @@ const GridWithSidebar = () => {
       </div>
 
       {/* ✅ Footer */}
-      <div className="footer-style-two theme-basic-footer mt-6 bg-gray-50">
-        
-          <div className="container">
-            <div className="inner-wrapper m-auto">
-              <div className="row">
-                <FooterMenu />
-              </div>
-            </div>
-          </div>
-        
-        <CopyrightFooter2 />
+      <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
       </div>
+    </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+
     </>
   );
 };

@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -10,7 +9,7 @@ const footerData = [
     className: "col-lg-3 col-md-4 col-sm-6 mb-4",
     links: [
       { label: "Home", href: "/" },
-      // { label: "Pricing", href: "/pages/pricing-v2" },
+      { label: "Services", href: "/pages/OurService" },
       { label: "About us", href: "/pages/about-us" },
       { label: "Features", href: "/pages/OurService" },
       { label: "Blog", href: "/blogs" },
@@ -30,228 +29,156 @@ const footerData = [
 
 const FooterLinks = () => {
   return (
-    <footer className="footer-container">
-      <div className="container">
-        <div className="row justify-content-between">
-          {/* Logo & Contact Info */}
-          <div className="col-lg-4 col-md-6 footer-intro">
-            <div className="logo">
-              <Link href="/">
-                <Image
-                  src="/kogenielogo.svg"
-                  alt="logo"
-                  width={120}
-                  height={60}
-                />
-              </Link>
+    <footer className="footer-container w-full">
+      <div className="footer-wrapper">
+        <div className="container">
+          <div className="row justify-content-between">
+            {/* Logo & Contact Info */}
+            <div className="col-lg-4 col-md-6 footer-intro">
+              <div className="logo">
+                <Link href="/">
+                  <Image src="/kogenielogo.svg" alt="logo" width={140} height={70} />
+                </Link>
+              </div>
+              <div className="footer-contact">
+                <p className="contact-text">
+                  Connecting businesses with <span className="highlight">AI-powered marketing.</span>
+                </p>
+                <div className="contact-info">
+                  <a href="mailto:kogenie.marketing@kogenie.com" className="footer-email">
+                    <i className="fas fa-envelope"></i> kogenie.marketing@kogenie.com
+                  </a>
+                  <br />
+                  <a href="tel:+918826132744" className="footer-phone">
+                    <i className="fas fa-phone"></i> +91-8826-132-744
+                  </a>
+                </div>
+              </div>
             </div>
-            <a
-              href="mailto:kogenie.marketing@kogenie.com"
-              className="footer-email"
-            >
-              kogenie.marketing@kogenie.com
-            </a>
-            <br />
-            <a href="tel:+918826132744" className="footer-phone">
-              +91-8826-132-744
-            </a>
+
+            {/* Footer Links */}
+            {footerData.map(({ title, className, links }) => (
+              <div className={className} key={title}>
+                <h5 className="footer-title">{title}</h5>
+                <ul className="footer-nav-link">
+                  {links.map(({ label, href }) => (
+                    <li key={label}>
+                      <Link href={href} className="footer-link">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            {/* Social Media Icons */}
+            <div className="col-lg-3 col-md-6 footer-social">
+              <h5 className="footer-title">Join Our Community</h5>
+              <div className="social-icons">
+                <a href="https://www.facebook.com/kogenie.in/about/" className="social-icon facebook">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://x.com/kogenie__26" className="social-icon twitter">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/kogenie_official?igsh=MTg4dDEzdnJ0cjE2ag==" className="social-icon instagram">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/kogenie/" className="social-icon linkedin">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Footer Links */}
-          {footerData.map(({ title, className, links }) => (
-            <div className={className} key={title}>
-              <h5 className="footer-title">{title}</h5>
-              <ul className="footer-nav-link">
-                {links.map(({ label, href }) => (
-                  <li key={label}>
-                    <Link href={href} className="footer-link">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Social Media Icons */}
-          <div className="col-lg-3 col-md-6 footer-social">
-            <h5 className="footer-title">Join Our Community</h5>
-            <div className="social-icons">
-              <a
-                href="https://www.facebook.com/kogenie.in/about/"
-                className="social-icon facebook"
-              >
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="https://x.com/kogenie__26"
-                className="social-icon twitter"
-              >
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/kogenie_official?igsh=MTg4dDEzdnJ0cjE2ag=="
-                className="social-icon instagram"
-              >
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/kogenie/"
-                className="social-icon linkedin"
-              >
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </div>
+          {/* Footer Bottom */}
+          <div className="footer-bottom">
+            <p>© {new Date().getFullYear()} Kogenie. All rights reserved.</p>
           </div>
         </div>
-
-        {/* Footer Bottom */}
-        {/* <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Kogenie. All rights reserved.</p>
-        </div> */}
       </div>
 
       {/* Styles */}
       <style jsx>{`
         .footer-container {
-          background: whitesmoke;
-          color: black;
+          width: 100%;
+          background: #5663B8;
+          color: #ffffff;
           padding: 50px 0 20px;
           font-family: "Inter", sans-serif;
-          backdrop-filter: blur(10px);
+          border-top: 3px solid rgba(56, 56, 56, 0.11);
+          backdrop-filter: blur(15px);
         }
-
-        .footer-title {
-          font-size: 18px;
-          font-weight: 600;
-          color: black;
-          margin-bottom: 15px;
-        }
-
-        .footer-nav-link {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .footer-nav-link li {
-          margin-bottom: 10px;
-        }
-
-        .footer-link {
-          color: black;
-          text-decoration: none;
-          font-size: 16px;
-          transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-          color: #546aec;
-        }
-
-        .footer-email {
-          display: inline-block;
-          margin-top: 15px;
-          font-size: 16px;
-          color: #546aec;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-        .footer-phone {
-          display: inline-block;
-          margin-top: 15px;
-          font-size: 16px;
-          color: black;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-
-        .footer-email:hover,
-        .footer-phone:hover {
-          color: red;
-        }
-
-        .footer-social {
-          text-align: left;
-        }
-
+        
         .social-icons {
           display: flex;
-          gap: 12px;
-          margin-top: 10px;
+          gap: 15px;
+          margin-top: 15px;
+          justify-content: flex-start;
         }
-
+        
         .social-icon {
           width: 40px;
           height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(255, 255, 255, 0.15);
           border-radius: 50%;
-          transition: background 0.3s ease, transform 0.3s ease;
+          transition: all 0.3s ease-in-out;
         }
-
-        .social-icon i {
-          color: black;
+        
+        .social-icon.facebook:hover {
+          background-color: #1877f2;
+        }
+        .social-icon.twitter:hover {
+          background-color: #1da1f2;
+        }
+        .social-icon.instagram:hover {
+          background-color: #e4405f;
+        }
+        .social-icon.linkedin:hover {
+          background-color: #0077b5;
+        }
+        
+        .footer-title {
           font-size: 18px;
-          transition: color 0.3s ease;
+          font-weight: bold;
+          margin-bottom: 15px;
+          color: #ffffff;
         }
-
-        /* Facebook Hover */
-        .facebook:hover {
-          background: #1877f2;
+        
+        .footer-nav-link {
+          list-style: none;
+          padding: 0;
         }
-        .facebook:hover i {
-          color: #fff;
+        
+        .footer-link, .footer-email, .footer-phone {
+          color: #b0c4ff;
+          text-decoration: none;
+          font-size: 16px;
+          transition: color 0.3s ease-in-out;
         }
-
-        /* Twitter Hover */
-        .twitter:hover {
-          background: #1da1f2;
+        
+        .footer-link:hover, .footer-email:hover, .footer-phone:hover {
+          color: yellow;
+          text-decoration: underline;
         }
-        .twitter:hover i {
-          color: #fff;
+        
+        .footer-bottom {
+          text-align: center;
+          margin-top: 30px;
+          padding-top: 15px;
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        /* Instagram Hover */
-        .instagram:hover {
-          background: #e4405f;
-        }
-        .instagram:hover i {
-          color: #fff;
-        }
-
-        /* LinkedIn Hover */
-        .linkedin:hover {
-          background: #0077b5;
-        }
-        .linkedin:hover i {
-          color: #fff;
-        }
-
-        /* Hover Scale Effect */
-        .social-icon:hover {
-          transform: scale(1.1);
-        }
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
-          .footer-intro {
+          .footer-intro, .footer-social {
             text-align: center;
             margin-bottom: 30px;
           }
-
-          .footer-social {
-            text-align: center;
-            margin-top: 20px;
-          }
-
           .social-icons {
             justify-content: center;
-          }
-
-          .footer-bottom {
-            margin-top: 20px;
           }
         }
       `}</style>

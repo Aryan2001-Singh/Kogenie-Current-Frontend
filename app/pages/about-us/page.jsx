@@ -5,7 +5,6 @@ import TeamCards from "./team/page.jsx";
 import Header from "@/components/home-page/home-6/Header";
 import Image from "next/image";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Head from "next/head.js";
 import Link from "next/link.js";
 const AboutUsV1 = () => {
@@ -1268,23 +1267,37 @@ const AboutUsV1 = () => {
       {/* Team Section */}
       {/* Team Section */}
       <div className="w-full bg-gray-50 py-16 flex flex-col items-center">
-        <div className="max-w-full w-full px-4 sm:px-6 lg:px-8">
+        <div style={{margin:"30px"}} className="max-w-full w-full px-4 sm:px-6 lg:px-8">
           <TeamCards />
         </div>
       </div>
 
       {/* Footer */}
-      <div className="footer-style-two theme-basic-footer w-full mt-16">
-        {/* <div className="top-footer position-relative"> */}
-        <div className="container">
-          <div className="inner-wrapper m-auto">
-            <div className="row">
-              <FooterMenu />
-            </div>
-          </div>
-        </div>
+      <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
       </div>
-      <CopyrightFooter2 />
+    </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+
     </>
   );
 };

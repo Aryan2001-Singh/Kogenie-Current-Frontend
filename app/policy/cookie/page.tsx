@@ -1,19 +1,11 @@
+'use client';
+
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
-
-export const metadata = {
-  title: "Cookie policy",
-};
 
 const Policy = () => {
   return (
     <>
-      {/* 
-      =============================================
-      Theme Default Menu
-      ============================================== 	
-      */}
       <Header />
 
       <div className="policy-content mt-200">
@@ -70,20 +62,31 @@ const Policy = () => {
       </div>
 
       {/* Footer */}
-      <div className="footer-style-two theme-basic-footer">
-        <div className="top-footer position-relative">
-          <div className="container">
-            <div className="inner-wrapper m-auto">
-              <div className="row">
-                <FooterMenu />
-              </div>
-            </div>
-            {/* /.inner-wrapper */}
-          </div>
-        </div>
-        {/* /.top-footer */}
-        <CopyrightFooter2 />
+      <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
       </div>
+    </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+
     </>
   );
 };

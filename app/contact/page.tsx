@@ -4,7 +4,6 @@ import ContactForm4 from "@/components/contact/ContactForm";
 import Map2 from "@/components/contact/Map";
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Head from "next/head";
 
 const ContactV4 = () => {
@@ -28,7 +27,7 @@ const ContactV4 = () => {
       <Header />
 
       {/* ✅ Contact Page UI */}
-      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 mt-16">
+      <div style={{marginBottom:"60px"}} className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 mt-16">
         {/* Page Title */}
         <div style={{ marginTop: "150px" }} className="text-center mb-10">
           <h2 className="text-4xl font-bold text-gray-900 leading-snug">
@@ -93,12 +92,31 @@ const ContactV4 = () => {
       </div>
 
       {/* ✅ Footer */}
-      <div className="footer-style-two theme-basic-footer mt-12">
-        <div className="container mx-auto px-6">
-          <FooterMenu />
-        </div>
-        <CopyrightFooter2 />
+      <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
       </div>
+    </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+
     </>
   );
 };

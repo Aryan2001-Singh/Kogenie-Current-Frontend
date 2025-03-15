@@ -6,7 +6,6 @@ import Link from "next/link";
 import TagList from "@/components/home-page/home-6/TagList";
 import Features from "@/components/home-page/home-6/Features";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import CopyrightFooter2 from "@/components/footer/CopyrightFooter2";
 import Head from "next/head";
 
 const SassProduct = () => {
@@ -659,36 +658,31 @@ const SassProduct = () => {
         */}
 
         {/* Footer */}
-        <div style={{backgroundColor:"linear-gradient(135deg, rgba(0, 1, 7, 0.9), rgba(146, 135, 230, 0.9))", marginTop:"10px"}}className="footer-style-two theme-basic-footer">
-            <div className="container">
-              <div className="inner-wrapper m-auto">
-                <div className="row">
-                  <FooterMenu />
-                </div>
-              
-              {/* /.inner-wrapper */}
-            </div>
-            <div className="" />
-            <div className="" />
-            {/* <Image
-              src="/images/shape/shape_42.svg"
-              alt="shape"
-              className="lazy-img shapes shape-three"
-              width={100}
-              height={100}
-            />
-            <Image
-              src="/images/shape/shape_43.svg"
-              alt="shape"
-              className="lazy-img shapes shape-four"
-              width={100}
-              height={100}
-            /> */}
-          </div>
-          {/* /.top-footer */}
-          <CopyrightFooter2 />
-        </div>
-        {/* /.footer-style-two */}
+        <footer className="footer-container">
+  <div className="footer-wrapper w-full">
+    <div className="inner-wrapper m-auto">
+      <div className="row">
+        <FooterMenu />
+      </div>
+    </div>
+  </div>
+
+  <style jsx>{`
+    .footer-container {
+      width: 100vw; /* Ensures full viewport width */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+    }
+
+    .footer-wrapper {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+    }
+  `}</style>
+</footer>
+
     </>
   );
 };
