@@ -50,7 +50,7 @@ const Header = () => {
                 alt="logo"
                 width={95}
                 height={30}
-                style={{ backgroundColor: "#E8EAF9" }}
+                style={{ backgroundColor: "white" }}
               />
             </Link>
           </div>
