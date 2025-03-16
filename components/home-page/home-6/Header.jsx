@@ -46,7 +46,7 @@ const Header = () => {
           <div className="logo order-lg-0">
             <Link href="/" className="d-block">
               <Image
-                src="/kogenielogo.svg"
+                src="/kogenie logo.jpeg"
                 alt="logo"
                 width={95}
                 height={30}
