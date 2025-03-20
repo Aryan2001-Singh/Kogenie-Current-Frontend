@@ -14,9 +14,11 @@ const navItems = [
 
 const PortfolioMenu = () => {
   const [activeLink, setActiveLink] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLinkClick = (index) => {
     setActiveLink(index);
+    setIsMenuOpen(false); // Close menu after clicking
   };
 
   return (
@@ -24,25 +26,17 @@ const PortfolioMenu = () => {
       <button
         className="navbar-toggler d-block d-lg-none"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#one-page-nav"
-        aria-controls="one-page-nav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <span />
       </button>
-      <div className="collapse navbar-collapse" id="one-page-nav">
+
+      <div className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`} id="one-page-nav">
         <ul className="navbar-nav">
           <li className="d-block d-lg-none">
             <div className="logo">
               <Link href="/" className="d-block">
-                <Image
-                  src="/images/logo/logo_04.png"
-                  alt="logo"
-                  width={90}
-                  height={25}
-                />
+                <Image src="/images/logo/logo_04.png" alt="logo" width={90} height={25} />
               </Link>
             </div>
           </li>
