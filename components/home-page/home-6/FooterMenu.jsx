@@ -37,7 +37,7 @@ const FooterLinks = () => {
             <div className="col-lg-4 col-md-6 footer-intro">
               <div className="logo">
                 <Link href="/">
-                  <Image src="/kogenielogo.svg" alt="logo" width={140} height={70} />
+                  <Image src="/kogenie logo.jpeg" alt="logo" width={140} height={70} />
                 </Link>
               </div>
               <div className="footer-contact">

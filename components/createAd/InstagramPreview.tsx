@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DraggableHeadline from "./DraggableHeadline"; // Import DraggableHeadline
+import DraggableHeadline from "./DraggableHeadline"; 
 import Image from "next/image";
 
 interface InstagramPreviewProps {
@@ -28,8 +28,11 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true); // Ensures this component is client-rendered
+    setIsClient(true);
   }, []);
+
+  // Function to check if image is a base64 string
+  const isBase64 = (str: string) => str.startsWith("data:image");
 
   return (
     <div className="max-w-sm mx-auto border border-gray-300 rounded-lg shadow-lg overflow-hidden mt-6">
@@ -38,8 +41,8 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
         <Image
           src="/images/gallery/img_01.jpg" // Dummy profile picture
           alt="Profile"
-          width={40} // Specify width
-          height={40} // Specify height
+          width={40} 
+          height={40} 
           className="w-10 h-10 rounded-full"
         />
         <span className="ml-2 font-semibold">your_brand_name</span>
@@ -47,13 +50,24 @@ const InstagramPreview: React.FC<InstagramPreviewProps> = ({
 
       {/* Image Preview */}
       <div className="relative">
-        {image && (
-          <img // ✅ Use a normal img tag for base64 images
-            src={image}
-            alt="Instagram Post"
-            className="w-full object-cover"
-          />
-        )}
+  {image && (
+    isBase64(image) ? (
+      <img
+        src={image} // ✅ Keeps <img> for base64 images
+        alt="Instagram Post"
+        className="w-full object-cover"
+        loading="lazy" // ✅ Improves performance for base64 images
+      />
+    ) : (
+      <Image
+        src={image} // ✅ Uses <Image /> for external images
+        alt="Instagram Post"
+        width={500} 
+        height={500} 
+        className="w-full object-cover"
+      />
+    )
+  )}
 
         {/* Draggable Headline Component */}
         <DraggableHeadline

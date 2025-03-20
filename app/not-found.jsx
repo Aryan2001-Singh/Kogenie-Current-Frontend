@@ -14,9 +14,9 @@ const NotFoundPage = () => {
     const timer = setTimeout(() => {
       router.push("/");
     }, 5000);
-
+  
     return () => clearTimeout(timer);
-  }, []);
+  }, [router]); 
 
   return (
     <>

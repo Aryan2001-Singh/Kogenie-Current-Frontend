@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ModalVideo from "react-modal-video";
@@ -75,7 +75,7 @@ const Hero = () => {
                 <Link
                   href="/sign-up"
                   className={styles["cta-btn"]}
-                  style={{ borderRadius: "0", boxShadow: "2px 2px 5px grey" }}
+                  style={{ borderRadius: "8px", boxShadow: "2px 2px 5px grey" }}
                 >
                   Create Your Ad
                 </Link>
@@ -99,17 +99,20 @@ const Hero = () => {
 
             {/* Right Side: Image */}
             <div className="col-lg-6 col-md-5 text-center" data-aos="fade-left"
-            style={{margin:"auto",
-              marginTop: "6rem",
-            }}>
-              <img
-                src="/ai.jpg"
-                alt="Hero Image"
-                className="img-fluid"
-                style={{ maxWidth: "100%" }}
-              />
-            </div>
-          </div>
+  style={{
+    margin: "auto",
+    marginTop: "6rem",
+  }}
+>
+  <Image
+    src="/ai.jpg"
+    alt="Hero Image"
+    width={600} // Adjust as needed
+    height={400}
+    className="img-fluid"
+    style={{ maxWidth: "100%", height: "auto" }}
+  />
+</div></div>
 
           {/* <div className="text-center mt-20">
             <p className="text-lg font-semibold">Join Our Community</p>

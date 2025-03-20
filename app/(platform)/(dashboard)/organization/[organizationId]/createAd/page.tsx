@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useAdStore } from "@/store/useAdStore";
 import styles from "@/styles/CreateAdPage.module.css";
 import Head from "next/head";
-
+import Image from "next/image";
 import EditorTools from "@/components/createAd/EditorTools";
 import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
@@ -225,17 +225,15 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                   aspectRatio === "square" ? styles.square : styles.story
                 } relative`}
               >
-                <img
-                  src={image || placeholderImage}
-                  alt="Ad Preview"
-                  className="shadow-md rounded-lg"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    filter: selectedFilter,
-                  }}
-                />
+               <Image
+  src={image || placeholderImage}
+  alt="Ad Preview"
+  className="shadow-md rounded-lg"
+  layout="fill"
+  objectFit="cover"
+  style={{ filter: selectedFilter }}
+/>
+
                 {isClient && clientHeadline && (
                   <DraggableHeadline
                     headlineText={clientHeadline}

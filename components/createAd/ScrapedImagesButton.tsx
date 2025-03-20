@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface ScrapedImagesButtonProps {
   productImages: string[]; // ✅ List of scraped images
@@ -32,16 +33,19 @@ const ScrapedImagesButton: React.FC<ScrapedImagesButtonProps> = ({
             {/* ✅ Display Scraped Images */}
             <div className="flex overflow-x-auto space-x-2">
               {productImages.map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`Scraped Image ${index + 1}`}
-                  className="w-24 h-24 rounded-lg cursor-pointer hover:opacity-75"
-                  onClick={() => {
-                    onSelectImage(img); // ✅ Send Selected Image to Parent
-                    setShowPopup(false); // ✅ Close Popup
-                  }}
-                />
+                <div key={index} className="w-24 h-24 relative">
+                  <Image
+                    src={img}
+                    alt={`Scraped Image ${index + 1}`}
+                    width={96} // 24 x 4 (tailwind 24 = 96px)
+                    height={96}
+                    className="rounded-lg cursor-pointer hover:opacity-75"
+                    onClick={() => {
+                      onSelectImage(img); // ✅ Send Selected Image to Parent
+                      setShowPopup(false); // ✅ Close Popup
+                    }}
+                  />
+                </div>
               ))}
             </div>
 

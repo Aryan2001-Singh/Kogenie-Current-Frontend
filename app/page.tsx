@@ -7,6 +7,7 @@ import TagList from "@/components/home-page/home-6/TagList";
 import Features from "@/components/home-page/home-6/Features";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import Head from "next/head";
+import Solution from "./Solution";
 
 const SassProduct = () => {
   return (
@@ -80,8 +81,9 @@ const SassProduct = () => {
 
       {/* Hero Section */}
       <Hero />
+      <Solution />
 
-      <div className="fancy-feature-three pt-0 lg-pt-0 md-pt-0 sm-pt-0">
+      <div style={{marginTop:"30px"}}className="fancy-feature-three pt-0 lg-pt-0 md-pt-0 sm-pt-0">
       <div className="container">
           <div className="row align-items-center">
             {/* Right Video Section (Now moved to left side) */}
@@ -150,46 +152,8 @@ const SassProduct = () => {
 </div>
 </div></div>
 
-      {/* Feature Section Four */}
-      <div className="w-full max-w-[1100px] mx-auto my-6 p-10 flex flex-wrap items-center justify-between gap-5 text-left relative bg-[#DFE1ED] font-inter">
-  {/* Floating Elements */}
-  <div className="absolute top-[-20px] left-[20px] w-[80px] h-[80px] bg-[rgba(74,90,187,0.2)] rounded-full"></div>
-  <div className="absolute bottom-[-20px] right-[20px] w-[60px] h-[60px] bg-[rgba(189,195,234,0.34)] rounded-full"></div>
 
-  {/* Left Side: Text Content & Button */}
-  <div className="flex-1 min-w-[320px] flex flex-col items-start z-10">
-    <h2 className="text-[clamp(28px,3.5vw,42px)] font-extrabold leading-tight text-gray-900 mb-3">
-      <span className="bg-gradient-to-r from-[#4a5abb] to-[#8693e3] text-transparent bg-clip-text">
-        Boost Engagement
-      </span>{" "}
-      with AI-Powered Ads!
-    </h2>
-    <p className="text-[clamp(14px,1.4vw,17px)] text-gray-700 font-normal leading-[1.5] max-w-[480px] opacity-90 mb-5 text-justify">
-      Generate high-converting ads in seconds. Kogenie&apos;s AI-powered platform helps you craft
-      <strong className="text-[#4a5abb]"> engaging, personalized</strong> ads that drive real results.
-    </p>
-
-    {/* CTA Button */}
-    <Link href="/sign-up">
-      <button
-        className="relative px-8 py-3 text-[17px] font-semibold text-white transition-all duration-300 bg-[#4a5abb] shadow-lg hover:bg-[#3C4E99] hover:shadow-xl hover:translate-y-[-2px] active:scale-95"
-      >
-        Join Now - It’s Free!
-        <span className="absolute right-3 top-3 h-3 w-3 bg-white rounded-full animate-ping opacity-80"></span>
-      </button>
-    </Link>
-  </div>
-
-  {/* Right Side: Enlarged Illustration */}
-  <div className="flex-1 min-w-[300px] sm:min-w-[400px] lg:min-w-[500px] flex justify-center relative">
-    <img
-      src="/12291062_Wavy_Tech-20_Single-08.jpg"
-      alt="AI Ads Illustration"
-      className="w-full max-w-[350px]"
-    />
-  </div>
-</div>
-
+     
       {/* /.container */}
 
       {/* Feature Section Five */}

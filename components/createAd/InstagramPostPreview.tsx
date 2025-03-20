@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 import { IoHeartOutline, IoChatbubbleOutline, IoPaperPlaneOutline } from "react-icons/io5"; // Outline icons
 import { FaEllipsisH } from "react-icons/fa"; // Three dots menu
 import { IoPersonCircleOutline } from "react-icons/io5"; // Profile icon
@@ -47,13 +47,15 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
         </div>
 
         {/* Instagram Image Preview (Fixed Aspect Ratio) */}
-        <div className="w-full h-[450px] flex items-center justify-center bg-black">
-          <img 
-            src={image || "/default-image.jpg"} 
-            alt="Instagram Post" 
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <div className="w-full h-[450px] flex items-center justify-center bg-black relative">
+  <Image
+    src={image || "/default-image.jpg"}
+    alt="Instagram Post"
+    layout="fill"
+    objectFit="cover"
+  />
+</div>
+
 
         {/* Action Icons (Outline Versions) */}
         <div className="flex items-center px-4 py-3 gap-4 text-white">
