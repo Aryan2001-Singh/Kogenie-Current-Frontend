@@ -4,43 +4,16 @@ const nextConfig = {
   productionBrowserSourceMaps: false, // ✅ Prevents source map generation in production to improve security
 
   images: {
-    domains: [
-      "img.clerk.com",
-      "images.unsplash.com",
-
-      // ✅ Amazon image domains
-      "m.media-amazon.com",
-      "images-na.ssl-images-amazon.com",
-      "images-eu.ssl-images-amazon.com",
-      "images.amazon.com",
-      "media-amazon.com",
-
-      // ✅ Flipkart
-      "rukminim1.flixcart.com",
-      "img1a.flixcart.com",
-
-      // ✅ Myntra
-      "assets.myntassets.com",
-      "image.myntra.com",
-    ],
+    domains: ["img.clerk.com", "images.unsplash.com"], // ✅ More concise way to allow external images
     remotePatterns: [
-      { protocol: "https", hostname: "img.clerk.com" },
-      { protocol: "https", hostname: "images.unsplash.com" },
-
-      // ✅ Amazon
-      { protocol: "https", hostname: "m.media-amazon.com" },
-      { protocol: "https", hostname: "images-na.ssl-images-amazon.com" },
-      { protocol: "https", hostname: "images-eu.ssl-images-amazon.com" },
-      { protocol: "https", hostname: "images.amazon.com" },
-      { protocol: "https", hostname: "media-amazon.com" },
-
-      // ✅ Flipkart
-      { protocol: "https", hostname: "rukminim1.flixcart.com" },
-      { protocol: "https", hostname: "img1a.flixcart.com" },
-
-      // ✅ Myntra
-      { protocol: "https", hostname: "assets.myntassets.com" },
-      { protocol: "https", hostname: "image.myntra.com" },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
     minimumCacheTTL: 60, // ✅ Cache images for at least 60 seconds
   },
@@ -55,6 +28,7 @@ const nextConfig = {
       config.resolve.fallback = { fs: false }; // ✅ Prevents client-side bundling issues with `fs` module
     }
 
+    // ✅ Example: Enable gzip compression for smaller bundle sizes (Optional)
     config.optimization.splitChunks = {
       chunks: "all",
       maxInitialRequests: 5,
@@ -69,11 +43,13 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "geolocation=(self), microphone=()" },
-          { key: "X-Robots-Tag", value: "index, follow" },
+          { key: "X-Frame-Options", value: "DENY" }, // ✅ Prevents clickjacking attacks
+          { key: "X-Content-Type-Options", value: "nosniff" }, // ✅ Prevents MIME type sniffing
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" }, // ✅ Improves referrer security
+          { key: "Permissions-Policy", value: "geolocation=(self), microphone=()" }, // ✅ Restrict browser features
+          {key: "X-Robots-Tag", value: "index, follow"}, // Allow indexing 
+
+          
         ],
       },
     ];
