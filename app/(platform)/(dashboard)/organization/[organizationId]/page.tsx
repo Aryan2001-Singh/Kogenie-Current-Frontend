@@ -57,7 +57,7 @@ const OrganizationIdPage = () => {
     });
   
     try {
-      const response = await fetch("http://localhost:5001/createAd", {
+      const response = await fetch("http://13.126.150.102:5001/createAd", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

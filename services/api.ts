@@ -12,7 +12,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
 
   try {
     // ✅ Send the ad data (including headline) to the backend for storage
-    const response = await fetch("http://localhost:5001/api/ads/store", {
+    const response = await fetch("http://13.126.150.102:5001/api/ads/store", {
       method: "POST",
       credentials:"include",
       headers: { "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
 // ✅ Function to fetch all stored ads
 export const fetchAds = async () => {
   try {
-    const response = await fetch("http://localhost:5001/api/ads");
+    const response = await fetch("http://13.126.150.102:5001/api/ads");
 
     if (!response.ok) {
       const errorData = await response.json(); // ✅ Fetch error details if request fails
@@ -52,7 +52,7 @@ export const fetchAds = async () => {
 // ✅ Function to generate ad copy & headline using the updated backend API
 export const generateAd = async (adData: any) => {
   try {
-    const response = await fetch("http://localhost:5001/generateAdPrompt", {
+    const response = await fetch("http://13.126.150.102:5001/generateAdPrompt", {
       method: "POST",
       credentials:"include",
       headers: { "Content-Type": "application/json" },
