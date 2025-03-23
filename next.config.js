@@ -1,10 +1,17 @@
 const nextConfig = {
-  reactStrictMode: true, // ✅ Enables React's strict mode for better debugging
-  swcMinify: true, // ✅ Keep SWC minification enabled for better performance
-  productionBrowserSourceMaps: false, // ✅ Prevents source map generation in production to improve security
+  reactStrictMode: true,
+  swcMinify: true,
+  productionBrowserSourceMaps: false,
 
   images: {
-    domains: ["img.clerk.com", "images.unsplash.com"], // ✅ More concise way to allow external images
+    domains: [
+      "img.clerk.com",
+      "images.unsplash.com",
+      "m.media-amazon.com",
+      "images-na.ssl-images-amazon.com",
+      "images.amazon.com",
+      "media-amazon.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -14,21 +21,36 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "m.media-amazon.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images-na.ssl-images-amazon.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.amazon.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media-amazon.com",
+      },
     ],
-    minimumCacheTTL: 60, // ✅ Cache images for at least 60 seconds
+    minimumCacheTTL: 60,
   },
 
   experimental: {
-    optimizeCss: true, // ✅ Optimizes CSS to reduce unused styles
-    scrollRestoration: true, // ✅ Improves navigation experience by restoring scroll position
+    optimizeCss: true,
+    scrollRestoration: true,
   },
 
   webpack(config, { isServer }) {
     if (!isServer) {
-      config.resolve.fallback = { fs: false }; // ✅ Prevents client-side bundling issues with `fs` module
+      config.resolve.fallback = { fs: false };
     }
 
-    // ✅ Example: Enable gzip compression for smaller bundle sizes (Optional)
     config.optimization.splitChunks = {
       chunks: "all",
       maxInitialRequests: 5,
@@ -43,13 +65,11 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" }, // ✅ Prevents clickjacking attacks
-          { key: "X-Content-Type-Options", value: "nosniff" }, // ✅ Prevents MIME type sniffing
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" }, // ✅ Improves referrer security
-          { key: "Permissions-Policy", value: "geolocation=(self), microphone=()" }, // ✅ Restrict browser features
-          {key: "X-Robots-Tag", value: "index, follow"}, // Allow indexing 
-
-          
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "geolocation=(self), microphone=()" },
+          { key: "X-Robots-Tag", value: "index, follow" },
         ],
       },
     ];
