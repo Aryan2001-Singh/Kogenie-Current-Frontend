@@ -551,7 +551,7 @@ const AboutUsV1 = () => {
           </p>
           <div>
             <Link
-              href="/about-us/LetterToInvestor"
+              href="/pages/about-us/Letter-to-investor"
               className="btn btn-primary"
               style={{
                 background: "transparent",
