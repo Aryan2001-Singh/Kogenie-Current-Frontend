@@ -128,14 +128,20 @@ export async function DELETE(request) {
     const blog = await BlogModel.findById(id);
 
     if (blog) {
-      fs.unlinkSync(`./public${blog.image}`);
+      const imagePath = `./public${blog.image}`;
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+      }
+
       await BlogModel.findByIdAndDelete(id);
       return NextResponse.json({ msg: "Blog Deleted" });
     } else {
       return NextResponse.json({ msg: "Blog not found" }, { status: 404 });
     }
   } catch (error) {
+    console.error("DELETE error:", error); // Debug log
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
 
