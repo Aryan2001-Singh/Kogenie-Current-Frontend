@@ -8,6 +8,8 @@ import Features from "@/components/home-page/home-6/Features";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import Head from "next/head";
 import Solution from "./Solution";
+// import CTASection from "../components/CTASection";
+
 
 const SassProduct = () => {
   return (
@@ -614,12 +616,6 @@ const SassProduct = () => {
     }
   `}</style>
 </div>
-
-        {/*
-        =====================================================
-        Fancy Short Banner Three
-        =====================================================
-        */}
 
         {/* Footer */}
         <footer className="footer-container">

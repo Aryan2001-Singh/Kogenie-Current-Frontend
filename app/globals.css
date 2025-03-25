@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
 htm, body, 
 :root {
   height: 100%;
+  font-family: 'Inter', sans-serif;
 }
 
 
