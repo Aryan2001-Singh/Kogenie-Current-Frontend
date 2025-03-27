@@ -281,7 +281,7 @@ const ManualEntryPage: React.FC = () => {
             />
           </div>
 
-          {/* <div>
+          <div>
             <label style={labelStyle}>Target Audience</label>
             <input
               type="text"
@@ -293,7 +293,7 @@ const ManualEntryPage: React.FC = () => {
               onBlur={(e) => (e.target.style.boxShadow = "none")}
               required
             />
-          </div> */}
+          </div>
 
           <div>
             <label style={labelStyle}>Unique Selling Points</label>
