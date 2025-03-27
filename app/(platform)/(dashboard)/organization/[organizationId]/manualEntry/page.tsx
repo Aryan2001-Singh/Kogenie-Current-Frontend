@@ -12,6 +12,11 @@ const ManualEntryPage: React.FC = () => {
   const [productDescription, setProductDescription] = useState("");
   const [targetAudience, setTargetAudience] = useState("");
   const [uniqueSellingPoints, setUniqueSellingPoints] = useState("");
+
+  const [productFor, setProductFor] = useState("");
+  const [problemItSolves, setProblemItSolves] = useState("");
+  const [useLocation, setUseLocation] = useState("");
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -27,40 +32,46 @@ const ManualEntryPage: React.FC = () => {
     e.preventDefault();
     setError("");
     setLoading(true);
-  
+
     if (!userEmail) {
       setError("User is not authenticated. Please log in.");
       setLoading(false);
       return;
     }
-  
+
     const adInputData = {
       brandName,
       productName,
       productDescription,
       targetAudience,
       uniqueSellingPoints,
+      productFor,
+      problemItSolves,
+      useLocation,
     };
-  
+
     try {
-      const response = await fetch("https://api.kogenie.com/generateAdPrompt",{
+      const response = await fetch("https://api.kogenie.com/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
-    });
-  
+      });
+
       const data = await response.json();
-  
+
       console.log("✅ Backend API Response:", data); // Debugging
-  
+
       if (response.ok) {
         if (!data.adCopy || !data.headline) {
-          console.error("❌ Missing adCopy or headline from API response:", data);
+          console.error(
+            "❌ Missing adCopy or headline from API response:",
+            data
+          );
           setError("Invalid API response: Missing adCopy or headline.");
           setLoading(false);
           return;
         }
-  
+
         console.log("✅ Setting Zustand State", {
           ...adInputData,
           adCopy: data.adCopy || "Ad Copy Not Generated",
@@ -68,7 +79,7 @@ const ManualEntryPage: React.FC = () => {
           productImages: data.productImages || [], // ✅ Ensure productImages is included
           selectedImage: data.productImages?.[0] || null, // ✅ Default to first image
         });
-  
+
         // ✅ Update Zustand store
         setAdData({
           ...adInputData,
@@ -77,7 +88,7 @@ const ManualEntryPage: React.FC = () => {
           productImages: data.productImages || [],
           selectedImage: data.productImages?.[0] || null,
         });
-  
+
         setTimeout(() => {
           router.push(`/organization/${organizationId}/createAd`);
         }, 200);
@@ -95,7 +106,7 @@ const ManualEntryPage: React.FC = () => {
   // ✅ Full-page container with background
   const mainContainerStyle: CSSProperties = {
     background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
-    minHeight: "120vh",
+    minHeight: "140vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -112,7 +123,7 @@ const ManualEntryPage: React.FC = () => {
     maxWidth: "600px",
     fontFamily: "'Roboto', Arial, sans-serif",
     background: "white", // ✅ Adding background back to the form for readability
-  }; 
+  };
 
   const labelStyle: CSSProperties = {
     fontWeight: "600",
@@ -159,19 +170,22 @@ const ManualEntryPage: React.FC = () => {
   const buttonHoverStyle = "scale(0.95)";
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden" style={mainContainerStyle}>
-        {/* Floating Background Elements */}
-  <div className="absolute w-80 h-80 bg-white/10 backdrop-blur-lg rounded-full top-10 left-20 animate-pulse"></div>
-  <div className="absolute w-60 h-60 bg-white/20 backdrop-blur-lg rounded-full bottom-20 right-20 animate-pulse"></div>
-  <div className="absolute w-44 h-44 bg-indigo-500/10 backdrop-blur-lg rounded-full top-1/3 left-1/4 animate-pulse"></div>
+    <div
+      className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden"
+      style={mainContainerStyle}
+    >
+      {/* Floating Background Elements */}
+      <div className="absolute w-80 h-80 bg-white/10 backdrop-blur-lg rounded-full top-10 left-20 animate-pulse"></div>
+      <div className="absolute w-60 h-60 bg-white/20 backdrop-blur-lg rounded-full bottom-20 right-20 animate-pulse"></div>
+      <div className="absolute w-44 h-44 bg-indigo-500/10 backdrop-blur-lg rounded-full top-1/3 left-1/4 animate-pulse"></div>
 
-  {/* Subtle Gradient Overlay for Depth */}
-  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
+      {/* Subtle Gradient Overlay for Depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent"></div>
 
-  {/* Small Floating Dots */}
-  <div className="absolute w-3 h-3 bg-white/20 rounded-full top-1/4 left-1/3 animate-bounce"></div>
-  <div className="absolute w-2 h-2 bg-white/30 rounded-full top-2/3 right-1/4 animate-bounce"></div>
-      <div className="relative z-10"style={formContainerStyle}>
+      {/* Small Floating Dots */}
+      <div className="absolute w-3 h-3 bg-white/20 rounded-full top-1/4 left-1/3 animate-bounce"></div>
+      <div className="absolute w-2 h-2 bg-white/30 rounded-full top-2/3 right-1/4 animate-bounce"></div>
+      <div className="relative z-10" style={formContainerStyle}>
         <h1
           style={{
             fontSize: "24px",
@@ -227,6 +241,47 @@ const ManualEntryPage: React.FC = () => {
           </div>
 
           <div>
+            <label style={labelStyle}>Who is the product for?</label>
+            <input
+              type="text"
+              value={productFor}
+              onChange={(e) => setProductFor(e.target.value)}
+              placeholder="E.g., Busy Professionals, Students"
+              style={inputStyle}
+              onFocus={(e) => (e.target.style.boxShadow = inputFocusStyle)}
+              onBlur={(e) => (e.target.style.boxShadow = "none")}
+              required
+            />
+          </div>
+
+          <div>
+            <label style={labelStyle}>What problem does it solve?</label>
+            <textarea
+              value={problemItSolves}
+              onChange={(e) => setProblemItSolves(e.target.value)}
+              placeholder="Describe the pain point or need"
+              style={textareaStyle}
+              onFocus={(e) => (e.target.style.boxShadow = inputFocusStyle)}
+              onBlur={(e) => (e.target.style.boxShadow = "none")}
+              required
+            />
+          </div>
+
+          <div>
+            <label style={labelStyle}>Where is it used most often?</label>
+            <input
+              type="text"
+              value={useLocation}
+              onChange={(e) => setUseLocation(e.target.value)}
+              placeholder="E.g., Office, Home, Outdoors"
+              style={inputStyle}
+              onFocus={(e) => (e.target.style.boxShadow = inputFocusStyle)}
+              onBlur={(e) => (e.target.style.boxShadow = "none")}
+              required
+            />
+          </div>
+
+          {/* <div>
             <label style={labelStyle}>Target Audience</label>
             <input
               type="text"
@@ -238,7 +293,7 @@ const ManualEntryPage: React.FC = () => {
               onBlur={(e) => (e.target.style.boxShadow = "none")}
               required
             />
-          </div>
+          </div> */}
 
           <div>
             <label style={labelStyle}>Unique Selling Points</label>

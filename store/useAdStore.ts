@@ -6,8 +6,11 @@ interface AdData {
   productDescription: string;
   targetAudience: string;
   uniqueSellingPoints: string;
+  productFor: string;
+  problemItSolves: string;
+  useLocation: string;
   adCopy: string;
-  headline: string;  // ✅ Ensure headline is always a string
+  headline: string;
   productImages: string[];
   selectedImage: string | null;
 }
