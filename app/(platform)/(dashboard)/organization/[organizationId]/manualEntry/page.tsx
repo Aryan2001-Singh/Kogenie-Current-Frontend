@@ -106,7 +106,7 @@ const ManualEntryPage: React.FC = () => {
   // ✅ Full-page container with background
   const mainContainerStyle: CSSProperties = {
     background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
-    minHeight: "140vh",
+    minHeight: "139vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
