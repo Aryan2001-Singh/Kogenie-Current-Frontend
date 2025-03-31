@@ -6,7 +6,8 @@ interface AdData {
   productDescription: string;
   targetAudience: string;
   uniqueSellingPoints: string;
-  productFor: string;
+  brandVoice: string;
+  // productFor: string;
   problemItSolves: string;
   useLocation: string;
   adCopy: string;

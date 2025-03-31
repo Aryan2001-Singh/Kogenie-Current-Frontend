@@ -13,9 +13,10 @@ const ManualEntryPage: React.FC = () => {
   const [targetAudience, setTargetAudience] = useState("");
   const [uniqueSellingPoints, setUniqueSellingPoints] = useState("");
 
-  const [productFor, setProductFor] = useState("");
+  // const [productFor, setProductFor] = useState("");
   const [problemItSolves, setProblemItSolves] = useState("");
   const [useLocation, setUseLocation] = useState("");
+  const [brandVoice, setBrandVoice] = useState("");
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,8 @@ const ManualEntryPage: React.FC = () => {
       productDescription,
       targetAudience,
       uniqueSellingPoints,
-      productFor,
+      brandVoice,
+      // productFor,
       problemItSolves,
       useLocation,
     };
@@ -241,12 +243,12 @@ const ManualEntryPage: React.FC = () => {
           </div>
 
           <div>
-            <label style={labelStyle}>Who is the product for?</label>
+            <label style={labelStyle}>What is you brand voice ?</label>
             <input
               type="text"
-              value={productFor}
-              onChange={(e) => setProductFor(e.target.value)}
-              placeholder="E.g., Busy Professionals, Students"
+              value={brandVoice}
+              onChange={(e) => setBrandVoice(e.target.value)}
+              placeholder="E.g., Friendly, Helpful, Playful, Witty"
               style={inputStyle}
               onFocus={(e) => (e.target.style.boxShadow = inputFocusStyle)}
               onBlur={(e) => (e.target.style.boxShadow = "none")}
