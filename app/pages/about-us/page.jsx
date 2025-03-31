@@ -1,12 +1,15 @@
 "use client";
 import { useEffect } from "react";
-import { FaRocket, FaAd, FaSmile } from "react-icons/fa";
+
 import TeamCards from "./team/page.jsx";
 import Header from "@/components/home-page/home-6/Header";
 import Image from "next/image";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import Head from "next/head.js";
 import Link from "next/link.js";
+import { motion } from "framer-motion";
+import { FaBullseye, FaChartLine, FaRocket, FaMedal } from "react-icons/fa";
+
 const AboutUsV1 = () => {
   useEffect(() => {
     // Floating particles effect (adds movement)
@@ -16,6 +19,28 @@ const AboutUsV1 = () => {
       particle.style.animationDuration = `${speed}s`;
     });
   }, []);
+  const journeySteps = [
+    {
+      title: "You Hypertarget",
+      sub: "Your product is great. It just needs the right audience. We help you find them—fast.",
+      icon: <FaBullseye size={28} className="text-[#546aec]" />,
+    },
+    {
+      title: "You make more in less",
+      sub: "Your time and budget should go into building, not guessing. We help you create impactful ads—fast and affordably.",
+      icon: <FaChartLine size={28} className="text-[#546aec]" />,
+    },
+    {
+      title: "You Lead",
+      sub: "With the right audience and the right message, your product leads the way. We’re just here to help it shine.",
+      icon: <FaRocket size={28} className="text-[#546aec]" />,
+    },
+    {
+      title: "You Win",
+      sub: "You get more clicks, more sales, and more return—because your ads actually work.",
+      icon: <FaMedal size={28} className="text-[#546aec]" />,
+    },
+  ];
   return (
     <>
       {/* Header */}
@@ -155,118 +180,52 @@ const AboutUsV1 = () => {
             }}
           ></div>
         ))}
-
-        <div
-          className="container"
-          style={{ maxWidth: "1100px", position: "relative", zIndex: 2 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
         >
-          {/* Title & Content */}
-          <h2
-            className="fw-700"
-            style={{
-              fontSize: "38px",
-              color: "#08090A",
-              fontWeight: "700",
-              letterSpacing: "0.5px",
-              marginBottom: "8px",
-              marginTop: "80px",
-            }}
-          >
-            About Us
-          </h2>
-
-          <p
-            className="about-text"
-            style={{
-              fontSize: "18px",
-              lineHeight: "1.7",
-              fontWeight: "400",
-              color: "#1E2333",
-              maxWidth: "800px",
-              margin: "0 auto 40px",
-              marginBottom: "20px",
-              marginTop: "20px",
-            }}
-          >
-            At <strong style={{ color: "#4A5ABB" }}>KOgenie</strong>, we help
-            businesses scale their marketing with AI-driven advertising
-            solutions. Our intuitive platform empowers businesses to create
-            high-impact campaigns effortlessly.
-          </p>
-
-          {/* New UI for Stats Section */}
           <div
-            className="d-flex flex-wrap justify-content-center"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "20px",
-              marginTop: "30px",
-            }}
+            className="container"
+            style={{ maxWidth: "1100px", position: "relative", zIndex: 2 }}
           >
-            {[
-              {
-                number: "5K+",
-                text: "Successful Campaigns",
-                icon: <FaRocket size={32} color="#546aec" />,
-              },
-              {
-                number: "5K+",
-                text: "Ads Generated",
-                icon: <FaAd size={32} color="#546aec" />,
-              },
-              {
-                number: "99%",
-                text: "Customer Satisfaction",
-                icon: <FaSmile size={32} color="#546aec" />,
-              },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="stat-box"
-                style={{
-                  background: "transparent",
-                  padding: "20px",
-                  transition: "transform 0.2s ease-in-out",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "translateY(-5px)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "translateY(0)")
-                }
-              >
-                {stat.icon}
-                <h3
-                  style={{
-                    fontSize: "30px",
-                    fontWeight: "700",
-                    color: "#08090A",
-                    marginTop: "10px",
-                  }}
-                >
-                  {stat.number}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "400",
-                    color: "#1E2333",
-                  }}
-                >
-                  {stat.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+            {/* Title & Content */}
+            <h2
+              className="fw-700"
+              style={{
+                fontSize: "38px",
+                color: "#08090A",
+                fontWeight: "700",
+                letterSpacing: "0.5px",
+                marginBottom: "8px",
+                marginTop: "80px",
+              }}
+            >
+              We’re KOgenie—
+            </h2>
 
+            <p
+              className="about-text"
+              style={{
+                fontSize: "18px",
+                lineHeight: "1.7",
+                fontWeight: "400",
+                color: "#1E2333",
+                maxWidth: "800px",
+                margin: "0 auto 40px",
+                marginBottom: "20px",
+                marginTop: "20px",
+              }}
+            >
+              <strong style={{ color: "#4A5ABB" }}>
+                Built to Change the Way Marketing Works
+              </strong>
+              , Make Ads that hit right to the right audience at right time.
+              Powered by AI. Perfected for HyperTargeting.
+            </p>
+          </div>
+        </motion.div>
         {/* Floating Animation for Particles */}
         <style>{`
         @keyframes floatStars {
@@ -278,158 +237,77 @@ const AboutUsV1 = () => {
 
       {/* <div className="row">
             <div className="col-xl-8 col-lg-9 ms-auto"> */}
-      <div
-        className="fancy-feature-three pt-80 sm-pt-60"
-        style={{ fontFamily: '"Inter", sans-serif' }}
-      >
-        <div
-          style={{
-            borderRadius: "10px",
-            padding: "40px 20px",
-            marginTop: "-50px", // Reduced margin from top
-            background: "#F9FAFC",
-            boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.05)",
-          }}
-          className="container"
-        >
-          <div className="row align-items-center">
-            {/* Left Content Section */}
-            <div className="col-lg-6 col-md-6 d-flex flex-column justify-content-center text-justify">
-              <div className="title-style-three mb-4">
-                <div
-                  className="sc-title text-uppercase"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    color: "#546aec",
-                    letterSpacing: "1.2px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Our Journey
-                </div>
-                <h2
-                  style={{
-                    fontSize: "34px",
-                    fontWeight: "700",
-                    lineHeight: "1.4",
-                    color: "#08090A",
-                    marginBottom: "15px",
-                    letterSpacing: "0.3px",
-                    font: "inter",
-                  }}
-                  className="max-w-xs main-title fw-700"
-                >
-                  Democratizing the Power of Marketing
-                </h2>
-              </div>
+      <div className="relative w-full py-20 px-4 sm:px-8 bg-gradient-to-r from-[#f9fafc] to-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* LEFT SIDE — Text & CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <p className="uppercase text-sm font-semibold tracking-wide text-[#546aec] mb-3">
+              Great Ideas Deserve Better Ads
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-4">
+              We Make Sure Yours Break Through
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              The best products (like yours) often go unnoticed—not because they
+              aren’t great, but because they aren’t marketed better.
+              <br />
+              <strong className="text-black gap-2 mb-2 ">
+                Built Something Great? Let’s Market It.
+              </strong>
+            </p>
 
-              <p
-                style={{
-                  fontSize: "16px",
-                  color: "#333",
-                  lineHeight: "1.7",
-                  marginBottom: "25px",
-                  font: "sans-serif",
-                }}
-              >
-                In this crowded, noisy world, it’s not about having the loudest
-                voice—it’s about having the most meaningful one. Today, the
-                greatest products and solutions often go unheard because they
-                lack the budget to compete with superficial noise. At{" "}
-                <strong style={{ color: "#4A5ABB" }}>KOgenie</strong>, we’re
-                democratizing marketing and branding, making it accessible to
-                every dreamer and innovator. We amplify the voices of those who
-                dare to create something truly valuable.
-              </p>
+            <Link href="/sign-up">
+              <button className="inline-block bg-[#546aec] hover:bg-[#4253c1] text-white font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md">
+                Start Creating Ads
+              </button>
+            </Link>
+          </motion.div>
 
-              {/* Timeline Section (Without Icons) */}
-              <div className="timeline d-flex flex-wrap gap-3">
-                {[
-                  { year: "2024", text: "KOgenie was founded." },
-                  { year: "2025", text: "Innovative ad platform launched." },
-                  {
-                    year: "Target",
-                    text: "Reaching 5M+ ads created globally.",
-                  },
-                ].map((event, index) => (
-                  <div
-                    key={index}
-                    className="timeline-item text-center p-4"
-                    style={{
-                      background: "#ffffff",
-                      borderLeft: "3px solid rgba(84, 107, 236, 0.34)", // Stylish left border
-                      borderRadius: "12px",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
-                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                      flex: "1",
-                      minWidth: "160px",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateY(-5px)";
-                      e.currentTarget.style.boxShadow =
-                        "0 8px 20px rgba(0, 0, 0, 0.15)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow =
-                        "0 4px 12px rgba(0, 0, 0, 0.05)";
-                    }}
-                  >
-                    <h4
-                      style={{
-                        color: "#546aec",
-                        fontSize: "22px",
-                        fontWeight: "700",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      {event.year}
-                    </h4>
-                    <p
-                      style={{
-                        color: "#333",
-                        fontSize: "15px",
-                        marginTop: "8px",
-                      }}
-                    >
-                      {event.text}
-                    </p>
+          {/* RIGHT SIDE — 2 Column Grid of Steps */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="space-y-6">
+              {journeySteps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
+                >
+                  {/* Diamond Icon Box */}
+                  <div className="w-10 h-10 relative flex-shrink-0">
+                    <div className="w-full h-full bg-[#e6eaff] rotate-45 rounded-md shadow-sm flex items-center justify-center">
+                      <div className="-rotate-45 text-[#546aec] text-lg">
+                        {step.icon}
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Right Image Section */}
-            <div className="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
-              <div
-                style={{
-                  width: "100%",
-                  maxHeight: "450px",
-                  marginTop: "30px",
-                  boxShadow: "0 6px 18px rgba(0, 0, 0, 0.1)",
-                  overflow: "hidden",
-                  marginLeft: "15px",
-                  marginRight: "15px",
-                  backgroundColor: "whitesmoke",
-                }}
-              >
-                <Image
-                  src="/blog_pic_9.png"
-                  alt="Professional Illustration"
-                  width={400}
-                  height={300}
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              </div>
+                  {/* Text */}
+                  <div>
+                    <h4 className="font-semibold text-gray-900">
+                      {step.title}
+                    </h4>
+                    <p className="text-sm text-justify text-gray-600">{step.sub}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
+
       <div className="row align-items-center">
         {/* Left Image Section */}
         <div
@@ -950,10 +828,9 @@ const AboutUsV1 = () => {
                   }}
                 >
                   - Finding visionary minds & overcoming resistance to AI
-                  adoption <br />
-                  - Breaking through industry norms with scalable ad solutions{" "}
-                  <br />- Building a strong, risk-taking team & making marketing
-                  impactful
+                  adoption <br />- Breaking through industry norms with scalable
+                  ad solutions <br />- Building a strong, risk-taking team &
+                  making marketing impactful
                 </div>
 
                 {/* Decorative Blurry Circle */}
@@ -1267,37 +1144,39 @@ const AboutUsV1 = () => {
       {/* Team Section */}
       {/* Team Section */}
       <div className="w-full bg-gray-50 py-16 flex flex-col items-center">
-        <div style={{margin:"30px"}} className="max-w-full w-full px-4 sm:px-6 lg:px-8">
+        <div
+          style={{ margin: "30px" }}
+          className="max-w-full w-full px-4 sm:px-6 lg:px-8"
+        >
           <TeamCards />
         </div>
       </div>
 
       {/* Footer */}
       <footer className="footer-container">
-  <div className="footer-wrapper w-full">
-    <div className="inner-wrapper m-auto">
-      <div className="row">
-        <FooterMenu />
-      </div>
-    </div>
-  </div>
+        <div className="footer-wrapper w-full">
+          <div className="inner-wrapper m-auto">
+            <div className="row">
+              <FooterMenu />
+            </div>
+          </div>
+        </div>
 
-  <style jsx>{`
-    .footer-container {
-      width: 100vw; /* Ensures full viewport width */
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #f3f6fc, #e8ecf6);
-    }
+        <style jsx>{`
+          .footer-container {
+            width: 100vw; /* Ensures full viewport width */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+          }
 
-    .footer-wrapper {
-      width: 100%;
-      max-width: none;
-      padding: 0;
-    }
-  `}</style>
-</footer>
-
+          .footer-wrapper {
+            width: 100%;
+            max-width: none;
+            padding: 0;
+          }
+        `}</style>
+      </footer>
     </>
   );
 };

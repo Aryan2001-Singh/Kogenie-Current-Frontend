@@ -5,62 +5,66 @@ import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState, useCallback } from "react";
-// import parse from "html-react-parser";
+
 const Page = ({ params }) => {
   const [data, setData] = useState(null);
   const [tocHeadings, setTocHeadings] = useState([]);
+  const [hasMounted, setHasMounted] = useState(false);
 
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const fetchBlogData = useCallback(async () => {
     const response = await axios.get("/api/blog", {
-      params: {
-        id: params.id,
-      },
+      params: { id: params.id },
     });
     setData(response.data);
     console.log("📄 Blog Description HTML:", response.data.description);
-
   }, [params.id]);
 
   useEffect(() => {
     fetchBlogData();
   }, [fetchBlogData]);
-  
+
   useEffect(() => {
     if (data?.description) {
       const tempDiv = document.createElement("div");
       tempDiv.innerHTML = data.description;
-  
-      const headings = Array.from(tempDiv.querySelectorAll("h2, h3")).map((el, i) => {
-        const id = `section-${i}`;
-        el.setAttribute("id", id);
-        return {
-          id,
-          text: el.innerText || el.textContent || `Section ${i + 1}`,
-        };
-      });
-  
-      // ✅ Set only headings (don’t call setData here again)
+      const headings = Array.from(tempDiv.querySelectorAll("h2, h3")).map(
+        (el, i) => {
+          const id = `section-${i}`;
+          el.setAttribute("id", id);
+          return {
+            id,
+            text: el.innerText || el.textContent || `Section ${i + 1}`,
+          };
+        }
+      );
       setTocHeadings(headings);
     }
   }, [data?.description]);
-  
-  
-  return data ? (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* Header */}
+
+  if (!hasMounted || !data) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-xl font-semibold text-gray-600">Loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
-      {/* Hero Section (Predis-style layout) */}
-      <div className="bg-gray-100 py-12 px-4 sm:px-8">
-        <div className="max-w-6xl mx-auto mb-30 mt-150 bg-white rounded-2xl shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-10 items-center">
-          {/* Left: Title, Author, Date */}
+      {/* Hero Section */}
+      <div className="bg-white py-16 px-4 sm:px-8">
+        <div className=" mx-auto  mb-20 bg-white shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 p-8 sm:p-12 items-center">
           <div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-5xl max-w-xl font-extrabold text-gray-900 leading-tight p-8 mt-20 ">
               {data.title}
             </h1>
-
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 p-8 ">
               <Image
                 src={data.authorImg}
                 width={48}
@@ -68,17 +72,15 @@ const Page = ({ params }) => {
                 alt="Author"
                 className="rounded-full object-cover border"
               />
-              <div className="text-sm text-gray-700">
+              <div className="text-sm text-gray-600">
                 <p className="font-semibold">Aayushi Shrivastava</p>
-                <p className="text-gray-500">
+                <p className="text-gray-400">
                   {new Date(data.date).toDateString()}
                 </p>
               </div>
             </div>
           </div>
-
-          {/* Right: Featured Image */}
-          <div className="w-full">
+          <div className="w-full p-8 mt-20">
             <Image
               src={data.image}
               alt="Blog"
@@ -90,65 +92,115 @@ const Page = ({ params }) => {
         </div>
       </div>
 
-      {/* Blog Content (unchanged) */}
-      <div className="container mx-auto px-4 py-12 max-w-7xl">
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      {/* Blog Layout */}
+      <div className="w-full px-4 py-10 bg-[#f9fafb]">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
+          {/* Sidebar */}
+          {/* Sidebar */}
+          <aside className="hidden lg:block w-[250px] flex-shrink-0 space-y-6">
+            {/* Table of Contents */}
+            <div className="bg-white  mt-20 p-6 ">
+              <ul className="space-y-3 max-w-sm text-lg font-bold text-gray-900 mb-4">
+                <h4
+                  style={{ marginLeft: "20px" }}
+                  className="text-[20px] font-medium uppercase mb-2  tracking-wide bg-gradient-to-r from-indigo-500 to-indigo-700 text-transparent bg-clip-text"
+                >
+                  Table of Contents
+                </h4>
 
-    {/* Table of Contents (Left Column) */}
-    <aside className="md:col-span-1 bg-gray-50 p-4 rounded-lg shadow-sm h-fit sticky top-28">
-      <h4 className="text-md font-semibold text-gray-800 mb-3">Table of Contents</h4>
-      <ul className="text-sm space-y-2 text-blue-600">
-  {tocHeadings.map((item, i) => (
-    <li key={i}>
-      <a href={`#${item.id}`} className="hover:underline">{item.text}</a>
-    </li>
-  ))}
-</ul>
+                {tocHeadings.map((item, i) => (
+                  <li key={i} className="border-b p-6 border-black pb-10">
+                    <a
+                      href={`#${item.id}`}
+                      className="block hover:text-indigo-600 transition-colors duration-200 truncate tracking-wide leading-tight text-[20px] font-semibold"
+                      title={item.text}
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-    </aside>
+            {/* Share Section */}
+            <div className="bg-white rounded-xl p-5 shadow-none text-center">
+              <p className="text-xl font-bold text-gray-900 mb-3">
+                Share this article
+              </p>
+              <div className="flex justify-center gap-4">
+                {/* Facebook */}
+                <a
+                  href="https://www.facebook.com/sharer/sharer.php?u=https://kogenie.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={assets.facebook_icon}
+                    width={48}
+                    alt="Facebook"
+                    className="hover:scale-110 transition-transform"
+                    style={{
+                      filter:
+                        "invert(20%) sepia(100%) saturate(600%) hue-rotate(180deg)",
+                    }}
+                  />
+                </a>
 
-    {/* Blog Content (Right Column) */}
-    <div className="md:col-span-3 bg-white rounded-lg p-8 shadow">
-      <p className="text-center text-gray-600 text-lg font-medium mb-8">
-        KOgenie makes your ad in just 5 minutes so you can launch ad campaigns swiftly, helping you get more people to buy your product/service faster.
-      </p>
+                {/* Twitter */}
+                <a
+                  href="https://twitter.com/intent/tweet?url=https://kogenie.com&text=Check%20out%20this%20amazing%20blog!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={assets.twitter_icon}
+                    width={48}
+                    alt="Twitter"
+                    className="hover:scale-110 transition-transform"
+                    style={{
+                      filter:
+                        "invert(35%) sepia(90%) saturate(700%) hue-rotate(190deg)",
+                    }}
+                  />
+                </a>
 
-      <div
-        className="prose lg:prose-lg max-w-none text-gray-700"
-        dangerouslySetInnerHTML={{ __html: data.description }}
-      />
+                {/* Google Plus (deprecated — use Gmail/share instead) */}
+                <a
+                  href="mailto:?subject=Check%20this%20out&body=Check%20out%20this%20awesome%20article:%20https://kogenie.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={assets.googleplus_icon}
+                    width={48}
+                    alt="Share via Email"
+                    className="hover:scale-110 transition-transform"
+                    style={{
+                      filter:
+                        "invert(32%) sepia(80%) saturate(700%) hue-rotate(340deg)",
+                    }}
+                  />
+                </a>
+              </div>
+            </div>
+          </aside>
 
-      {/* Social Share Section */}
-      <div className="mt-12 text-center">
-        <p className="text-xl font-semibold text-gray-800 mb-4">
-          Share this article on social media
-        </p>
-        <div className="flex justify-center gap-4">
-          <Image
-            src={assets.facebook_icon}
-            width={40}
-            alt="Facebook"
-            className="hover:scale-105 transition-transform"
-          />
-          <Image
-            src={assets.twitter_icon}
-            width={40}
-            alt="Twitter"
-            className="hover:scale-105 transition-transform"
-          />
-          <Image
-            src={assets.googleplus_icon}
-            width={40}
-            alt="Google Plus"
-            className="hover:scale-105 transition-transform"
-          />
+          {/* Main Content */}
+          <main className="flex-1">
+            <div className=" p-8 md:p-12">
+              <p className="text-center text-gray-500 text-base font-medium mb-10 italic">
+                KOgenie makes your ad in just 5 minutes — so you can launch
+                faster and sell better.
+              </p>
+              <div
+                className="prose prose-blue lg:prose-lg max-w-none text-gray-800 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: data.description }}
+              />
+            </div>
+          </main>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-      {/* Footer (unchanged) */}
       <footer className="footer-container">
         <div className="footer-wrapper w-full">
           <div className="inner-wrapper m-auto">
@@ -157,7 +209,6 @@ const Page = ({ params }) => {
             </div>
           </div>
         </div>
-
         <style jsx>{`
           .footer-container {
             width: 100vw;
@@ -172,10 +223,6 @@ const Page = ({ params }) => {
           }
         `}</style>
       </footer>
-    </div>
-  ) : (
-    <div className="flex items-center justify-center min-h-screen">
-      <p className="text-xl font-semibold text-gray-600">Loading...</p>
     </div>
   );
 };
