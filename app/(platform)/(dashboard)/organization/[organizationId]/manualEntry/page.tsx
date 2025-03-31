@@ -268,12 +268,12 @@ const ManualEntryPage: React.FC = () => {
           </div>
 
           <div>
-            <label style={labelStyle}>Where is it used most often?</label>
+            <label style={labelStyle}>Where does your target audience belongs to ? </label>
             <input
               type="text"
               value={useLocation}
               onChange={(e) => setUseLocation(e.target.value)}
-              placeholder="E.g., Office, Home, Outdoors"
+              placeholder="E.g., Location"
               style={inputStyle}
               onFocus={(e) => (e.target.style.boxShadow = inputFocusStyle)}
               onBlur={(e) => (e.target.style.boxShadow = "none")}
