@@ -24,23 +24,23 @@ const Header = () => {
   }, []);
 
   return (
-    <header
-      className={`theme-main-menu sticky-menu theme-menu-two ${
-        navbar ? "fixed" : ""
-      }`}
-    >
+   <header
+  className={`theme-main-menu sticky-menu theme-menu-two ${navbar ? "fixed" : ""}`}
+  style={{
+    position: navbar ? "fixed" : "relative",
+    left: 0,
+    right: 0,
+    top: 0,
+    zIndex: 1000,
+    width: "100%",
+    backgroundColor: "rgba(247, 248, 254, 1)", // move background here
+  }}
+>
       <div
         className="inner-content position-relative"
         style={{ width: "100vw", maxWidth: "100%" }}
       >
         <div
-          style={{
-            backgroundColor: "rgba(247, 248, 254, 1)",
-            padding: "20px 40px",
-            borderRadius: "0px",
-            width: "100vw", // Ensuring full width inside inner-content
-            maxWidth: "100%",
-          }}
           className="d-flex align-items-center justify-content-between"
         >
           <div className="logo order-lg-0">
