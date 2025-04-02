@@ -1,34 +1,38 @@
 const nextConfig = {
-  reactStrictMode: true, // ✅ Enables React's strict mode for better debugging
-  swcMinify: true, // ✅ Keep SWC minification enabled for better performance
-  productionBrowserSourceMaps: false, // ✅ Prevents source map generation in production to improve security
+  reactStrictMode: true,
+  swcMinify: true,
+  productionBrowserSourceMaps: false,
 
   images: {
-    domains: ["img.clerk.com", "images.unsplash.com"], // ✅ More concise way to allow external images
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "img.clerk.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
+    domains: [
+      "img.clerk.com",
+      "images.unsplash.com",
+      "images-eu.ssl-images-amazon.com", // ✅ ADDED for Amazon image support
+      "m.media-amazon.com",              // ✅ Common Amazon domain
+      "rukminim2.flixcart.com",          // ✅ Flipkart
+      "assets.myntassets.com",           // ✅ Myntra
     ],
-    minimumCacheTTL: 60, // ✅ Cache images for at least 60 seconds
+    remotePatterns: [
+      { protocol: "https", hostname: "img.clerk.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "images-eu.ssl-images-amazon.com" },
+      { protocol: "https", hostname: "m.media-amazon.com" },
+      { protocol: "https", hostname: "rukminim2.flixcart.com" },
+      { protocol: "https", hostname: "assets.myntassets.com" },
+    ],
+    minimumCacheTTL: 60,
   },
 
   experimental: {
-    optimizeCss: true, // ✅ Optimizes CSS to reduce unused styles
-    scrollRestoration: true, // ✅ Improves navigation experience by restoring scroll position
+    optimizeCss: true,
+    scrollRestoration: true,
   },
 
   webpack(config, { isServer }) {
     if (!isServer) {
-      config.resolve.fallback = { fs: false }; // ✅ Prevents client-side bundling issues with `fs` module
+      config.resolve.fallback = { fs: false };
     }
 
-    // ✅ Example: Enable gzip compression for smaller bundle sizes (Optional)
     config.optimization.splitChunks = {
       chunks: "all",
       maxInitialRequests: 5,
@@ -43,13 +47,14 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-Frame-Options", value: "DENY" }, // ✅ Prevents clickjacking attacks
-          { key: "X-Content-Type-Options", value: "nosniff" }, // ✅ Prevents MIME type sniffing
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" }, // ✅ Improves referrer security
-          { key: "Permissions-Policy", value: "geolocation=(self), microphone=()" }, // ✅ Restrict browser features
-          {key: "X-Robots-Tag", value: "index, follow"}, // Allow indexing 
-
-          
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "geolocation=(self), microphone=()",
+          },
+          { key: "X-Robots-Tag", value: "index, follow" },
         ],
       },
     ];

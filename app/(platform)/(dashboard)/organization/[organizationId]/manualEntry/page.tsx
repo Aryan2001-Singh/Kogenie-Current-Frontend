@@ -3,8 +3,8 @@
 import React, { useState, CSSProperties, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
-// import { storeAd } from "@/services/api";
 import { useUser } from "@clerk/nextjs";
+import AdFormOptions from "@/components/createAd/AdFormOptions";
 
 const ManualEntryPage: React.FC = () => {
   const [brandName, setBrandName] = useState("");
@@ -12,20 +12,24 @@ const ManualEntryPage: React.FC = () => {
   const [productDescription, setProductDescription] = useState("");
   const [targetAudience, setTargetAudience] = useState("");
   const [uniqueSellingPoints, setUniqueSellingPoints] = useState("");
-
-  // const [productFor, setProductFor] = useState("");
   const [problemItSolves, setProblemItSolves] = useState("");
   const [useLocation, setUseLocation] = useState("");
   const [brandVoice, setBrandVoice] = useState("");
-
+  const [awarenessStage, setAwarenessStage] = useState("");
+  const [tone, setTone] = useState("");
+  const [goal, setGoal] = useState("");
+  const [theme, setTheme] = useState("");
+  const [platform, setPlatform] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
   const { user } = useUser();
   const userEmail = user?.primaryEmailAddress?.emailAddress || "";
-
   const router = useRouter();
   const setAdData = useAdStore((state) => state.setAdData);
+
+  const [persuasionBlocksSelected, setPersuasionBlocksSelected] = useState<string[]>([
+    "feature", "benefit", "meaning"
+  ]);
   const params = useParams();
   const organizationId = params.organizationId;
 
@@ -40,6 +44,8 @@ const ManualEntryPage: React.FC = () => {
       return;
     }
 
+
+
     const adInputData = {
       brandName,
       productName,
@@ -47,10 +53,17 @@ const ManualEntryPage: React.FC = () => {
       targetAudience,
       uniqueSellingPoints,
       brandVoice,
-      // productFor,
+      awarenessStage,
+      tone,
+      goal,
+      theme,
       problemItSolves,
       useLocation,
+      platform,
+      persuasionBlocks: persuasionBlocksSelected,
+      userEmail, // ✅ Add this
     };
+    console.log("🟡 Payload sent to backend:", JSON.stringify(adInputData, null, 2));
 
     try {
       const response = await fetch("https://api.kogenie.com/generateAdPrompt", {
@@ -108,7 +121,7 @@ const ManualEntryPage: React.FC = () => {
   // ✅ Full-page container with background
   const mainContainerStyle: CSSProperties = {
     background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
-    minHeight: "139vh",
+    minHeight: "260vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -270,7 +283,9 @@ const ManualEntryPage: React.FC = () => {
           </div>
 
           <div>
-            <label style={labelStyle}>Where does your target audience belongs to ? </label>
+            <label style={labelStyle}>
+              Where does your target audience belongs to ?{" "}
+            </label>
             <input
               type="text"
               value={useLocation}
@@ -309,6 +324,23 @@ const ManualEntryPage: React.FC = () => {
               required
             />
           </div>
+          <AdFormOptions
+            brandVoice={brandVoice}
+            setBrandVoice={setBrandVoice}
+            awarenessStage={awarenessStage}
+            setAwarenessStage={setAwarenessStage}
+            tone={tone}
+            setTone={setTone}
+            goal={goal}
+            setGoal={setGoal}
+            theme={theme}
+            setTheme={setTheme}
+            platform={platform}
+            setPlatform={setPlatform}
+            persuasionBlocks={persuasionBlocksSelected}
+            setPersuasionBlocks={setPersuasionBlocksSelected}
+          />
+          <br />
 
           <button
             type="submit"

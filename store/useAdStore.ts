@@ -7,7 +7,10 @@ interface AdData {
   targetAudience: string;
   uniqueSellingPoints: string;
   brandVoice: string;
-  // productFor: string;
+  awarenessStage: string;
+  tone: string;
+  goal: string;
+  theme: string;
   problemItSolves: string;
   useLocation: string;
   adCopy: string;
@@ -19,27 +22,30 @@ interface AdData {
 interface AdState {
   adData: AdData | null;
   setAdData: (data: AdData) => void;
-  setSelectedImage: (image: string) => void; // ✅ Function to set selected image
+  setSelectedImage: (image: string) => void;
   clearAdData: () => void;
 }
 
 export const useAdStore = create<AdState>((set) => ({
   adData: null,
+
   setAdData: (data: AdData) => {
     const updatedData = {
       ...data,
-      headline: data.headline || "Headline Not Generated",  // ✅ Ensure headline is always stored
+      headline: data.headline || "Headline Not Generated",
     };
-  
+
     localStorage.setItem("adData", JSON.stringify(updatedData));
     set({ adData: updatedData });
   },
+
   setSelectedImage: (image: string) => {
     localStorage.setItem("selectedImage", image);
     set((state) => ({
       adData: state.adData ? { ...state.adData, selectedImage: image } : null,
     }));
   },
+
   clearAdData: () => {
     localStorage.removeItem("adData");
     localStorage.removeItem("selectedImage");
