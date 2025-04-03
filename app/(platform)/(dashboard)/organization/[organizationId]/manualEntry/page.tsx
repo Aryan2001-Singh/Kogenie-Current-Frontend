@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, CSSProperties, FormEvent } from "react";
-import { useRouter, useParams } from "next/navigation";
+import React, { useState, useEffect, CSSProperties } from "react";
+import { useRouter } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { useUser } from "@clerk/nextjs";
 import AdFormOptions from "@/components/createAd/AdFormOptions";
@@ -26,15 +26,20 @@ const ManualEntryPage: React.FC = () => {
   const userEmail = user?.primaryEmailAddress?.emailAddress || "";
   const router = useRouter();
   const setAdData = useAdStore((state) => state.setAdData);
+  const [redirecting] = useState(false);
 
-  const [persuasionBlocksSelected, setPersuasionBlocksSelected] = useState<string[]>([
-    "feature", "benefit", "meaning"
-  ]);
-  const params = useParams();
-  const organizationId = params.organizationId;
+  const [persuasionBlocksSelected, setPersuasionBlocksSelected] = useState<
+    string[]
+  >(["feature", "benefit", "meaning"]);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const organizationId =
+    typeof window !== "undefined" ? window.location.pathname.split("/")[2] : "";
+
+  // const params = useParams();
+  // const organizationId = params.organizationId;
+
+  const handleSubmit = async (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault(); 
     setError("");
     setLoading(true);
 
@@ -43,8 +48,6 @@ const ManualEntryPage: React.FC = () => {
       setLoading(false);
       return;
     }
-
-
 
     const adInputData = {
       brandName,
@@ -63,7 +66,10 @@ const ManualEntryPage: React.FC = () => {
       persuasionBlocks: persuasionBlocksSelected,
       userEmail, // ✅ Add this
     };
-    console.log("🟡 Payload sent to backend:", JSON.stringify(adInputData, null, 2));
+    console.log(
+      "🟡 Payload sent to backend:",
+      JSON.stringify(adInputData, null, 2)
+    );
 
     try {
       const response = await fetch("https://api.kogenie.com/generateAdPrompt", {
@@ -118,10 +124,16 @@ const ManualEntryPage: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (redirecting) {
+      router.push(`/organization/${organizationId}/createAd`);
+    }
+  }, [redirecting]);
+
   // ✅ Full-page container with background
   const mainContainerStyle: CSSProperties = {
     background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
-    minHeight: "260vh",
+    minHeight: "230vh",
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -213,7 +225,7 @@ const ManualEntryPage: React.FC = () => {
           Enter Product Information
         </h1>
 
-        <form onSubmit={handleSubmit}>
+        <div>
           <div>
             <label style={labelStyle}>Brand Name</label>
             <input
@@ -256,7 +268,7 @@ const ManualEntryPage: React.FC = () => {
           </div>
 
           <div>
-            <label style={labelStyle}>What is you brand voice ?</label>
+            <label style={labelStyle}>What is your brand voice?</label>
             <input
               type="text"
               value={brandVoice}
@@ -284,7 +296,7 @@ const ManualEntryPage: React.FC = () => {
 
           <div>
             <label style={labelStyle}>
-              Where does your target audience belongs to ?{" "}
+              Where does your target audience belong to?
             </label>
             <input
               type="text"
@@ -324,6 +336,7 @@ const ManualEntryPage: React.FC = () => {
               required
             />
           </div>
+
           <AdFormOptions
             brandVoice={brandVoice}
             setBrandVoice={setBrandVoice}
@@ -340,10 +353,11 @@ const ManualEntryPage: React.FC = () => {
             persuasionBlocks={persuasionBlocksSelected}
             setPersuasionBlocks={setPersuasionBlocksSelected}
           />
+
           <br />
 
           <button
-            type="submit"
+            onClick={(e) => handleSubmit(e)} // ✅ Pass the event
             disabled={loading}
             style={buttonStyle}
             onMouseEnter={(e) =>
@@ -353,7 +367,7 @@ const ManualEntryPage: React.FC = () => {
           >
             {loading ? "Fetching Ad..." : "Generate Ad"}
           </button>
-        </form>
+        </div>
 
         {error && (
           <p style={{ color: "red", marginTop: "20px", textAlign: "center" }}>
