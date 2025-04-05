@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-
 import TeamCards from "./team/page.jsx";
 import Header from "@/components/home-page/home-6/Header";
 import Image from "next/image";
@@ -9,6 +8,8 @@ import Head from "next/head.js";
 import Link from "next/link.js";
 import { motion } from "framer-motion";
 import { FaBullseye, FaChartLine, FaRocket, FaMedal } from "react-icons/fa";
+import GlobalSection from "../../(platform)/(dashboard)/_components/common/GlobalSection";
+import ContactUsSection from "./ContactUs/page.jsx";
 
 const AboutUsV1 = () => {
   useEffect(() => {
@@ -299,7 +300,9 @@ const AboutUsV1 = () => {
                     <h4 className="font-semibold text-gray-900">
                       {step.title}
                     </h4>
-                    <p className="text-sm text-justify text-gray-600">{step.sub}</p>
+                    <p className="text-sm text-justify text-gray-600">
+                      {step.sub}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -308,180 +311,171 @@ const AboutUsV1 = () => {
         </div>
       </div>
 
-      <div className="row align-items-center">
-        {/* Left Image Section */}
-        <div
-          className="col-lg-5 col-md-6 col-sm-12 d-flex justify-content-center"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            flexDirection: "column", // ✅ Ensures text doesn't overlap with image
-            position: "relative",
-            zIndex: 1,
-            marginBottom: "30px",
-          }}
+      <div
+        style={{ marginTop: "2px" }}
+        className="row align-items-center py-5 px-3"
+      >
+        {/* Left Section - Floating Card with Hero Presence */}
+        <motion.div
+          className="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center mb-5 mb-lg-0"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div
             style={{
+              position: "relative",
               width: "100%",
-              maxWidth: "400px",
-
+              maxWidth: "340px",
+              height: "480px",
+              borderRadius: "15px",
               overflow: "hidden",
-              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
-              backgroundColor: "#fff",
-              textAlign: "center",
-              padding: "20px",
-              marginTop: "30px",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
+              background: "linear-gradient(to bottom, #f5f7ff, #ffffff)",
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "center",
+              border: "1.5px solid #e0e0e0",
             }}
           >
             <Image
-              src="/blog_pic_9.png"
-              alt="CEO Image"
-              width={350}
-              height={250}
+              src="/images/team/ceo.jpg"
+              alt="CEO"
+              width={340}
+              height={480}
               style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
                 width: "100%",
-                height: "auto",
+                height: "100%",
                 objectFit: "cover",
-
-                marginBottom: "15px",
+                zIndex: 0,
+                filter: "brightness(0.95)",
               }}
             />
-            <h3
+            <div
               style={{
-                fontSize: "20px",
-                fontWeight: "600",
-                color: "#333",
-                margin: "10px 0",
-                whiteSpace: "nowrap", // ✅ Prevents text from breaking oddly
-              }}
-            >
-              Saikat Sengupta
-            </h3>
-            <p
-              style={{
-                fontSize: "14px",
-                color: "rgba(0, 0, 0, 0.6)",
-                maxWidth: "90%", // ✅ Ensures text doesn't overflow
-                margin: "0 auto",
+                position: "relative",
+                zIndex: 2,
+                width: "100%",
+                backgroundColor: "rgba(255,255,255,0.85)",
+                padding: "16px",
                 textAlign: "center",
               }}
             >
-              Empowering innovation and creativity for a better tomorrow.
-            </p>
+              <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#111" }}>
+                Saikat Sengupta
+              </h3>
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#555",
+                  marginBottom: "6px",
+                }}
+              >
+                Founder & CEO, KOgenie
+              </p>
+              <p
+                style={{
+                  fontSize: "12px",
+                  fontStyle: "italic",
+                  color: "#546aec",
+                }}
+              >
+                &ldquo;We build to solve. We solve to empower.&rdquo;
+              </p>
+            </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Text Section */}
-        <div
-          className="col-lg-6 col-md-5 col-sm-12"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            textAlign: "justify",
-            paddingLeft: "20px", // ✅ Ensures spacing between image and text
-          }}
+        <motion.div
+          className="col-lg-7 col-md-6 col-sm-12"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          <div className="title-style-three">
-            <div
-              className="sc-title text-uppercase"
-              style={{
-                fontSize: "14px",
-                fontWeight: "700",
-                color: "#546aec",
-                letterSpacing: "1.2px",
-                marginBottom: "10px",
-              }}
-            >
-              Our CEO
-            </div>
-            <h2
-              style={{
-                fontSize: "34px",
-                fontWeight: "600",
-                lineHeight: "1.4",
-                color: "#08090A",
-                marginBottom: "20px",
-                letterSpacing: "0.3px",
-              }}
-              className="main-title fw-600"
-            >
-              Leadership with Vision and Purpose
-            </h2>
-          </div>
+          <h2
+            style={{
+              fontSize: "36px",
+              fontWeight: "700",
+              lineHeight: "1.4",
+              color: "#0f1113",
+              marginBottom: "24px",
+            }}
+          >
+            Building a Business That Builds a Better World
+          </h2>
+
           <p
-            className="text-lg"
             style={{
               fontSize: "16px",
               color: "#333",
-              lineHeight: "1.7",
-              marginBottom: "30px",
+              lineHeight: "1.9",
+              textAlign: "justify",
             }}
           >
+            Starting a business—running a business—is about something much
+            bigger. It’s about solving real problems. Making people’s lives
+            better.
+            <br />
+            <br />
             At <strong style={{ color: "#4A5ABB" }}>KOgenie</strong>, our
-            journey is driven by solving real-world problems and creating value
-            that matters. With a clear vision and commitment to innovation, we
-            strive to empower individuals and businesses to make meaningful
-            progress and achieve their goals.
+            journey is rooted in real-world impact. We don’t stop at one
+            solution—we use trust and momentum to go deeper, reach further, and
+            empower more.
+            <br />
+            <br />
+            That’s who we are. That’s what we stand for. We’re not just building
+            a company. We’re building a mission to make life better—for
+            everyone.
           </p>
-          <div>
-            <Link
-              href="/pages/about-us/Letter-to-investor"
-              className="btn btn-primary"
-              style={{
-                background: "transparent",
-                color: "#546aec",
-                border: "2px solid #546aec",
-                padding: "12px 32px",
-                textDecoration: "none",
-                fontSize: "16px",
-                fontWeight: "500",
-                transition: "all 0.3s ease",
-                display: "inline-block",
-                textAlign: "center",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = "#546aec";
-                e.target.style.color = "white";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "transparent";
-                e.target.style.color = "#546aec";
-              }}
-            >
-              Letter to Investors
-            </Link>
-          </div>
-        </div>
+
+          <Link
+            href="/pages/about-us/Letter-to-investor"
+            className="btn btn-primary mt-4"
+            style={{
+              background: "#546aec",
+              color: "#fff",
+              padding: "12px 30px",
+              borderRadius: "10px",
+              fontSize: "15px",
+              fontWeight: 600,
+              boxShadow: "0 6px 16px rgba(84, 106, 236, 0.25)",
+              textDecoration: "none",
+              transition: "all 0.3s ease-in-out",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = "#3948c4";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = "#546aec";
+            }}
+          >
+            Letter to Investors
+          </Link>
+        </motion.div>
       </div>
 
       <div className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2 mt-30">
         <div className="container">
-          <div
+          <motion.div
             className="row align-items-center"
             style={{ textAlign: "center", marginBottom: "50px" }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="col-lg-12 col-md-12">
               <div className="title-style-three">
-                <div
-                  className="sc-title text-uppercase"
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    color: "rgb(84, 106, 236)",
-                    letterSpacing: "1px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  What we do? What are we trying to solve?
-                </div>
                 <h2
                   style={{
                     fontSize: "36px",
-                    fontWeight: "400",
+                    fontWeight: "500",
                     lineHeight: "1.5",
                     color: "#333",
                     marginTop: "10px",
@@ -490,7 +484,10 @@ const AboutUsV1 = () => {
                   }}
                   className="main-title fw-200"
                 >
-                  Solving Real Problems with Real Solutions
+                  We’re not trying to fix marketing.{" "}
+                  <span style={{ color: "black", fontWeight: "600" }}>
+                    We’re here to free it.
+                  </span>
                 </h2>
               </div>
               <p
@@ -500,20 +497,31 @@ const AboutUsV1 = () => {
                   color: "rgba(0, 0, 0, 0.74)",
                   lineHeight: "1.7",
                   marginBottom: "30px",
-                  maxWidth: "600px",
+                  maxWidth: "700px",
                   margin: "0 auto",
                   marginTop: "40px",
                 }}
               >
-                Here’s to the end of marketing as we know it. Marketing—that
-                clumsy, bloated, and outdated word—is on its way out. And it
-                should be. Why? Because it’s time for something better.
-                Something seamless. Something inevitable.
+                Our job, literally! KOgenie{" "}
+                <span
+                  style={{
+                    color: "#546aec",
+                    fontWeight: "600",
+                    background: "linear-gradient(to right, #eaefff, #f4f7ff)",
+                    padding: "2px 6px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  creates ads so personal, they feel like stories—not
+                  promotions.
+                </span>{" "}
+                So you can stop worrying about the failed campaigns and focus
+                entirely on what you do best—building something incredible.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
             className="row"
             style={{
               display: "flex",
@@ -523,6 +531,10 @@ const AboutUsV1 = () => {
               marginTop: "50px",
               textAlign: "justify",
             }}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
           >
             {/* Feature 1 */}
             <a
@@ -531,7 +543,6 @@ const AboutUsV1 = () => {
               style={{
                 textDecoration: "none",
                 padding: "20px",
-
                 backgroundColor: "#f9faff",
                 boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -580,7 +591,6 @@ const AboutUsV1 = () => {
               style={{
                 textDecoration: "none",
                 padding: "20px",
-
                 backgroundColor: "#f9faff",
                 boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -629,7 +639,6 @@ const AboutUsV1 = () => {
               style={{
                 textDecoration: "none",
                 padding: "20px",
-
                 backgroundColor: "#f9faff",
                 boxShadow: "0 6px 15px rgba(0, 0, 0, 0.1)",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -670,189 +679,10 @@ const AboutUsV1 = () => {
                 insights.
               </p>
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
-
-      <div
-        style={{ marginBottom: "60px" }}
-        className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2"
-      >
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Text and Decorative Section */}
-            <div
-              className="col-lg-6 col-md-6"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                gap: "20px",
-                position: "relative",
-                marginTop: "30px",
-              }}
-            >
-              {/* Decorative Circle */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "-50px",
-                  left: "-50px",
-                  width: "150px",
-                  height: "150px",
-                  backgroundColor: "rgba(84, 106, 236, 0.1)",
-                  borderRadius: "50%",
-                  zIndex: 0,
-                  filter: "blur(50px)",
-                }}
-              ></div>
-
-              <div
-                style={{
-                  backgroundColor: "#fff",
-                  padding: "40px",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              >
-                <h2
-                  style={{
-                    fontSize: "32px",
-                    fontWeight: "700",
-                    color: "#333",
-                    marginBottom: "20px",
-                  }}
-                  className="title-style-three"
-                >
-                  Obstacles We Overcame
-                </h2>
-
-                {/* Bullet Points with Visible Dots */}
-                <ul
-                  style={{
-                    fontSize: "16px",
-                    color: "rgba(0, 0, 0, 0.8)",
-                    lineHeight: "1.8",
-                    textAlign: "justify",
-                    paddingLeft: "25px",
-                    listStyleType: "disc",
-                    font: "inter",
-                  }}
-                >
-                  <li>
-                    {" "}
-                    Finding visionary minds willing to challenge traditional
-                    marketing approaches.
-                  </li>
-                  <li>
-                    {" "}
-                    Breaking through industry norms with innovative, scalable ad
-                    solutions.
-                  </li>
-                  <li>
-                    Ensuring marketing becomes personal, impactful, and
-                    accessible.
-                  </li>
-                  <li>
-                    {" "}
-                    Overcoming resistance to AI-powered advertising solutions.
-                  </li>
-                  <li>Building a strong team of innovators and risk-takers.</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Image and Icon Section */}
-            <div
-              className="col-lg-6 col-md-6"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  width: "500px",
-                  height: "300px",
-                  overflow: "hidden",
-                  boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2)",
-                  marginTop: "60px",
-                  marginLeft: "30px",
-                  marginRight: "30px",
-                  borderRadius: "8px", // Smooth edges
-                }}
-              >
-                <Image
-                  src="/challenges.jpg"
-                  alt="Challenges"
-                  width={500}
-                  height={300}
-                  style={{ objectFit: "cover" }}
-                />
-
-                {/* Main Challenge Label */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "15px",
-                    left: "15px",
-                    backgroundColor: "rgba(84, 106, 236, 0.9)",
-                    padding: "10px 20px",
-                    color: "white",
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-                    borderRadius: "5px",
-                  }}
-                >
-                  Key Challenges
-                </div>
-
-                {/* Bottom Challenges Section - Transparent White Background */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "0px",
-                    left: "0",
-                    width: "100%",
-                    backgroundColor: "rgba(255, 255, 255, 0.7)", // Transparent White Background
-                    padding: "12px 15px",
-                    textAlign: "center",
-                    color: "rgba(43, 41, 41, 0.7)", // Darker text for better visibility
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    backdropFilter: "blur(5px)", // Ensures smooth blending
-                  }}
-                >
-                  - Finding visionary minds & overcoming resistance to AI
-                  adoption <br />- Breaking through industry norms with scalable
-                  ad solutions <br />- Building a strong, risk-taking team &
-                  making marketing impactful
-                </div>
-
-                {/* Decorative Blurry Circle */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "-30px",
-                    right: "-30px",
-                    width: "150px",
-                    height: "150px",
-                    backgroundColor: "rgba(255, 184, 84, 0.2)",
-                    borderRadius: "50%",
-                    zIndex: -1,
-                    filter: "blur(70px)",
-                  }}
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
+      <motion.div
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -863,10 +693,15 @@ const AboutUsV1 = () => {
           marginLeft: "auto",
           marginRight: "auto",
           maxWidth: "1200px",
+          marginTop: "80px",
         }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Left Section with Blurred Image */}
-        <div
+        <motion.div
           style={{
             position: "relative",
             width: "100%",
@@ -876,6 +711,10 @@ const AboutUsV1 = () => {
             overflow: "hidden",
             boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
           }}
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
           <Image
             src="/innovation.jpg"
@@ -901,10 +740,10 @@ const AboutUsV1 = () => {
           >
             Innovation Starts Here
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right Section with Text Containers and Connections */}
-        <div
+        {/* Right Section with Text Containers */}
+        <motion.div
           style={{
             width: "100%",
             maxWidth: "600px",
@@ -913,62 +752,90 @@ const AboutUsV1 = () => {
             gap: "15px",
             position: "relative",
           }}
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
           {[
             {
-              icon: "fa-map-marker-alt",
-              title: "Where are we going?",
-              text: "Most companies focus on themselves. We care about one thing: you.",
-              bgColor: "rgba(255, 255, 255, 0.6)", // Transparent Off-White
+              icon: "fa-bullseye",
+              title: (
+                <span
+                  style={{ fontSize: "16px", fontWeight: "600", color: "#333" }}
+                >
+                  Our Aim?
+                </span>
+              ),
+              text: (
+                <>
+                  Most companies focus on themselves.{" "}
+                  <strong style={{ color: "black", fontWeight: "500" }}>
+                    We care about one thing: you.
+                  </strong>
+                </>
+              ),
+              bgColor: "rgba(255, 255, 255, 0.6)",
               iconColor: "#546aec",
             },
             {
               icon: "fa-cogs",
               title: (
-                <span style={{ color: "black", fontWeight: "bold" }}>
+                <span style={{ color: "#000", fontWeight: "bold" }}>
                   Our job?
                 </span>
-              ), // ✅ "Our job?" in black
-              text: "To give you the tools to make your product better and sharper.",
-              bgColor: "rgba(255, 255, 255, 0.6)", // Transparent Off-White
+              ),
+              text: (
+                <>
+                  To give you the{" "}
+                  <strong style={{ color: "black", fontWeight: "500" }}>
+                    tools to make your product better and sharper.
+                  </strong>
+                </>
+              ),
+              bgColor: "rgba(255, 255, 255, 0.6)",
               iconColor: "#546aec",
             },
             {
               icon: "fa-star",
-              title: "It's not about us.",
-              text: "It's about what you can achieve.",
-              bgColor: "rgba(255, 255, 255, 0.6)", // Transparent Off-White
+              title: (
+                <span
+                  style={{ fontSize: "16px", fontWeight: "600", color: "#333" }}
+                >
+                  It’s not about us.
+                </span>
+              ),
+              text: (
+                <>
+                  It’s about{" "}
+                  <strong style={{ color: "black", fontWeight: "500" }}>
+                    what you can achieve.
+                  </strong>
+                </>
+              ),
+              bgColor: "rgba(255, 255, 255, 0.6)",
               iconColor: "#546aec",
             },
           ].map((item, index) => (
-            <div
+            <motion.div
               key={index}
               style={{
                 backgroundColor: item.bgColor,
                 padding: "20px",
-
                 boxShadow: "0 6px 20px rgba(145, 145, 147, 0.44)",
                 display: "flex",
                 alignItems: "center",
                 gap: "15px",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                cursor: "pointer",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.05)";
-                e.currentTarget.style.boxShadow =
-                  "0 8px 25px rgba(0, 0, 0, 0.15)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow =
-                  "0 6px 20px rgba(0, 0, 0, 0.1)";
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
             >
               <div
                 style={{
-                  width: "45px",
-                  height: "45px",
+                  width: "36px",
+                  height: "36px",
                   borderRadius: "50%",
                   backgroundColor: item.iconColor,
                   display: "flex",
@@ -981,167 +848,56 @@ const AboutUsV1 = () => {
                 <i className={`fas ${item.icon}`}></i>
               </div>
               <div>
-                {item.title && (
-                  <h6
-                    style={{
-                      margin: "0 0 10px 0",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      color: "#333",
-                    }}
-                  >
-                    {item.title}
-                  </h6>
-                )}
+                {item.title}
                 <p
                   style={{
                     margin: 0,
                     fontSize: "14px",
                     color: "gray",
                     lineHeight: "1.7",
+                    marginTop: "8px",
                   }}
                 >
                   {item.text}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div
+        {/* Bottom Text & Link */}
+        <motion.div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "50px",
-            gap: "40px",
-            margin: "40px auto",
-            maxWidth: "1200px",
-            background: "linear-gradient(135deg, #f8f9fc, #e3e9f2)", // Softer gradient
-            boxShadow: "0 8px 25px rgba(0, 0, 0, 0.1)",
+            width: "100%",
+            textAlign: "center",
+            marginTop: "20px",
           }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {/* Text Section */}
-          <div
+          <a
+            href="/sign-up"
             style={{
-              flex: "1",
-              maxWidth: "500px",
+              fontSize: "18px",
+              fontWeight: "500",
+              color: "rgba(0, 0, 0, 0.7)",
+              textDecoration: "none",
+              fontStyle: "italic",
+              transition: "color 0.3s ease",
             }}
+            onMouseEnter={(e) => (e.target.style.color = "#0056b3")}
+            onMouseLeave={(e) => (e.target.style.color = "rgba(0, 0, 0, 0.7)")}
           >
-            <div
-              className="sc-title text-uppercase"
-              style={{
-                fontSize: "14px",
-                fontWeight: "600",
-                color: "#546aec",
-                letterSpacing: "1px",
-                marginBottom: "10px",
-              }}
-            >
-              Personal Story
-            </div>
-            <h2
-              style={{
-                fontSize: "34px",
-                fontWeight: "700",
-                lineHeight: "1.5",
-                color: "#333",
-                marginBottom: "20px",
-              }}
-              className="main-title fw-700"
-            >
-              Dreams, Detours, and Destinations
-            </h2>
-
-            {/* Bullet Points Section */}
-            <ul
-              style={{
-                fontSize: "16px",
-                lineHeight: "1.8",
-                color: "#555",
-                marginBottom: "20px",
-                textAlign: "justify",
-                paddingLeft: "20px",
-                listStyleType: "disc",
-              }}
-            >
-              <li>Seamless integration of operational change management.</li>
-              <li>Building a framework for sustainable business growth.</li>
-              <li>Transforming ideas into impactful marketing solutions.</li>
-              <li>Bringing visibility to businesses and startups worldwide.</li>
-            </ul>
-          </div>
-
-          {/* Image Section */}
-          <div
-            style={{
-              flex: "0.8",
-              position: "relative",
-              width: "350px",
-              height: "300px",
-              overflow: "hidden",
-              boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: "0",
-                left: "0",
-                width: "100%",
-                height: "100%",
-                background:
-                  "linear-gradient(135deg, rgba(84, 106, 236, 0.5), rgba(236, 84, 92, 0.5))",
-                zIndex: "-1",
-              }}
-            ></div>
-            <Image
-              src="/dream.jpg"
-              alt="Person"
-              width={350}
-              height={300}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </div>
-
-          {/* Bottom Text & Link */}
-          <div
-            style={{
-              width: "100%",
-              textAlign: "center",
-              marginTop: "20px",
-            }}
-          >
-            <a
-              href="/sign-up"
-              style={{
-                fontSize: "18px",
-                fontWeight: "500",
-                color: "rgba(0, 0, 0, 0.7)",
-                textDecoration: "none",
-                fontStyle: "italic",
-                transition: "color 0.3s ease",
-              }}
-              onMouseEnter={(e) => (e.target.style.color = "#0056b3")}
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgba(0, 0, 0, 0.7)")
-              }
-            >
-              With KOgenie, the world will see you.
-              <span style={{ color: "#546aec", fontWeight: "600" }}>
-                {" "}
-                And they’ll click.
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-      {/* Team Section */}
+            With KOgenie, the world will see you.
+            <span style={{ color: "#546aec", fontWeight: "600" }}>
+              {" "}
+              And they’ll click.
+            </span>
+          </a>
+        </motion.div>
+      </motion.div>
       {/* Team Section */}
       <div className="w-full bg-gray-50 py-16 flex flex-col items-center">
         <div
@@ -1151,6 +907,8 @@ const AboutUsV1 = () => {
           <TeamCards />
         </div>
       </div>
+      <ContactUsSection />
+      <GlobalSection />
 
       {/* Footer */}
       <footer className="footer-container">

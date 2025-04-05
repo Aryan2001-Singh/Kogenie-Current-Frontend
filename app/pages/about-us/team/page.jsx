@@ -1,128 +1,126 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const TeamCards = () => {
   const team = [
-    { 
-      name: "Saikat Sengupta", 
-      role: "CEO", 
+    {
+      name: "Saikat Sengupta",
+      role: "CEO",
       email: "saikat@kogenie.com",
-      img: "/images/team/ceo.jpg",  
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#",
-      facebook: "#"
+      img: "/images/team/ceo.jpg",
+      linkedin:
+        "https://www.linkedin.com/in/saikat-sengupta-875083119?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      instagram:
+        "https://www.instagram.com/doobie_fly26?igsh=Y2xlMGxrNjZjdTZh",
     },
-    { 
-      name: "Aryan Singh", 
-      role: "Full Stack Developer", 
+    {
+      name: "Aryan Singh",
+      role: "Full Stack Developer",
       email: "aryan@kogenie.com",
-      img: "/images/team/aryan.jpg",  
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#",
-      facebook: "#"
+      img: "/images/team/aryan.jpg",
+      linkedin:
+        "https://www.linkedin.com/in/aryan-singh-3772b6214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      instagram:
+        "https://www.instagram.com/____iamaryan____?igsh=eWRsbW9wemI5dHZm",
     },
-    { 
-      name: "Ayushi Shrivastava", 
-      role: "Marketing Head", 
+    {
+      name: "Ayushi Shrivastava",
+      role: "Marketing Head",
       email: "ayushi@kogenie.com",
-      img: "/images/team/ayushi.jpg",  
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#",
-      facebook: "#"
+      img: "/images/team/ayushi.jpg",
+      linkedin: "https://www.linkedin.com/in/aayushi-shrivastava-361614211/",
+      instagram:
+        "https://www.instagram.com/hikarinoinochi?igsh=azVxbWI0Z2Rjc2xo",
     },
-    { 
-      name: "Kumkum Saini", 
-      role: "Frontend Developer", 
+    {
+      name: "Kumkum Saini",
+      role: "Frontend Developer",
       email: "kumkum@kogenie.com",
-      img: "/images/team/Kumkum.jpg",  
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#",
-      facebook: "#"
-    }
+      img: "/images/team/Kumkum.jpg",
+      linkedin:
+        "https://www.linkedin.com/in/kumkum-saini-322a08244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      instagram:
+        "https://www.instagram.com/ks_dahiya28?igsh=MTdqdDBndDRlMzdqaA%3D%3D&utm_source=qr",
+    },
   ];
 
   return (
-    <section className="w-full bg-gray-50 py-16 px-6 flex flex-col items-center">
+    <section className="w-full bg-gradient-to-br from-white via-indigo-50 to-indigo-100 py-20 px-6 flex flex-col items-center">
       {/* Section Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">
           Our <span className="text-indigo-600">Leadership Team</span>
         </h2>
-        <p style={{marginTop:"30px"}}className="text-gray-500 text-md mt-4 max-w-2xl mx-auto">
-          We are a team of passionate individuals dedicated to revolutionizing marketing. 
-          Meet the people who drive innovation and success at <span className="font-semibold text-indigo-600">Kogenie</span>.
+        <p className="text-gray-500 text-md mt-4 mb-6 max-w-2xl mx-auto">
+          We are a team of passionate individuals dedicated to revolutionizing
+          marketing. Meet the people who drive innovation and success at{" "}
+          <span className="font-semibold text-indigo-600">Kogenie</span>.
         </p>
       </div>
 
-      {/* Centered Flexbox Container */}
-      <div className="w-full flex justify-center">
-        <div style={{marginTop:"30px"}} className="flex flex-wrap justify-center gap-6 max-w-5xl">
-          {team.map((member, index) => (
-            <div 
-              key={index} 
-              className="relative bg-white shadow-lg rounded-xl overflow-hidden w-[280px] sm:w-[300px] md:w-[320px] h-[450px] flex flex-col justify-between transform transition duration-300 hover:scale-105 hover:shadow-xl group"
-            >
-              {/* Image Section */}
-              <div className="relative w-full h-[250px] overflow-hidden">
-                <Image
-                  src={member.img}
-                  alt={member.name}
-                  width={320} 
-                  height={250} 
-                  className="object-cover w-full h-full rounded-t-xl transition-transform duration-300 group-hover:scale-105"
-                
-                />
+      {/* Grid Layout with scroll animation */}
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-7xl"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        {team.map((member, index) => (
+          <div
+            key={index}
+            className="relative flex flex-col items-center overflow-hidden shadow-xl transition-transform duration-300 w-[300px] h-[360px] bg-white group"
+          >
+            {/* Image Container with hover zoom effect */}
+            <div className="w-full h-full overflow-hidden relative group">
+              <Image
+                src={member.img}
+                alt={member.name}
+                width={300}
+                height={360}
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+              />
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-
-              {/* Details Section */}
-              <div 
-              style={{
-                marginBottom: "30px"
-              }}className="p-4 text-center flex-grow flex flex-col justify-center">
-                <h3 className="text-md font-semibold text-gray-900">{member.name}</h3>
-                <p className="text-sm font-medium text-[#546aec]">{member.role}</p>
-                
-                {/* Email Section */}
-                <a href={`mailto:${member.email}`} className="text-xs text-gray-500 mt-1 hover:underline">
+              {/* Glass Overlay Info Section */}
+              <div className="absolute bottom-0 w-full text-center px-4 py-3 bg-white/20 backdrop-blur-lg border-t border-white/40 rounded-b-xl ">
+                <h3 className="text-base font-semibold text-black drop-shadow-sm">
+                  {member.name}
+                </h3>
+                <p className="text-sm text-indigo-100 font-medium drop-shadow-sm">
+                  {member.role}
+                </p>
+                <a
+                  href={`mailto:${member.email}`}
+                  className="text-sm text-indigo-600 mt-1 inline-block drop-shadow-sm underline transition duration-300 hover:text-white hover:opacity-100 hover:font-medium"
+                >
                   {member.email}
                 </a>
 
-                {/* Social Icons - Updated Hover Effect */}
-                <div className="w-full flex justify-center space-x-4 mt-3">
-                  {[
-                    { link: member.linkedin, icon: "fab fa-linkedin" },
-                    { link: member.twitter, icon: "fab fa-twitter" },
-                    { link: member.instagram, icon: "fab fa-instagram" },
-                    { link: member.facebook, icon: "fab fa-facebook" }
-                  ].map((social, idx) => (
-                    <a 
-                      key={idx} 
-                      href={social.link} 
-                      target="_blank" 
-                      className="text-gray-600 transition-all transform duration-300 hover:text-[#546aec] hover:scale-125 hover:-translate-y-1"
-                    >
-                      <i className={social.icon}></i>
-                    </a>
-                  ))}
+                <div className="flex justify-center space-x-4 mt-2 text-black text-[20px] drop-shadow-sm">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-indigo-300 transition-all duration-300 transform hover:scale-110"
+                  >
+                    <i className="fab fa-linkedin" />
+                  </a>
+                  <a
+                    href={member.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-indigo-300 transition-all duration-300 transform hover:scale-110"
+                  >
+                    <i className="fab fa-instagram" />
+                  </a>
                 </div>
               </div>
-
-              {/* Hover Effect on Entire Card */}
-              <div 
-                className="absolute inset-0 group-hover:bg-black group-hover:bg-opacity-10 transition-opacity duration-300"
-              />
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        ))}
+      </motion.div>
     </section>
   );
 };
