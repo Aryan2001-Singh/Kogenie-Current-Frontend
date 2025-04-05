@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+
 import ContactForm4 from "@/components/contact/ContactForm";
 import Map2 from "@/components/contact/Map";
 import { motion } from "framer-motion";
@@ -17,7 +19,7 @@ const AboutContactSection = () => {
         <h2 className="text-4xl sm:text-5xl font-extrabold text-indigo-700 drop-shadow-md ">
           Let’s <span className="text-indigo-500">Connect</span>
         </h2>
-        <p className="text-gray-600 mt-4 max-w-xl mx-auto text-md leading-relaxed">
+        <p className="text-gray-600 mt-4 max-w-xl mx-auto text-md leading-relaxed mb-6">
           Got questions about how we solve real marketing problems with AI? Or just want to say{" "}
           <span className="text-indigo-500 font-medium">hello</span>? We’d love to hear from you.
         </p>
