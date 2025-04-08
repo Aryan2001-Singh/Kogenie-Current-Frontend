@@ -95,27 +95,33 @@ const HeroAbout = () => {
             }}
           >
             We’re KOgenie—
-          </h2>
-
-          <p
-            className="about-text"
-            style={{
-              fontSize: "18px",
-              lineHeight: "1.7",
-              fontWeight: "400",
-              color: "#1E2333",
-              maxWidth: "800px",
-              margin: "0 auto 40px",
-              marginBottom: "20px",
-              marginTop: "20px",
-            }}
-          >
-            <strong style={{ color: "#4A5ABB" }}>
-              Built to Change the Way Marketing Works
+          </h2> <strong style={{ color: "#4A5ABB" }}>
+              Built to Change the Way Marketing Works,
             </strong>
-            , Make Ads that hit right to the right audience at right time.
-            Powered by AI. Perfected for HyperTargeting.
-          </p>
+
+            <div
+  className="about-text"
+  style={{
+    fontSize: "18px",
+    lineHeight: "1.7",
+    fontWeight: "400",
+    color: "#1E2333",
+    maxWidth: "800px",
+    margin: "20px auto",
+    textAlign: "center",
+  }}
+>
+  <p style={{ marginBottom: "12px" }}>
+    Make ads that hit the right audience at the right time.
+  </p>
+  <p>
+    Perfected for HyperTargeting.
+  </p>
+  <p style={{ marginBottom: "12px" }}>
+    Powered by AI.
+  </p>
+</div>
+
         </div>
       </motion.div>
 

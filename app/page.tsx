@@ -7,9 +7,10 @@ import TagList from "@/components/home-page/home-6/TagList";
 import Features from "@/components/home-page/home-6/Features";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import Head from "next/head";
-import Solution from "./Solution";
-// import CTASection from "../components/CTASection";
-
+import Problem from "./Problem";
+import SolutionSection from "@/components/home/Solution";
+import Step from "@/components/home/Step";
+import Video from "@/components/home/Video";
 
 const SassProduct = () => {
   return (
@@ -83,81 +84,12 @@ const SassProduct = () => {
 
       {/* Hero Section */}
       <Hero />
-      <Solution />
+      <Problem/>
+      <SolutionSection/>
+      <Step/>
 
-      <div style={{marginTop:"30px"}}className="fancy-feature-three pt-0 lg-pt-0 md-pt-0 sm-pt-0">
-      <div className="container">
-          <div className="row align-items-center">
-            {/* Right Video Section (Now moved to left side) */}
-            <div
-              className="col-lg-6 col-md-6"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "30px"
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  maxWidth: "100%",
-                  height: "350px",
-                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{
-                    width: "100%",
-                    height: "100%" /* Ensure it takes full height */,
-                    objectFit: "cover",
-                  }}
-                >
-                  <source
-                    src="/Screen Recording 2025-03-05 at 6.41.38 PM.mov"
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-            
-            {/* Left Content Section (Now moved to right side) */}
-            <div className="col-lg-6 col-md-6 flex flex-col text-justify font-inter">
-  <div className="title-style-three">
-    {/* Section Title */}
-    <div style={{color: "#546aec"}} className="sc-title text-uppercase text-[14px] font-semibold text-[#546aec]">
-      Integrates your tools
-    </div>
-
-    {/* Heading with adjusted spacing */}
-    <h2 className="text-[clamp(28px,2vw,36px)] font-light leading-[1.4] text-gray-800 mb-4 max-w-xl">
-      Kogenie leads in hyper-targeted influence
-    </h2>
-  </div>
-
-  {/* Bullet Points instead of paragraph */}
-  <ul className="list-disc pl-5 text-[clamp(14px,2vw,16px)] text-gray-600 font-inter space-y-2 leading-[1.5] max-w-[600px] mt-2 mb-4 text-justify animate-fadeInUp">
-    <li>Leverages the power of generative AI for highly personalized ads.</li>
-    <li>Utilizes granular data to enhance audience targeting.</li>
-    <li>Implements automated A/B testing for campaign optimization.</li>
-    <li>Creates deep, instinctive connections with your audience.</li>
-    <li>Expert strategies for driving both action and emotions.</li>
-  </ul>
-</div>
-</div>
-</div></div>
-
-
-     
-      {/* /.container */}
-
+     <Video/>
+      
       {/* Feature Section Five */}
       <div className="fancy-feature-five pt-30 lg-pt-30">
   <div className="container">

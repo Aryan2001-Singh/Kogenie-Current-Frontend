@@ -37,10 +37,10 @@ const JourneySection = () => {
         viewport={{ once: true }}
       >
         <p className="uppercase text-sm font-semibold tracking-wide text-[#546aec] mb-3">
-          Great Ideas Deserve Better Ads
+        We Make Sure Yours Break Through
         </p>
         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-4">
-          We Make Sure Yours Break Through
+          Great Ideas Deserve Better Ads
         </h2>
         <p className="text-lg text-gray-700 leading-relaxed mb-6">
           The best products (like yours) often go unnoticed—not because they
