@@ -83,44 +83,49 @@ const HeroAbout = () => {
           className="container"
           style={{ maxWidth: "1100px", position: "relative", zIndex: 2 }}
         >
-          <h2
-            className="fw-700"
-            style={{
-              fontSize: "38px",
-              color: "#08090A",
-              fontWeight: "700",
-              letterSpacing: "0.5px",
-              marginBottom: "8px",
-              marginTop: "80px",
-            }}
-          >
-            We’re KOgenie—
-          </h2> <strong style={{ color: "#4A5ABB" }}>
-              Built to Change the Way Marketing Works,
-            </strong>
-
-            <div
-  className="about-text"
+     <h2
+  className="font-bold leading-[1.2] text-gray-900"
   style={{
-    fontSize: "18px",
-    lineHeight: "1.7",
-    fontWeight: "400",
-    color: "#1E2333",
-    maxWidth: "800px",
-    margin: "20px auto",
-    textAlign: "center",
+    fontSize: "clamp(42px, 5vw, 64px)",
+    marginBottom: "12px",
+    marginTop: "60px",
+    textShadow: "0 3px 6px rgba(0, 0, 0, 0.15)", // subtle shadow
   }}
 >
-  <p style={{ marginBottom: "12px" }}>
-    Make ads that hit the right audience at the right time.
+  We’re{" "}
+  <span className="bg-gradient-to-r from-[#3f54c6] to-[#7b8df6] bg-clip-text text-transparent">
+    KOgenie
+  </span>
+</h2>
+
+<p
+  className="text-[#4A5ABB] tracking-wide"
+  style={{
+    fontSize: "clamp(20px, 2.5vw, 28px)",
+    fontWeight: "600",
+    marginBottom: "24px",
+    textShadow: "0 3px 6px rgba(0, 0, 0, 0.15)", // light shadow
+  }}
+>
+  Built to Change the Way Marketing Works.
+</p>
+
+<div
+  style={{
+    fontSize: "clamp(16px, 1.5vw, 20px)",
+    fontWeight: "350",
+    lineHeight: "1.8",
+    color: "#1E2333",
+    maxWidth: "950px",
+    margin: "0 auto",
+  }}
+>
+  <p style={{ marginBottom: "10px" }}>
+    Make ads that hit the right audience at the right time.Perfected for HyperTargeting.Powered by AI.
   </p>
-  <p>
-    Perfected for HyperTargeting.
-  </p>
-  <p style={{ marginBottom: "12px" }}>
-    Powered by AI.
-  </p>
+  
 </div>
+
 
         </div>
       </motion.div>

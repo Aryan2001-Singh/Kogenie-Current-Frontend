@@ -59,11 +59,13 @@ const Step = () => {
                   {step.icon}
                 </div>
               </div>
-              <div className="text-gray-500 font-bold text-lg mb-1">
+              <div className="text-gray-500 font-bold text-lg mb-1 font-['Poppins']">
                 {step.id}
               </div>
-              <div className="text-xl font-semibold mb-2">{step.title}</div>
-              <p className="text-gray-600 text-lg leading-relaxed max-w-xs">
+              <div className="text-xl font-semibold mb-2 font-['Poppins']">
+                {step.title}
+              </div>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-xs font-['Poppins']">
                 {step.description}
               </p>
             </motion.div>
@@ -71,16 +73,16 @@ const Step = () => {
         </div>
 
         <div className="mt-16 text-center">
-          
-          <p className="italic text-xl text-gray-700 mb-4">
-          From scroll-stopping headlines to hyper-targeted messaging—your custom ad journey starts here.
+          <p className="italic text-xl text-gray-700 mb-4 font-['Inter']">
+            From scroll-stopping headlines to hyper-targeted messaging—your custom ad journey starts here.
           </p>
 
           <Link href="/create">
             <button
               className="px-10 py-3 rounded-xl text-xl font-bold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
-                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]"
+                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]
+                font-['Poppins']"
             >
               Customise yours now
             </button>
