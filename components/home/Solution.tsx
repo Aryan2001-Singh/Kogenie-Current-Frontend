@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import {
   LineChart,
   Line,
@@ -114,10 +113,17 @@ const SolutionSection = () => {
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="label" tick={{ fontSize: 12 }} />
                 <YAxis
-                  domain={[0, 10]}
-                  tickFormatter={(tick) => `${tick}%`}
-                  tick={{ fontSize: 12 }}
-                />
+  domain={[0, 10]}
+  tickFormatter={(tick) => `${tick}%`}
+  tick={{ fontSize: 12 }}
+  label={{
+    value: yAxisLabel,
+    angle: -90,
+    position: "insideLeft",
+    style: { textAnchor: "middle", fontSize: 12 },
+  }}
+/>
+
                 <Tooltip formatter={(value) => `${value}%`} />
                 <Legend verticalAlign="top" height={36} />
                 <Line
