@@ -7,12 +7,12 @@ const nextConfig = {
     domains: [
       "img.clerk.com",
       "images.unsplash.com",
-      "images-eu.ssl-images-amazon.com", // ✅ Amazon
-      "m.media-amazon.com",              // ✅ Amazon
-      "rukminim2.flixcart.com",          // ✅ Flipkart
-      "assets.myntassets.com",           // ✅ Myntra
-      "cdn.stability.ai",                // ✅ Stability AI (NEW)
-      "via.placeholder.com",             // ✅ Placeholder
+      "images-eu.ssl-images-amazon.com",
+      "m.media-amazon.com",
+      "rukminim2.flixcart.com",
+      "assets.myntassets.com",
+      "cdn.stability.ai",
+      "via.placeholder.com",
     ],
     remotePatterns: [
       { protocol: "https", hostname: "img.clerk.com" },
@@ -25,9 +25,6 @@ const nextConfig = {
       { protocol: "https", hostname: "via.placeholder.com" },
     ],
     minimumCacheTTL: 60,
-
-    // ✅ Allow base64 and blob URLs (required for production images with data:)
-    contentSecurityPolicy: "default-src 'self'; img-src * data: blob:;",
   },
 
   experimental: {
