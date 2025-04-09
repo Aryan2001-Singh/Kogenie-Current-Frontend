@@ -243,29 +243,15 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                   aspectRatio === "square" ? styles.square : styles.story
                 } relative`}
               >
-                {image?.startsWith("data:image") ? (
-                  <img
-                    src={image}
-                    alt="Ad Preview"
-                    className="shadow-md rounded-lg"
-                    style={{
-                      filter: selectedFilter,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                ) : (
-                  <Image
-                    src={image || placeholderImage}
-                    alt="Ad Preview"
-                    layout="fill"
-                    objectFit="cover"
-                    unoptimized
-                    className="shadow-md rounded-lg"
-                    style={{ filter: selectedFilter }}
-                  />
-                )}
+                <Image
+                  src={image || placeholderImage}
+                  alt="Ad Preview"
+                  className="shadow-md rounded-lg"
+                  layout="fill"
+                  objectFit="cover"
+                  style={{ filter: selectedFilter }}
+                />
+
                 {isClient && clientHeadline && (
                   <DraggableHeadline
                     headlineText={clientHeadline}
