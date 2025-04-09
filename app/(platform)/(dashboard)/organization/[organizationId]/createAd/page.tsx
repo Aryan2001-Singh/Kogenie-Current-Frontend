@@ -62,6 +62,14 @@ const CreateAdPage: React.FC = () => {
     setIsClient(true);
     const savedImage = localStorage.getItem("uploadedImage");
     setImage(savedImage || placeholderImage);
+    if (
+      savedImage?.startsWith("http") ||
+      savedImage?.startsWith("data:image")
+    ) {
+      setImage(savedImage);
+    } else {
+      setImage(placeholderImage);
+    }
   }, []);
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
@@ -244,7 +252,7 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                 } relative`}
               >
                 <Image
-                  src={image || placeholderImage}
+                  src={image?.startsWith("http") ? image : placeholderImage}
                   alt="Ad Preview"
                   className="shadow-md rounded-lg"
                   layout="fill"
