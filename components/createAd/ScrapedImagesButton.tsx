@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 
-
 interface ScrapedImagesButtonProps {
   productImages: string[]; // ✅ List of scraped images
   onSelectImage: (image: string) => void; // ✅ Callback function when an image is selected
@@ -39,14 +38,10 @@ const ScrapedImagesButton: React.FC<ScrapedImagesButtonProps> = ({
                   {/* ✅ Use native <img> instead of next/image */}
                   <img
                     src={img}
-                    alt={`Scraped Image ${index + 1}`}
+                    alt="Scraped"
                     width={96}
                     height={96}
-                    style={{
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      objectFit: "cover",
-                    }}
+                    className="rounded-lg cursor-pointer hover:opacity-75"
                     onClick={() => {
                       onSelectImage(img);
                       setShowPopup(false);
