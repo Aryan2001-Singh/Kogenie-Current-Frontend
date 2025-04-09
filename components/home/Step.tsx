@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -8,6 +8,7 @@ import {
   RocketIcon,
   BarChartIcon,
 } from "lucide-react";
+import { X } from "lucide-react";
 
 const steps = [
   {
@@ -41,6 +42,8 @@ const steps = [
 ];
 
 const Step = () => {
+  const [showVideo, setShowVideo] = useState(false);
+
   return (
     <section className="w-full bg-[#f97316]/10 py-20 px-6 sm:px-12 lg:px-20 relative font-['Inter']">
       <div className="max-w-6xl mx-auto">
@@ -73,22 +76,62 @@ const Step = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="italic text-xl text-gray-700 mb-4 font-['Inter']">
-            From scroll-stopping headlines to hyper-targeted messaging—your custom ad journey starts here.
+          <p className="italic text-xl text-gray-500 mb-6 font-['Inter']">
+            From scroll-stopping headlines to hyper-targeted messaging—your
+            custom ad journey starts here.
           </p>
 
-          <Link href="/create">
-            <button
-              className="px-10 py-3 rounded-xl text-xl font-bold text-white bg-gradient-to-r 
+          <div className="flex justify-center flex-wrap gap-4">
+            <Link href="/create">
+              <button
+                className="w-52 px-6 py-3 rounded-xl text-xl font-semibold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
-                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]
-                font-['Poppins']"
+                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea] font-['Poppins']"
+              >
+                Try now
+              </button>
+            </Link>
+
+            <button
+              onClick={() => setShowVideo(true)}
+              className="w-52 px-6 py-3 rounded-xl text-xl font-semibold text-[#546aec] bg-white shadow-md transition duration-300 
+                hover:scale-105 hover:shadow-xl hover:border hover:border-[#546aec] font-['Poppins']"
+              style={{ border: "1px solid #546aec" }}
             >
-              Customise yours now
+              Watch demo
             </button>
-          </Link>
+          </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {showVideo && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+          <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl w-full max-w-4xl">
+            <button
+              onClick={() => {
+                console.log("Close clicked");
+                setShowVideo(false);
+              }}
+              className="absolute top-4 right-4 text-gray-600 hover:text-black z-50"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <video
+              controls
+              autoPlay
+              className="w-full h-[500px] object-cover rounded-2xl"
+            >
+              <source
+                src="/Screen Recording 2025-03-05 at 6.41.38 PM.mov"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
