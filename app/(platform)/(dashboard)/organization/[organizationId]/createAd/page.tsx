@@ -50,6 +50,13 @@ const CreateAdPage: React.FC = () => {
   // const [showScrapedImages, setShowScrapedImages] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    if (adDataFromStore?.selectedImage) {
+      setImage(adDataFromStore.selectedImage);
+    } else {
+      setImage("/logo.png"); // fallback
+    }
+  }, [adDataFromStore]);
 
   useEffect(() => {
     setIsClient(true);
@@ -211,7 +218,18 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                   productImages={adData.productImages} // ✅ Pass scraped images
                   onSelectImage={(selectedImg) => {
                     setImage(selectedImg); // ✅ Update selected image
-                    localStorage.setItem("uploadedImage", selectedImg); // ✅ Store selected image
+
+                    // ✅ Avoid storing base64 or large data URLs in localStorage
+                    if (selectedImg && !selectedImg.startsWith("data:image")) {
+                      try {
+                        localStorage.setItem("uploadedImage", selectedImg);
+                      } catch (error) {
+                        console.warn(
+                          "⚠️ Failed to store image in localStorage:",
+                          error
+                        );
+                      }
+                    }
                   }}
                 />
               )}

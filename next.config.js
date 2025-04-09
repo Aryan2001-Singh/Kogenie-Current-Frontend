@@ -7,10 +7,11 @@ const nextConfig = {
     domains: [
       "img.clerk.com",
       "images.unsplash.com",
-      "images-eu.ssl-images-amazon.com", // ✅ ADDED for Amazon image support
-      "m.media-amazon.com",              // ✅ Common Amazon domain
+      "images-eu.ssl-images-amazon.com", // ✅ Amazon
+      "m.media-amazon.com",              // ✅ Amazon
       "rukminim2.flixcart.com",          // ✅ Flipkart
       "assets.myntassets.com",           // ✅ Myntra
+      "cdn.stability.ai",                // ✅ Stability AI (NEW)
     ],
     remotePatterns: [
       { protocol: "https", hostname: "img.clerk.com" },
@@ -19,6 +20,7 @@ const nextConfig = {
       { protocol: "https", hostname: "m.media-amazon.com" },
       { protocol: "https", hostname: "rukminim2.flixcart.com" },
       { protocol: "https", hostname: "assets.myntassets.com" },
+      { protocol: "https", hostname: "cdn.stability.ai" }, // ✅ Added
     ],
     minimumCacheTTL: 60,
   },
