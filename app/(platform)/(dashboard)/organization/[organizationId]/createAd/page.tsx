@@ -243,19 +243,24 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                   aspectRatio === "square" ? styles.square : styles.story
                 } relative`}
               >
-                <Image
-                  src={
-                    image?.startsWith("http") || image?.startsWith("data:image")
-                      ? image
-                      : placeholderImage
-                  }
-                  alt="Ad Preview"
-                  layout="fill"
-                  objectFit="cover"
-                  unoptimized // ✅ Must be here to prevent optimization blocking
-                  className="shadow-md rounded-lg"
-                  style={{ filter: selectedFilter }}
-                />
+                {image?.startsWith("http") ? (
+                  <Image
+                    src={image}
+                    alt="Ad Preview"
+                    layout="fill"
+                    objectFit="cover"
+                    unoptimized // ✅ Avoids Next.js blocking non-allowed domains
+                    className="shadow-md rounded-lg"
+                    style={{ filter: selectedFilter }}
+                  />
+                ) : (
+                  <img
+                    src={image || placeholderImage}
+                    alt="Ad Preview"
+                    className="shadow-md rounded-lg w-full h-full object-cover"
+                    style={{ filter: selectedFilter }}
+                  />
+                )}
                 {isClient && clientHeadline && (
                   <DraggableHeadline
                     headlineText={clientHeadline}
