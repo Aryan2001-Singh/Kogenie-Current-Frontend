@@ -34,7 +34,7 @@ const SolutionSection = () => {
   const yAxisLabel = view === "conversion" ? "Conversion Rate" : "Click-Through Rate";
 
   return (
-    <section className="w-full bg-[#fefefe] py-12 px-6 sm:px-12 lg:px-20 relative overflow-hidden font-['Geist']">
+    <section id='solution' className="w-full bg-[#fefefe] py-12 px-6 sm:px-12 lg:px-20 relative overflow-hidden font-['Geist']">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Left Column */}
         <div className="col-span-full lg:col-span-2 space-y-8">
@@ -54,7 +54,7 @@ const SolutionSection = () => {
             <p className="text-base lg:text-xl font-medium text-gray-600">
               We believe in the right people,at the right time,<br /> with the right message.
             </p>
-            <Link href="/create">
+            <Link href="/sign-up" >
               <button className="px-10 py-3 rounded-xl text-xl font-bold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
                 hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
