@@ -11,8 +11,7 @@ const nextConfig = {
       "m.media-amazon.com",              // ✅ Amazon
       "rukminim2.flixcart.com",          // ✅ Flipkart
       "assets.myntassets.com",           // ✅ Myntra
-      "cdn.stability.ai",                // ✅ Stability AI
-      "via.placeholder.com",             // ✅ Placeholder fallback
+      "cdn.stability.ai",                // ✅ Stability AI (NEW)
     ],
     remotePatterns: [
       { protocol: "https", hostname: "img.clerk.com" },
@@ -21,8 +20,7 @@ const nextConfig = {
       { protocol: "https", hostname: "m.media-amazon.com" },
       { protocol: "https", hostname: "rukminim2.flixcart.com" },
       { protocol: "https", hostname: "assets.myntassets.com" },
-      { protocol: "https", hostname: "cdn.stability.ai" },
-      { protocol: "https", hostname: "via.placeholder.com" },
+      { protocol: "https", hostname: "cdn.stability.ai" }, // ✅ Added
     ],
     minimumCacheTTL: 60,
   },
