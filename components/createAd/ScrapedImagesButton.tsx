@@ -28,7 +28,9 @@ const ScrapedImagesButton: React.FC<ScrapedImagesButtonProps> = ({
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 max-w-lg">
-            <h3 className="text-xl font-semibold mb-4">Choose a Scraped Image</h3>
+            <h3 className="text-xl font-semibold mb-4">
+              Choose a Scraped Image
+            </h3>
 
             {/* ✅ Display Scraped Images */}
             <div className="flex overflow-x-auto space-x-2">
@@ -37,12 +39,13 @@ const ScrapedImagesButton: React.FC<ScrapedImagesButtonProps> = ({
                   <Image
                     src={img}
                     alt={`Scraped Image ${index + 1}`}
-                    width={96} // 24 x 4 (tailwind 24 = 96px)
+                    width={96}
                     height={96}
+                    unoptimized // ✅ Fix here
                     className="rounded-lg cursor-pointer hover:opacity-75"
                     onClick={() => {
-                      onSelectImage(img); // ✅ Send Selected Image to Parent
-                      setShowPopup(false); // ✅ Close Popup
+                      onSelectImage(img);
+                      setShowPopup(false);
                     }}
                   />
                 </div>

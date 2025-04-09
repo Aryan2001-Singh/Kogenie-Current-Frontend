@@ -244,11 +244,16 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                 } relative`}
               >
                 <Image
-                  src={image || placeholderImage}
+                  src={
+                    image?.startsWith("http") || image?.startsWith("data:image")
+                      ? image
+                      : placeholderImage
+                  }
                   alt="Ad Preview"
-                  className="shadow-md rounded-lg"
                   layout="fill"
                   objectFit="cover"
+                  unoptimized // ✅ Fix here
+                  className="shadow-md rounded-lg"
                   style={{ filter: selectedFilter }}
                 />
 
