@@ -12,6 +12,7 @@ const nextConfig = {
       "rukminim2.flixcart.com",          // ✅ Flipkart
       "assets.myntassets.com",           // ✅ Myntra
       "cdn.stability.ai",                // ✅ Stability AI (NEW)
+      "via.placeholder.com",             // ✅ Placeholder
     ],
     remotePatterns: [
       { protocol: "https", hostname: "img.clerk.com" },
@@ -20,9 +21,13 @@ const nextConfig = {
       { protocol: "https", hostname: "m.media-amazon.com" },
       { protocol: "https", hostname: "rukminim2.flixcart.com" },
       { protocol: "https", hostname: "assets.myntassets.com" },
-      { protocol: "https", hostname: "cdn.stability.ai" }, // ✅ Added
+      { protocol: "https", hostname: "cdn.stability.ai" },
+      { protocol: "https", hostname: "via.placeholder.com" },
     ],
     minimumCacheTTL: 60,
+
+    // ✅ Allow base64 and blob URLs (required for production images with data:)
+    contentSecurityPolicy: "default-src 'self'; img-src * data: blob:;",
   },
 
   experimental: {
