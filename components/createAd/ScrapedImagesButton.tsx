@@ -41,7 +41,7 @@ const ScrapedImagesButton: React.FC<ScrapedImagesButtonProps> = ({
                     alt={`Scraped Image ${index + 1}`}
                     width={96}
                     height={96}
-                    unoptimized // ✅ Fix here
+                    unoptimized // ✅ Important for base64 to render
                     className="rounded-lg cursor-pointer hover:opacity-75"
                     onClick={() => {
                       onSelectImage(img);

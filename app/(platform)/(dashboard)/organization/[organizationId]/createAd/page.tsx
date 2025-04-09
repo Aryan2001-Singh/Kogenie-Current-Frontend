@@ -252,11 +252,10 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
                   alt="Ad Preview"
                   layout="fill"
                   objectFit="cover"
-                  unoptimized // ✅ Fix here
+                  unoptimized // ✅ Must be here to prevent optimization blocking
                   className="shadow-md rounded-lg"
                   style={{ filter: selectedFilter }}
                 />
-
                 {isClient && clientHeadline && (
                   <DraggableHeadline
                     headlineText={clientHeadline}
