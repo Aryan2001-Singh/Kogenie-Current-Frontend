@@ -23,6 +23,7 @@ const nextConfig = {
       { protocol: "https", hostname: "assets.myntassets.com" },
       { protocol: "https", hostname: "cdn.stability.ai" },
       { protocol: "https", hostname: "via.placeholder.com" },
+      { protocol: "https", hostname: "res.cloudinary.com" }, 
     ],
     minimumCacheTTL: 60,
   },
