@@ -8,6 +8,8 @@ import Problem from "./Problem";
 import SolutionSection from "@/components/home/Solution";
 import Step from "@/components/home/Step";
 
+
+
 import FeatureInfographic from "@/components/home/FeatureInfo";
 import TargetAudienceCarousel from "@/components/home/TargetAudience";
 import GlobalSection from "./(platform)/(dashboard)/_components/common/GlobalSection";
@@ -18,6 +20,10 @@ const SassProduct = () => {
 
     <>
     <Head>
+    <meta
+          name="facebook-domain-verification"
+          content="icrbz3p7s2icc8r79ygu0177whyuyo"
+        />
     <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
