@@ -55,6 +55,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
+        <meta name="facebook-domain-verification" content="icrbz3p7s2icc8r79ygu0177whyuyo" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {/* ✅ Improved Meta Description (100+ Characters) */}
