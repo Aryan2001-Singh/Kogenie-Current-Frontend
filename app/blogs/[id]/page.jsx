@@ -1,10 +1,15 @@
 "use client";
-import { assets } from "@/Assets/assets";
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState, useCallback } from "react";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
 
 const Page = ({ params }) => {
   const [data, setData] = useState(null);
@@ -37,24 +42,38 @@ const Page = ({ params }) => {
       const elements = Array.from(tempDiv.querySelectorAll("h2, h3"));
 
       elements.forEach((el, i) => {
-        const id = `section-${i}`;
+        // 💡 Create readable slugs like "how-to-create-ads-using-ai"
+        const rawText = el.innerText || el.textContent || `section-${i}`;
+        const slug = rawText
+          .toLowerCase()
+          .replace(/[^\w\s]/g, "") // remove special chars
+          .replace(/\s+/g, "-") // spaces to dashes
+          .trim();
+
+        const id = slug || `section-${i}`;
         el.setAttribute("id", id);
 
         if (el.tagName === "H2") {
           headings.push({
             id,
-            text: el.innerText || el.textContent || `Section ${i + 1}`,
+            text: rawText,
             level: 2,
             children: [],
           });
         } else if (el.tagName === "H3" && headings.length > 0) {
           headings[headings.length - 1].children.push({
             id,
-            text: el.innerText || el.textContent || `Subsection ${i + 1}`,
+            text: rawText,
             level: 3,
           });
         }
       });
+
+      // ✅ This injects IDs into rendered content
+      setData((prev) => ({
+        ...prev,
+        description: tempDiv.innerHTML,
+      }));
 
       setTocHeadings(headings);
     }
@@ -99,7 +118,7 @@ const Page = ({ params }) => {
       <div className="bg-white py-16 px-4 sm:px-8">
         <div className=" mx-auto  mb-20 bg-white shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 p-8 sm:p-12 items-center">
           <div>
-            <h1 className="text-4xl sm:text-5xl max-w-xl font-extrabold text-gray-900 leading-tight p-8 mt-20 ">
+            <h1 className="text-4xl sm:text-5xl max-w-xl font-bold text-gray-700 leading-normal p-8 mt-20 ">
               {data.title}
             </h1>
             <div className="flex items-center gap-4 p-8 ">
@@ -112,7 +131,7 @@ const Page = ({ params }) => {
               />
               <div className="text-sm text-gray-600">
                 <p className="font-semibold">Aayushi Shrivastava</p>
-                <p className="text-gray-400">
+                <p className="text-gray-500">
                   {new Date(data.date).toDateString()}
                 </p>
               </div>
@@ -147,7 +166,9 @@ const Page = ({ params }) => {
                     <a
                       href={`#${item.id}`}
                       className={`block py-2 px-3 text-[18px] font-semibold border-b border-gray-300 transition-colors duration-200 ${
-                        activeId === item.id ? "text-indigo-700 underline" : "text-gray-900"
+                        activeId === item.id
+                          ? "text-indigo-700 underline"
+                          : "text-gray-900"
                       }`}
                     >
                       {item.text}
@@ -160,7 +181,9 @@ const Page = ({ params }) => {
                             <a
                               href={`#${sub.id}`}
                               className={`block text-[16px] font-normal text-gray-700 hover:text-indigo-600 ${
-                                activeId === sub.id ? "text-indigo-700 underline" : ""
+                                activeId === sub.id
+                                  ? "text-indigo-700 underline"
+                                  : ""
                               }`}
                             >
                               {sub.text}
@@ -175,60 +198,42 @@ const Page = ({ params }) => {
             </div>
 
             <div className="bg-white rounded-xl p-5 shadow-none text-center">
-              <p className="text-xl font-bold text-gray-900 mb-3">
-                Share this article
-              </p>
-              <div className="flex justify-center gap-4">
-                <a
-                  href="https://www.facebook.com/sharer/sharer.php?u=https://kogenie.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={assets.facebook_icon}
-                    width={48}
-                    alt="Facebook"
-                    className="hover:scale-110 transition-transform"
-                    style={{
-                      filter:
-                        "invert(20%) sepia(100%) saturate(600%) hue-rotate(180deg)",
-                    }}
-                  />
-                </a>
-                <a
-                  href="https://twitter.com/intent/tweet?url=https://kogenie.com&text=Check%20out%20this%20amazing%20blog!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={assets.twitter_icon}
-                    width={48}
-                    alt="Twitter"
-                    className="hover:scale-110 transition-transform"
-                    style={{
-                      filter:
-                        "invert(35%) sepia(90%) saturate(700%) hue-rotate(190deg)",
-                    }}
-                  />
-                </a>
-                <a
-                  href="mailto:?subject=Check%20this%20out&body=Check%20out%20this%20awesome%20article:%20https://kogenie.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Image
-                    src={assets.googleplus_icon}
-                    width={48}
-                    alt="Share via Email"
-                    className="hover:scale-110 transition-transform"
-                    style={{
-                      filter:
-                        "invert(32%) sepia(80%) saturate(700%) hue-rotate(340deg)",
-                    }}
-                  />
-                </a>
+                <p className="text-xl font-bold text-gray-900 mb-3">
+                  Share this article
+                </p>
+                <div className="flex justify-center gap-4 mt-4">
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/shareArticle?mini=true&url=https://kogenie.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#0A66C2]/10 text-[#0A66C2] hover:scale-110 transition"
+                  >
+                    <FaLinkedinIn size={20} />
+                  </a>
+
+                  {/* Facebook */}
+                  <a
+                    href="https://www.facebook.com/kogenie.in/about/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#1877F2]/10 text-[#1877F2] hover:scale-110 transition"
+                  >
+                    <FaFacebookF size={20} />
+                  </a>
+
+                  {/* Twitter */}
+                  <a
+                    href="https://x.com/kogenie__26"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#1DA1F2]/10 text-[#1DA1F2] hover:scale-110 transition"
+                  >
+                    <FaTwitter size={20} />
+                  </a>
+                </div>
               </div>
-            </div>
+            
           </aside>
 
           <main className="flex-1">
