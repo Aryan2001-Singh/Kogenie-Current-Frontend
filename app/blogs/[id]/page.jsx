@@ -9,6 +9,7 @@ import React, { useEffect, useState, useCallback } from "react";
 const Page = ({ params }) => {
   const [data, setData] = useState(null);
   const [tocHeadings, setTocHeadings] = useState([]);
+  const [activeId, setActiveId] = useState("");
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -31,19 +32,57 @@ const Page = ({ params }) => {
     if (data?.description) {
       const tempDiv = document.createElement("div");
       tempDiv.innerHTML = data.description;
-      const headings = Array.from(tempDiv.querySelectorAll("h2, h3")).map(
-        (el, i) => {
-          const id = `section-${i}`;
-          el.setAttribute("id", id);
-          return {
+
+      const headings = [];
+      const elements = Array.from(tempDiv.querySelectorAll("h2, h3"));
+
+      elements.forEach((el, i) => {
+        const id = `section-${i}`;
+        el.setAttribute("id", id);
+
+        if (el.tagName === "H2") {
+          headings.push({
             id,
             text: el.innerText || el.textContent || `Section ${i + 1}`,
-          };
+            level: 2,
+            children: [],
+          });
+        } else if (el.tagName === "H3" && headings.length > 0) {
+          headings[headings.length - 1].children.push({
+            id,
+            text: el.innerText || el.textContent || `Subsection ${i + 1}`,
+            level: 3,
+          });
         }
-      );
+      });
+
       setTocHeadings(headings);
     }
   }, [data?.description]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0% -65% 0%" }
+    );
+
+    tocHeadings.forEach((heading) => {
+      const element = document.getElementById(heading.id);
+      if (element) observer.observe(element);
+      heading.children?.forEach((child) => {
+        const childEl = document.getElementById(child.id);
+        if (childEl) observer.observe(childEl);
+      });
+    });
+
+    return () => observer.disconnect();
+  }, [tocHeadings]);
 
   if (!hasMounted || !data) {
     return (
@@ -57,7 +96,6 @@ const Page = ({ params }) => {
     <div className="min-h-screen bg-white flex flex-col font-sans">
       <Header />
 
-      {/* Hero Section */}
       <div className="bg-white py-16 px-4 sm:px-8">
         <div className=" mx-auto  mb-20 bg-white shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 p-8 sm:p-12 items-center">
           <div>
@@ -92,43 +130,55 @@ const Page = ({ params }) => {
         </div>
       </div>
 
-      {/* Blog Layout */}
       <div className="w-full px-4 py-10 bg-[#f9fafb]">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
-          {/* Sidebar */}
-          {/* Sidebar */}
+        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-6">
           <aside className="hidden lg:block w-[250px] flex-shrink-0 space-y-6">
-            {/* Table of Contents */}
-            <div className="bg-white  mt-20 p-6 ">
+            <div className="bg-white mt-20 p-6 ">
               <ul className="space-y-3 max-w-sm text-lg font-bold text-gray-900 mb-4">
                 <h4
                   style={{ marginLeft: "20px" }}
-                  className="text-[20px] font-medium uppercase mb-2  tracking-wide bg-gradient-to-r from-indigo-500 to-indigo-700 text-transparent bg-clip-text"
+                  className="text-[20px] font-medium uppercase mb-2 tracking-wide bg-gradient-to-r from-indigo-500 to-indigo-700 text-transparent bg-clip-text"
                 >
                   Table of Contents
                 </h4>
 
                 {tocHeadings.map((item, i) => (
-                  <li key={i} className="border-b p-6 border-black pb-10">
+                  <li key={i}>
                     <a
                       href={`#${item.id}`}
-                      className="block hover:text-indigo-600 transition-colors duration-200 truncate tracking-wide leading-tight text-[20px] font-semibold"
-                      title={item.text}
+                      className={`block py-2 px-3 text-[18px] font-semibold border-b border-gray-300 transition-colors duration-200 ${
+                        activeId === item.id ? "text-indigo-700 underline" : "text-gray-900"
+                      }`}
                     >
                       {item.text}
                     </a>
+
+                    {item.children?.length > 0 && (
+                      <ul className="ml-4 mt-1 border-l border-gray-200 pl-3 space-y-1">
+                        {item.children.map((sub, j) => (
+                          <li key={j}>
+                            <a
+                              href={`#${sub.id}`}
+                              className={`block text-[16px] font-normal text-gray-700 hover:text-indigo-600 ${
+                                activeId === sub.id ? "text-indigo-700 underline" : ""
+                              }`}
+                            >
+                              {sub.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Share Section */}
             <div className="bg-white rounded-xl p-5 shadow-none text-center">
               <p className="text-xl font-bold text-gray-900 mb-3">
                 Share this article
               </p>
               <div className="flex justify-center gap-4">
-                {/* Facebook */}
                 <a
                   href="https://www.facebook.com/sharer/sharer.php?u=https://kogenie.com"
                   target="_blank"
@@ -145,8 +195,6 @@ const Page = ({ params }) => {
                     }}
                   />
                 </a>
-
-                {/* Twitter */}
                 <a
                   href="https://twitter.com/intent/tweet?url=https://kogenie.com&text=Check%20out%20this%20amazing%20blog!"
                   target="_blank"
@@ -163,8 +211,6 @@ const Page = ({ params }) => {
                     }}
                   />
                 </a>
-
-                {/* Google Plus (deprecated — use Gmail/share instead) */}
                 <a
                   href="mailto:?subject=Check%20this%20out&body=Check%20out%20this%20awesome%20article:%20https://kogenie.com"
                   target="_blank"
@@ -185,13 +231,8 @@ const Page = ({ params }) => {
             </div>
           </aside>
 
-          {/* Main Content */}
           <main className="flex-1">
             <div className=" p-8 md:p-12">
-              <p className="text-center text-gray-500 text-base font-medium mb-10 italic">
-                KOgenie makes your ad in just 5 minutes — so you can launch
-                faster and sell better.
-              </p>
               <div
                 className="prose prose-blue lg:prose-lg max-w-none text-gray-800 leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: data.description }}
