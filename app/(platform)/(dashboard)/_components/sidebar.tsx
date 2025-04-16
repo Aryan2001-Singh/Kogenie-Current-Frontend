@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion } from "@/components/ui/accordion";
 import { NavItem, Organization } from "./nav-item";
 import ConnectInstagramButton from "@/components/createAd/ConnectInstagramButton";
+import AdminInsightsButton from "@/components/createAd/AdminInsightsButton";
 
 interface SidebarProps {
   storageKey?: string;
@@ -104,6 +105,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
       <br />
       <br />
       <ConnectInstagramButton />
+      <AdminInsightsButton />
 
       {/* Directly render FontSettings (no extra outer container) */}
       {/* <div className="mt-8">

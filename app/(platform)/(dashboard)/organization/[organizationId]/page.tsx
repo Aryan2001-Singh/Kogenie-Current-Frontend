@@ -4,7 +4,6 @@ import { useState, useEffect, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
-import { useUser } from "@clerk/nextjs";
 
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
@@ -50,7 +49,6 @@ const OrganizationIdPage = () => {
   const router = useRouter();
   const { organizationId } = useParams();
   const setAdData = useAdStore((state) => state.setAdData);
-  const { user, isLoaded } = useUser();
 
   useEffect(() => {
     const factInterval = setInterval(() => {
@@ -274,14 +272,6 @@ const OrganizationIdPage = () => {
         {/* Error Message */}
         {error && <p className="text-red-400 mt-3">{error}</p>}
         {/* 🔐 Admin Only CTA */}
-        {isLoaded && user?.publicMetadata?.role === "admin" && (
-          <button
-            onClick={() => router.push("/data/insights")}
-            className="mt-6 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all text-sm"
-          >
-            📊 View Admin Insights
-          </button>
-        )}
       </div>
 
       {/* Animations */}
