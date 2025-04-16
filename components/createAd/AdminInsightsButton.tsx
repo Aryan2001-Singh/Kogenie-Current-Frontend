@@ -18,12 +18,14 @@ const AdminInsightsButton = () => {
   if (!isAdmin) return null;
 
   return (
-    <button
-      onClick={() => router.push("/data/insights")}
-      className="w-full px-4 py-2 mt-6 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition"
-    >
-      📊 View Admin Insights
-    </button>
+    <div className="space-y-3 mt-6">
+      <button
+        onClick={() => router.push("/data/insights")}
+        className="w-full px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition"
+      >
+        📊 View Admin Insights
+      </button>
+    </div>
   );
 };
 

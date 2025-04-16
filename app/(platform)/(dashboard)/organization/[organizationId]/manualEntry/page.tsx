@@ -72,7 +72,7 @@ const ManualEntryPage: React.FC = () => {
     );
 
     try {
-      const response = await fetch("http://localhost:5001/generateAdPrompt", {
+      const response = await fetch("https://api.kogenie.com/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
@@ -98,7 +98,7 @@ const ManualEntryPage: React.FC = () => {
         };
 
         // ✅ Step 2: Store in MongoDB via your backend route
-        const storeRes = await fetch("http://localhost:5001/api/ads/store", {
+        const storeRes = await fetch("https://api.kogenie.com/api/ads/store", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToStore),
