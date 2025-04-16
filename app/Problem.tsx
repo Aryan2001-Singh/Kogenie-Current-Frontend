@@ -72,22 +72,22 @@ const Problem = () => {
     key={i}
     initial={{ scale: 0.8, opacity: 0 }}
     whileInView={{ scale: 1, opacity: 1 }}
-    transition={{ duration: 0.5, delay: i * 0.3 }}
-    viewport={{ once: true, amount: 0.5 }}
+    transition={{ duration: 0.5, delay: i * 0.15 }} // faster pop-in
+    viewport={{ once: true, amount: 0.25 }} // triggers sooner
     className={`absolute rounded-xl p-3 border border-[#e0e0e0] w-60 text-left shadow-xl backdrop-blur-sm ${
       i === 0
         ? "top-4 left-[-50px]"
         : i === 1
         ? "top-[150px] right-[-40px]"
         : "bottom-[0px] left-[-10px]"
-    } bg-white/40`} 
+    } bg-white`}
   >
     <p className="text-sm font-semibold text-red-600 text-justify">
       {item.icon} {item.text}
     </p>
     <p className="text-xs text-gray-700 mt-1">{item.sub}</p>
   </motion.div>
-        ))}
+))}
       </div>
     </section>
   );

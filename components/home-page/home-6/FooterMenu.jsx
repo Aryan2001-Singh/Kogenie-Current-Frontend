@@ -116,7 +116,7 @@ const FooterLinks = () => {
 
           {/* Footer Bottom */}
           <div className="footer-bottom">
-            <p>© {new Date().getFullYear()} Kogenie. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Kogenie E-Solutions. All rights reserved.</p>
           </div>
         </div>
       </div>

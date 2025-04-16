@@ -51,6 +51,15 @@ const SolutionSection = () => {
 
           {/* Paragraph + CTA */}
           <div className="space-y-4 text-left lg:text-left">
+          <p className="text-base font-semibold uppercase tracking-wide text-grey-800">
+              How?
+            </p>
+            <p className="text-2xl lg:text-3xl font-extrabold text-[#1e1e1e] leading-snug mt-1 font-['Geist']">
+              <span className="bg-grey-600 ">
+                HyperTargeting
+              </span>{" "}
+              is our secret sauce.
+            </p>
             <p className="text-base lg:text-xl font-medium text-gray-600">
               We believe in the right people,at the right time,<br /> with the right message.
             </p>
@@ -65,22 +74,10 @@ const SolutionSection = () => {
         </div>
 
         {/* Right Column */}
-        <div className="col-span-full lg:col-span-1 flex flex-col gap-6">
-          {/* Purple Box */}
-          <div className="p-6 ">
-            <p className="text-base font-semibold uppercase tracking-wide text-black">
-              How?
-            </p>
-            <p className="text-2xl lg:text-3xl font-extrabold text-[#1e1e1e] leading-snug mt-1 font-['Geist']">
-              <span className="bg-gradient-to-r from-[#3f54c6] to-[#7b8df6] bg-clip-text text-transparent">
-                HyperTargeting
-              </span>{" "}
-              is our secret sauce.
-            </p>
-            <p className="text-xs mt-2 text-gray-600">
-              We are the matchmakers of your ads and your audience by using AI targeted just for one of your many audiences.
-            </p>
-          </div>
+     
+<div className="col-span-full lg:col-span-1 flex flex-col h-full justify-between gap-6">
+
+         
 
           {/* Toggle Buttons */}
           <div className="flex justify-end gap-2 px-6">
@@ -107,8 +104,9 @@ const SolutionSection = () => {
           </div>
 
           {/* Chart */}
-          <div className=" p-4 ">
-            <ResponsiveContainer width="100%" height={240}>
+          <div className="flex-grow p-4 h-full">
+  <ResponsiveContainer width="100%" height={360}>
+
               <LineChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="label" tick={{ fontSize: 12 }} />

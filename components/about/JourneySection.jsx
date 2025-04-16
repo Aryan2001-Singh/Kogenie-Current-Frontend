@@ -45,23 +45,27 @@ const JourneySection = () => {
         <p style={{color:"#546aec"}} className="uppercase text-sm font-semibold tracking-wide text-[#546aec] mb-3">
           We Make Sure Yours Break Through
         </p>
-        <h2 className="text-4xl sm:text-4xl font-bold text-gray-800 leading-tight mb-4">
+        <h2 className="text-4xl sm:text-4xl font-bold text-gray-800 leading-normal mb-4">
           Great Ideas Deserve Better Ads
         </h2>
         <p className="text-lg text-gray-700 leading-relaxed mb-6">
           The best products (like yours) often go unnoticed,not because they
           aren’t great, but because they aren’t marketed better.
           <br />
-          <strong className="text-black gap-2 mb-2">
-            Built Something Great? Let’s Market It.
-          </strong>
+          <p  className="text-grey-500 gap-2 mb-2">
+           <strong>Built Something Great? Let’s Market It.</strong> 
+          </p>
         </p>
 
         <Link href="/sign-up">
-          <button style={{backgroundColor:"#546aec"}} className="inline-block hover:bg-[#4253c1] text-white font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md">
+          <button style={{backgroundColor:"#546aec"}} className="inline-block hover:bg-[#4253c1] text-white text-lg font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md">
             Start Creating Ads
           </button>
         </Link>
+        {/* LEGAL ATTRIBUTION */}
+        <p className="text-sm text-gray-500 mt-3">
+          Powered by <span className="font-medium text-gray-500">KOgenie Technologies Pvt. Ltd.</span>
+        </p>
       </motion.div>
 
       {/* RIGHT SIDE — Journey Steps */}
