@@ -39,7 +39,7 @@ const ManualEntryPage: React.FC = () => {
   // const organizationId = params.organizationId;
 
   const handleSubmit = async (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.preventDefault(); 
+    e?.preventDefault();
     setError("");
     setLoading(true);
 
@@ -72,7 +72,7 @@ const ManualEntryPage: React.FC = () => {
     );
 
     try {
-      const response = await fetch("https://api.kogenie.com/generateAdPrompt", {
+      const response = await fetch("http://localhost:5001/generateAdPrompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adInputData),
@@ -83,6 +83,34 @@ const ManualEntryPage: React.FC = () => {
       console.log("✅ Backend API Response:", data); // Debugging
 
       if (response.ok) {
+        // ✅ Step 1: Prepare data to store in DB
+        const dataToStore = {
+          brandName,
+          productName,
+          productDescription,
+          targetAudience,
+          uniqueSellingPoints,
+          adCopy: data.adCopy,
+          headline: data.headline,
+          userEmail,
+          productImages: data.productImages || [],
+          adType: "manual",
+        };
+
+        // ✅ Step 2: Store in MongoDB via your backend route
+        const storeRes = await fetch("http://localhost:5001/api/ads/store", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dataToStore),
+        });
+
+        const storeData = await storeRes.json();
+
+        if (!storeData?.adId) {
+          setError("Failed to store ad in database.");
+          setLoading(false);
+          return;
+        }
         if (!data.adCopy || !data.headline) {
           console.error(
             "❌ Missing adCopy or headline from API response:",
@@ -104,8 +132,10 @@ const ManualEntryPage: React.FC = () => {
         // ✅ Update Zustand store
         setAdData({
           ...adInputData,
+          _id: storeData.adId, // ✅ store _id for feedback usage
+          adType: "manual", // ✅ helps backend know which collection
           adCopy: data.adCopy || "Ad Copy Not Generated",
-          headline: data.headline?.trim() || "Headline Not Generated", // ✅ Ensure headline is trimmed
+          headline: data.headline?.trim() || "Headline Not Generated",
           productImages: data.productImages || [],
           selectedImage: data.productImages?.[0] || null,
         });

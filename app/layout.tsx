@@ -8,6 +8,7 @@ import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 import ReactGA from "react-ga4";
 import AOSInit from "@/components/AOSInit"; // ✅ Import AOSInit component
+import { ClerkProvider } from "@clerk/nextjs";
 
 const Hotjar = dynamic(() => import("@/components/Hotjar"), { ssr: false });
 
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   }, []);
 
   return (
+    <ClerkProvider>
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
@@ -124,5 +126,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <div className="main-page-wrapper">{children}</div>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

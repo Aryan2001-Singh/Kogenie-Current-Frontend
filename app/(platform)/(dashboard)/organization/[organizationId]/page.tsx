@@ -4,7 +4,7 @@ import { useState, useEffect, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
-
+import { useUser } from "@clerk/nextjs";
 
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
@@ -36,7 +36,7 @@ const advertisementFacts = [
   "Emotional ads perform 2x better than rational ones.",
   "87% of Gen Z prefers ads that are fun and interactive.",
   "Ads with clear CTAs see a 42% boost in click-through rates.",
-  "Influencer-backed ads increase brand credibility by 58%."
+  "Influencer-backed ads increase brand credibility by 58%.",
 ];
 
 const OrganizationIdPage = () => {
@@ -50,6 +50,7 @@ const OrganizationIdPage = () => {
   const router = useRouter();
   const { organizationId } = useParams();
   const setAdData = useAdStore((state) => state.setAdData);
+  const { user, isLoaded } = useUser();
 
   useEffect(() => {
     const factInterval = setInterval(() => {
@@ -67,38 +68,49 @@ const OrganizationIdPage = () => {
     e.preventDefault();
     setError("");
     setLoading(true); // ✅ Start the loader when button is clicked
-  
+
     if (!isUrlValid(url)) {
       setError("Please enter a valid URL.");
       setLoading(false);
       return;
     }
-  
+
     // ✅ Log before making the API request
     console.log("📤 Sending request to backend with:", {
       url,
       gender,
       ageGroup,
     });
-  
+
     try {
-      const response = await fetch("https://api.kogenie.com/createAd", {
+      const response = await fetch("http://localhost:5001/createAd", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            // "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
+          "Content-Type": "application/json",
+          // "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
         },
-        credentials: "include",  // 🔥 Allow cookies & authentication headers
+        credentials: "include", // 🔥 Allow cookies & authentication headers
         body: JSON.stringify({ url, gender, ageGroup }),
-    });
-  
+      });
+
       const data = await response.json();
-  
+
       if (response.ok) {
         console.log("✅ API Response:", data);
-  
-        setAdData(data);
-  
+
+        const adId = data.adId || data._id || ""; // just in case
+        if (!adId) {
+          throw new Error("Missing adId from backend response");
+        }
+
+        // ✅ Store in Zustand with adId + adType
+        setAdData({
+          ...data,
+          _id: adId,
+          adType: "scraped",
+          selectedImage: data.productImages?.[0] || null,
+        });
+
         setTimeout(() => {
           router.push(`/organization/${organizationId}/createAd`);
         }, 500); // ✅ Small delay to ensure Zustand updates state
@@ -208,10 +220,10 @@ const OrganizationIdPage = () => {
           {/* Buttons Section */}
           <div className="flex w-full justify-center space-x-4 mt-6">
             <div className="relative">
-            <button
-  type="submit"
-  disabled={loading || !isUrlValid(url)} // ✅ Disable button while loading
-  className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all transform 
+              <button
+                type="submit"
+                disabled={loading || !isUrlValid(url)} // ✅ Disable button while loading
+                className={`w-full md:w-auto px-6 py-3 rounded-lg transition-all transform 
     font-semibold flex items-center justify-center space-x-2 shadow-lg relative
     ${
       loading
@@ -219,19 +231,19 @@ const OrganizationIdPage = () => {
         : "bg-indigo-400 hover:bg-indigo-500 hover:scale-105 text-white"
     }
   `}
->
-  {loading ? (
-    <div className="flex items-center">
-      <div className="animate-spin rounded-full h-5 w-5 border-t-4 border-white"></div>
-      <span className="ml-2">Generating Ad...</span>
-    </div>
-  ) : (
-    <>
-      Generate Ad
-      <FaArrowRight className="ml-2" />
-    </>
-  )}
-</button>
+              >
+                {loading ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-t-4 border-white"></div>
+                    <span className="ml-2">Generating Ad...</span>
+                  </div>
+                ) : (
+                  <>
+                    Generate Ad
+                    <FaArrowRight className="ml-2" />
+                  </>
+                )}
+              </button>
 
               {/* Tooltip (Always Visible When Hovered) */}
               {showTooltip && !isUrlValid(url) && (
@@ -261,6 +273,15 @@ const OrganizationIdPage = () => {
 
         {/* Error Message */}
         {error && <p className="text-red-400 mt-3">{error}</p>}
+        {/* 🔐 Admin Only CTA */}
+        {isLoaded && user?.publicMetadata?.role === "admin" && (
+          <button
+            onClick={() => router.push("/data/insights")}
+            className="mt-6 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all text-sm"
+          >
+            📊 View Admin Insights
+          </button>
+        )}
       </div>
 
       {/* Animations */}

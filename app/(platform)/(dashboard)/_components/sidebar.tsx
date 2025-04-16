@@ -8,14 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion } from "@/components/ui/accordion";
 import { NavItem, Organization } from "./nav-item";
+import ConnectInstagramButton from "@/components/createAd/ConnectInstagramButton";
 
 interface SidebarProps {
   storageKey?: string;
 }
 
-export const Sidebar = ({
-  storageKey = "t-sidebar-state",
-}: SidebarProps) => {
+export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
   const [expanded, setExpanded] = useLocalStorage<Record<string, boolean>>(
     storageKey,
     {}
@@ -74,14 +73,24 @@ export const Sidebar = ({
     <div className="bg-gray-100 p-4 fixed top-14 left-0 w-72 h-screen shadow-lg overflow-y-auto">
       <div className="font-medium text-sm flex items-center mb-4">
         <span className="pl-4 text-gray-800">Workspaces</span>
-        <Button asChild type="button" size="icon" variant="ghost" className="ml-auto">
+        <Button
+          asChild
+          type="button"
+          size="icon"
+          variant="ghost"
+          className="ml-auto"
+        >
           <Link href="/select-org">
             <Plus className="h-4 w-4 text-blue-500" />
           </Link>
         </Button>
       </div>
 
-      <Accordion type="multiple" defaultValue={defaultAccordionValue} className="space-y-2">
+      <Accordion
+        type="multiple"
+        defaultValue={defaultAccordionValue}
+        className="space-y-2"
+      >
         {userMemberships.data.map(({ organization }) => (
           <NavItem
             key={organization.id}
@@ -92,6 +101,9 @@ export const Sidebar = ({
           />
         ))}
       </Accordion>
+      <br />
+      <br />
+      <ConnectInstagramButton />
 
       {/* Directly render FontSettings (no extra outer container) */}
       {/* <div className="mt-8">

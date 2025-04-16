@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 interface AdData {
+  _id: string; // ✅ MongoDB ad ID
+  adType: "manual" | "scraped"; // ✅ Needed to know the model
   brandName: string;
   productName: string;
   productDescription: string;
@@ -30,13 +32,8 @@ export const useAdStore = create<AdState>((set) => ({
   adData: null,
 
   setAdData: (data: AdData) => {
-    const updatedData = {
-      ...data,
-      headline: data.headline || "Headline Not Generated",
-    };
-
-    localStorage.setItem("adData", JSON.stringify(updatedData));
-    set({ adData: updatedData });
+    localStorage.setItem("adData", JSON.stringify(data));
+    set({ adData: data });
   },
 
   setSelectedImage: (image: string) => {
