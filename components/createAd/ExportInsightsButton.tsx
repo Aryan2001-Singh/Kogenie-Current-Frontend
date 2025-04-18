@@ -23,7 +23,7 @@ const ExportInsightsButton = () => {
   return (
     <button
       onClick={handleExport}
-      className="mt-6 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-700 transition"
+      className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-700 transition"
     >
       📄 Export Insights as PDF
     </button>

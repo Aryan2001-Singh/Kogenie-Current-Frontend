@@ -1,10 +1,12 @@
 "use client";
 
+
 import React, { useState, useEffect, CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { useUser } from "@clerk/nextjs";
 import AdFormOptions from "@/components/createAd/AdFormOptions";
+
 
 const ManualEntryPage: React.FC = () => {
   const [brandName, setBrandName] = useState("");
@@ -158,7 +160,7 @@ const ManualEntryPage: React.FC = () => {
     if (redirecting) {
       router.push(`/organization/${organizationId}/createAd`);
     }
-  }, [redirecting]);
+  }, [redirecting, router, organizationId]);
 
   // ✅ Full-page container with background
   const mainContainerStyle: CSSProperties = {
