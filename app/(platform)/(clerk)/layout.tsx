@@ -1,7 +1,7 @@
 const ClerkLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
-      className="flex h-screen w-full flex-col items-center justify-center relative overflow-hidden"
+      className="flex h-screen w-full items-center justify-center relative overflow-hidden px-4"
       style={{
         background: "linear-gradient(to right, #4B0082, #8A2BE2, #ffffff)",
       }}
@@ -25,11 +25,10 @@ const ClerkLayout = ({ children }: { children: React.ReactNode }) => {
       {/* 🌟 Center Star-like Glowing Effect */}
       <div className="absolute w-32 h-32 bg-white/10 rounded-full blur-3xl opacity-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-      {/* Your Main Content */}
-      <div className="relative z-10">
-        {/* Add your actual UI components here */}
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-6xl md:h-[600px]">
+        {children}
       </div>
-      <div className="relative z-10">{children}</div>
     </div>
   );
 };
