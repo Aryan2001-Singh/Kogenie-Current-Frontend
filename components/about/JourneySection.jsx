@@ -64,7 +64,7 @@ const JourneySection = () => {
         </Link>
         {/* LEGAL ATTRIBUTION */}
         <p className="text-sm text-gray-500 mt-3">
-          Powered by <span className="font-medium text-gray-500">KOgenie Technologies Pvt. Ltd.</span>
+          Powered by <span className="font-medium text-gray-500">KOGENIE E-SOLUTIONS Pvt. Ltd.</span>
         </p>
       </motion.div>
 
