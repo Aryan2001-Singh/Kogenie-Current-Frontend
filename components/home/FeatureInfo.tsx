@@ -99,12 +99,12 @@ const FeatureInfographics = () => {
             ))}
           </ul>
 
-          <Link href="/sign-up">
+          <Link href="/pricing">
             <button
               style={{ fontSize: "18px", fontFamily: "Poppins" }}
               className="mt-4 px-40 py-3 rounded-xl bg-gradient-to-r from-[#546aec] to-[#7b8df6] text-white text-sm font-semibold hover:scale-105 transition duration-300 shadow-md"
             >
-              Try features
+              💰 See Pricing Plans
             </button>
           </Link>
         </div>

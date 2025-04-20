@@ -45,9 +45,9 @@ const TargetAudienceCarousel = () => {
         <p className="text-gray-600 text-lg max-w-2xl mx-auto text-center">
           For the hustlers, the builders, the doers—those who know time is money, and money is time.
         </p>
-     <Link href="/sign-up">
+     <Link href="/blogs">
         <button className="mt-6 px-8 py-3 rounded-xl text-lg font-semibold text-white bg-gradient-to-r from-[#546aec] to-[#7b8df6] shadow-md hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea] transition duration-300">
-          Customise Your First Ad
+        Explore our blogs
         </button> </Link>
       </div>
     </section>

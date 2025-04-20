@@ -82,7 +82,7 @@ const Step = () => {
           </p>
 
           <div className="flex justify-center flex-wrap gap-4">
-            <Link href="/create">
+            <Link href="/sign-up">
               <button
                 className="w-52 px-6 py-3 rounded-xl text-xl font-semibold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
