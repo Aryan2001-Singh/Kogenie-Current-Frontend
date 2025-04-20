@@ -9,10 +9,12 @@ const footerData = [
     className: "col-lg-3 col-md-4 col-sm-6 mb-4",
     links: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/pages/OurService" },
       { label: "About us", href: "/pages/about-us" },
-      { label: "Features", href: "/pages/OurService" },
+      { label: "Services", href: "/pages/OurService" },
       { label: "Blog", href: "/blogs" },
+      { label: "Contact us", href: "/contact" },
+      
+     
     ],
   },
   {
