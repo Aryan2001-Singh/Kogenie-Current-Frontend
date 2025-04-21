@@ -8,8 +8,7 @@ const ClerkLayout = ({ children }: { children: React.ReactNode }) => {
     >
       {/* 🔵 Large Soft Blurred Circles */}
       <div className="absolute w-96 h-96 bg-white/10 backdrop-blur-2xl rounded-full top-10 left-16 animate-pulse"></div>
-      <div className="absolute w-80 h-80 bg-indigo-400/20 backdrop-blur-2xl rounded-full bottom-20 right-20 animate-pulse"></div>
-
+      
       {/* ✨ Glowing Floating Elements */}
       <div className="absolute w-24 h-24 bg-indigo-500/20 blur-xl rounded-full top-1/3 left-1/4 animate-bounce"></div>
       <div className="absolute w-16 h-16 bg-purple-500/20 blur-lg rounded-full bottom-1/4 right-1/3 animate-bounce"></div>

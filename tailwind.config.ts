@@ -58,8 +58,8 @@ module.exports = {
       },
       keyframes: {
         scrollCards: {
-          '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(-100%)' },
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
@@ -72,9 +72,9 @@ module.exports = {
         },
       },
       animation: {
-        scrollCards: 'scrollCards 20s linear infinite',
+        scrollCards: 'scrollCards 50s linear infinite',
       },
     },
   },
-  // plugins: [require("tailwindcss-animate")],
+  
 }
