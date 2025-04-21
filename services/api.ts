@@ -10,7 +10,7 @@ export const submitFeedback = async ({
   comment: string;
 }) => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/api/ads/feedback", {
+    const response = await fetch("https://api.kogenie.com/api/ads/feedback", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -39,14 +39,13 @@ export const storeAd = async (adData: any, userEmail: string) => {
   const adPayload = {
     ...adData,
     userEmail, // ✅ Pass the user email for tracking
-
   };
 
   try {
     // ✅ Send the ad data (including headline) to the backend for storage
-    const response = await fetch("htttps://api.kogenie.com/api/ads/store", {
+    const response = await fetch("https://api.kogenie.com/api/ads/store", {
       method: "POST",
-      credentials:"include",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adPayload),
     });
@@ -65,7 +64,7 @@ export const storeAd = async (adData: any, userEmail: string) => {
 // ✅ Function to fetch all stored ads
 export const fetchAds = async () => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/api/ads");
+    const response = await fetch("https://api.kogenie.com/api/ads");
 
     if (!response.ok) {
       const errorData = await response.json(); // ✅ Fetch error details if request fails
@@ -84,9 +83,9 @@ export const fetchAds = async () => {
 // ✅ Function to generate ad copy & headline using the updated backend API
 export const generateAd = async (adData: any) => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/generateAdPrompt", {
+    const response = await fetch("https://api.kogenie.com/generateAdPrompt", {
       method: "POST",
-      credentials:"include",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(adData),
     });
@@ -103,7 +102,6 @@ export const generateAd = async (adData: any) => {
     console.error("❌ Error generating ad:", error);
     return null;
   }
-
 };
 
 // === INSIGHTS API FUNCTIONS ===
@@ -111,7 +109,9 @@ export const generateAd = async (adData: any) => {
 // 1. Total ads per user
 export const fetchTotalAdsPerUser = async () => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/api/insights/total-per-user");
+    const response = await fetch(
+      "https://api.kogenie.com/api/insights/total-per-user"
+    );
     if (!response.ok) throw new Error("Failed to fetch total ads per user");
     return response.json();
   } catch (err) {
@@ -123,7 +123,9 @@ export const fetchTotalAdsPerUser = async () => {
 // 2. Manual vs Scraped Ad Breakdown
 export const fetchAdTypeBreakdown = async () => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/api/insights/ad-type-breakdown");
+    const response = await fetch(
+      "https://api.kogenie.com/api/insights/ad-type-breakdown"
+    );
     if (!response.ok) throw new Error("Failed to fetch ad type breakdown");
     return response.json();
   } catch (err) {
@@ -135,7 +137,9 @@ export const fetchAdTypeBreakdown = async () => {
 // 3. Average feedback rating
 export const fetchAvgFeedback = async () => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/api/insights/avg-feedback");
+    const response = await fetch(
+      "https://api.kogenie.com/api/insights/avg-feedback"
+    );
     if (!response.ok) throw new Error("Failed to fetch avg feedback");
     return response.json();
   } catch (err) {
@@ -147,7 +151,9 @@ export const fetchAvgFeedback = async () => {
 // 4. Top 5 performing ads
 export const fetchTopPerforming = async () => {
   try {
-    const response = await fetch("htttps://api.kogenie.com/api/insights/top-performing");
+    const response = await fetch(
+      "https://api.kogenie.com/api/insights/top-performing"
+    );
     if (!response.ok) throw new Error("Failed to fetch top performing ads");
     return response.json();
   } catch (err) {
@@ -156,19 +162,39 @@ export const fetchTopPerforming = async () => {
   }
 };
 export const fetchFeedbackDistribution = async () => {
-  const res = await fetch("htttps://api.kogenie.com/api/insights/feedback-distribution"); // ✅ FIXED
+  const res = await fetch(
+    "https://api.kogenie.com/api/insights/feedback-distribution"
+  ); // ✅ FIXED
   if (!res.ok) throw new Error("Failed to fetch feedback distribution");
   return res.json();
 };
 
 export const fetchMonthlyUserGrowth = async () => {
-  const res = await fetch("htttps://api.kogenie.com/api/insights/user-growth-monthly");
+  const res = await fetch(
+    "https://api.kogenie.com/api/insights/user-growth-monthly"
+  );
   if (!res.ok) throw new Error("Failed to fetch user growth");
   return res.json();
 };
 
 export const fetchMonthlyAdGrowth = async () => {
-  const res = await fetch("htttps://api.kogenie.com/api/insights/ad-growth-monthly");
+  const res = await fetch(
+    "https://api.kogenie.com/api/insights/ad-growth-monthly"
+  );
   if (!res.ok) throw new Error("Failed to fetch ad growth");
   return res.json();
 };
+
+export const fetchUserAdHistory = async (email: string) => {
+  try {
+    const response = await fetch(
+      `https://api.kogenie.com/api/ads/user-history/${email}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch user ad history");
+    return response.json();
+  } catch (error) {
+    console.error("❌ Error fetching user ad history:", error);
+    return { manual: [], scraped: [] };
+  }
+};
+

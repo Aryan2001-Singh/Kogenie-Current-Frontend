@@ -4,6 +4,7 @@ import { useState, useEffect, FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
+import { useUser } from "@clerk/nextjs";
 
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
@@ -49,6 +50,8 @@ const OrganizationIdPage = () => {
   const router = useRouter();
   const { organizationId } = useParams();
   const setAdData = useAdStore((state) => state.setAdData);
+  const { user } = useUser();
+  const userEmail = user?.emailAddresses?.[0]?.emailAddress || "";
 
   useEffect(() => {
     const factInterval = setInterval(() => {
@@ -81,14 +84,18 @@ const OrganizationIdPage = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:5001/createAd", {
+      const response = await fetch("https://api.kogenie.com/createAd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // "Access-Control-Allow-Origin": "*",  // Ensure cross-origin access
         },
-        credentials: "include", // 🔥 Allow cookies & authentication headers
-        body: JSON.stringify({ url, gender, ageGroup }),
+        credentials: "include",
+        body: JSON.stringify({
+          url,
+          gender,
+          ageGroup,
+          userEmail, // ✅ Add this here
+        }),
       });
 
       const data = await response.json();

@@ -15,6 +15,8 @@ import FontSettings from "@/components/createAd/FontSettings";
 import PostPreview from "@/components/createAd/PostPreview";
 import ScrapedImagesButton from "@/components/createAd/ScrapedImagesButton";
 import FeedbackForm from "@/components/createAd/FeedbackForm";
+import UserAdHistory from "@/components/createAd/adHistory/UserAdHistory";
+
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -269,6 +271,8 @@ bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-
 
             <br />
             <FeedbackForm />
+
+            <UserAdHistory />
             {/* <InstagramPostPreview
               image={image}
               caption={clientCaption}

@@ -29,6 +29,8 @@ const ManualEntryPage: React.FC = () => {
   const router = useRouter();
   const setAdData = useAdStore((state) => state.setAdData);
   const [redirecting] = useState(false);
+  const tags = [tone, goal, theme, platform, awarenessStage].filter(Boolean);
+
 
   const [persuasionBlocksSelected, setPersuasionBlocksSelected] = useState<
     string[]
@@ -97,10 +99,11 @@ const ManualEntryPage: React.FC = () => {
           userEmail,
           productImages: data.productImages || [],
           adType: "manual",
+          tags,
         };
 
         // ✅ Step 2: Store in MongoDB via your backend route
-        const storeRes = await fetch("https://api.kogenie.com/api/ads/store", {
+        const storeRes = await fetch("/api/ads/store", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dataToStore),
