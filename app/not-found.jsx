@@ -30,7 +30,7 @@ const NotFoundPage = () => {
           name="description"
           content="Oops! This page doesn't exist. Let's get you back on track."
         />
-        <meta name="robots" content="noindex, follow" />
+
         <meta property="og:title" content="Page Not Found - Kogenie" />
         <meta
           property="og:description"
