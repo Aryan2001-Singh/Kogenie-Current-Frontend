@@ -23,7 +23,7 @@ const ContactForm4 = () => {
     setError("");
 
     try {
-      const res = await fetch("https://api.kogenie.com/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

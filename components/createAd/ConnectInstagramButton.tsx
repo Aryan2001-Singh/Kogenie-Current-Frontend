@@ -10,7 +10,7 @@ const ConnectInstagramButton = () => {
     
     // Redirect to backend route to trigger Meta OAuth
     // window.location.href = `https://www.kogenie.com/api/auth/facebook?userId=${user.id}`;
-    window.location.href = `http://localhost:5001/api/auth/facebook?userId=${user.id}`;
+    window.location.href = `https://api.kogenie.com/api/auth/facebook?userId=${user.id}`;
   };
 
   return (

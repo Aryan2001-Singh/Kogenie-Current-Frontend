@@ -9,6 +9,8 @@ Disallow: /admin/*
 Disallow: /404
 Disallow: /500
 
+# Host
+Host: https://kogenie.com
 
 # Sitemaps
-Sitemap: https://www.kogenie.com/sitemap.xml
+Sitemap: https://kogenie.com/sitemap.xml
