@@ -96,7 +96,30 @@ const Policy = () => {
             content: "KOgenie is not intended for individuals under 18. We do not knowingly collect data from minors."
           },
           {
-            title: "7. Changes to This Policy",
+            title: "7. Facebook/Instagram Permissions & Data Use",
+            bullets: [
+              { items: [
+                "Access to your public profile and email address",
+                "Manage and publish ads on your behalf (ads_management)",
+                "Access insights from your pages (pages_read_engagement, pages_show_list)",
+                "Read content and engagement from your connected business assets"
+              ] }
+            ],
+            note: "We only use this data to help you manage, analyze, and optimize your ads through KOgenie. We do not share, sell, or rent this data to any third parties. Any information retrieved from Meta is stored securely and retained only as long as necessary for service delivery. You may disconnect your Meta account or request data deletion at any time by contacting us at <a href=\"mailto:privacy@kogenie.com\" className=\"text-indigo-600 hover:underline font-medium\">privacy@kogenie.com</a>."
+          },
+          {
+            title: "8. Facebook Data Deletion Instructions",
+            bullets: [
+              { items: [
+                "Send an email to <a href=\"mailto:privacy@kogenie.com\" className=\"text-indigo-600 hover:underline font-medium\">privacy@kogenie.com</a>",
+                "Use the subject line: “Facebook Data Deletion Request”",
+                "Include your full name and Facebook User ID (if available)"
+              ] }
+            ],
+            note: "We will process and confirm your request within 7 business days of receiving it."
+          },
+          {
+            title: "9. Changes to This Policy",
             content: "We may update this policy periodically. Significant changes will be communicated via email or website updates. Continued use of KOgenie after changes means you accept the revised policy."
           }].map((section, index) => (
             <section className="mb-10" key={index}>
@@ -115,22 +138,14 @@ const Policy = () => {
                   )}
                   <ul className="list-disc list-outside pl-6 text-gray-600 leading-relaxed">
                     {b.items.map((item, j) => (
-                      <li key={j}>{item}</li>
+                      <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
                     ))}
                   </ul>
                 </div>
               ))}
               {section.note && (
                 section.note.includes("privacy@kogenie.com") ? (
-                  <p className="text-base text-gray-600 text-justify leading-relaxed mt-4">
-                    To exercise your rights, contact us at {" "}
-                    <a
-                      href="mailto:privacy@kogenie.com"
-                      className="text-indigo-600 hover:underline font-medium"
-                    >
-                      privacy@kogenie.com
-                    </a>.
-                  </p>
+                  <p className="text-base text-gray-600 text-justify leading-relaxed mt-4" dangerouslySetInnerHTML={{ __html: section.note }} />
                 ) : (
                   <p className="text-sm text-gray-600 italic mt-2">{section.note}</p>
                 )
@@ -141,7 +156,7 @@ const Policy = () => {
           {/* Contact Section */}
           <section className="mt-12 bg-indigo-50 border border-indigo-100 rounded-xl p-6">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              8. Contact Us
+              10. Contact Us
             </h3>
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-center gap-3">
