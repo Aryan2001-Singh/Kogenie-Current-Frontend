@@ -1,8 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://www.kogenie.com", // ✅ Ensure it's correct
+  siteUrl: "https://kogenie.com", // ✅ Ensure it's correct
   generateRobotsTxt: false, // ✅ Generates robots.txt
-  sitemapSize: 5000, // ✅ Keeps all URLs in one sitemap
+  sitemapSize: 7000, // ✅ Keeps all URLs in one sitemap
 
   // ✅ Exclude unwanted pages
   exclude: ["/admin", "/admin/*", "/404", "/500"],
