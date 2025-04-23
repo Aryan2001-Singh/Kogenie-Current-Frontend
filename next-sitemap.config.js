@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://kogenie.com", // ✅ Ensure it's correct
-  generateRobotsTxt: false, // ✅ Generates robots.txt
+  generateRobotsTxt: true, // ✅ Generates robots.txt
   sitemapSize: 7000, // ✅ Keeps all URLs in one sitemap
 
   // ✅ Exclude unwanted pages
@@ -14,7 +14,7 @@ module.exports = {
       { userAgent: "*", disallow: ["/admin", "/admin/*", "/404", "/500"] },
     ],
     additionalSitemaps: [
-      "https://www.kogenie.com/sitemap-0.xml", // ✅ Use only this sitemap
+      "https://kogenie.com/sitemap-0.xml", // ✅ Use only this sitemap
     ],
   },
 };
