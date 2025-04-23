@@ -1,14 +1,14 @@
 {
     "redirects": [
       {
-        "source": "/(.*)",
+        "source": "/:path*",
         "has": [
           {
             "type": "host",
             "value": "www.kogenie.com"
           }
         ],
-        "destination": "https://kogenie.com/:1",
+        "destination": "https://kogenie.com/:path*",
         "permanent": true
       }
     ]
