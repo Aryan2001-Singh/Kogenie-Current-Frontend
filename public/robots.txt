@@ -14,4 +14,3 @@ Host: https://kogenie.com
 
 # Sitemaps
 Sitemap: https://kogenie.com/sitemap.xml
-Sitemap: https://kogenie.com/sitemap-0.xml
