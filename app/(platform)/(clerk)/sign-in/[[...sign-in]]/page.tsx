@@ -1,7 +1,7 @@
 "use client";
 import { SignIn } from "@clerk/nextjs";
 import Link from "next/link";
-
+import Image from "next/image";
 export default function SignInPage() {
   return (
     <div className="flex h-screen w-full overflow-hidden">
@@ -51,51 +51,38 @@ export default function SignInPage() {
       <div className="hidden md:flex w-1/2 h-full items-center justify-center bg-gradient-to-br from-purple-400 to-indigo-600  p-8 text-white relative overflow-hidden">
         <div className="relative h-full w-full max-w-xl"> 
           <div className="absolute top-0 left-0 w-full min-h-full shadow-md animate-scrollCards flex flex-col gap-10 justify-start">
-            {[
-              {
-                headline:
-                  "Craving something sweet? You don’t have to cheat.\nFuel your day with flavor, not fake promises.",
-                image: "/jayed-jadu-CIMR4FyH3lY-unsplash.jpg",
-              },
-              {
-                headline:
-                  "You deserve glow that doesn’t wash off at night.\nSay goodbye to acne, dullness, and harsh chemicals.",
-                image: "/taisiia-stupak-KP97dx0GOv8-unsplash.jpg",
-              },
-              {
-                headline:
-                  "First impressions are made before you even speak.\nWear something that makes you feel like *you*.",
-                image: "/sign1.jpg",
-              },
-              {
-                headline:
-                  "It’s not just four walls — it’s where life unfolds.\nFind a home that tells your story.",
-                image: "/star-0lRNxeYfk-M-unsplash.jpg",
-              },
-              {
-                headline:
-                  "Some things never go out of style.\nLike owning every second.",
-                image: "/yash-parashar-d3EwG8O4vB0-unsplash.jpg",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="relative w-[350px] min-h-[420px] mx-auto rounded-2xl overflow-hidden shadow-2xl"
-                style={{
-                  backgroundImage: `url(${item.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10 flex items-start">
-                  <div className="bg-black/10 backdrop-blur-sm mt-4 p-2">
-                    <h3 className="text-sm font-regular text-justify text-white whitespace-pre-line">
-                      {item.headline}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            ))}
+              {[
+             { image: "/ChatGPT Image Apr 23, 2025, 03_43_29 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 02_44_10 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 02_37_09 PM.png" },
+             { image: "/Apr 23, 2025, 03_26_04 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 03_37_30 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 03_43_29 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 02_44_10 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 02_37_09 PM.png" },
+             { image: "/Apr 23, 2025, 03_26_04 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 03_37_30 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 03_43_29 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 02_44_10 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 02_37_09 PM.png" },
+             { image: "/Apr 23, 2025, 03_26_04 PM.png" },
+             { image: "/ChatGPT Image Apr 23, 2025, 03_37_30 PM.png" },
+           ].map((item, i) => (
+             <div
+               key={i}
+               className="relative w-[350px] h-[420px] mx-auto rounded-2xl overflow-hidden shadow-2xl"
+             >
+               <Image
+                 src={item.image}
+                 alt={`Ad example ${i + 1}`}
+                 fill
+                 style={{ objectFit: "cover" }}
+                 className="rounded-2xl"
+                 priority={i < 3} // prioritize the first few
+               />
+               <div className="absolute inset-0 bg-black/10"></div>
+             </div>
+           ))}
           </div>
         </div>
       </div>

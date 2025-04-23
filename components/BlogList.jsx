@@ -30,11 +30,12 @@ const BlogList = () => {
       key={category}
       onClick={() => setMenu(category)}
       className={`
-        py-3 px-8 rounded-md text-lg font-semibold transition duration-300 ease-in-out 
+        py-3 px-8 text-lg font-semibold transition duration-300 ease-in-out 
         transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50
         ${
           menu === category
-            ? "bg-indigo-500 bg-opacity-20 text-indigo-600 shadow-lg "
+          ? "bg-transparent bg-opacity-20 text-indigo-600 shadow-lg"
+        
             : "bg-gray-300 bg-opacity-10 text-gray-900  hover:bg-gray-200 hover:bg-opacity-20"
         }
       `}
