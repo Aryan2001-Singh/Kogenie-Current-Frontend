@@ -25,7 +25,7 @@ const features = [
 
 const MarketingFeatures = () => {
   return (
-    <div className="container">
+    <div className="container font-['Poppins']">
       <motion.div
         className="row align-items-center"
         style={{ textAlign: "center", marginBottom: "50px" }}

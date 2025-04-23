@@ -40,7 +40,7 @@ const BlogItem = ({ title, category, image, id, date }) => {
         </div>
         {/* Title */}
         <h3
-          style={{ fontFamily: "sans-serif" }}
+          style={{ fontFamily: "Poppins" }}
           className="text-lg sm:text-xl font-semibold text-gray-800 leading-snug"
         >
           {title}

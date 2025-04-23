@@ -19,6 +19,7 @@ const HeroAbout = () => {
         overflow: "hidden",
         marginTop: "0px",
         padding: "80px 20px",
+        fontFamily: "Poppins",
       }}
     >
       {/* Floating Blurry Overlays */}

@@ -74,6 +74,7 @@ const WhyUsSection = () => {
         marginRight: "auto",
         maxWidth: "1200px",
         marginTop: "80px",
+        fontFamily: "Poppins",
       }}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}

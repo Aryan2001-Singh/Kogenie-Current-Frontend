@@ -5,7 +5,6 @@ import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import Head from "next/head.js";
 import GlobalSection from "../../(platform)/(dashboard)/_components/common/GlobalSection";
-import ContactUsSection from "./ContactUs/page.jsx";
 import AboutCeo from "@/components/about/AboutCeo";
 import HeroAbout from "@/components/about/HeroAbout";
 import JourneySection from "@/components/about/JourneySection";
@@ -95,7 +94,7 @@ const AboutUsV1 = () => {
       <></>
 
       <HeroAbout/>
-      <div className="relative w-full py-20 px-4 sm:px-8 bg-gradient-to-r from-[#f9fafc] to-white">
+      <div className="relative w-full py-16 px-3 sm:px-8 bg-gradient-to-r from-[#f9fafc] to-white">
        <JourneySection/>
       </div>
 
@@ -103,7 +102,8 @@ const AboutUsV1 = () => {
       
         <AboutCeo/>
       
-      <div className="fancy-feature-three pt-6 lg:pt-4 md:pt-3 sm:pt-2 mt-30">
+        <div className="fancy-feature-three pt-20 lg:pt-16 md:pt-12 sm:pt-10 mt-30">
+
        <MarketingFeatures/>
       </div>
      <WhyUsSection/>
@@ -111,12 +111,11 @@ const AboutUsV1 = () => {
       <div className="w-full bg-gray-50 py-16 flex flex-col items-center">
         <div
           style={{ margin: "30px" }}
-          className="max-w-full w-full px-4 sm:px-6 lg:px-8"
+          className="max-w-full w-full px-4 sm:px-6 lg:px-8 font-['Poppins']"
         >
           <TeamCards />
         </div>
       </div>
-      <ContactUsSection />
       <GlobalSection />
 
       {/* Footer */}

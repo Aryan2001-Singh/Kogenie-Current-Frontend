@@ -112,7 +112,7 @@ const Page = ({ params }) => {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans">
+    <div className="min-h-screen bg-white flex flex-col font-['Poppins']">
       <Header />
 
       <div className="bg-white py-16 px-4 sm:px-8">

@@ -41,7 +41,7 @@ const Header = () => {
         style={{ width: "100vw", maxWidth: "100%" }}
       >
         <div
-          className="d-flex align-items-center justify-content-between"
+          className="d-flex align-items-center justify-content-between font-['Poppins']"
         >
           <div className="logo order-lg-0">
             <Link href="/" className="d-block">

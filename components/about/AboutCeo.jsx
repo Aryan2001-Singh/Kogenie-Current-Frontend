@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 
 const CEOSection = () => {
   return (
-    <div className="row align-items-center py-5 px-3">
+    <div className="row align-items-center pt-1 pb-5 px-3 font-['Poppins']">
+
       {/* Left Section - Floating Card with Hero Presence */}
       <motion.div
         className="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center mb-5 mb-lg-0"
@@ -106,7 +107,7 @@ const CEOSection = () => {
 
         <p
           style={{
-            fontSize: "16px",
+            fontSize: "18px",
             color: "#333",
             lineHeight: "1.9",
             textAlign: "justify",

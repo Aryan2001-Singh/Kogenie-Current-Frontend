@@ -14,8 +14,7 @@ const MainMenu = () => {
   const menuItems = [
     { title: "Home", link: "/" },
     { title: "About", link: "/pages/about-us" },
-    { title: "Service", link: "/pages/OurService" },
-    { title: "Blog", link: "/blogs" },
+    { title: "Resources", link: "/blogs" },
     { title: "Contact Us", link: "/contact" },
   ];
 

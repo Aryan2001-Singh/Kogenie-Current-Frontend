@@ -34,9 +34,10 @@ const SolutionSection = () => {
   const yAxisLabel = view === "conversion" ? "Conversion Rate" : "Click-Through Rate";
 
   return (
-    <section id='solution' className="w-full bg-[#fefefe] py-12 px-6 sm:px-12 lg:px-20 relative overflow-hidden font-['Geist']">
+    <section id='solution' className="w-full bg-[#fefefe] py-12 px-6 sm:px-12 lg:px-20 relative overflow-hidden font-['Poppins']">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Left Column */}
+        
         <div className="col-span-full lg:col-span-2 space-y-8">
           {/* Heading */}
           <h1 className="text-7xl font-bold leading-tight">
@@ -51,16 +52,14 @@ const SolutionSection = () => {
 
           {/* Paragraph + CTA */}
           <div className="space-y-4 text-left lg:text-left">
-          <p className="text-base font-semibold uppercase tracking-wide text-grey-800">
-              How?
-            </p>
-            <p className="text-2xl lg:text-3xl font-extrabold text-[#1e1e1e] leading-snug mt-1 font-['Geist']">
+        
+            <p className="text-2xl lg:text-3xl font-extrabold text-[#1e1e1e] leading-snug mt-1 font-['Poppins']">
               <span className="bg-grey-600 ">
                 HyperTargeting
               </span>{" "}
               is our secret sauce.
             </p>
-            <p className="text-base lg:text-xl font-medium text-gray-600">
+            <p className="text-lg text-gray-700 mb-4">
               We believe in the right people,at the right time,<br /> with the right message.
             </p>
             <Link href="/sign-up" >
@@ -75,12 +74,13 @@ const SolutionSection = () => {
 
         {/* Right Column */}
      
-<div className="col-span-full lg:col-span-1 flex flex-col h-full justify-between gap-6">
+        <div className="col-span-full lg:col-span-1 flex flex-col h-full justify-between gap-6 mt-10 lg:-ml-6 xl:-ml-10">
+
 
          
 
           {/* Toggle Buttons */}
-          <div className="flex justify-end gap-2 px-6">
+          <div className="flex justify-end gap-3 px-3">
             <button
               onClick={() => setView("conversion")}
               className={`px-3 py-1 text-sm rounded-md font-medium ${
@@ -147,7 +147,7 @@ const SolutionSection = () => {
                 />
               </LineChart>
             </ResponsiveContainer>
-            <p className="text-center text-sm font-medium text-gray-700 mt-4">
+            <p className="text-center text-sm font-medium text-gray-900 mt-4">
               HyperTargeting consistently outperforms traditional AI ad strategies
             </p>
           </div>

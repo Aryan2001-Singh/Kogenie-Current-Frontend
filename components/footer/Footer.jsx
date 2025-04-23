@@ -10,7 +10,6 @@ const Footer = () => {
         { label: "Home", url: "/" },
         { label: "Pricing", url: "/pages/pricing-v2" },
         { label: "About us", url: "/pages/about-us" },
-        { label: "Service", url: "/pages/OurService" },
         { label: "Blog", url: "/blog" },
       ],
     },

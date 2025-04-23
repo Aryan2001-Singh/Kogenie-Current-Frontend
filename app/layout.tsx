@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import "../styles/index.scss";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
 import ReactGA from "react-ga4";
 import AOSInit from "@/components/AOSInit"; // ✅ Import AOSInit component
@@ -12,7 +12,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 const Hotjar = dynamic(() => import("@/components/Hotjar"), { ssr: false });
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // adjust as needed
+  display: "swap",
+});
 const GA_TRACKING_ID = "G-4GSP62LCVY";
 const SITE_URL = "https://www.kogenie.com"; // ✅ Defined global site URL
 
@@ -120,7 +124,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         <title>Kogenie - AI-Powered Ads</title>
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}>
+
         <AOSInit /> {/* ✅ Initializes AOS animations */}
         <Hotjar /> {/* ✅ Lazy-loaded Hotjar for performance */}
         <div className="main-page-wrapper">{children}</div>

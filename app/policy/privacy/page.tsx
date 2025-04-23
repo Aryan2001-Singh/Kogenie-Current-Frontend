@@ -9,7 +9,7 @@ const Policy = () => {
     <>
       <Header />
 
-      <main className="bg-[#f9fafb] text-gray-700 py-24 px-4 sm:px-6 lg:px-8 font-sans">
+      <main className="bg-[#f9fafb] text-gray-700 py-24 px-4 sm:px-6 lg:px-8 font-[Poppins]">
         <div className="max-w-4xl mx-auto border border-gray-200 bg-white rounded-3xl shadow-2xl p-10 sm:p-12">
           <h1 className="text-5xl font-extrabold text-center text-gray-900 mb-6 leading-tight">
             Privacy Policy

@@ -10,8 +10,7 @@ const footerData = [
     links: [
       { label: "Home", href: "/" },
       { label: "About us", href: "/pages/about-us" },
-      { label: "Services", href: "/pages/OurService" },
-      { label: "Blog", href: "/blogs" },
+      { label: "Resources", href: "/blogs" },
       { label: "Contact us", href: "/contact" },
       
      
@@ -31,9 +30,9 @@ const footerData = [
 
 const FooterLinks = () => {
   return (
-    <footer className="footer-container w-full">
+    <footer className="footer-container w-full ">
       <div className="footer-wrapper">
-        <div className="container">
+        <div className="container font-['Poppins']">
           <div className="row justify-content-between">
             {/* Logo & Contact Info */}
             <div className="col-lg-4 col-md-6 footer-intro">
