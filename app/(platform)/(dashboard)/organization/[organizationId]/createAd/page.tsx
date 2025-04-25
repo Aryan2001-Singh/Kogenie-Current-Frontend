@@ -16,7 +16,7 @@ import PostPreview from "@/components/createAd/PostPreview";
 import ScrapedImagesButton from "@/components/createAd/ScrapedImagesButton";
 import FeedbackForm from "@/components/createAd/FeedbackForm";
 import UserAdHistory from "@/components/createAd/adHistory/UserAdHistory";
-
+import { useRouter, useSearchParams } from "next/navigation";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -53,6 +53,22 @@ const CreateAdPage: React.FC = () => {
   // const [showScrapedImages, setShowScrapedImages] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const fbConnected = searchParams.get("fbConnected");
+
+    if (fbConnected === "success") {
+      alert("✅ Instagram account connected!");
+
+      // Clean the URL (remove ?fbConnected=success)
+      const cleanedUrl = window.location.pathname;
+      router.replace(cleanedUrl);
+    }
+  }, [searchParams, router]);
+
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {
       setImage(adDataFromStore.selectedImage);

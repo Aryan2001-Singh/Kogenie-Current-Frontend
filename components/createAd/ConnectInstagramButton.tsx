@@ -1,27 +1,37 @@
 "use client";
 
 import { useUser, useOrganization } from "@clerk/nextjs";
+import { useState } from "react";
 
 const ConnectInstagramButton = () => {
   const { user } = useUser();
   const { organization } = useOrganization();
-
-  if (!user || !organization) return null;
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const handleConnect = () => {
-    const backendBaseUrl = "http://localhost:5001";
+    if (!user?.id || !organization?.id) return;
 
-    // 🧠 Pass both userId and orgId in query
-    const authUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}`;
-    window.location.href = authUrl;
+    setIsRedirecting(true);
+
+    const backendBaseUrl =
+      process.env.NEXT_PUBLIC_BACKEND_BASE_URL || "https://api.kogenie.com";
+
+    const returnPath = encodeURIComponent(
+      `/organization/${organization.id}/createAd`
+    );
+
+    const redirectUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}&returnPath=${returnPath}`;
+
+    window.location.href = redirectUrl;
   };
 
   return (
     <button
       onClick={handleConnect}
-      className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md transition-all duration-200 relative z-20"
+      className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-md transition-all duration-200"
+      disabled={!user?.id || !organization?.id || isRedirecting}
     >
-      Connect Instagram
+      {isRedirecting ? "Redirecting..." : "Connect Instagram"}
     </button>
   );
 };

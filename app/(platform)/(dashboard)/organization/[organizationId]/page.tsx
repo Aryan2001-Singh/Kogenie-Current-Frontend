@@ -87,7 +87,7 @@ const OrganizationIdPage = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:5001/createAd", {
+      const response = await fetch("https://api.kogenie.com/createAd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
