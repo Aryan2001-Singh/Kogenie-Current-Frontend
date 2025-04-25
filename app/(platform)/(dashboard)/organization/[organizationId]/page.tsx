@@ -6,6 +6,7 @@ import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
 import { useUser } from "@clerk/nextjs";
 
+
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
@@ -53,6 +54,8 @@ const OrganizationIdPage = () => {
   const { user } = useUser();
   const userEmail = user?.emailAddresses?.[0]?.emailAddress || "";
 
+
+
   useEffect(() => {
     const factInterval = setInterval(() => {
       setCurrentFact((prev) => (prev + 1) % advertisementFacts.length);
@@ -84,7 +87,7 @@ const OrganizationIdPage = () => {
     });
 
     try {
-      const response = await fetch("https://api.kogenie.com/createAd", {
+      const response = await fetch("http://localhost:5001/createAd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

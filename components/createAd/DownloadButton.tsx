@@ -24,7 +24,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = () => {
     }
 
     try {
-      const res = await fetch("https://api.kogenie.com/api/publish/instagram", {
+      const res = await fetch("http://localhost:5001/api/publish/instagram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

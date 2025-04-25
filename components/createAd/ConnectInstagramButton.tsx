@@ -1,16 +1,19 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useUser, useOrganization } from "@clerk/nextjs";
 
 const ConnectInstagramButton = () => {
   const { user } = useUser();
+  const { organization } = useOrganization();
+
+  if (!user || !organization) return null;
 
   const handleConnect = () => {
-    if (!user?.id) return;
-    
-    // Redirect to backend route to trigger Meta OAuth
-    // window.location.href = `https://www.kogenie.com/api/auth/facebook?userId=${user.id}`;
-    window.location.href = `https://api.kogenie.com/api/auth/facebook?userId=${user.id}`;
+    const backendBaseUrl = "http://localhost:5001";
+
+    // 🧠 Pass both userId and orgId in query
+    const authUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}`;
+    window.location.href = authUrl;
   };
 
   return (
