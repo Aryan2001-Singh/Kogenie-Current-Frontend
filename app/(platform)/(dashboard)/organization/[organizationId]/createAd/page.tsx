@@ -9,7 +9,7 @@ import EditorTools from "@/components/createAd/EditorTools";
 import AdForm from "@/components/createAd/AdForm";
 import ImageUploader from "@/components/createAd/ImageUploader";
 import ExportButton from "@/components/createAd/exportButton";
-import DownloadButton from "@/components/createAd/DownloadButton";
+import DownloadButton from "@/components/createAd/PublishButton";
 import DraggableHeadline from "@/components/createAd/DraggableHeadline";
 import FontSettings from "@/components/createAd/FontSettings";
 import PostPreview from "@/components/createAd/PostPreview";
