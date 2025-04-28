@@ -16,9 +16,7 @@ const ConnectInstagramButton = () => {
     const backendBaseUrl =
       process.env.NEXT_PUBLIC_BACKEND_BASE_URL || "https://api.kogenie.com";
 
-    const returnPath = encodeURIComponent(
-      `/organization/${organization.id}/createAd`
-    );
+    const returnPath = `/organization/${organization.id}/createAd`;
 
     const redirectUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}&returnPath=${returnPath}`;
 
