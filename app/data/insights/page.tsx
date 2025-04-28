@@ -1,10 +1,18 @@
 "use client";
+
 export const dynamic = "force-dynamic";
 
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ExportInsightsButton from "@/components/createAd/ExportInsightsButton";
+
+// ✅ Renamed import to avoid conflict
+import dynamicImport from "next/dynamic";
+
+const ExportInsightsButton = dynamicImport(
+  () => import("@/components/createAd/ExportInsightsButton"),
+  { ssr: false }
+);
 
 import {
   XAxis,
@@ -13,11 +21,13 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Legend,
-  PieChart, 
+  PieChart,
   Pie,
   Cell,
   BarChart,
   Bar,
+  LineChart,
+  Line,
 } from "recharts";
 
 import {
@@ -29,8 +39,6 @@ import {
   fetchMonthlyUserGrowth,
   fetchMonthlyAdGrowth,
 } from "@/services/api";
-import { LineChart, Line } from "recharts";
-
 
 interface FeedbackDistItem {
   rating: number;
@@ -60,10 +68,9 @@ export default function InsightsPage() {
   const [feedback, setFeedback] = useState({ manual: 0, scraped: 0 });
   const [adsPerUser, setAdsPerUser] = useState<UserAdCount[]>([]);
   const [feedbackDist, setFeedbackDist] = useState<FeedbackDistItem[]>([]);
-  const totalAds = adBreakdown.manual + adBreakdown.scraped;
-
   const [userGrowth, setUserGrowth] = useState([]);
   const [adGrowth, setAdGrowth] = useState([]);
+  const totalAds = adBreakdown.manual + adBreakdown.scraped;
 
   useEffect(() => {
     const loadExtraGrowth = async () => {
