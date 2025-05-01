@@ -131,29 +131,15 @@ const CEOSection = () => {
         </p>
 
         <Link
-          href="/pages/about-us/Letter-to-investor"
-          className="btn btn-primary mt-4"
-          style={{
-            background: "#546aec",
-            color: "#fff",
-            padding: "12px 30px",
-            borderRadius: "10px",
-            fontSize: "15px",
-            fontWeight: 600,
-            boxShadow: "0 6px 16px rgba(84, 106, 236, 0.25)",
-            textDecoration: "none",
-            transition: "all 0.3s ease-in-out",
-            marginLeft: "30px",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = "#3948c4";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = "#546aec";
-          }}
-        >
-          Letter to Investors
-        </Link>
+  href="/pages/about-us/Letter-to-investor"
+  className="mt-4 ml-8 px-8 py-3 rounded-xl text-xl font-semibold text-white 
+             bg-gradient-to-r from-[#546aec] to-[#7b8df6] backdrop-blur-md shadow-md 
+             transition duration-300 hover:scale-100 hover:shadow-xl 
+             hover:from-[#3f4ed4] hover:to-[#6c7eea]"
+>
+  Letter to Investors
+</Link>
+
       </motion.div>
     </div>
   );

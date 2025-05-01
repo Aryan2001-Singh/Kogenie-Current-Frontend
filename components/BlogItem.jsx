@@ -8,7 +8,7 @@ const BlogItem = ({ title, category, image, id, date }) => {
   return (
     <Link
       href={`/blogs/${id}`}
-      className="group flex flex-col rounded-xl overflow-hidden transition-transform duration-300 hover:scale-105"
+      className="group flex flex-col rounded-xl overflow-hidden transition-transform duration-300 hover:scale-100"
     >
       {/* ✅ Image or Fallback */}
       <div className="relative w-full h-60 bg-gray-100">

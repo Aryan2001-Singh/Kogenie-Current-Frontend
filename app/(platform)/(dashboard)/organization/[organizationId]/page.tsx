@@ -233,7 +233,7 @@ const OrganizationIdPage = () => {
     ${
       loading
         ? "bg-gray-400 cursor-not-allowed" // ✅ Disabled style while loading
-        : "bg-indigo-400 hover:bg-indigo-500 hover:scale-105 text-white"
+        : "bg-indigo-400 hover:bg-indigo-500 hover:scale-100 text-white"
     }
   `}
               >
@@ -268,7 +268,7 @@ const OrganizationIdPage = () => {
                 router.push(`/organization/${organizationId}/manualEntry`)
               }
               className="w-full md:w-auto px-6 py-3 rounded-lg bg-yellow-300 border-2 border-yellow-500 text-black 
-                hover:bg-yellow-400 hover:text-black transition-all transform hover:scale-110 font-semibold flex items-center 
+                hover:bg-yellow-400 hover:text-black transition-all transform hover:scale-100 font-semibold flex items-center 
                 justify-center space-x-2 shadow-lg"
             >
               Skip & Enter Manually

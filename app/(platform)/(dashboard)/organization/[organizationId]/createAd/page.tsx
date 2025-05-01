@@ -133,16 +133,18 @@ const CreateAdPage: React.FC = () => {
 
       {/* Main container spanning full width with background color */}
       <div className="w-full relative bg-white min-h-screen">
-        <div style={{ marginLeft: "920px" }}>
-          <ExportButton
-            selectedFilter={selectedFilter}
-            aspectRatio={aspectRatio}
-          />
-          <DownloadButton
-            selectedFilter={selectedFilter}
-            aspectRatio={aspectRatio}
-          />
-        </div>
+  <div className="flex justify-end gap-4 p-4">
+    <ExportButton
+      selectedFilter={selectedFilter}
+      aspectRatio={aspectRatio}
+    />
+    <DownloadButton
+      selectedFilter={selectedFilter}
+      aspectRatio={aspectRatio}
+    />
+  </div>
+
+
         {/* Main Content Container */}
         <div
           className={styles.parentContainer}
@@ -169,7 +171,7 @@ const CreateAdPage: React.FC = () => {
                 marginLeft: "30px",
               }}
               className="text-4xl font-medium tracking-wide text-transparent bg-clip-text 
-bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-6"
+bg-gray-700 drop-shadow-lg mb-6"
             >
               Ad preview
             </h2>

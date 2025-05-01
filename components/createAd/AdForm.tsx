@@ -70,7 +70,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
       <h2 style={{fontFamily:"serif",
         marginTop:"-10px"
       }} className="text-4xl font-medium tracking-wide text-transparent bg-clip-text 
-      bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-700 drop-shadow-lg mb-6">      
+      bg-gray-700 drop-shadow-lg mb-6">      
         Your Ad
       </h2>
 

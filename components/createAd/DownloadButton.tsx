@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { useUser } from "@clerk/nextjs";
 import { useAdStore } from "@/store/useAdStore"; // ✅ adjust path if needed
-
+import { FiUpload } from "react-icons/fi";
 interface DownloadButtonProps {
   selectedFilter: string;
   aspectRatio: "square" | "story";
@@ -65,12 +65,13 @@ const DownloadButton: React.FC<DownloadButtonProps> = () => {
     <div className="relative inline-block" ref={containerRef}>
       {/* 📤 Publish Button */}
       <button
-        onClick={() => setShowOptions(!showOptions)}
-        className="min-w-[100px] px-3 py-2 bg-[#6e44ff] text-white rounded-lg shadow-lg hover:shadow-2xl
-        hover:brightness-110 hover:scale-105 transition-transform duration-200 active:scale-95 flex items-center justify-center"
-      >
-        Publish ⬆️
-      </button>
+    onClick={() => setShowOptions(!showOptions)}
+    className="min-w-[120px] px-4 py-2 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white rounded-lg shadow-md hover:shadow-xl 
+    hover:brightness-110 transition-transform duration-200 active:scale-95 flex items-center justify-center gap-2"
+  >
+    <FiUpload className="text-white text-lg" />
+    Publish
+  </button>
 
       {/* 📥 Dropdown Menu */}
       {showOptions && (

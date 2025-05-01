@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { FiDownload} from "react-icons/fi";
 
 interface ExportButtonProps {
   selectedFilter: string;
@@ -77,12 +78,13 @@ const ExportButton: React.FC<ExportButtonProps> = ({ selectedFilter, aspectRatio
     <div className="relative inline-block" ref={containerRef}>
       {/* Export Button */}
       <button
-        onClick={() => setShowOptions(!showOptions)}
-        className="min-w-[100px] mr-2 px-2 py-2 bg-indigo-400 text-white rounded-lg shadow-lg hover:shadow-2xl 
-        hover:brightness-110 transition-transform duration-200 active:scale-95 flex items-center justify-center"
-      >
-        Export ⬇️
-      </button>
+    onClick={() => setShowOptions(!showOptions)}
+    className="min-w-[120px] px-4 py-2 bg-gradient-to-r from-indigo-500 to-indigo-700 text-white rounded-lg shadow-md hover:shadow-xl 
+    hover:brightness-110 transition-transform duration-200 active:scale-95 flex items-center justify-center gap-2"
+  >
+    <FiDownload className="text-white text-lg" />
+    Export
+  </button>
 
       {/* Dropdown Menu */}
       {showOptions && (

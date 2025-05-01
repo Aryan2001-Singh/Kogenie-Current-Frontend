@@ -98,7 +98,7 @@ const Step = () => {
               <button
                 className="w-52 px-6 py-3 rounded-xl text-xl font-semibold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
-                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]"
+                hover:scale-100 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]"
               >
                 Try now
               </button>
@@ -107,7 +107,7 @@ const Step = () => {
             <button
               onClick={() => setShowVideo(true)}
               className="w-52 px-6 py-3 rounded-xl text-xl font-semibold text-[#546aec] bg-white shadow-md transition duration-300 
-              hover:scale-105 hover:shadow-xl hover:border hover:border-[#546aec]"
+              hover:scale-100 hover:shadow-xl hover:border hover:border-[#546aec]"
               style={{ border: "1px solid #546aec" }}
             >
               Watch demo

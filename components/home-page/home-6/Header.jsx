@@ -56,53 +56,21 @@ const Header = () => {
           </div>
           <div className="right-widget ms-auto d-flex align-items-center order-lg-3 gap-3">
             {/* Login Button */}
-            <Link
-              href="/sign-in"
-              className="fs-17 fw-500 tran3s d-flex align-items-center justify-center"
-              style={{
-                width: "120px", // ✅ Ensures both buttons have the same width
-                height: "40px", // ✅ Ensures equal height
-                border: "2px solid #4A5ABB",
-                color: "#4A5ABB",
-                padding: "8px 0px", // ✅ Even padding
-                borderRadius: "5px",
-                textAlign: "center",
-                transition: "all 0.3s ease",
-                fontWeight: "600",
-              }}
-              onMouseEnter={(e) => (
-                (e.target.style.backgroundColor = "#4A5ABB"),
-                (e.target.style.color = "white")
-              )}
-              onMouseLeave={(e) => (
-                (e.target.style.backgroundColor = "transparent"),
-                (e.target.style.color = "#4A5ABB")
-              )}
-            >
-              Login
-            </Link>
+            <div className="flex items-center gap-3 pr-4">
+  <Link
+    href="/sign-in"
+    className="px-4 py-1 rounded-md font-semibold text-white bg-gradient-to-r from-[#546aec] to-[#7b8df6] backdrop-blur-md shadow-md transition duration-300 hover:scale-100 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]"
+  >
+    Login
+  </Link>
 
-            {/* Signup Button */}
-            <Link
-              href="/sign-up"
-              className="fs-17 fw-500 tran3s d-flex align-items-center justify-center"
-              style={{
-                width: "120px", // ✅ Same width as Login
-                height: "40px", // ✅ Same height as Login
-                backgroundColor: "#4A5ABB",
-                color: "#FFF",
-                border: "2px solid #4A5ABB", // ✅ Keeps size equal
-                padding: "8px 0px", // ✅ Even padding
-                borderRadius: "5px",
-                textAlign: "center",
-                transition: "all 0.3s ease",
-                fontWeight: "600",
-              }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#3b4a91")}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#4A5ABB")}
-            >
-              Signup
-            </Link>
+  <Link
+    href="/sign-up"
+    className="px-4 py-1 bg-indigo-600 text-white rounded-md font-semibold text-sm border-2 border-indigo-600 hover:bg-indigo-700 transition"
+  >
+    Signup
+  </Link>
+</div>
           </div>
           <MainMenu />
         </div>

@@ -65,7 +65,7 @@ const Problem = () => {
         </div>
 
         <Link href="#solution" scroll={true}>
-          <button className="mt-4 px-8 py-3 rounded-xl text-xl font-semibold text-white bg-gradient-to-r from-[#546aec] to-[#7b8df6] backdrop-blur-md shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
+          <button className="mt-4 px-8 py-3 rounded-xl text-xl font-semibold text-white bg-gradient-to-r from-[#546aec] to-[#7b8df6] backdrop-blur-md shadow-lg transition duration-300 hover:scale-100 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
             See the solution
           </button>
         </Link>

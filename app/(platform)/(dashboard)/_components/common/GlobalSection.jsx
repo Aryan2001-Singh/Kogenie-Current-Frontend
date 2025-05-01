@@ -8,19 +8,18 @@ export default function GlobalSection() {
       <div className={styles.row}>
         {/* Left */}
         <div className="w-full  py-12 px-6 sm:px-12 lg:px-20 relative overflow-hidden font-['Poppins']">
-          <p className="text-sm font-semibold mb-2 text-indigo-500 uppercase tracking-wide">
-            KOGENIE CAN HELP YOU
+          <p className="text-sm font-semibold mb-2 text-indigo-600 uppercase tracking-wide">
+          Your audience isn’t generic. Your ads shouldn’t be either.
           </p>
           <h2 className={styles.heading}>
-            Make <span className={styles.highlight}>your Ads</span> work as hard as you do.
+          Ads come in all shapes and sizes.
           </h2>
-          <p className="text-lg text-gray-700 mb-4">
-            Let KOgenie create ads that attract the right audience and drive better sales.
-            Say goodbye to guessing and hello to performance.
+          <p className="text-2xl text-gray-700 mb-4">
+          We help you make the one that fits your audience.
           </p>
           <a href="/sign-up" className="px-10 py-3 rounded-xl text-xl font-bold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
-                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
+                hover:scale-100 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
             Get Started with KOgenie →
           </a>
         </div>

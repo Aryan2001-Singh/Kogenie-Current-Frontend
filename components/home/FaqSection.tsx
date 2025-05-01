@@ -108,7 +108,7 @@ const Faq = () => {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="text-sm text-gray-600 mt-3 overflow-hidden leading-relaxed"
+                      className="text-sm text-gray-600 text-justify mt-3 overflow-hidden leading-relaxed"
                     >
                       {faq.answer}
                     </motion.p>

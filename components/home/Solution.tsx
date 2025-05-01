@@ -65,7 +65,7 @@ const SolutionSection = () => {
             <Link href="/sign-up" >
               <button className="px-10 py-3 rounded-xl text-xl font-bold text-white bg-gradient-to-r 
                 from-[#546aec] to-[#7b8df6] shadow-md transition duration-300 
-                hover:scale-105 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
+                hover:scale-100 hover:shadow-xl hover:from-[#3f4ed4] hover:to-[#6c7eea]">
                 Open an account
               </button>
             </Link>
