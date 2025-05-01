@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import InstagramPostPreview from "@/components/createAd/InstagramPostPreview";
 
 interface PostPreviewProps {
@@ -25,6 +25,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   headlineFont,
 }) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleReply = (username: string, message: string) => {
     alert(`Reply sent to @${username}: ${message} (simulated)`);
@@ -32,6 +33,13 @@ const PostPreview: React.FC<PostPreviewProps> = ({
       `Simulated POST to /{media-id}/comments -> Reply to @${username}: "${message}"`
     );
   };
+
+  // Scroll to top when modal opens
+  useEffect(() => {
+    if (isPreviewOpen && modalRef.current) {
+      modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [isPreviewOpen]);
 
   return (
     <div className="mt-4 relative">
@@ -51,7 +59,10 @@ const PostPreview: React.FC<PostPreviewProps> = ({
       {/* Modal */}
       {isPreviewOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-          <div className="absolute inset-0 bg-white overflow-y-auto p-6 shadow-lg rounded-lg flex flex-col items-center">
+          <div
+            ref={modalRef}
+            className="absolute inset-0 bg-white overflow-y-auto p-6 shadow-lg rounded-lg flex flex-col items-center max-h-[90vh]"
+          >
             <button
               onClick={() => setIsPreviewOpen(false)}
               className="absolute top-4 right-6 text-gray-600 hover:text-black text-lg font-bold"
@@ -59,6 +70,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({
               ✖
             </button>
 
+            {/* Instagram Post */}
             <div className="w-full max-w-2xl mt-8 mb-6">
               <InstagramPostPreview
                 image={image}
