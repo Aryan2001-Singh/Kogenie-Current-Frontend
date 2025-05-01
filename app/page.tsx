@@ -16,13 +16,41 @@ const SassProduct = () => {
   return (
     <>
       <Head>
+        {/* Facebook domain verification */}
         <meta
           name="facebook-domain-verification"
           content="icrbz3p7s2icc8r79ygu0177whyuyo"
         />
-        {/* ✅ Added author meta tag */}
-        <meta name="author" content="KOgenie E-Solutions" />
 
+        {/* Basic SEO */}
+        <title>AI-Powered Ad Solutions | Kogenie</title>
+        <meta
+          name="description"
+          content="Boost ad performance with Kogenie's AI-powered solutions. Create high-converting ads effortlessly."
+        />
+        <meta name="author" content="KOgenie E-Solutions" />
+        <link rel="canonical" href="https://www.kogenie.com/" />
+
+        {/* Open Graph (for Facebook, LinkedIn, etc.) */}
+        <meta property="og:title" content="AI-Powered Ad Solutions | Kogenie" />
+        <meta
+          property="og:description"
+          content="Boost ad performance with Kogenie's AI-powered solutions."
+        />
+        <meta property="og:image" content="https://www.kogenie.com/images/kogenie-logo.png" />
+        <meta property="og:url" content="https://www.kogenie.com/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI-Powered Ad Solutions | Kogenie" />
+        <meta
+          name="twitter:description"
+          content="Effortlessly create high-converting ads with AI"
+        />
+        <meta name="twitter:image" content="https://www.kogenie.com/images/kogenie-logo.png" />
+
+        {/* Structured Data for Schema.org */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -30,36 +58,36 @@ const SassProduct = () => {
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "Kogenie",
-                "url": "https://www.kogenie.com",
-                "publisher": {
+                name: "Kogenie",
+                url: "https://www.kogenie.com",
+                publisher: {
                   "@type": "Organization",
-                  "name": "Kogenie",
-                  "logo": {
+                  name: "Kogenie",
+                  logo: {
                     "@type": "ImageObject",
-                    "url": "https://www.kogenie.com/images/kogenie-logo.png",
+                    url: "https://www.kogenie.com/images/kogenie-logo.png",
                   },
                 },
               },
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
-                "mainEntity": [
+                mainEntity: [
                   {
                     "@type": "Question",
-                    "name": "How does Kogenie improve ad performance?",
-                    "acceptedAnswer": {
+                    name: "How does Kogenie improve ad performance?",
+                    acceptedAnswer: {
                       "@type": "Answer",
-                      "text":
+                      text:
                         "Kogenie uses AI-driven insights to optimize your ad campaigns, improving ROI and engagement.",
                     },
                   },
                   {
                     "@type": "Question",
-                    "name": "What services does Kogenie provide?",
-                    "acceptedAnswer": {
+                    name: "What services does Kogenie provide?",
+                    acceptedAnswer: {
                       "@type": "Answer",
-                      "text":
+                      text:
                         "Kogenie provides AI-powered ad solutions, helping businesses create high-converting ads effortlessly.",
                     },
                   },
@@ -68,18 +96,18 @@ const SassProduct = () => {
               {
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
-                "itemListElement": [
+                itemListElement: [
                   {
                     "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://www.kogenie.com/",
+                    position: 1,
+                    name: "Home",
+                    item: "https://www.kogenie.com/",
                   },
                   {
                     "@type": "ListItem",
-                    "position": 2,
-                    "name": "Services",
-                    "item": "https://www.kogenie.com/services",
+                    position: 2,
+                    name: "Services",
+                    item: "https://www.kogenie.com/services",
                   },
                 ],
               },
@@ -88,18 +116,14 @@ const SassProduct = () => {
         />
       </Head>
 
-      {/* Header */}
+      {/* Page Content */}
       <Header />
-
-      {/* Hero Section */}
       <Hero />
       <Problem />
       <SolutionSection />
       <Step />
-
       <FeatureInfographic />
       <TargetAudienceCarousel />
-
       <Faq />
       <GlobalSection />
 
@@ -115,7 +139,7 @@ const SassProduct = () => {
 
         <style jsx>{`
           .footer-container {
-            width: 100vw; /* Ensures full viewport width */
+            width: 100vw;
             margin: 0;
             padding: 0;
             background: linear-gradient(to right, #f3f6fc, #e8ecf6);

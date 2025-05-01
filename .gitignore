@@ -31,6 +31,11 @@ yarn-error.log*
 # vercel
 .vercel
 !vercel.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SEO: Exclude auto-generated files from next-sitemap
+/public/robots.txt
+/public/sitemap*.xml
