@@ -26,28 +26,32 @@ const PostPreview: React.FC<PostPreviewProps> = ({
 }) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
+  const handleReply = (username: string, message: string) => {
+    alert(`Reply sent to @${username}: ${message} (simulated)`);
+    console.log(
+      `Simulated POST to /{media-id}/comments -> Reply to @${username}: "${message}"`
+    );
+  };
+
   return (
     <div className="mt-4 relative">
-      {/* Post Preview Button with Tooltip */}
+      {/* Post Preview Button */}
       <div className="group relative flex justify-center">
         <button
           onClick={() => setIsPreviewOpen(true)}
-          className="bg-white text-black text-sm  px-3 py-1 rounded-md shadow-md border border-gray-300 hover:bg-gray-100 transition"
+          className="bg-white text-black text-sm px-3 py-1 rounded-md shadow-md border border-gray-300 hover:bg-gray-100 transition"
         >
           Post Preview
         </button>
-        {/* Tooltip */}
         <span className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-900 text-white text-xs px-2 py-1 rounded-md transition-opacity">
           Instagram Post Preview
         </span>
       </div>
 
-      {/* Full-Screen Modal */}
+      {/* Modal */}
       {isPreviewOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-          {/* Full-page container with scrollbar */}
           <div className="absolute inset-0 bg-white overflow-y-auto p-6 shadow-lg rounded-lg flex flex-col items-center">
-            {/* Close Button (Fixed at the top) */}
             <button
               onClick={() => setIsPreviewOpen(false)}
               className="absolute top-4 right-6 text-gray-600 hover:text-black text-lg font-bold"
@@ -55,7 +59,6 @@ const PostPreview: React.FC<PostPreviewProps> = ({
               ✖
             </button>
 
-            {/* Instagram Post Preview */}
             <div className="w-full max-w-2xl mt-8 mb-6">
               <InstagramPostPreview
                 image={image}
@@ -68,6 +71,39 @@ const PostPreview: React.FC<PostPreviewProps> = ({
                 isItalic={isItalic}
                 headlineFont={headlineFont}
               />
+            </div>
+
+            {/* 🔥 Simulated Comments Section */}
+            <div className="w-full max-w-2xl p-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold mb-4">Comments (simulated)</h3>
+
+              <div className="mb-4">
+                <p className="text-sm text-gray-800">
+                  <strong>@shoplover:</strong> Do you ship internationally?
+                </p>
+                <button
+                  onClick={() =>
+                    handleReply("shoplover", "Yes! We offer international shipping.")
+                  }
+                  className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
+                >
+                  Reply
+                </button>
+              </div>
+
+              <div className="mb-4">
+                <p className="text-sm text-gray-800">
+                  <strong>@techgeek:</strong> What&apos;s the price?
+                </p>
+                <button
+                  onClick={() =>
+                    handleReply("techgeek", `Thanks for your interest! We'll DM you the pricing.`)
+                  }
+                  className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
+                >
+                  Reply
+                </button>
+              </div>
             </div>
           </div>
         </div>
