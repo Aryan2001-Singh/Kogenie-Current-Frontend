@@ -3,13 +3,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { useUser } from "@clerk/nextjs";
-<<<<<<< HEAD:components/createAd/DownloadButton.tsx
 import { useAdStore } from "@/store/useAdStore"; // ✅ adjust path if needed
 import { FiUpload } from "react-icons/fi";
-=======
-import { useAdStore } from "@/store/useAdStore";
 
->>>>>>> 53841cdb4da3974d20d6bccce622bdae0653e1f6:components/createAd/PublishButton.tsx
+
 interface DownloadButtonProps {
   selectedFilter: string;
   aspectRatio: "square" | "story";
