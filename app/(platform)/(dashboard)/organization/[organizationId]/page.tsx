@@ -6,6 +6,7 @@ import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
 import { useUser } from "@clerk/nextjs";
 
+
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
@@ -52,6 +53,8 @@ const OrganizationIdPage = () => {
   const setAdData = useAdStore((state) => state.setAdData);
   const { user } = useUser();
   const userEmail = user?.emailAddresses?.[0]?.emailAddress || "";
+
+
 
   useEffect(() => {
     const factInterval = setInterval(() => {
