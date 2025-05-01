@@ -86,7 +86,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
           value={adData.brandName}
           onChange={handleInputChange}
           style={justifyStyle}
-          className="input-glow w-full p-4 border border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95"
+          className="input-glow w-full p-4 border border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-100 active:scale-95"
         />
       </div>
 
@@ -102,7 +102,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
           value={adData.productName}
           onChange={handleInputChange}
           style={justifyStyle}
-          className="input-glow w-full p-4 border border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95"
+          className="input-glow w-full p-4 border border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-100 active:scale-95"
         />
       </div>
 
@@ -117,7 +117,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
           value={adData.productDescription}
           onChange={handleInputChange}
           style={justifyStyle}
-          className="input-glow w-full p-4 border border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95 resize-none h-40"
+          className="input-glow w-full p-4 border border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-100 active:scale-95 resize-none h-40"
         />
       </div>
 
@@ -132,7 +132,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
   value={adData.adCopy}
   readOnly // ✅ Prevents editing of AI-generated content
   style={glassStyle}
-  className="input-glow font-serif custom-scrollbar w-full p-4 border-2 border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95 resize-none h-40"
+  className="input-glow font-serif custom-scrollbar w-full p-4 border-2 border-gray-200 rounded-md shadow-lg text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-100 active:scale-95 resize-none h-40"
 />
       </div>
 
@@ -150,7 +150,7 @@ const AdForm: React.FC<AdFormProps> = ({ adData, setAdData }) => {
           value={adData.headline}
           onChange={handleInputChange}
           style={glassStyle}
-          className="input-glow font-serif custom-scrollbar w-full p-4 border-2 border-gray-200 rounded-md shadow-lg text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-105 active:scale-95 resize-none h-32"
+          className="input-glow font-serif custom-scrollbar w-full p-4 border-2 border-gray-200 rounded-md shadow-lg text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-transform duration-200 hover:scale-100 active:scale-95 resize-none h-32"
         />
       </div>
     </div>

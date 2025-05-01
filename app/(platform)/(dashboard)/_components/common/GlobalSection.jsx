@@ -8,8 +8,8 @@ export default function GlobalSection() {
       <div className={styles.row}>
         {/* Left */}
         <div className="w-full  py-12 px-6 sm:px-12 lg:px-20 relative overflow-hidden font-['Poppins']">
-          <p className="text-sm font-semibold mb-2 text-indigo-600 uppercase tracking-wide">
-          Your audience isn’t generic. Your ads shouldn’t be either.
+          <p className="text-sm font-semibold mb-2 text-gray-500 uppercase tracking-wide">
+          Make it personal.
           </p>
           <h2 className={styles.heading}>
           Ads come in all shapes and sizes.
@@ -40,7 +40,7 @@ export default function GlobalSection() {
             <div
               className={styles.blob}
               style={{
-                background: "radial-gradient(circle, #34d399, #10b981)",
+                background: "radial-gradient(circle,rgb(249, 115, 22),rgb(229, 188, 110))",
                 bottom: 0,
                 right: "2.5rem",
                 width: "80px",

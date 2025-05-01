@@ -91,19 +91,19 @@ const ExportButton: React.FC<ExportButtonProps> = ({ selectedFilter, aspectRatio
         <div style={{zIndex:"2"}}className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md">
           <button
             onClick={() => handleDownload("png")}
-            className="block w-full text-left p-2 hover:bg-gray-200"
+            className="block w-full text-left text-sm p-2 hover:bg-gray-200"
           >
             Download as PNG
           </button>
           <button
             onClick={() => handleDownload("jpeg")}
-            className="block w-full text-left p-2 hover:bg-gray-200"
+            className="block w-full text-left text-sm p-2 hover:bg-gray-200"
           >
             Download as JPEG
           </button>
           <button
             onClick={() => handleDownload("pdf")}
-            className="block w-full text-left p-2 hover:bg-gray-200"
+            className="block w-full text-left text-sm p-2 hover:bg-gray-200"
           >
             Download as PDF
           </button>

@@ -70,6 +70,7 @@ const GridWithSidebar = () => {
               fontSize: "clamp(42px, 5vw, 64px)",
               color: "#111827",
               textShadow: "0 3px 6px rgba(0, 0, 0, 0.15)",
+              fontFamily: "Poppins",
             }}
           >
             Read Our{" "}

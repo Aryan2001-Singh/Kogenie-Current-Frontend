@@ -193,7 +193,7 @@ bg-gray-700 drop-shadow-lg mb-6"
             </h2>
             {/* Top Editing Bar in Right Column */}
             <div className="flex items-center justify-between p-4 border-b">
-              <div className="flex flex-col gap-3 transition-transform duration-200 hover:scale-105">
+              <div className="flex flex-col gap-3 transition-transform duration-200 hover:scale-100">
                 <FontSettings
                   headlineFontSize={headlineFontSize}
                   setHeadlineFontSize={setHeadlineFontSize}

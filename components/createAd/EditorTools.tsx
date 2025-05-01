@@ -17,7 +17,7 @@ const EditorTools: React.FC<EditorToolsProps> = ({
   setAspectRatio,
 }) => {
   return (
-    <div className="mt-2 p-2 bg-white rounded-lg shadow-md transition-transform duration-200 hover:scale-105">
+    <div className="mt-2 p-2 bg-white rounded-lg shadow-md transition-transform duration-200 hover:scale-100">
       <div className="flex items-center gap-6">
         {/* Filter Selection Section */}
         <div className="flex items-center space-x-2">
