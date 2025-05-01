@@ -9,25 +9,77 @@ import { motion } from "framer-motion";
 const GridWithSidebar = () => {
   return (
     <>
-      {/* ✅ SEO Optimization */}
+      {/* ✅ SEO & Social Meta Tags */}
       <Head>
         <title>Latest Insights & Trends - Kogenie Blog</title>
         <meta
           name="description"
           content="Stay informed with expert opinions, industry trends, and insightful content to help you navigate the latest updates in AI advertising and marketing."
         />
+        <meta name="keywords" content="Kogenie Blog, AI marketing trends, advertising insights, digital marketing articles" />
         <meta name="author" content="Kogenie" />
+        <link rel="canonical" href="https://www.kogenie.com/blog" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Latest Insights & Trends - Kogenie Blog" />
+        <meta
+          property="og:description"
+          content="Discover expert takes, AI marketing insights, and what's trending right now."
+        />
+        <meta
+          property="og:image"
+          content="https://www.kogenie.com/images/og-preview.jpg"
+        />
+        <meta property="og:url" content="https://www.kogenie.com/blog" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Latest Insights & Trends - Kogenie Blog" />
+        <meta
+          name="twitter:description"
+          content="Discover expert takes, AI marketing insights, and what's trending right now."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.kogenie.com/images/og-preview.jpg"
+        />
+
+        {/* ✅ JSON-LD Structured Data for Blog List */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Blog",
+              name: "Kogenie Blog",
+              url: "https://www.kogenie.com/blog",
+              description: "Expert insights and trends on AI-powered marketing and advertising.",
+              publisher: {
+                "@type": "Organization",
+                name: "Kogenie",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.kogenie.com/images/logo.png",
+                },
+              },
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://www.kogenie.com/blog",
+              },
+            }),
+          }}
+        />
       </Head>
 
       {/* ✅ Header */}
       <Header />
 
-      {/* ✅ Blog Hero Section with KOgenie styling */}
+      {/* ✅ Blog Hero Section */}
       <section
         className="relative flex items-center justify-center text-center px-6 sm:px-12 lg:px-20"
         style={{
           minHeight: "500px",
-          height: "auto",
           background: "#DCE1FA",
           overflow: "hidden",
           fontFamily: "Poppins",
@@ -56,7 +108,7 @@ const GridWithSidebar = () => {
           />
         ))}
 
-        {/* Text Content */}
+        {/* Animated Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -85,20 +137,19 @@ const GridWithSidebar = () => {
             </span>
           </h1>
           <p
-  style={{
-    fontSize: "clamp(18px, 2vw, 22px)",
-    fontWeight: 400,
-    color: "#1E2333",
-    marginTop: "24px",
-    fontFamily: "Poppins",
-  }}
->
-  Discover expert takes, AI marketing insights, and what&apos;s trending right now.
-</p>
-
+            style={{
+              fontSize: "clamp(18px, 2vw, 22px)",
+              fontWeight: 400,
+              color: "#1E2333",
+              marginTop: "24px",
+              fontFamily: "Poppins",
+            }}
+          >
+            Discover expert takes, AI marketing insights, and what&apos;s trending right now.
+          </p>
         </motion.div>
 
-        {/* Floating Stars Animation */}
+        {/* Stars Animation */}
         <style>{`
           @keyframes floatStars {
             0% { transform: translateY(0px); opacity: 0.6; }
