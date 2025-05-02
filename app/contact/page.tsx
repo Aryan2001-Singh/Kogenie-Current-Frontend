@@ -21,27 +21,76 @@ const ContactV4 = () => {
           content="contact Kogenie, AI ads, AI marketing, digital advertising, AI support"
         />
         <meta name="author" content="Kogenie AI" />
+        <link rel="canonical" href="https://www.kogenie.com/contact" />
+
+        {/* Open Graph Meta */}
+        <meta property="og:title" content="Contact Us - Kogenie AI" />
+        <meta
+          property="og:description"
+          content="Need help with AI-powered ad solutions? Contact Kogenie AI today."
+        />
+        <meta property="og:image" content="https://www.kogenie.com/images/og-preview.jpg" />
+        <meta property="og:url" content="https://www.kogenie.com/contact" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us - Kogenie AI" />
+        <meta
+          name="twitter:description"
+          content="Get in touch with Kogenie AI for support, inquiries, or partnership opportunities."
+        />
+        <meta name="twitter:image" content="https://www.kogenie.com/images/og-preview.jpg" />
+
+        {/* Structured Data: Local Business + ContactPage */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Kogenie AI",
+              url: "https://www.kogenie.com",
+              image: "https://www.kogenie.com/images/logo.png",
+              description: "Kogenie AI offers advanced AI-powered advertising and marketing solutions.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Delhi",
+                addressCountry: "India",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+91-8826-132-744",
+                contactType: "Customer Support",
+              },
+              sameAs: [
+                "https://www.linkedin.com/company/kogenie",
+                "https://www.instagram.com/kogenie.ai",
+                "https://twitter.com/kogenie_ai",
+              ],
+            }),
+          }}
+        />
       </Head>
 
       <Header />
 
-      {/* ✅ Unified Hero Section */}
+      {/* Hero Section */}
       <section
         className="relative flex items-center justify-center text-center px-6 sm:px-12 lg:px-20"
         style={{
           minHeight: "500px",
-          height: "auto",
           background: "#DCE1FA",
           overflow: "hidden",
           fontFamily: "Poppins",
           padding: "80px 20px",
         }}
       >
-        {/* Blurry Floating Backgrounds */}
+        {/* Backgrounds */}
         <div className="absolute top-[10%] left-[5%] w-[220px] h-[220px] bg-[#546aec]/40 blur-[100px] rounded-full z-0" />
         <div className="absolute bottom-[10%] right-[5%] w-[200px] h-[200px] bg-[#4ab9f3]/30 blur-[100px] rounded-full z-0" />
 
-        {/* Floating Stars */}
+        {/* Stars */}
         {Array.from({ length: 40 }).map((_, index) => (
           <div
             key={index}
@@ -53,7 +102,7 @@ const ContactV4 = () => {
           />
         ))}
 
-        {/* Hero Text */}
+        {/* Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,29 +118,30 @@ const ContactV4 = () => {
               textShadow: "0 3px 6px rgba(0, 0, 0, 0.15)",
             }}
           >
-           Get <span
+            Get{" "}
+            <span
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage: "linear-gradient(to right, #3f54c6, #7b8df6)",
                 WebkitBackgroundClip: "text",
               }}
             >
-             in Touch
+              in Touch
             </span>
           </h1>
           <p
-  style={{
-    fontSize: "clamp(18px, 2vw, 22px)",
-    fontWeight: 400,
-    color: "#1E2333",
-    marginTop: "24px",
-    fontFamily: "Poppins",
-  }}
->
-  <span style={{ fontWeight: 600 }}>AI can be overwhelming!</span> Whether you&apos;re looking for answers, exploring AI-driven ad personalization, or just want to say hello, we&apos;re here to help.
-</p>
-
-
+            style={{
+              fontSize: "clamp(18px, 2vw, 22px)",
+              fontWeight: 400,
+              color: "#1E2333",
+              marginTop: "24px",
+              fontFamily: "Poppins",
+            }}
+          >
+            <span style={{ fontWeight: 600 }}>AI can be overwhelming!</span> Whether you&apos;re
+            looking for answers, exploring AI-driven ad personalization, or just want to say hello,
+            we&apos;re here to help.
+          </p>
         </motion.div>
 
         <style>{`
@@ -102,23 +152,21 @@ const ContactV4 = () => {
         `}</style>
       </section>
 
-      {/* ✅ Main Contact Content */}
+      {/* Contact Info + Form */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 mt-12 mb-20 font-['Poppins']">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
-          {/* Left: Contact Info & Map */}
+          {/* Left: Info */}
           <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col h-full hover:shadow-xl transition">
-            <h3 className="text-2xl font-bold text-gray-900 mb-1">Contact Information</h3>
-            <p className="text-sm text-gray-500 mb-4">
-              KOGENIE E-SOLUTIONS PRIVATE LIMITED.
-            </p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-1">Contact Information</h2>
+            <p className="text-sm text-gray-500 mb-4">KOGENIE E-SOLUTIONS PRIVATE LIMITED</p>
             <p className="text-gray-600 mb-5">
-              <span className="font-medium text-gray-800">Reach out to us</span>{" "}
-              via email, phone, or visit our office.
+              <span className="font-medium text-gray-800">Reach out to us</span> via email, phone,
+              or visit our office.
             </p>
 
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <i className="fas fa-envelope text-[#4a5abb] text-xl"></i>
+                <span className="text-[#4a5abb] text-xl">📧</span>
                 <a
                   href="mailto:support@kogenie.com"
                   className="text-gray-800 font-medium hover:text-[#4a5abb] transition"
@@ -127,11 +175,11 @@ const ContactV4 = () => {
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <i className="fas fa-phone text-[#4a5abb] text-xl"></i>
+                <span className="text-[#4a5abb] text-xl">📞</span>
                 <p className="text-gray-800 font-medium">+91-8826-132-744</p>
               </div>
               <div className="flex items-center space-x-3">
-                <i className="fas fa-map-marker-alt text-[#4a5abb] text-xl"></i>
+                <span className="text-[#4a5abb] text-xl">📍</span>
                 <p className="text-gray-800 font-medium">Delhi, India</p>
               </div>
             </div>
@@ -141,15 +189,15 @@ const ContactV4 = () => {
             </div>
           </div>
 
-          {/* Right: Contact Form */}
+          {/* Right: Form */}
           <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition flex flex-col justify-between h-full">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Send Us a Message</h3>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Send Us a Message</h2>
             <ContactForm4 />
           </div>
         </div>
       </div>
 
-      {/* ✅ Footer */}
+      {/* Footer */}
       <footer className="footer-container">
         <div className="footer-wrapper w-full">
           <div className="inner-wrapper m-auto">
