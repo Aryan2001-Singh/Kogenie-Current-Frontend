@@ -68,6 +68,7 @@
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/aos": "^3.0.7",
     "@types/bootstrap": "^5.2.10",
     "@types/node": "^20.17.16",

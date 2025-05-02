@@ -95,28 +95,29 @@ const PostPreview: React.FC<PostPreviewProps> = ({
                 isItalic={isItalic}
                 headlineFont={headlineFont}
               />
-            </div>
+            </div>z
 
             {/* 🔥 Simulated Comments Section */}
-           {/* 🔥 Simulated Comments Section */}
-<div className="w-full max-w-2xl p-4 border-t border-gray-200">
-  <h3 className="text-lg font-semibold mb-4">Comments (simulated)</h3>
+            {/* 🔥 Simulated Comments Section */}
+            <div className="w-full max-w-2xl p-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold mb-4">
+                Comments (simulated)
+              </h3>
 
-  {comments.map((c, index) => (
-    <div key={index} className="mb-4">
-      <p className="text-sm text-gray-800">
-        <strong>@{c.username}:</strong> {c.text}
-      </p>
-      <button
-        onClick={() => handleReply(c.username, c.reply)}
-        className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
-      >
-        Reply
-      </button>
-    </div>
-  ))}
-</div>
-
+              {comments.map((c, index) => (
+                <div key={index} className="mb-4">
+                  <p className="text-sm text-gray-800">
+                    <strong>@{c.username}:</strong> {c.text}
+                  </p>
+                  <button
+                    onClick={() => handleReply(c.username, c.reply)}
+                    className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
+                  >
+                    Reply
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
