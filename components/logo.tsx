@@ -5,7 +5,7 @@ export const Logo = () => {
     // <Link href="/public/logo_01.svg">
       <div className="hover:opacity-75 transition items-center gap-x-2 hidden md:flex">
         <Image
-          src="/kogenielogo.svg"
+          src="/kogenie logo.jpeg"
           alt="Logo"
           height={99}
           width={99}

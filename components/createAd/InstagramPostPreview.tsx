@@ -1,8 +1,14 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import { IoHeartOutline, IoChatbubbleOutline, IoPaperPlaneOutline } from "react-icons/io5"; // Outline icons
-import { FaEllipsisH } from "react-icons/fa"; // Three dots menu
-import { IoPersonCircleOutline } from "react-icons/io5"; // Profile icon
+import {
+  IoHeart,
+  IoChatbubbleOutline,
+  IoPaperPlaneOutline,
+  IoPersonCircleOutline,
+} from "react-icons/io5";
+
+import { FaEllipsisH } from "react-icons/fa";
 
 interface InstagramPostPreviewProps {
   image: string | null;
@@ -16,58 +22,150 @@ interface InstagramPostPreviewProps {
   headlineFont: string;
 }
 
+interface CommentType {
+  username: string;
+  text: string;
+  reply: string;
+}
+
+
 const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
   image,
   caption,
-  
 }) => {
-  return (
-    <div className="fixed inset-0 flex justify-center items-center bg-gradient-to-b from-[#F58529] via-[#DD2A7B] to-[#8134AF] overflow-hidden">
-      
-      {/* Floating Instagram Elements */}
-      <div className="absolute top-10 left-20 text-white opacity-30 animate-float">
-        <IoHeartOutline className="text-5xl" />
-      </div>
-      <div className="absolute bottom-20 right-20 text-white opacity-30 animate-floatSlow">
-        <IoChatbubbleOutline className="text-5xl" />
-      </div>
-      <div className="absolute top-1/3 right-1/4 text-white opacity-30 animate-floatMedium">
-        <IoPaperPlaneOutline className="text-5xl" />
-      </div>
+  const [liked, setLiked] = useState(false);
+  const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null);
+const [sentReplies, setSentReplies] = useState<{ [key: number]: boolean }>({});
+const [showComments, setShowComments] = useState(false);
 
-      {/* Instagram Post Container */}
-      <div className="w-[380px] bg-black rounded-lg shadow-2xl border border-gray-700 overflow-hidden">
-        {/* Instagram Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
+const comments: CommentType[] = [
+  {
+    username: "fashionlover21",
+    text: "What’s the price?",
+    reply: "Thanks! We'll DM you.",
+  },
+  {
+    username: "shopaholic99",
+    text: "Do you ship internationally?",
+    reply: "Yes! Worldwide shipping available.",
+  },
+  {
+    username: "blackbeauty",
+    text: "Is this available in black?",
+    reply: "Absolutely! We have black in stock.",
+  },
+];
+
+
+  return (
+    <div className="fixed inset-0 flex justify-center items-center bg-gradient-to-b from-[#F58529] via-[#DD2A7B] to-[#8134AF] overflow-hidden p-4">
+      <div className="w-[390px] bg-black rounded-lg shadow-2xl border border-gray-800 overflow-hidden font-sans">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
             <IoPersonCircleOutline className="text-3xl text-white" />
-            <span className="font-semibold text-white text-sm">your_brand_name</span>
+            <span className="text-white text-sm font-semibold">your_brand_name</span>
           </div>
-          <FaEllipsisH className="text-white cursor-pointer" />
+          <FaEllipsisH className="text-white text-sm cursor-pointer" />
         </div>
 
-        {/* Instagram Image Preview (Fixed Aspect Ratio) */}
-        <div className="w-full h-[450px] flex items-center justify-center bg-black relative">
-  <Image
-    src={image || "/default-image.jpg"}
-    alt="Instagram Post"
-    layout="fill"
-    objectFit="cover"
-  />
+        {/* Image */}
+        <div className="relative w-full aspect-square bg-black">
+          <Image
+            src={image || "/default-image.jpg"}
+            alt="Instagram Post"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+
+        {/* Actions */}
+        <div className="flex justify-between px-4 py-3 text-white">
+        <div className="flex gap-4">
+        <div onClick={() => setLiked(!liked)} className="cursor-pointer">
+  <IoHeart className="text-2xl text-red-500 transition" />
 </div>
 
 
-        {/* Action Icons (Outline Versions) */}
-        <div className="flex items-center px-4 py-3 gap-4 text-white">
-          <IoHeartOutline className="text-2xl cursor-pointer hover:text-red-500 transition" />
-          <IoChatbubbleOutline className="text-2xl cursor-pointer hover:text-gray-400 transition" />
-          <IoPaperPlaneOutline className="text-2xl cursor-pointer hover:text-gray-400 transition" />
+  <div
+    onClick={() => setShowComments(true)}
+    className="cursor-pointer"
+  >
+    <IoChatbubbleOutline className="text-2xl hover:text-gray-300 transition" />
+  </div>
+
+  <IoPaperPlaneOutline className="text-2xl cursor-pointer hover:text-gray-300 transition" />
+</div>
+</div>
+        {/* Likes */}
+        <div className="px-4 text-white text-sm font-semibold mb-1">1,284 likes</div>
+
+        {/* Caption */}
+        <div className="px-4 text-white text-sm mb-2">
+          <span className="font-semibold">your_brand_name </span>
+          <span>{caption}</span>
         </div>
 
-        {/* Caption Section */}
-        <div className="px-4 pb-3 text-white">
-          <span className="font-semibold text-sm">your_brand_name</span>
-          <span className="text-sm ml-2">{caption}</span>
+        {/* Comments */}
+       {/* View all comments toggle */}
+<div
+  onClick={() => setShowComments(!showComments)}
+  className="px-4 text-gray-400 text-sm mb-1 cursor-pointer hover:underline"
+>
+  View all {comments.length} comments
+</div>
+
+{/* Comments */}
+{showComments &&
+  comments.map((comment, index) => (
+    <div key={index} className="px-4 mb-1">
+      <p className="text-sm text-white leading-tight">
+        <span className="font-semibold">@{comment.username}</span>{" "}
+        <span className="text-white">{comment.text}</span>
+      </p>
+
+      {!sentReplies[index] && (
+        <button
+          onClick={() => {
+            setActiveReplyIndex(index);
+            setTimeout(() => {
+              setSentReplies((prev: { [key: number]: boolean }) => ({
+                ...prev,
+                [index]: true,
+              }));
+            }, 1500);
+          }}
+          className="ml-1 text-xs text-blue-400 hover:text-blue-500 mt-1"
+        >
+          Reply
+        </button>
+      )}
+
+      {activeReplyIndex === index && !sentReplies[index] && (
+        <span className="ml-2 text-xs text-gray-400 italic animate-pulse">Typing...</span>
+      )}
+
+{sentReplies[index] && (
+  <div className="ml-6 mt-1 text-gray-400 mb-4 text-xs">
+    <span className="text-blue-400">@{comment.username}</span> <span className="text-white font-medium">{comment.reply}</span> 
+  </div>
+)}
+
+    </div>
+))}
+
+
+        {/* Time */}
+        <div className="px-4 text-[11px] text-gray-500 uppercase pb-3">2 HOURS AGO</div>
+
+        {/* Add Comment */}
+        <div className="border-t border-gray-800 px-4 py-3 flex items-center gap-2">
+          <input
+            type="text"
+            placeholder="Add a comment..."
+            className="bg-transparent text-sm text-white placeholder-gray-400 flex-1 outline-none"
+          />
+          <button className="text-indigo-400 text-sm font-semibold">Post</button>
         </div>
       </div>
     </div>

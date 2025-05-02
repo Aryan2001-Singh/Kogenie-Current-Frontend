@@ -12,6 +12,18 @@ interface PostPreviewProps {
   isItalic: boolean;
   headlineFont: string;
 }
+const comments = [
+  {
+    username: "shoplover",
+    text: "Do you ship internationally?",
+    reply: "Yes! We offer international shipping.",
+  },
+  {
+    username: "techgeek",
+    text: "What’s the price?",
+    reply: "Thanks for your interest! We'll DM you the pricing.",
+  },
+];
 
 const PostPreview: React.FC<PostPreviewProps> = ({
   image,
@@ -86,37 +98,25 @@ const PostPreview: React.FC<PostPreviewProps> = ({
             </div>
 
             {/* 🔥 Simulated Comments Section */}
-            <div className="w-full max-w-2xl p-4 border-t border-gray-200">
-              <h3 className="text-lg font-semibold mb-4">Comments (simulated)</h3>
+           {/* 🔥 Simulated Comments Section */}
+<div className="w-full max-w-2xl p-4 border-t border-gray-200">
+  <h3 className="text-lg font-semibold mb-4">Comments (simulated)</h3>
 
-              <div className="mb-4">
-                <p className="text-sm text-gray-800">
-                  <strong>@shoplover:</strong> Do you ship internationally?
-                </p>
-                <button
-                  onClick={() =>
-                    handleReply("shoplover", "Yes! We offer international shipping.")
-                  }
-                  className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
-                >
-                  Reply
-                </button>
-              </div>
+  {comments.map((c, index) => (
+    <div key={index} className="mb-4">
+      <p className="text-sm text-gray-800">
+        <strong>@{c.username}:</strong> {c.text}
+      </p>
+      <button
+        onClick={() => handleReply(c.username, c.reply)}
+        className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
+      >
+        Reply
+      </button>
+    </div>
+  ))}
+</div>
 
-              <div className="mb-4">
-                <p className="text-sm text-gray-800">
-                  <strong>@techgeek:</strong> What&apos;s the price?
-                </p>
-                <button
-                  onClick={() =>
-                    handleReply("techgeek", `Thanks for your interest! We'll DM you the pricing.`)
-                  }
-                  className="mt-1 text-xs text-blue-600 underline hover:text-blue-800"
-                >
-                  Reply
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       )}
