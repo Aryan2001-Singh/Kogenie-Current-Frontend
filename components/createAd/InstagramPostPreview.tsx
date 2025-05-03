@@ -1,9 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useOrganization } from "@clerk/nextjs";
-
 import {
   IoHeart,
   IoChatbubbleOutline,
@@ -21,6 +18,7 @@ interface InstagramPostPreviewProps {
   isBold: boolean;
   isItalic: boolean;
   headlineFont: string;
+  onBack: () => void; // ✅ new prop
 }
 
 interface CommentType {
@@ -32,10 +30,8 @@ interface CommentType {
 const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
   image,
   caption,
+  onBack,
 }) => {
-  const router = useRouter();
-  const { organization } = useOrganization();
-
   const [liked, setLiked] = useState(false);
   const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null);
   const [sentReplies, setSentReplies] = useState<{ [key: number]: boolean }>({});
@@ -50,27 +46,14 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
 
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gradient-to-b from-[#F58529] via-[#DD2A7B] to-[#8134AF] p-4">
-      
-      {/* 🔙 Go Back Button in top-left corner */}
       <button
-        onClick={() => {
-          if (organization?.id) {
-            const path = `/organization/${organization.id}/createAd`;
-            console.log("🔙 Go Back button clicked");
-            console.log("Navigating to:", path);
-            router.push(path);
-          } else {
-            console.log("Organization ID not available, going back instead");
-            router.back();
-          }
-        }}
+        onClick={onBack} // ✅ use this instead of router.push/back
         className="absolute top-4 left-4 bg-white/20 text-white text-sm px-4 py-2 rounded-lg shadow-md hover:bg-white/30 transition"
       >
         ← Go Back
       </button>
 
       <div className="w-[390px] bg-black rounded-lg shadow-2xl border border-gray-800 overflow-y-auto max-h-[90vh] font-sans">
-
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3">
           <span className="text-white text-sm font-semibold">your_brand_name</span>

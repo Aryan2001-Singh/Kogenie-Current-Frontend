@@ -81,7 +81,6 @@ const PostPreview: React.FC<PostPreviewProps> = ({
             >
               ✖
             </button>
-
             {/* Instagram Post */}
             <div className="w-full max-w-2xl mt-8 mb-6">
               <InstagramPostPreview
@@ -94,10 +93,10 @@ const PostPreview: React.FC<PostPreviewProps> = ({
                 isBold={isBold}
                 isItalic={isItalic}
                 headlineFont={headlineFont}
+                onBack={() => setIsPreviewOpen(false)} // ✅ ADD THIS
               />
-            </div>z
-
-            {/* 🔥 Simulated Comments Section */}
+            </div>
+            z{/* 🔥 Simulated Comments Section */}
             {/* 🔥 Simulated Comments Section */}
             <div className="w-full max-w-2xl p-4 border-t border-gray-200">
               <h3 className="text-lg font-semibold mb-4">
