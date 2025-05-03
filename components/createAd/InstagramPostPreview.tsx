@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useOrganization } from "@clerk/nextjs";
 import {
   IoHeart,
   IoChatbubbleOutline,
@@ -18,7 +19,7 @@ interface InstagramPostPreviewProps {
   isBold: boolean;
   isItalic: boolean;
   headlineFont: string;
-  onBack: () => void; // ✅ new prop
+  onBack: () => void;
 }
 
 interface CommentType {
@@ -32,6 +33,8 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
   caption,
   onBack,
 }) => {
+  const { organization } = useOrganization();
+
   const [liked, setLiked] = useState(false);
   const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null);
   const [sentReplies, setSentReplies] = useState<{ [key: number]: boolean }>({});
@@ -46,8 +49,18 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
 
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gradient-to-b from-[#F58529] via-[#DD2A7B] to-[#8134AF] p-4">
+      {/* 🔙 Go Back Button */}
       <button
-        onClick={onBack} // ✅ use this instead of router.push/back
+        onClick={() => {
+          if (organization?.id) {
+            const path = `/organization/${organization.id}/createAd`;
+            console.log("Navigating using href to:", path);
+            window.location.href = path;
+          } else {
+            console.log("Fallback to browser back");
+            window.history.back();
+          }
+        }}
         className="absolute top-4 left-4 bg-white/20 text-white text-sm px-4 py-2 rounded-lg shadow-md hover:bg-white/30 transition"
       >
         ← Go Back
@@ -159,3 +172,4 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
 };
 
 export default InstagramPostPreview;
+
