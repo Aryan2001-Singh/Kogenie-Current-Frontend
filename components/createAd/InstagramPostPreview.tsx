@@ -31,7 +31,6 @@ interface CommentType {
 const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
   image,
   caption,
-  onBack,
 }) => {
   const { organization } = useOrganization();
 
