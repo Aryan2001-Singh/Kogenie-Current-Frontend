@@ -56,26 +56,24 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
         {/* Header */}
       {/* Header */}
 <div className="flex items-center justify-between px-4 py-3">
-<button
-  onClick={() => {
-    console.log("🔙 Go Back button clicked");
-
-    if (organization?.id) {
-      const path = `/organization/${organization.id}/createAd`;
-      console.log("Navigating to:", path);
-      router.push(path);
-    } else {
-      console.log("Organization ID not available, going back instead");
-      router.back(); 
-    }
-  }}
-  className="text-white text-sm font-medium hover:underline"
->
-  ← Go Back
-</button>
-
+  {organization?.id ? (
+    <button
+      onClick={() => {
+        const path = `/organization/${organization.id}/createAd`;
+        console.log("🔙 Go Back button clicked");
+        console.log("Navigating to:", path);
+        router.push(path);
+      }}
+      className="text-white text-sm font-medium hover:underline"
+    >
+      ← Go Back
+    </button>
+  ) : (
+    <span className="text-white text-xs italic">Loading organization...</span>
+  )}
   <FaEllipsisH className="text-white text-sm cursor-pointer" />
 </div>
+
 
         {/* Image */}
         <div className="relative w-full aspect-square bg-black">
