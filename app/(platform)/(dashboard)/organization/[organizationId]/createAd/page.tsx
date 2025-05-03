@@ -123,7 +123,7 @@ const CreateAdPage: React.FC = () => {
   const leftColumnStyle = {
     flex: 1,
     padding: "30px",
-    backgroundColor: "#f6f3fc",
+   
   };
 
   // Right column style
@@ -133,7 +133,6 @@ const CreateAdPage: React.FC = () => {
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    backgroundColor: "#f6f3fc",
   };
 
   return (
@@ -174,12 +173,12 @@ const CreateAdPage: React.FC = () => {
           }}
         >
           {/* Left Column */}
-          <div style={leftColumnStyle} className="mt-8 px-2 bg-[#f6f3fc]">
+          <div style={leftColumnStyle} className="mt-8 px-2 ">
             <AdForm adData={adData} setAdData={setAdData} />
           </div>
 
           {/* Right Column */}
-          <div style={rightColumnStyle} className=" mt-8 px-2 bg-[#f6f3fc]">
+          <div style={rightColumnStyle} className=" mt-8 px-2 ">
             <h2
               style={{
                 fontFamily: "serif",

@@ -21,8 +21,8 @@ const AdminInsightsButton = () => {
     <div className="space-y-3 mt-6">
       <button
         onClick={() => router.push("/data/insights")}
-        className="w-full px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition"
-      >
+        className="w-full inline-flex justify-between items-center px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-gray-700 font-semibold shadow-sm transition-all duration-200 hover:bg-white/20">
+
         📊 View Admin Insights
       </button>
     </div>

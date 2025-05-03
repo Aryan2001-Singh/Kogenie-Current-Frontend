@@ -1,11 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useOrganization } from "@clerk/nextjs";
+
+
 import {
   IoHeart,
   IoChatbubbleOutline,
   IoPaperPlaneOutline,
-  IoPersonCircleOutline,
 } from "react-icons/io5";
 import { FaEllipsisH } from "react-icons/fa";
 
@@ -31,6 +34,9 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
   image,
   caption,
 }) => {
+  const router = useRouter();
+  const { organization } = useOrganization();
+
   const [liked, setLiked] = useState(false);
   const [activeReplyIndex, setActiveReplyIndex] = useState<number | null>(null);
   const [sentReplies, setSentReplies] = useState<{ [key: number]: boolean }>({});
@@ -46,14 +52,30 @@ const InstagramPostPreview: React.FC<InstagramPostPreviewProps> = ({
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-gradient-to-b from-[#F58529] via-[#DD2A7B] to-[#8134AF] p-4">
       <div className="w-[390px] bg-black rounded-lg shadow-2xl border border-gray-800 overflow-y-auto max-h-[90vh] font-sans">
+        
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-3">
-            <IoPersonCircleOutline className="text-3xl text-white" />
-            <span className="text-white text-sm font-semibold">your_brand_name</span>
-          </div>
-          <FaEllipsisH className="text-white text-sm cursor-pointer" />
-        </div>
+      {/* Header */}
+<div className="flex items-center justify-between px-4 py-3">
+<button
+  onClick={() => {
+    console.log("🔙 Go Back button clicked");
+
+    if (organization?.id) {
+      const path = `/organization/${organization.id}/createAd`;
+      console.log("Navigating to:", path);
+      router.push(path);
+    } else {
+      console.log("Organization ID not available, going back instead");
+      router.back(); 
+    }
+  }}
+  className="text-white text-sm font-medium hover:underline"
+>
+  ← Go Back
+</button>
+
+  <FaEllipsisH className="text-white text-sm cursor-pointer" />
+</div>
 
         {/* Image */}
         <div className="relative w-full aspect-square bg-black">
