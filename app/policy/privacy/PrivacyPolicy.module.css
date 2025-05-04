@@ -1,0 +1,12 @@
+.footerContainer {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #f3f6fc, #e8ecf6);
+  }
+  
+  .footerWrapper {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
