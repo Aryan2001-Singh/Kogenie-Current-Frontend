@@ -74,7 +74,7 @@ const Problem = () => {
       {/* RIGHT IMAGE */}
       <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg">
         <Image
-          src="/momo-studio-RJxO8MVebfo-unsplash.jpg"
+          src="/problem.jpeg"
           alt="Frustrated creator"
           width={400}
           height={400}
