@@ -1,23 +1,22 @@
 import { NextResponse } from "next/server";
 import { authMiddleware } from "@clerk/nextjs/server";
 
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
-
 export default authMiddleware({
-  publicRoutes: ['/'],  // Handle dynamic segments with :param syntax
+  // ✅ Make policy pages public
+  publicRoutes: ['/', '/policy/:slug'], // You can also use `/policy(.*)` if using regex style
   afterAuth(auth, req) {
-    // Ensure that 'auth' is properly initialized
-    if (!auth) {
-      return NextResponse.error();
+    // ✅ Allow bots like Googlebot without redirection
+    const userAgent = req.headers.get("user-agent") || "";
+    const isBot = /Googlebot|Bingbot|Slurp|DuckDuckBot|YandexBot|facebookexternalhit/i.test(userAgent);
+    const pathname = req.nextUrl.pathname;
+
+    if (isBot && pathname.startsWith("/policy")) {
+      return NextResponse.next(); // Let Googlebot through
     }
 
-    // If the user is authenticated and the route is public, redirect to organization selection or organization page
+    // ✅ Keep your existing redirects for users
     if (auth.userId && auth.isPublicRoute) {
       let path = "/select-org";
-
-      // Redirect to the organization page if the user has an organization
       if (auth.orgId) {
         path = `/organization/${auth.orgId}`;
       }
@@ -26,14 +25,13 @@ export default authMiddleware({
       return NextResponse.redirect(orgSelection);
     }
 
-    if (auth.userId && !auth.orgId && req.nextUrl.pathname !== "/select-org") {
+    if (auth.userId && !auth.orgId && pathname !== "/select-org") {
       const orgSelection = new URL("/select-org", req.url);
       return NextResponse.redirect(orgSelection);
     }
 
-    // Allow the request to continue if no redirect conditions are met
     return NextResponse.next();
-  }
+  },
 });
 
 export const config = {

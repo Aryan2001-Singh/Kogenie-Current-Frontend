@@ -1,12 +1,22 @@
-"use client";
-
+import Head from "next/head";
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
-import { Mail, MapPin} from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import styles from "./RefundPolicy.module.css"; // ✅ CSS module import
 
 const RefundPolicy = () => {
   return (
     <>
+      <Head>
+        <title>Refund Policy | KOgenie</title>
+        <meta
+          name="description"
+          content="KOgenie's refund policy outlines eligibility, exclusions, and how to request refunds for your AI-powered ads."
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.kogenie.com/policy/refund" />
+      </Head>
+
       <Header />
 
       <main className="bg-[#f9fafb] text-gray-700 py-24 px-4 sm:px-6 lg:px-8 font-[Poppins]">
@@ -29,7 +39,6 @@ const RefundPolicy = () => {
               Eligibility for Refunds
             </h3>
             <ul className="list-disc list-outside pl-6 text-gray-600 leading-relaxed">
-
               <li><strong>Technical Issues</strong> – If KOgenie fails to generate or deliver ads due to a system malfunction on our end.</li>
               <li><strong>Billing Errors</strong> – If you were charged incorrectly or for a service you didn’t purchase.</li>
               <li><strong>Service Dissatisfaction</strong> – If you are unsatisfied with the results and have actively used KOgenie for at least 14 days while following our optimization recommendations, we will review refund requests on a case-by-case basis.</li>
@@ -41,7 +50,6 @@ const RefundPolicy = () => {
               Non-Refundable Cases
             </h3>
             <ul className="list-disc list-outside pl-6 text-gray-600 leading-relaxed">
-
               <li>If the ad performance doesn’t meet expectations due to external factors like audience targeting, platform policies, or budget allocation outside KOgenie’s control.</li>
               <li>If a refund request is made after 30 days of purchase.</li>
               <li>If the subscription was fully utilized within the billing period.</li>
@@ -53,8 +61,14 @@ const RefundPolicy = () => {
               How to Request a Refund
             </h3>
             <p className="text-base text-gray-600 text-justify leading-relaxed">
-              To request a refund, please contact our support team at <a href="mailto:support@kogenie.com"
-               className="text-indigo-600 hover:underline font-medium">support@kogenie.com</a> with your order details and a brief explanation. We aim to process all valid refund requests within 5-7 business days.
+              To request a refund, please contact our support team at{" "}
+              <a
+                href="mailto:support@kogenie.com"
+                className="text-indigo-600 hover:underline font-medium"
+              >
+                support@kogenie.com
+              </a>{" "}
+              with your order details and a brief explanation. We aim to process all valid refund requests within 5-7 business days.
             </p>
           </section>
 
@@ -68,13 +82,14 @@ const RefundPolicy = () => {
           </section>
 
           <section className="mt-12 bg-indigo-50 border border-indigo-100 rounded-xl p-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Contact Us
-            </h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h3>
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-indigo-600" />
-                <a href="mailto:support@kogenie.com" className="text-gray-700 hover:underline font-medium">
+                <a
+                  href="mailto:support@kogenie.com"
+                  className="text-gray-700 hover:underline font-medium"
+                >
                   support@kogenie.com
                 </a>
               </li>
@@ -94,28 +109,14 @@ const RefundPolicy = () => {
         </div>
       </main>
 
-      <footer className="footer-container">
-        <div className="footer-wrapper w-full">
+      <footer className={styles.footerContainer}>
+        <div className={`${styles.footerWrapper} w-full`}>
           <div className="inner-wrapper m-auto">
             <div className="row">
               <FooterMenu />
             </div>
           </div>
         </div>
-
-        <style jsx>{`
-          .footer-container {
-            width: 100vw;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #f3f6fc, #e8ecf6);
-          }
-          .footer-wrapper {
-            width: 100%;
-            max-width: none;
-            padding: 0;
-          }
-        `}</style>
       </footer>
     </>
   );
