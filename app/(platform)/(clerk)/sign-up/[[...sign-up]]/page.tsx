@@ -20,7 +20,7 @@ export default function SignUpPage() {
                 "w-full px-4 py-3 border border-gray-300 rounded-lg text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500",
               formFieldLabel: "text-sm font-medium text-gray-700 mb-1",
               headerTitle: "text-3xl font-bold text-gray-900 mb-2 text-center",
-              headerSubtitle: "", // Replaced manually below
+              headerSubtitle: "", 
               socialButtonsBlockButton:
                 "w-full border rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-50",
               dividerRow: "my-6",
@@ -48,26 +48,37 @@ export default function SignUpPage() {
       </div>
 
       {/* Right: Floating Ad Generator Visual */}
-      <div className="hidden md:flex w-1/2 h-full items-center justify-center bg-gradient-to-br from-purple-400 to-indigo-600 p-8 text-white relative overflow-hidden">
+      <div className="hidden md:flex w-1/2 h-full items-center justify-center bg-gradient-to-br 
+      from-purple-400 to-indigo-600 p-8 text-white relative overflow-hidden">
       <div className="relative h-full w-full max-w-xl">
       <div className="absolute top-0 left-0 w-full min-h-full shadow-md animate-scrollCards flex flex-col gap-10 justify-start">
 
       {[
-  { image: "/ChatGPT Image Apr 23, 2025, 03_43_29 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 02_44_10 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 02_37_09 PM.png" },
-  { image: "/Apr 23, 2025, 03_26_04 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 03_37_30 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 03_43_29 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 02_44_10 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 02_37_09 PM.png" },
-  { image: "/Apr 23, 2025, 03_26_04 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 03_37_30 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 03_43_29 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 02_44_10 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 02_37_09 PM.png" },
-  { image: "/Apr 23, 2025, 03_26_04 PM.png" },
-  { image: "/ChatGPT Image Apr 23, 2025, 03_37_30 PM.png" },
+ 
+ { image: "/sign1.png" },
+ { image: "/sign2.png" },
+ { image: "/sign3.png" },
+ { image: "/sign4.png" },
+ { image: "/sign5.png" },
+ { image: "/sign6.png" },
+ { image: "/sign1.png" },
+ { image: "/sign2.png" },
+ { image: "/sign3.png" },
+ { image: "/sign4.png" },
+ { image: "/sign5.png" },
+ { image: "/sign6.png" },
+ { image: "/sign1.png" },
+ { image: "/sign2.png" },
+ { image: "/sign3.png" },
+ { image: "/sign4.png" },
+ { image: "/sign5.png" },
+ { image: "/sign6.png" },
+ { image: "/sign1.png" },
+ { image: "/sign2.png" },
+ { image: "/sign3.png" },
+ { image: "/sign4.png" },
+ { image: "/sign5.png" },
+ { image: "/sign6.png" },
 ].map((item, i) => (
   <div
     key={i}
@@ -79,7 +90,7 @@ export default function SignUpPage() {
       fill
       style={{ objectFit: "cover" }}
       className="rounded-2xl"
-      priority={i < 3} // prioritize the first few
+      priority={i < 3} 
     />
     <div className="absolute inset-0 bg-black/10"></div>
   </div>

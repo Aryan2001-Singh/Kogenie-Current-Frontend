@@ -35,7 +35,7 @@ export default function SignInPage() {
 
         {/* Custom Subtitle */}
         <div className="absolute top-[calc(50%-200px)] text-center w-full">
-          <p className="text-sm mb-20 text-gray-600">
+          <p className="text-sm  mt-10 text-gray-600">
             Don’t have an account?{" "}
             <Link
               href="/sign-up"

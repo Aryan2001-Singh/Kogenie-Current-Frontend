@@ -48,9 +48,6 @@ const CreateAdPage: React.FC = () => {
   const [isBold, setIsBold] = useState<boolean>(false);
   const [isItalic, setIsItalic] = useState<boolean>(false);
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
-  // const [isClient, setIsClient] = useState(false);
-  const placeholderImage = "/logo.png";
-  // const [showScrapedImages, setShowScrapedImages] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
 
@@ -59,11 +56,8 @@ const CreateAdPage: React.FC = () => {
 
   useEffect(() => {
     const fbConnected = searchParams.get("fbConnected");
-
     if (fbConnected === "success") {
       alert("✅ Instagram account connected!");
-
-      // Clean the URL (remove ?fbConnected=success)
       const cleanedUrl = window.location.pathname;
       router.replace(cleanedUrl);
     }
@@ -73,14 +67,14 @@ const CreateAdPage: React.FC = () => {
     if (adDataFromStore?.selectedImage) {
       setImage(adDataFromStore.selectedImage);
     } else {
-      setImage("/logo.png"); // fallback
+      setImage(null);
     }
   }, [adDataFromStore]);
 
   useEffect(() => {
     setIsClient(true);
     const savedImage = localStorage.getItem("uploadedImage");
-    setImage(savedImage || placeholderImage);
+    setImage(savedImage || null);
   }, []);
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
@@ -100,7 +94,7 @@ const CreateAdPage: React.FC = () => {
 
   useEffect(() => {
     const savedImage = localStorage.getItem("uploadedImage");
-    setImage(savedImage || placeholderImage);
+    setImage(savedImage || null);
   }, [adDataFromStore]);
 
   useEffect(() => {
@@ -111,22 +105,16 @@ const CreateAdPage: React.FC = () => {
     if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
       console.log("🟢 Loaded Data from Store:", adDataFromStore);
       setAdData(adDataFromStore);
-      localStorage.setItem("adData", JSON.stringify(adDataFromStore)); // ✅ Store in localStorage
+      localStorage.setItem("adData", JSON.stringify(adDataFromStore));
     } else {
       const storedAdData = localStorage.getItem("adData");
       if (storedAdData) {
-        setAdData(JSON.parse(storedAdData)); // ✅ Load from localStorage
+        setAdData(JSON.parse(storedAdData));
       }
     }
   }, [adDataFromStore]);
-  // Left column style
-  const leftColumnStyle = {
-    flex: 1,
-    padding: "30px",
-   
-  };
 
-  // Right column style
+  const leftColumnStyle = { flex: 1, padding: "30px" };
   const rightColumnStyle: React.CSSProperties = {
     flex: 1,
     padding: "30px",
@@ -139,58 +127,24 @@ const CreateAdPage: React.FC = () => {
     <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Head>
 
-      {/* Main container spanning full width with background color */}
       <div className="w-full relative bg-white min-h-screen">
-  <div className="flex justify-end gap-4 p-4">
-    <ExportButton
-      selectedFilter={selectedFilter}
-      aspectRatio={aspectRatio}
-    />
-    <DownloadButton
-      selectedFilter={selectedFilter}
-      aspectRatio={aspectRatio}
-    />
-  </div>
+        <div className="flex justify-end gap-4 p-4">
+          <ExportButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
+          <DownloadButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
+        </div>
 
-
-        {/* Main Content Container */}
-        <div
-          className={styles.parentContainer}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "5px",
-            background: "white",
-            width: "100%",
-            paddingTop: "20px",
-          }}
-        >
-          {/* Left Column */}
-          <div style={leftColumnStyle} className="mt-8 px-2 ">
+        <div className={styles.parentContainer} style={{ display: "flex", flexDirection: "row", gap: "5px", background: "white", width: "100%", paddingTop: "20px" }}>
+          <div style={leftColumnStyle} className="mt-8 px-2">
             <AdForm adData={adData} setAdData={setAdData} />
           </div>
 
-          {/* Right Column */}
-          <div style={rightColumnStyle} className=" mt-8 px-2 ">
-            <h2
-              style={{
-                fontFamily: "serif",
-                marginBottom: "-20px",
-                marginLeft: "30px",
-              }}
-              className="text-4xl font-medium tracking-wide text-transparent bg-clip-text 
-bg-gray-700 drop-shadow-lg mb-6"
-            >
+          <div style={rightColumnStyle} className="mt-8 px-2">
+            <h2 style={{ fontFamily: "serif", marginBottom: "-20px", marginLeft: "30px" }} className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-gray-700 drop-shadow-lg mb-6">
               Ad preview
             </h2>
-            {/* Top Editing Bar in Right Column */}
             <div className="flex items-center justify-between p-4 border-b">
               <div className="flex flex-col gap-3 transition-transform duration-200 hover:scale-100">
                 <FontSettings
@@ -207,14 +161,8 @@ bg-gray-700 drop-shadow-lg mb-6"
                   headlineFont={headlineFont}
                   setHeadlineFont={setHeadlineFont}
                 />
-                <EditorTools
-                  selectedFilter={selectedFilter}
-                  setSelectedFilter={setSelectedFilter}
-                  aspectRatio={aspectRatio}
-                  setAspectRatio={setAspectRatio}
-                />
+                <EditorTools selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} aspectRatio={aspectRatio} setAspectRatio={setAspectRatio} />
               </div>
-              {/* Shift ImageUploader slightly downward on the right side */}
               <div style={{ padding: "20px", marginTop: "-50px" }}>
                 <PostPreview
                   image={image}
@@ -229,25 +177,19 @@ bg-gray-700 drop-shadow-lg mb-6"
                 />
               </div>
             </div>
+
             <div className="flex space-x-4 mt-4">
               <ImageUploader image={image} setImage={setImage} />
-
-              {/* ✅ Show Scraped Images Button Only on Client */}
               {isClient && adData?.productImages?.length > 0 && (
                 <ScrapedImagesButton
-                  productImages={adData.productImages} // ✅ Pass scraped images
+                  productImages={adData.productImages}
                   onSelectImage={(selectedImg) => {
-                    setImage(selectedImg); // ✅ Update selected image
-
-                    // ✅ Avoid storing base64 or large data URLs in localStorage
+                    setImage(selectedImg);
                     if (selectedImg && !selectedImg.startsWith("data:image")) {
                       try {
                         localStorage.setItem("uploadedImage", selectedImg);
                       } catch (error) {
-                        console.warn(
-                          "⚠️ Failed to store image in localStorage:",
-                          error
-                        );
+                        console.warn("⚠️ Failed to store image in localStorage:", error);
                       }
                     }
                   }}
@@ -255,22 +197,18 @@ bg-gray-700 drop-shadow-lg mb-6"
               )}
             </div>
 
-            {/* Image Preview Container */}
             <div className="w-full flex flex-col items-center mt-4 relative">
-              <div
-                id="ad-preview"
-                className={`${styles.adPreview} ${
-                  aspectRatio === "square" ? styles.square : styles.story
-                } relative`}
-              >
-                <Image
-                  src={image || placeholderImage}
-                  alt="Ad Preview"
-                  className="shadow-md rounded-lg"
-                  layout="fill"
-                  objectFit="cover"
-                  style={{ filter: selectedFilter }}
-                />
+              <div id="ad-preview" className={`${styles.adPreview} ${aspectRatio === "square" ? styles.square : styles.story} relative`}>
+              {image && (
+  <Image
+    src={image}
+    alt="Ad Preview"
+    className="shadow-md rounded-lg"
+    fill
+    style={{ objectFit: "cover", filter: selectedFilter }}
+  />
+)}
+
 
                 {isClient && clientHeadline && (
                   <DraggableHeadline
@@ -288,19 +226,7 @@ bg-gray-700 drop-shadow-lg mb-6"
 
             <br />
             <FeedbackForm />
-
             <UserAdHistory />
-            {/* <InstagramPostPreview
-              image={image}
-              caption={clientCaption}
-              headlineText={clientHeadline}
-              headlineBgColor={headlineBgColor}
-              headlineFontColor={headlineFontColor}
-              headlineFontSize={headlineFontSize}
-              isBold={isBold}
-              isItalic={isItalic}
-              headlineFont={headlineFont}
-            /> */}
           </div>
         </div>
       </div>
