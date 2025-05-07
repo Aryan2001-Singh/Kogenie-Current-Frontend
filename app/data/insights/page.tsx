@@ -3,8 +3,8 @@
 export const dynamic = "force-dynamic";
 
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import dynamicImport from "next/dynamic";
 
 const ExportInsightsButton = dynamicImport(
@@ -12,13 +12,21 @@ const ExportInsightsButton = dynamicImport(
   { ssr: false }
 );
 
-// ✅ Modular chart components
-import ManualVsScrapedChart from "@/components/charts/ManualVsScrapedChart";
-import AvgFeedbackRatingChart from "@/components/charts/AvgFeedbackRatingChart";
-import FeedbackDistributionChart from "@/components/charts/FeedbackDistributionChart";
-import AdsPerUserChart from "@/components/charts/AdsPerUserChart";
-import MonthlyUserGrowthChart from "@/components/charts/MonthlyUserGrowthChart";
-import MonthlyAdGrowthChart from "@/components/charts/MonthlyAdGrowthChart";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+  LineChart,
+  Line,
+} from "recharts";
 
 import {
   fetchTopPerforming,
@@ -29,6 +37,8 @@ import {
   fetchMonthlyUserGrowth,
   fetchMonthlyAdGrowth,
 } from "@/services/api";
+
+const COLORS = ["#6366f1", "#facc15"];
 
 interface FeedbackDistItem {
   rating: number;
@@ -51,8 +61,6 @@ interface TopAd {
 
 export default function InsightsPage() {
   const { user, isLoaded } = useUser();
-  const router = useRouter();
-
   const [topAds, setTopAds] = useState<TopAd[]>([]);
   const [adBreakdown, setAdBreakdown] = useState({ manual: 0, scraped: 0 });
   const [feedback, setFeedback] = useState({ manual: 0, scraped: 0 });
@@ -73,12 +81,6 @@ export default function InsightsPage() {
     };
     if (isLoaded) loadExtraGrowth();
   }, [isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded && user?.publicMetadata?.role !== "admin") {
-      router.push("/404");
-    }
-  }, [user, isLoaded, router]);
 
   useEffect(() => {
     const loadInsights = async () => {
@@ -117,6 +119,20 @@ export default function InsightsPage() {
 
   if (!isLoaded) return <div className="p-6">Loading...</div>;
 
+  if (user?.publicMetadata?.role !== "admin") {
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <div className="p-10 text-center text-gray-600">
+          <h2 className="text-2xl font-bold mb-2">🔒 Access Restricted</h2>
+          <p>You must be an admin to view this dashboard.</p>
+        </div>
+      </>
+    );
+  }
+
   return (
     <div className="bg-[#f9fafb] min-h-screen px-6 py-8 space-y-6">
       <div className="flex justify-between items-center sticky top-0 z-50 bg-[#f9fafb] py-4 border-b border-gray-200">
@@ -127,19 +143,53 @@ export default function InsightsPage() {
       </div>
 
       <div id="insights-dashboard" className="space-y-8">
-        <ManualVsScrapedChart data={pieData} total={totalAds} />
-        <AvgFeedbackRatingChart data={barRatingData} />
-        <FeedbackDistributionChart data={feedbackDist} />
-        <AdsPerUserChart data={adsPerUserData} />
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
+              {pieData.map((_, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Legend verticalAlign="top" />
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={barRatingData}>
+            <XAxis dataKey="name" />
+            <YAxis domain={[0, 5]} />
+            <Tooltip />
+            <Bar dataKey="rating" fill="#f59e0b" />
+          </BarChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={feedbackDist}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="rating" />
+            <YAxis allowDecimals={false} />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="manual" fill="#6366f1" name="Manual Ads" />
+            <Bar dataKey="scraped" fill="#facc15" name="Scraped Ads" />
+          </BarChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={adsPerUserData}>
+            <XAxis dataKey="email" tick={{ fontSize: 10 }} />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="totalAds" fill="#60a5fa" />
+          </BarChart>
+        </ResponsiveContainer>
 
         <section>
           <h2 className="text-lg font-semibold mb-2">🔥 Top Performing Ads</h2>
           <div className="bg-white rounded-xl shadow-md p-6 space-y-4">
             {topAds.map((ad, i) => (
-              <div
-                key={i}
-                className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition"
-              >
+              <div key={i} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
                 <p className="font-semibold text-indigo-800">{ad.headline}</p>
                 <p className="text-sm text-gray-600 line-clamp-4">{ad.adCopy}</p>
                 <p className="text-xs text-gray-500 mt-1">
@@ -150,8 +200,23 @@ export default function InsightsPage() {
           </div>
         </section>
 
-        <MonthlyUserGrowthChart data={userGrowth} />
-        <MonthlyAdGrowthChart data={adGrowth} />
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={userGrowth}>
+            <XAxis dataKey="_id" />
+            <YAxis allowDecimals={false} />
+            <Tooltip />
+            <Line type="monotone" dataKey="count" stroke="#3b82f6" />
+          </LineChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={adGrowth}>
+            <XAxis dataKey="month" />
+            <YAxis allowDecimals={false} />
+            <Tooltip />
+            <Line type="monotone" dataKey="totalAds" stroke="#10b981" />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
