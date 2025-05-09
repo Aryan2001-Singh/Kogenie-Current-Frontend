@@ -20,6 +20,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
+  const setAdDataToStore = useAdStore((state) => state.setAdData); // ✅ add this line
   const [adData, setAdData] = useState(() => {
     if (typeof window !== "undefined") {
       const savedAdData = localStorage.getItem("adData");
@@ -114,6 +115,25 @@ const CreateAdPage: React.FC = () => {
     }
   }, [adDataFromStore]);
 
+
+  // useEffect(() => {
+  //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
+  //     console.log("🟢 Loaded Data from Store:", adDataFromStore);
+  //     setAdData(adDataFromStore);
+  //     localStorage.setItem("adData", JSON.stringify(adDataFromStore));
+  //   } else {
+  //     const storedAdData = localStorage.getItem("adData");
+  //     if (storedAdData) {
+  //       const parsed = JSON.parse(storedAdData);
+  //       setAdData(parsed);
+  //       setAdDataToStore(parsed); // ✅ hydrate Zustand too
+  //     }
+  //   }
+  // }, [adDataFromStore, setAdDataToStore]);
+
+
+  
+
   const leftColumnStyle = { flex: 1, padding: "30px" };
   const rightColumnStyle: React.CSSProperties = {
     flex: 1,
@@ -127,22 +147,49 @@ const CreateAdPage: React.FC = () => {
     <>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </Head>
 
       <div className="w-full relative bg-white min-h-screen">
         <div className="flex justify-end gap-4 p-4">
-          <ExportButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
-          <DownloadButton selectedFilter={selectedFilter} aspectRatio={aspectRatio} />
+          <ExportButton
+            selectedFilter={selectedFilter}
+            aspectRatio={aspectRatio}
+          />
+          <DownloadButton
+            selectedFilter={selectedFilter}
+            aspectRatio={aspectRatio}
+          />
         </div>
 
-        <div className={styles.parentContainer} style={{ display: "flex", flexDirection: "row", gap: "5px", background: "white", width: "100%", paddingTop: "20px" }}>
+        <div
+          className={styles.parentContainer}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "5px",
+            background: "white",
+            width: "100%",
+            paddingTop: "20px",
+          }}
+        >
           <div style={leftColumnStyle} className="mt-8 px-2">
             <AdForm adData={adData} setAdData={setAdData} />
           </div>
 
           <div style={rightColumnStyle} className="mt-8 px-2">
-            <h2 style={{ fontFamily: "serif", marginBottom: "-20px", marginLeft: "30px" }} className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-gray-700 drop-shadow-lg mb-6">
+            <h2
+              style={{
+                fontFamily: "serif",
+                marginBottom: "-20px",
+                marginLeft: "30px",
+              }}
+              className="text-4xl font-medium tracking-wide text-transparent bg-clip-text bg-gray-700 drop-shadow-lg mb-6"
+            >
               Ad preview
             </h2>
             <div className="flex items-center justify-between p-4 border-b">
@@ -161,7 +208,12 @@ const CreateAdPage: React.FC = () => {
                   headlineFont={headlineFont}
                   setHeadlineFont={setHeadlineFont}
                 />
-                <EditorTools selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} aspectRatio={aspectRatio} setAspectRatio={setAspectRatio} />
+                <EditorTools
+                  selectedFilter={selectedFilter}
+                  setSelectedFilter={setSelectedFilter}
+                  aspectRatio={aspectRatio}
+                  setAspectRatio={setAspectRatio}
+                />
               </div>
               <div style={{ padding: "20px", marginTop: "-50px" }}>
                 <PostPreview
@@ -189,7 +241,10 @@ const CreateAdPage: React.FC = () => {
                       try {
                         localStorage.setItem("uploadedImage", selectedImg);
                       } catch (error) {
-                        console.warn("⚠️ Failed to store image in localStorage:", error);
+                        console.warn(
+                          "⚠️ Failed to store image in localStorage:",
+                          error
+                        );
                       }
                     }
                   }}
@@ -198,17 +253,21 @@ const CreateAdPage: React.FC = () => {
             </div>
 
             <div className="w-full flex flex-col items-center mt-4 relative">
-              <div id="ad-preview" className={`${styles.adPreview} ${aspectRatio === "square" ? styles.square : styles.story} relative`}>
-              {image && (
-  <Image
-    src={image}
-    alt="Ad Preview"
-    className="shadow-md rounded-lg"
-    fill
-    style={{ objectFit: "cover", filter: selectedFilter }}
-  />
-)}
-
+              <div
+                id="ad-preview"
+                className={`${styles.adPreview} ${
+                  aspectRatio === "square" ? styles.square : styles.story
+                } relative`}
+              >
+                {image && (
+                  <Image
+                    src={image}
+                    alt="Ad Preview"
+                    className="shadow-md rounded-lg"
+                    fill
+                    style={{ objectFit: "cover", filter: selectedFilter }}
+                  />
+                )}
 
                 {isClient && clientHeadline && (
                   <DraggableHeadline
