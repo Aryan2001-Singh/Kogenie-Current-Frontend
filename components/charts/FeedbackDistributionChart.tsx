@@ -11,47 +11,126 @@ import {
   Legend,
   CartesianGrid,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
+
 interface FeedbackDistributionItem {
-    rating: number;
-    manual: number;
-    scraped: number;
-  }
-  
-  const FeedbackDistributionChart = ({ data }: { data: FeedbackDistributionItem[] }) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
-  
+  rating: number;
+  manual: number;
+  scraped: number;
+}
+
+const FeedbackDistributionChart = ({
+  data,
+}: {
+  data: FeedbackDistributionItem[];
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "0px 0px -100px 0px",
+  });
+
   return (
     <motion.section
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full flex justify-center"
     >
-      <h2 className="text-lg font-semibold mb-2">📈 Feedback Rating Distribution</h2>
-      <div className="bg-white rounded-xl shadow-md p-6">
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="rating" />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
-            <Legend />
-            <Bar
-              dataKey="manual"
-              fill="#6366f1"
-              name="Manual Ads"
-              isAnimationActive={isInView}
-            />
-            <Bar
-              dataKey="scraped"
-              fill="#facc15"
-              name="Scraped Ads"
-              isAnimationActive={isInView}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+      <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-100 mt-8 px-8 py-6 w-full max-w-6xl">
+        {/* Heading */}
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800">
+              📈 Feedback Rating Distribution
+            </h2>
+            <p className="text-lg mt-2 text-gray-500">
+              Number of users who gave each rating (1–5) for Manual vs Scraped
+              ads
+            </p>
+          </div>
+        </div>
+
+        {/* Chart */}
+        <div className="w-full h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data}>
+              {/* Glass Gradients */}
+              <defs>
+                <radialGradient id="glassIndigo" cx="50%" cy="50%" r="75%">
+                  <stop offset="0%" stopColor="#c7d2fe" stopOpacity="0.8" />
+                  <stop offset="60%" stopColor="#6366f1" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#4338ca" stopOpacity="0.5" />
+                </radialGradient>
+
+                <radialGradient id="glassOrange" cx="50%" cy="50%" r="75%">
+                  <stop offset="0%" stopColor="#fde68a" stopOpacity="0.8" />
+                  <stop offset="60%" stopColor="#f97316" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#c2410c" stopOpacity="0.5" />
+                </radialGradient>
+              </defs>
+
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="rating" />
+              <YAxis allowDecimals={false} />
+              <Tooltip
+                contentStyle={{
+                  fontSize: "14px",
+                  borderRadius: "8px",
+                  border: "1px solid #e5e7eb",
+                  backgroundColor: "#fff",
+                }}
+              />
+              <Legend
+                formatter={(value: string) => (
+                  <span style={{ color: "#111827", fontWeight: 500 }}>
+                    {value}
+                  </span>
+                )}
+                payload={[
+                  {
+                    value: "Manual Ads",
+                    type: "square",
+                    color: "#f97316",
+                    id: "manual",
+                  },
+                  {
+                    value: "Scraped Ads",
+                    type: "square",
+                    color: "#6366f1",
+                    id: "scraped",
+                  },
+                ]}
+              />
+
+              <Bar
+                dataKey="manual"
+                name="Manual Ads"
+                radius={[8, 8, 0, 0]}
+                barSize={64}
+                isAnimationActive={isInView}
+              >
+                {data.map((_, i) => (
+                  <Cell key={`manual-${i}`} fill="url(#glassOrange)" />
+                ))}
+              </Bar>
+
+              <Bar
+                dataKey="scraped"
+                name="Scraped Ads"
+                radius={[8, 8, 0, 0]}
+                barSize={64}
+                isAnimationActive={isInView}
+              >
+                {data.map((_, i) => (
+                  <Cell key={`scraped-${i}`} fill="url(#glassIndigo)" />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </motion.section>
   );
