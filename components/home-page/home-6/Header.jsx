@@ -59,7 +59,7 @@ const Header = () => {
             <div className="flex items-center gap-3 pr-4">
   <Link
     href="/sign-in"
-     className="px-4 py-1 bg-indigo-600 text-indigo-600 rounded-md font-semibold text-[#546aec] border-2 border-indigo-600 hover:bg-indigo-700 transition"
+     className="px-4 py-1 bg-white text-indigo-600 rounded-md font-semibold text-[#546aec] border-2 border-indigo-600 hover:bg-indigo-700 transition"
   >
     Login
   </Link>

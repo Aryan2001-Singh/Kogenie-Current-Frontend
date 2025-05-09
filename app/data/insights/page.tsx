@@ -12,21 +12,14 @@ const ExportInsightsButton = dynamicImport(
   { ssr: false }
 );
 
-import {
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid,
-  LineChart,
-  Line,
-} from "recharts";
+// ⬇️ Import the new custom chart
+import ManualVsScrapedChart from "@/components/charts/ManualVsScrapedChart";
+import AvgFeedbackRatingChart from "@/components/charts/AvgFeedbackRatingChart";
+import FeedbackDistributionChart from "@/components/charts/FeedbackDistributionChart";
+import AdsPerUserChart from "@/components/charts/AdsPerUserChart";
+import TopAdsSection from "@/components/charts/TopAdsSection";
+import MonthlyAdGrowthChart from "@/components/charts/MonthlyAdGrowthChart";
+import MonthlyUserGrowthChart from "@/components/charts/MonthlyUserGrowthChart";
 
 import {
   fetchTopPerforming,
@@ -37,8 +30,6 @@ import {
   fetchMonthlyUserGrowth,
   fetchMonthlyAdGrowth,
 } from "@/services/api";
-
-const COLORS = ["#6366f1", "#facc15"];
 
 interface FeedbackDistItem {
   rating: number;
@@ -143,80 +134,18 @@ export default function InsightsPage() {
       </div>
 
       <div id="insights-dashboard" className="space-y-8">
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
-              {pieData.map((_, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Legend verticalAlign="top" />
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
+        {/* ✅ Replaced the old pie chart with the new styled component */}
+        <ManualVsScrapedChart data={pieData} total={totalAds} />
+        <AvgFeedbackRatingChart data={barRatingData} />
 
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={barRatingData}>
-            <XAxis dataKey="name" />
-            <YAxis domain={[0, 5]} />
-            <Tooltip />
-            <Bar dataKey="rating" fill="#f59e0b" />
-          </BarChart>
-        </ResponsiveContainer>
+        <FeedbackDistributionChart data={feedbackDist} />
 
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={feedbackDist}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="rating" />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="manual" fill="#6366f1" name="Manual Ads" />
-            <Bar dataKey="scraped" fill="#facc15" name="Scraped Ads" />
-          </BarChart>
-        </ResponsiveContainer>
+        <AdsPerUserChart data={adsPerUserData} />
 
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={adsPerUserData}>
-            <XAxis dataKey="email" tick={{ fontSize: 10 }} />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="totalAds" fill="#60a5fa" />
-          </BarChart>
-        </ResponsiveContainer>
+        <TopAdsSection ads={topAds} />
 
-        <section>
-          <h2 className="text-lg font-semibold mb-2">🔥 Top Performing Ads</h2>
-          <div className="bg-white rounded-xl shadow-md p-6 space-y-4">
-            {topAds.map((ad, i) => (
-              <div key={i} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
-                <p className="font-semibold text-indigo-800">{ad.headline}</p>
-                <p className="text-sm text-gray-600 line-clamp-4">{ad.adCopy}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Rating: {ad.feedback?.rating || "N/A"}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={userGrowth}>
-            <XAxis dataKey="_id" />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
-            <Line type="monotone" dataKey="count" stroke="#3b82f6" />
-          </LineChart>
-        </ResponsiveContainer>
-
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={adGrowth}>
-            <XAxis dataKey="month" />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
-            <Line type="monotone" dataKey="totalAds" stroke="#10b981" />
-          </LineChart>
-        </ResponsiveContainer>
+        <MonthlyUserGrowthChart data={userGrowth} />
+        <MonthlyAdGrowthChart data={adGrowth} />
       </div>
     </div>
   );
