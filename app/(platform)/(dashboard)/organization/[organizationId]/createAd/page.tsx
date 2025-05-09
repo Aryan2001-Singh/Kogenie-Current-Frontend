@@ -20,7 +20,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
-  const setAdDataToStore = useAdStore((state) => state.setAdData); // ✅ add this line
+  // const setAdDataToStore = useAdStore((state) => state.setAdData); // ✅ add this line
   const [adData, setAdData] = useState(() => {
     if (typeof window !== "undefined") {
       const savedAdData = localStorage.getItem("adData");
