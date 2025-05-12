@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import PopupModal from "@/components/PopupModal";
+import { useAdStore } from "@/store/useAdStore";
 
 const ConnectInstagramButton = () => {
   const { user } = useUser();
@@ -17,6 +18,20 @@ const ConnectInstagramButton = () => {
 
   const handleConnect = () => {
     if (!user?.id || !organization?.id) return;
+
+    // ✅ Save adData to localStorage before redirect
+    const adData = useAdStore.getState().adData;
+
+    if (adData && adData._id) {
+      try {
+        localStorage.setItem("adData", JSON.stringify(adData));
+        console.log("✅ adData saved to localStorage before redirect:", adData);
+      } catch (err) {
+        console.warn("⚠️ Failed to save adData to localStorage:", err);
+      }
+    } else {
+      console.warn("⚠️ No valid adData found before redirect");
+    }
 
     setIsRedirecting(true);
 
@@ -61,7 +76,11 @@ const ConnectInstagramButton = () => {
         className="w-full inline-flex justify-between items-center px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-gray-700 font-semibold shadow-sm transition-all duration-200 hover:bg-white/20"
       >
         Tools & Settings
-        {isOpen ? <ChevronUp className="ml-2 w-5 h-5" /> : <ChevronDown className="ml-2 w-5 h-5" />}
+        {isOpen ? (
+          <ChevronUp className="ml-2 w-5 h-5" />
+        ) : (
+          <ChevronDown className="ml-2 w-5 h-5" />
+        )}
       </button>
 
       {isOpen && (

@@ -1,12 +1,10 @@
 "use client";
 
-
 import React, { useState, useEffect, CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { useAdStore } from "@/store/useAdStore";
 import { useUser } from "@clerk/nextjs";
 import AdFormOptions from "@/components/createAd/AdFormOptions";
-
 
 const ManualEntryPage: React.FC = () => {
   const [brandName, setBrandName] = useState("");
@@ -30,7 +28,6 @@ const ManualEntryPage: React.FC = () => {
   const setAdData = useAdStore((state) => state.setAdData);
   const [redirecting] = useState(false);
   const tags = [tone, goal, theme, platform, awarenessStage].filter(Boolean);
-
 
   const [persuasionBlocksSelected, setPersuasionBlocksSelected] = useState<
     string[]
@@ -144,6 +141,22 @@ const ManualEntryPage: React.FC = () => {
           productImages: data.productImages || [],
           selectedImage: data.productImages?.[0] || null,
         });
+
+        // ✅ Save to localStorage for hydration after redirect
+        localStorage.setItem(
+          "adData",
+          JSON.stringify({
+            ...adInputData,
+            _id: storeData.adId,
+            adType: "manual",
+            adCopy: data.adCopy || "Ad Copy Not Generated",
+            headline: data.headline?.trim() || "Headline Not Generated",
+            productImages: data.productImages || [],
+            selectedImage: data.productImages?.[0] || null,
+          })
+        );
+
+        console.log("💾 Manual ad saved to localStorage + Zustand");
 
         setTimeout(() => {
           router.push(`/organization/${organizationId}/createAd`);

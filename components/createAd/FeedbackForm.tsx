@@ -17,7 +17,7 @@ const FeedbackForm = () => {
     }
 
     try {
-      const response = await fetch("http://localhost/api/ads/feedback", {
+      const response = await fetch("https://api.kogenie.com/api/ads/feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -19,28 +19,34 @@ import UserAdHistory from "@/components/createAd/adHistory/UserAdHistory";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const CreateAdPage: React.FC = () => {
-  const adDataFromStore = useAdStore((state) => state.adData);
-  // const setAdDataToStore = useAdStore((state) => state.setAdData); // ✅ add this line
+  const defaultAdData = {
+    _id: "",
+    adType: "manual",
+    brandName: "",
+    productName: "",
+    productDescription: "",
+    targetAudience: "",
+    uniqueSellingPoints: "",
+    brandVoice: "",
+    awarenessStage: "",
+    tone: "",
+    goal: "",
+    theme: "",
+    problemItSolves: "",
+    useLocation: "",
+    adCopy: "",
+    headline: "",
+    productImages: [],
+    selectedImage: null,
+  };
+
   const [adData, setAdData] = useState(() => {
+
     if (typeof window !== "undefined") {
-      const savedAdData = localStorage.getItem("adData");
-      return savedAdData
-        ? JSON.parse(savedAdData)
-        : {
-            brandName: "",
-            productName: "",
-            productDescription: "",
-            adCopy: "",
-            headline: "",
-          };
+      const saved = localStorage.getItem("adData");
+      return saved ? JSON.parse(saved) : defaultAdData;
     }
-    return {
-      brandName: "",
-      productName: "",
-      productDescription: "",
-      adCopy: "",
-      headline: "",
-    };
+    return defaultAdData;
   });
 
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20);
@@ -51,6 +57,11 @@ const CreateAdPage: React.FC = () => {
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
   const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+
+  const adDataFromStore = useAdStore((state) => state.adData);
+
+  const setAdDataToStore = useAdStore((state) => state.setAdData);
+  const [hydrated, setHydrated] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -64,6 +75,50 @@ const CreateAdPage: React.FC = () => {
     }
   }, [searchParams, router]);
 
+  // useEffect(() => {
+  //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
+  //     setAdData(adDataFromStore);
+  //     localStorage.setItem("adData", JSON.stringify(adDataFromStore));
+  //   } else {
+  //     const storedAdData = localStorage.getItem("adData");
+  //     if (storedAdData) {
+  //       const parsed = JSON.parse(storedAdData);
+  //       setAdData(parsed);
+  //       setAdDataToStore(parsed); // ✅ ✅ ✅ Push into Zustand
+  //       console.log("🧠 Zustand hydrated with:", parsed);
+  //     }
+  //   }
+  // }, [adDataFromStore, setAdDataToStore]);
+
+  // useEffect(() => {
+  //   const storedAdData = localStorage.getItem("adData");
+  //   if (storedAdData) {
+  //     const parsed = JSON.parse(storedAdData);
+  //     setAdData(parsed);
+  //     setAdDataToStore(parsed);
+  //     console.log("🧠 Zustand hydrated with:", parsed);
+  //   }
+  //   setHydrated(true); // ✅ mark as hydrated
+  // }, []);
+
+useEffect(() => {
+  const storedAdData = localStorage.getItem("adData");
+
+if (!adDataFromStore || Object.keys(adDataFromStore).length === 0) {
+  if (storedAdData) {
+    const parsedData = JSON.parse(storedAdData);
+    setAdData(parsedData);
+    setAdDataToStore(parsedData); // ✅ Hydrate Zustand only if empty
+    console.log("🧠 Zustand hydrated from localStorage:", parsedData);
+  }
+} else {
+  setAdData(adDataFromStore);
+  localStorage.setItem("adData", JSON.stringify(adDataFromStore));
+  console.log("🧠 Zustand already set, synced to localStorage");
+}
+
+  setHydrated(true);
+}, []);
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {
       setImage(adDataFromStore.selectedImage);
@@ -89,32 +144,32 @@ const CreateAdPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setClientCaption(adData.adCopy || "Ad Copy Not Generated");
-    setClientHeadline(adData.headline || "Headline Not Generated");
-  }, [adData.adCopy, adData.headline]);
+  if (!hydrated || !adData?.adCopy || !adData?.headline) return;
+  setClientCaption(adData.adCopy);
+  setClientHeadline(adData.headline);
+}, [hydrated, adData]);
 
-  useEffect(() => {
-    const savedImage = localStorage.getItem("uploadedImage");
-    setImage(savedImage || null);
-  }, [adDataFromStore]);
+  // useEffect(() => {
+  //   const savedImage = localStorage.getItem("uploadedImage");
+  //   setImage(savedImage || null);
+  // }, [adDataFromStore]);
 
-  useEffect(() => {
-    localStorage.setItem("adData", JSON.stringify(adData));
-  }, [adData]);
+  // useEffect(() => {
+  //   localStorage.setItem("adData", JSON.stringify(adData));
+  // }, [adData]);
 
-  useEffect(() => {
-    if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
-      console.log("🟢 Loaded Data from Store:", adDataFromStore);
-      setAdData(adDataFromStore);
-      localStorage.setItem("adData", JSON.stringify(adDataFromStore));
-    } else {
-      const storedAdData = localStorage.getItem("adData");
-      if (storedAdData) {
-        setAdData(JSON.parse(storedAdData));
-      }
-    }
-  }, [adDataFromStore]);
-
+  // useEffect(() => {
+  //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
+  //     console.log("🟢 Loaded Data from Store:", adDataFromStore);
+  //     setAdData(adDataFromStore);
+  //     localStorage.setItem("adData", JSON.stringify(adDataFromStore));
+  //   } else {
+  //     const storedAdData = localStorage.getItem("adData");
+  //     if (storedAdData) {
+  //       setAdData(JSON.parse(storedAdData));
+  //     }
+  //   }
+  // }, [adDataFromStore]);
 
   // useEffect(() => {
   //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
@@ -130,9 +185,6 @@ const CreateAdPage: React.FC = () => {
   //     }
   //   }
   // }, [adDataFromStore, setAdDataToStore]);
-
-
-  
 
   const leftColumnStyle = { flex: 1, padding: "30px" };
   const rightColumnStyle: React.CSSProperties = {

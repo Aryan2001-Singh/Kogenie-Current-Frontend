@@ -6,7 +6,6 @@ import { useAdStore } from "@/store/useAdStore";
 import { FaArrowRight } from "react-icons/fa";
 import { useUser } from "@clerk/nextjs";
 
-
 const advertisementFacts = [
   "Ad spending worldwide reached over $600 billion in 2023.",
   "Video ads increase engagement by 49% compared to static ads.",
@@ -53,8 +52,6 @@ const OrganizationIdPage = () => {
   const setAdData = useAdStore((state) => state.setAdData);
   const { user } = useUser();
   const userEmail = user?.emailAddresses?.[0]?.emailAddress || "";
-
-
 
   useEffect(() => {
     const factInterval = setInterval(() => {
@@ -112,13 +109,20 @@ const OrganizationIdPage = () => {
         }
 
         // ✅ Store in Zustand with adId + adType
-        setAdData({
+        const newAdData = {
           ...data,
           _id: adId,
           adType: "scraped",
           selectedImage: data.productImages?.[0] || null,
-        });
+        };
 
+        // ✅ Update Zustand store
+        setAdData(newAdData);
+
+        // ✅ Also update localStorage to persist across redirects
+        localStorage.setItem("adData", JSON.stringify(newAdData));
+
+        console.log("✅ Ad data saved to Zustand + localStorage:", newAdData);
         setTimeout(() => {
           router.push(`/organization/${organizationId}/createAd`);
         }, 500); // ✅ Small delay to ensure Zustand updates state
