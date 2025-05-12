@@ -41,7 +41,6 @@ const CreateAdPage: React.FC = () => {
   };
 
   const [adData, setAdData] = useState(() => {
-
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("adData");
       return saved ? JSON.parse(saved) : defaultAdData;
@@ -101,24 +100,35 @@ const CreateAdPage: React.FC = () => {
   //   setHydrated(true); // ✅ mark as hydrated
   // }, []);
 
-useEffect(() => {
-  const storedAdData = localStorage.getItem("adData");
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-if (!adDataFromStore || Object.keys(adDataFromStore).length === 0) {
-  if (storedAdData) {
-    const parsedData = JSON.parse(storedAdData);
-    setAdData(parsedData);
-    setAdDataToStore(parsedData); // ✅ Hydrate Zustand only if empty
-    console.log("🧠 Zustand hydrated from localStorage:", parsedData);
-  }
-} else {
-  setAdData(adDataFromStore);
-  localStorage.setItem("adData", JSON.stringify(adDataFromStore));
-  console.log("🧠 Zustand already set, synced to localStorage");
-}
+    const storedAdData = localStorage.getItem("adData");
 
-  setHydrated(true);
-}, []);
+    console.log("📦 Local adData found:", storedAdData);
+    console.log("🧠 Zustand adDataFromStore:", adDataFromStore);
+
+    if (!adDataFromStore || Object.keys(adDataFromStore).length === 0) {
+      if (storedAdData) {
+        try {
+          const parsedData = JSON.parse(storedAdData);
+          setAdData(parsedData);
+          setAdDataToStore(parsedData);
+          console.log("✅ Zustand hydrated from localStorage");
+        } catch (error) {
+          console.error("❌ Failed to parse localStorage adData:", error);
+        }
+      } else {
+        console.warn("⚠️ No adData found in localStorage");
+      }
+    } else {
+      setAdData(adDataFromStore);
+      localStorage.setItem("adData", JSON.stringify(adDataFromStore));
+      console.log("🔁 Zustand already had adData, synced to localStorage");
+    }
+
+    setHydrated(true);
+  }, []);
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {
       setImage(adDataFromStore.selectedImage);
@@ -144,10 +154,10 @@ if (!adDataFromStore || Object.keys(adDataFromStore).length === 0) {
   }, []);
 
   useEffect(() => {
-  if (!hydrated || !adData?.adCopy || !adData?.headline) return;
-  setClientCaption(adData.adCopy);
-  setClientHeadline(adData.headline);
-}, [hydrated, adData]);
+    if (!hydrated || !adData?.adCopy || !adData?.headline) return;
+    setClientCaption(adData.adCopy);
+    setClientHeadline(adData.headline);
+  }, [hydrated, adData]);
 
   // useEffect(() => {
   //   const savedImage = localStorage.getItem("uploadedImage");

@@ -22,17 +22,23 @@ const ConnectInstagramButton = () => {
     // ✅ Save adData to localStorage before redirect
     const adData = useAdStore.getState().adData;
 
-    if (adData && adData._id) {
+    if (typeof window !== "undefined" && adData && adData._id) {
       try {
+        localStorage.removeItem("adData"); // Just in case
         localStorage.setItem("adData", JSON.stringify(adData));
-        console.log("✅ adData saved to localStorage before redirect:", adData);
+        console.log(
+          "✅ adData saved to localStorage on domain:",
+          window.location.hostname,
+          adData
+        );
       } catch (err) {
         console.warn("⚠️ Failed to save adData to localStorage:", err);
       }
     } else {
-      console.warn("⚠️ No valid adData found before redirect");
+      console.warn("⚠️ No valid adData found before Meta redirect");
+      console.log("🌐 Current domain:", window?.location?.hostname);
+      console.log("📦 Current adData:", adData);
     }
-
     setIsRedirecting(true);
 
     const backendBaseUrl =
@@ -42,7 +48,9 @@ const ConnectInstagramButton = () => {
 
     const redirectUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}&returnPath=${returnPath}`;
 
-    window.location.href = redirectUrl;
+    setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, 200); // ⏳ 200ms ensures localStorage is written
   };
 
   const handleNavigation = (path: string) => {
