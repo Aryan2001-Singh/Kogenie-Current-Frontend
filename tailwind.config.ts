@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
+
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -63,7 +65,7 @@ module.exports = {
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          to: { height: "0" }, // ⬅ ensure height values are strings
         },
         floatUp: {
           "0%": { transform: "translateY(0px)" },
@@ -72,9 +74,13 @@ module.exports = {
         },
       },
       animation: {
-        scrollCards: "scrollCards 50s linear infinite",
+        scrollCards: "scrollCards 90s linear infinite",         // ✅ fixed: string value
+        floatUp: "floatUp 3s ease-in-out infinite",              // ✅ example float animation
+        "accordion-up": "accordion-up 0.3s ease-out",            // ✅ accordion example
       },
-    },
+    }
   },
-
+  plugins: [typography],
 };
+
+export default config;
