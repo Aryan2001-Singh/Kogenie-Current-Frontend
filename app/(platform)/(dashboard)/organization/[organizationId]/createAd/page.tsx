@@ -19,33 +19,27 @@ import UserAdHistory from "@/components/createAd/adHistory/UserAdHistory";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const CreateAdPage: React.FC = () => {
-  const defaultAdData = {
-    _id: "",
-    adType: "manual",
-    brandName: "",
-    productName: "",
-    productDescription: "",
-    targetAudience: "",
-    uniqueSellingPoints: "",
-    brandVoice: "",
-    awarenessStage: "",
-    tone: "",
-    goal: "",
-    theme: "",
-    problemItSolves: "",
-    useLocation: "",
-    adCopy: "",
-    headline: "",
-    productImages: [],
-    selectedImage: null,
-  };
-
+  const adDataFromStore = useAdStore((state) => state.adData);
   const [adData, setAdData] = useState(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("adData");
-      return saved ? JSON.parse(saved) : defaultAdData;
+      const savedAdData = localStorage.getItem("adData");
+      return savedAdData
+        ? JSON.parse(savedAdData)
+        : {
+            brandName: "",
+            productName: "",
+            productDescription: "",
+            adCopy: "",
+            headline: "",
+          };
     }
-    return defaultAdData;
+    return {
+      brandName: "",
+      productName: "",
+      productDescription: "",
+      adCopy: "",
+      headline: "",
+    };
   });
 
   const [headlineFontSize, setHeadlineFontSize] = useState<number>(20);
@@ -56,8 +50,6 @@ const CreateAdPage: React.FC = () => {
   const [headlineFont, setHeadlineFont] = useState<string>("Arial");
   const [image, setImage] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
-
-  const adDataFromStore = useAdStore((state) => state.adData);
 
   const setAdDataToStore = useAdStore((state) => state.setAdData);
   const [hydrated, setHydrated] = useState(false);
@@ -89,46 +81,17 @@ const CreateAdPage: React.FC = () => {
   //   }
   // }, [adDataFromStore, setAdDataToStore]);
 
-  // useEffect(() => {
-  //   const storedAdData = localStorage.getItem("adData");
-  //   if (storedAdData) {
-  //     const parsed = JSON.parse(storedAdData);
-  //     setAdData(parsed);
-  //     setAdDataToStore(parsed);
-  //     console.log("🧠 Zustand hydrated with:", parsed);
-  //   }
-  //   setHydrated(true); // ✅ mark as hydrated
-  // }, []);
-
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     const storedAdData = localStorage.getItem("adData");
-
-    console.log("📦 Local adData found:", storedAdData);
-    console.log("🧠 Zustand adDataFromStore:", adDataFromStore);
-
-    if (!adDataFromStore || Object.keys(adDataFromStore).length === 0) {
-      if (storedAdData) {
-        try {
-          const parsedData = JSON.parse(storedAdData);
-          setAdData(parsedData);
-          setAdDataToStore(parsedData);
-          console.log("✅ Zustand hydrated from localStorage");
-        } catch (error) {
-          console.error("❌ Failed to parse localStorage adData:", error);
-        }
-      } else {
-        console.warn("⚠️ No adData found in localStorage");
-      }
-    } else {
-      setAdData(adDataFromStore);
-      localStorage.setItem("adData", JSON.stringify(adDataFromStore));
-      console.log("🔁 Zustand already had adData, synced to localStorage");
+    if (storedAdData) {
+      const parsed = JSON.parse(storedAdData);
+      setAdData(parsed);
+      setAdDataToStore(parsed);
+      console.log("🧠 Zustand hydrated with:", parsed);
     }
-
-    setHydrated(true);
+    setHydrated(true); // ✅ mark as hydrated
   }, []);
+
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {
       setImage(adDataFromStore.selectedImage);
@@ -154,10 +117,9 @@ const CreateAdPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!hydrated || !adData?.adCopy || !adData?.headline) return;
-    setClientCaption(adData.adCopy);
-    setClientHeadline(adData.headline);
-  }, [hydrated, adData]);
+    setClientCaption(adData.adCopy || "Ad Copy Not Generated");
+    setClientHeadline(adData.headline || "Headline Not Generated");
+  }, [adData.adCopy, adData.headline]);
 
   // useEffect(() => {
   //   const savedImage = localStorage.getItem("uploadedImage");
@@ -225,6 +187,7 @@ const CreateAdPage: React.FC = () => {
           <DownloadButton
             selectedFilter={selectedFilter}
             aspectRatio={aspectRatio}
+
           />
         </div>
 

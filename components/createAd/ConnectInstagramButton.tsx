@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import PopupModal from "@/components/PopupModal";
-import { useAdStore } from "@/store/useAdStore";
 
 const ConnectInstagramButton = () => {
   const { user } = useUser();
@@ -19,26 +18,6 @@ const ConnectInstagramButton = () => {
   const handleConnect = () => {
     if (!user?.id || !organization?.id) return;
 
-    // ✅ Save adData to localStorage before redirect
-    const adData = useAdStore.getState().adData;
-
-    if (typeof window !== "undefined" && adData && adData._id) {
-      try {
-        localStorage.removeItem("adData"); // Just in case
-        localStorage.setItem("adData", JSON.stringify(adData));
-        console.log(
-          "✅ adData saved to localStorage on domain:",
-          window.location.hostname,
-          adData
-        );
-      } catch (err) {
-        console.warn("⚠️ Failed to save adData to localStorage:", err);
-      }
-    } else {
-      console.warn("⚠️ No valid adData found before Meta redirect");
-      console.log("🌐 Current domain:", window?.location?.hostname);
-      console.log("📦 Current adData:", adData);
-    }
     setIsRedirecting(true);
 
     const backendBaseUrl =
@@ -48,9 +27,7 @@ const ConnectInstagramButton = () => {
 
     const redirectUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}&returnPath=${returnPath}`;
 
-    setTimeout(() => {
-      window.location.href = redirectUrl;
-    }, 200); // ⏳ 200ms ensures localStorage is written
+    window.location.href = redirectUrl;
   };
 
   const handleNavigation = (path: string) => {
@@ -84,11 +61,7 @@ const ConnectInstagramButton = () => {
         className="w-full inline-flex justify-between items-center px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-gray-700 font-semibold shadow-sm transition-all duration-200 hover:bg-white/20"
       >
         Tools & Settings
-        {isOpen ? (
-          <ChevronUp className="ml-2 w-5 h-5" />
-        ) : (
-          <ChevronDown className="ml-2 w-5 h-5" />
-        )}
+        {isOpen ? <ChevronUp className="ml-2 w-5 h-5" /> : <ChevronDown className="ml-2 w-5 h-5" />}
       </button>
 
       {isOpen && (

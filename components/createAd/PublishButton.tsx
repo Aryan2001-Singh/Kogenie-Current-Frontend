@@ -11,47 +11,40 @@ interface DownloadButtonProps {
   aspectRatio: "square" | "story";
 }
 
-const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
+const DownloadButton: React.FC<DownloadButtonProps> = ({ selectedFilter, aspectRatio }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
-  const [hydrated, setHydrated] = useState(false);
+  const [hydrated, setHydrated] = useState(false); // ✅ Zustand hydration flag
   const containerRef = useRef<HTMLDivElement>(null);
   const { user } = useUser();
 
   const adData = useAdStore((state) => state.adData);
   const setAdData = useAdStore((state) => state.setAdData);
-  const [highlightConfirmButton] = useState(false);
+  const [highlightConfirmButton, setHighlightConfirmButton] = useState(false);
 
-  // ✅ Zustand hydration fallback (only if _id is missing)
+  // ✅ Zustand hydration from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem("adData");
-    if ((!adData || !adData._id) && stored) {
-      try {
+    if (!adData || Object.keys(adData).length === 0) {
+      const stored = localStorage.getItem("adData");
+      if (stored) {
         const parsed = JSON.parse(stored);
-        if (parsed && parsed._id) {
-          setAdData(parsed);
-          console.log("💾 Hydrated adData from localStorage:", parsed);
-        }
-      } catch (err) {
-        console.warn("⚠️ Failed to parse adData from localStorage:", err);
+        setAdData(parsed);
+        console.log("💾 Rehydrated adData inside PublishButton:", parsed);
       }
-    } else {
-      console.log("✅ Zustand already hydrated with:", adData);
     }
     setHydrated(true);
-  }, [adData, setAdData]);
+  }, []);
 
   // ✅ Publish handler
   const handleConfirmPublish = async () => {
     if (!hydrated) return alert("⚠️ Please wait, ad is still loading.");
+
     if (!user?.id) return alert("⚠️ You are not logged in. Please sign in.");
     if (!adData) return alert("⚠️ Ad data not loaded yet. Please wait.");
-    if (!adData._id) return alert("⚠️ Ad ID missing — please regenerate the ad.");
     if (!adData.productImages?.[0]) return alert("⚠️ Missing product image.");
     if (!adData.headline || !adData.adCopy) return alert("⚠️ Headline or ad copy missing.");
 
-    console.log("🚀 Zustand before publish:", adData);
     setIsPublishing(true);
 
     try {
@@ -69,8 +62,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
 
       if (res.ok) {
         alert("✅ Ad successfully published to Instagram!");
-        localStorage.removeItem("adData");
-        localStorage.removeItem("uploadedImage");
       } else {
         alert("❌ Failed: " + (result.metaError?.error?.message || result.message));
       }
@@ -92,6 +83,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
         setShowConfirm(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
