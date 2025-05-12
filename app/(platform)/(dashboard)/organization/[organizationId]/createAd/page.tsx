@@ -52,7 +52,7 @@ const CreateAdPage: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 
   const setAdDataToStore = useAdStore((state) => state.setAdData);
-  const [hydrated, setHydrated] = useState(false);
+  // const [setHydrated] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -81,16 +81,15 @@ const CreateAdPage: React.FC = () => {
   //   }
   // }, [adDataFromStore, setAdDataToStore]);
 
-  useEffect(() => {
-    const storedAdData = localStorage.getItem("adData");
-    if (storedAdData) {
-      const parsed = JSON.parse(storedAdData);
-      setAdData(parsed);
-      setAdDataToStore(parsed);
-      console.log("🧠 Zustand hydrated with:", parsed);
-    }
-    setHydrated(true); // ✅ mark as hydrated
-  }, []);
+ useEffect(() => {
+  const storedAdData = localStorage.getItem("adData");
+  if (storedAdData) {
+    const parsed = JSON.parse(storedAdData);
+    setAdData(parsed);
+    setAdDataToStore(parsed); // ✅ hydrate Zustand
+    console.log("🧠 Zustand hydrated with:", parsed);
+  }
+}, [setAdDataToStore]);
 
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {

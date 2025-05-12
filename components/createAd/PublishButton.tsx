@@ -11,7 +11,7 @@ interface DownloadButtonProps {
   aspectRatio: "square" | "story";
 }
 
-const DownloadButton: React.FC<DownloadButtonProps> = ({ selectedFilter, aspectRatio }) => {
+const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
@@ -21,7 +21,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({ selectedFilter, aspectR
 
   const adData = useAdStore((state) => state.adData);
   const setAdData = useAdStore((state) => state.setAdData);
-  const [highlightConfirmButton, setHighlightConfirmButton] = useState(false);
+  const [highlightConfirmButton] = useState(false);
 
   // ✅ Zustand hydration from localStorage
   useEffect(() => {
