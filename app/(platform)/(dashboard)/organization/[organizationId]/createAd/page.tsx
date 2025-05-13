@@ -17,6 +17,7 @@ import ScrapedImagesButton from "@/components/createAd/ScrapedImagesButton";
 import FeedbackForm from "@/components/createAd/FeedbackForm";
 import UserAdHistory from "@/components/createAd/adHistory/UserAdHistory";
 import { useRouter, useSearchParams } from "next/navigation";
+import axios from "axios";
 
 const CreateAdPage: React.FC = () => {
   const adDataFromStore = useAdStore((state) => state.adData);
@@ -56,6 +57,7 @@ const CreateAdPage: React.FC = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const adIdFromURL = searchParams.get("adId");
 
   useEffect(() => {
     const fbConnected = searchParams.get("fbConnected");
@@ -81,15 +83,16 @@ const CreateAdPage: React.FC = () => {
   //   }
   // }, [adDataFromStore, setAdDataToStore]);
 
- useEffect(() => {
-  const storedAdData = localStorage.getItem("adData");
-  if (storedAdData) {
-    const parsed = JSON.parse(storedAdData);
-    setAdData(parsed);
-    setAdDataToStore(parsed); // ✅ hydrate Zustand
-    console.log("🧠 Zustand hydrated with:", parsed);
-  }
-}, [setAdDataToStore]);
+  useEffect(() => {
+    if (adIdFromURL) return; // skip if we’ll fetch from backend
+    const storedAdData = localStorage.getItem("adData");
+    if (storedAdData) {
+      const parsed = JSON.parse(storedAdData);
+      setAdData(parsed);
+      setAdDataToStore(parsed);
+      console.log("🧠 Zustand hydrated from localStorage:", parsed);
+    }
+  }, [adIdFromURL, setAdDataToStore]);
 
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {
@@ -104,6 +107,25 @@ const CreateAdPage: React.FC = () => {
     const savedImage = localStorage.getItem("uploadedImage");
     setImage(savedImage || null);
   }, []);
+
+  useEffect(() => {
+    if (!adIdFromURL) return;
+
+    const fetchAdById = async () => {
+      try {
+        const res = await axios.get(`/api/ads/${adIdFromURL}`);
+        const ad = res.data;
+
+        setAdData(ad);
+        setAdDataToStore(ad);
+        console.log("✅ Hydrated from server via adId:", ad);
+      } catch (err) {
+        console.error("❌ Failed to fetch ad by ID", err);
+      }
+    };
+
+    fetchAdById();
+  }, [adIdFromURL]);
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
@@ -186,7 +208,6 @@ const CreateAdPage: React.FC = () => {
           <DownloadButton
             selectedFilter={selectedFilter}
             aspectRatio={aspectRatio}
-
           />
         </div>
 
