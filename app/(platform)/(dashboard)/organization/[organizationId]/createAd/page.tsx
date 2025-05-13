@@ -53,7 +53,7 @@ const CreateAdPage: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
 
   const setAdDataToStore = useAdStore((state) => state.setAdData);
-  // const [setHydrated] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -69,30 +69,15 @@ const CreateAdPage: React.FC = () => {
   }, [searchParams, router]);
 
   // useEffect(() => {
-  //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
-  //     setAdData(adDataFromStore);
-  //     localStorage.setItem("adData", JSON.stringify(adDataFromStore));
-  //   } else {
-  //     const storedAdData = localStorage.getItem("adData");
-  //     if (storedAdData) {
-  //       const parsed = JSON.parse(storedAdData);
-  //       setAdData(parsed);
-  //       setAdDataToStore(parsed); // ✅ ✅ ✅ Push into Zustand
-  //       console.log("🧠 Zustand hydrated with:", parsed);
-  //     }
+  //   if (adIdFromURL) return; // skip if we’ll fetch from backend
+  //   const storedAdData = localStorage.getItem("adData");
+  //   if (storedAdData) {
+  //     const parsed = JSON.parse(storedAdData);
+  //     setAdData(parsed);
+  //     setAdDataToStore(parsed);
+  //     console.log("🧠 Zustand hydrated from localStorage:", parsed);
   //   }
-  // }, [adDataFromStore, setAdDataToStore]);
-
-  useEffect(() => {
-    if (adIdFromURL) return; // skip if we’ll fetch from backend
-    const storedAdData = localStorage.getItem("adData");
-    if (storedAdData) {
-      const parsed = JSON.parse(storedAdData);
-      setAdData(parsed);
-      setAdDataToStore(parsed);
-      console.log("🧠 Zustand hydrated from localStorage:", parsed);
-    }
-  }, [adIdFromURL, setAdDataToStore]);
+  // }, [adIdFromURL, setAdDataToStore]);
 
   useEffect(() => {
     if (adDataFromStore?.selectedImage) {
@@ -118,6 +103,7 @@ const CreateAdPage: React.FC = () => {
 
         setAdData(ad);
         setAdDataToStore(ad);
+        setHydrated(true); // ✅ mark as hydrated
         console.log("✅ Hydrated from server via adId:", ad);
       } catch (err) {
         console.error("❌ Failed to fetch ad by ID", err);
@@ -125,7 +111,19 @@ const CreateAdPage: React.FC = () => {
     };
 
     fetchAdById();
-  }, [adIdFromURL]);
+  }, [adIdFromURL, setAdDataToStore]);
+
+  useEffect(() => {
+    if (adIdFromURL) return;
+    const storedAdData = localStorage.getItem("adData");
+    if (storedAdData) {
+      const parsed = JSON.parse(storedAdData);
+      setAdData(parsed);
+      setAdDataToStore(parsed);
+      setHydrated(true); // ✅ mark as hydrated
+      console.log("🧠 Zustand hydrated from localStorage:", parsed);
+    }
+  }, [adIdFromURL, setAdDataToStore]);
 
   const [aspectRatio, setAspectRatio] = useState<"square" | "story">("square");
   const [selectedFilter, setSelectedFilter] = useState<string>("none");
@@ -142,43 +140,6 @@ const CreateAdPage: React.FC = () => {
     setClientHeadline(adData.headline || "Headline Not Generated");
   }, [adData.adCopy, adData.headline]);
 
-  // useEffect(() => {
-  //   const savedImage = localStorage.getItem("uploadedImage");
-  //   setImage(savedImage || null);
-  // }, [adDataFromStore]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("adData", JSON.stringify(adData));
-  // }, [adData]);
-
-  // useEffect(() => {
-  //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
-  //     console.log("🟢 Loaded Data from Store:", adDataFromStore);
-  //     setAdData(adDataFromStore);
-  //     localStorage.setItem("adData", JSON.stringify(adDataFromStore));
-  //   } else {
-  //     const storedAdData = localStorage.getItem("adData");
-  //     if (storedAdData) {
-  //       setAdData(JSON.parse(storedAdData));
-  //     }
-  //   }
-  // }, [adDataFromStore]);
-
-  // useEffect(() => {
-  //   if (adDataFromStore && Object.keys(adDataFromStore).length > 0) {
-  //     console.log("🟢 Loaded Data from Store:", adDataFromStore);
-  //     setAdData(adDataFromStore);
-  //     localStorage.setItem("adData", JSON.stringify(adDataFromStore));
-  //   } else {
-  //     const storedAdData = localStorage.getItem("adData");
-  //     if (storedAdData) {
-  //       const parsed = JSON.parse(storedAdData);
-  //       setAdData(parsed);
-  //       setAdDataToStore(parsed); // ✅ hydrate Zustand too
-  //     }
-  //   }
-  // }, [adDataFromStore, setAdDataToStore]);
-
   const leftColumnStyle = { flex: 1, padding: "30px" };
   const rightColumnStyle: React.CSSProperties = {
     flex: 1,
@@ -187,7 +148,11 @@ const CreateAdPage: React.FC = () => {
     flexDirection: "column",
     position: "relative",
   };
-
+  if (!hydrated) {
+    return (
+      <div className="text-center text-gray-500 p-10">Loading ad data...</div>
+    );
+  }
   return (
     <>
       <Head>
