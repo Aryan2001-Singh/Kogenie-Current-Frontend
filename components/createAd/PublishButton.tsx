@@ -15,7 +15,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
-  const [hydrated, setHydrated] = useState(false); // ✅ Zustand hydration flag
+  const [hydrated, setHydrated] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { user } = useUser();
 
@@ -23,25 +23,24 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
   const setAdData = useAdStore((state) => state.setAdData);
   const [highlightConfirmButton] = useState(false);
 
-  // ✅ Zustand hydration from localStorage
   useEffect(() => {
-    if (!adData || Object.keys(adData).length === 0) {
-      const stored = localStorage.getItem("adData");
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        setAdData(parsed);
-        console.log("💾 Rehydrated adData inside PublishButton:", parsed);
+    const stored = localStorage.getItem("adData");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (!parsed._id) {
+        console.warn("⚠️ Rehydrated ad is missing _id:", parsed);
       }
+      setAdData(parsed);
+      console.log("💾 Rehydrated adData inside PublishButton:", parsed);
     }
     setHydrated(true);
   }, []);
 
-  // ✅ Publish handler
   const handleConfirmPublish = async () => {
     if (!hydrated) return alert("⚠️ Please wait, ad is still loading.");
-
     if (!user?.id) return alert("⚠️ You are not logged in. Please sign in.");
     if (!adData) return alert("⚠️ Ad data not loaded yet. Please wait.");
+    if (!adData._id) return alert("⚠️ Ad ID missing. Please refresh the page or regenerate the ad.");
     if (!adData.productImages?.[0]) return alert("⚠️ Missing product image.");
     if (!adData.headline || !adData.adCopy) return alert("⚠️ Headline or ad copy missing.");
 
@@ -75,7 +74,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
     setShowOptions(false);
   };
 
-  // ✅ Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -90,7 +88,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
 
   return (
     <div className="relative inline-block" ref={containerRef}>
-      {/* 🔘 Publish Button */}
       <button
         onClick={() => {
           if (!hydrated) return alert("Please wait, loading ad...");
@@ -102,7 +99,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
         Publish
       </button>
 
-      {/* 📥 Dropdown */}
       {showOptions && (
         <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md z-50">
           <button
@@ -118,7 +114,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({}) => {
         </div>
       )}
 
-      {/* ✅ Confirmation Modal */}
       {showConfirm && (
         <div className="absolute right-0 mt-2 mr-4 w-80 bg-white border border-gray-200 rounded-xl shadow-2xl p-5 z-50">
           <p className="text-gray-800 text-base font-medium mb-4">
