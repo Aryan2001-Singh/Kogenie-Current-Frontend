@@ -60,8 +60,8 @@ export default function BlogEditor({ value, onChange }) {
     if (editor && value !== editor.getHTML()) {
       editor.commands.setContent(value);
     }
-  }, [value]);
-
+  }, [editor, value]);
+  
   const handleImageUpload = async () => {
     const input = document.createElement("input");
     input.type = "file";

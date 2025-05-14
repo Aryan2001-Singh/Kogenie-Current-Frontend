@@ -3,7 +3,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 // Dynamically import BlogEditor to avoid SSR issues
-const BlogEditor = dynamic(() => import("./BlogEditor"), { ssr: false });
+const BlogEditor = dynamic(() => import("./blogEditor"), { ssr: false });
 
 const BlogEditorWithPreview = ({ value, onChange }) => {
   return (
