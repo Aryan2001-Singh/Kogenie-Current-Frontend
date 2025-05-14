@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import PopupModal from "@/components/PopupModal";
+import { useAdStore } from "@/store/useAdStore";
 
 const ConnectInstagramButton = () => {
   const { user } = useUser();
@@ -14,20 +15,30 @@ const ConnectInstagramButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const adData = useAdStore.getState().adData;
 
   const handleConnect = () => {
-    if (!user?.id || !organization?.id) return;
-
-    setIsRedirecting(true);
+    if (!user?.id || !organization?.id) {
+      console.warn("❌ Missing user or organization ID");
+      return;
+    }
 
     const backendBaseUrl =
       process.env.NEXT_PUBLIC_BACKEND_BASE_URL || "https://api.kogenie.com";
 
-    const returnPath = `/organization/${organization.id}/createAd`;
+    let returnPath = `/organization/${organization.id}/createAd`;
+    if (adData && adData._id) {
+      returnPath += `?adId=${adData._id}`;
+    } else {
+      console.warn("❌ adData._id missing. Proceeding without adId in returnPath.");
+    }
 
     const redirectUrl = `${backendBaseUrl}/api/auth/facebook?userId=${user.id}&orgId=${organization.id}&returnPath=${returnPath}`;
 
-    window.location.href = redirectUrl;
+    setIsRedirecting(true);
+    setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, 150); // slight delay to ensure state flush if needed
   };
 
   const handleNavigation = (path: string) => {
@@ -61,7 +72,11 @@ const ConnectInstagramButton = () => {
         className="w-full inline-flex justify-between items-center px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-gray-700 font-semibold shadow-sm transition-all duration-200 hover:bg-white/20"
       >
         Tools & Settings
-        {isOpen ? <ChevronUp className="ml-2 w-5 h-5" /> : <ChevronDown className="ml-2 w-5 h-5" />}
+        {isOpen ? (
+          <ChevronUp className="ml-2 w-5 h-5" />
+        ) : (
+          <ChevronDown className="ml-2 w-5 h-5" />
+        )}
       </button>
 
       {isOpen && (
