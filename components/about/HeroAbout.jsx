@@ -84,7 +84,7 @@ const HeroAbout = () => {
           className="container"
           style={{ maxWidth: "1100px", position: "relative", zIndex: 2 }}
         >
-     <h2
+     <h1
   className="font-bold leading-[1.2] text-gray-900"
   style={{
     fontSize: "clamp(42px, 5vw, 64px)",
@@ -97,7 +97,7 @@ const HeroAbout = () => {
   <span className="bg-gradient-to-r from-[#3f54c6] to-[#7b8df6] bg-clip-text text-transparent">
     KOgenie
   </span>
-</h2>
+</h1>
 
 <p
   className="text-[#4A5ABB] tracking-wide"
