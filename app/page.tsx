@@ -16,6 +16,7 @@ const SassProduct = () => {
   return (
     <>
       <Head>
+        <meta name="msvalidate.01" content="57F8792775CFC7C37CFF571D7696E2E9" />
         {/* Facebook domain verification */}
         <meta
           name="facebook-domain-verification"
