@@ -7,6 +7,9 @@ export default function SignInPage() {
     <div className="flex h-screen w-full overflow-hidden">
       {/* Left: Sign In Form */}
       <div className="w-full md:w-1/2 h-full flex items-center justify-center bg-white border-1 border-grey-300 shadow-md p-8">
+      {/* Accessible and SEO-friendly h1 (invisible if you want to keep design clean) */}
+<h1 className="sr-only">Sign in to KOgenie</h1>
+
         <SignIn
           path="/sign-in"
           routing="path"

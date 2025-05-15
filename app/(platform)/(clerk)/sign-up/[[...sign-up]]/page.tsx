@@ -7,6 +7,7 @@ export default function SignUpPage() {
     <div className="flex h-screen w-full overflow-hidden">
       {/* Left: Sign Up Form */}
       <div className="w-full md:w-1/2 h-full flex items-center justify-center bg-white p-8">
+      <h1 className="sr-only">Sign up to KOgenie</h1>
         <SignUp
           path="/sign-up"
           routing="path"
