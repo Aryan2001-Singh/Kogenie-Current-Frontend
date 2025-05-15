@@ -27,12 +27,12 @@ const Problem = () => {
     <section className="w-full bg-[#fefefe] py-16 px-6 sm:px-10 lg:px-20 font-[Poppins] flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
       {/* LEFT TEXT + CARDS */}
       <div className="max-w-xl lg:text-left w-full">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
           One Ad-fits-
           <span className="bg-gradient-to-r from-[#3948c4] to-[#546aec] bg-clip-text text-transparent ml-1">
             ALL?
           </span>
-        </h1>
+        </h2>
         <p className="text-lg text-gray-700 mb-6">
           Making good ad for even one audience is hard.
           <br />

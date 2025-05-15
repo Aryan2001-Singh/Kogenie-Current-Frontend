@@ -42,7 +42,7 @@ const Page = ({ params }) => {
       const elements = Array.from(tempDiv.querySelectorAll("h2, h3"));
 
       elements.forEach((el, i) => {
-        // 💡 Create readable slugs like "how-to-create-ads-using-ai"
+     
         const rawText = el.innerText || el.textContent || `section-${i}`;
         const slug = rawText
           .toLowerCase()
@@ -238,8 +238,7 @@ const Page = ({ params }) => {
 
           <main className="flex-1">
             <div className=" p-8 md:p-12">
-              <div
-                className="prose prose-blue lg:prose-lg max-w-none text-gray-800 leading-relaxed"
+            <div className="blog-content"
                 dangerouslySetInnerHTML={{ __html: data.description }}
               />
             </div>

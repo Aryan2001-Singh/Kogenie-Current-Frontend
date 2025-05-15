@@ -40,7 +40,7 @@ const SolutionSection = () => {
         
         <div className="col-span-full lg:col-span-2 space-y-8">
           {/* Heading */}
-          <h1 className="text-7xl font-bold leading-tight">
+          <h2 className="text-7xl font-bold leading-tight">
             With the right target,
             <br />
             big brands grow,
@@ -48,7 +48,7 @@ const SolutionSection = () => {
             <span className="bg-gradient-to-r from-[#3f54c6] to-[#5a6fd1] bg-clip-text text-transparent">
               so can you.
             </span>
-          </h1>
+          </h2>
 
           {/* Paragraph + CTA */}
           <div className="space-y-4 text-left lg:text-left">
