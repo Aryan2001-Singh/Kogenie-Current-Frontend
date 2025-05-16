@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import ReactGA from "react-ga4";
 import AOSInit from "@/components/AOSInit"; // ✅ Import AOSInit component
 import { ClerkProvider } from "@clerk/nextjs";
+import HeadFallback from "@/components/HeadFallback";
 
 const Hotjar = dynamic(() => import("@/components/Hotjar"), { ssr: false });
 
@@ -139,7 +140,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {/* ✅ Canonical URL for Each Page to Avoid Duplicates */}
           <link rel="canonical" href={`${SITE_URL}${pathname}`} />
 
-          <title>Kogenie - AI-Powered Ads</title>
+        
 
           {/* ✅ Facebook Pixel Script */}
           <script
@@ -168,11 +169,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
             />
           </noscript>
         </head>
-        <body className={poppins.className}>
-          <AOSInit /> {/* ✅ Initializes AOS animations */}
-          <Hotjar /> {/* ✅ Lazy-loaded Hotjar for performance */}
-          <div className="main-page-wrapper">{children}</div>
-        </body>
+       <body className={poppins.className}>
+  <AOSInit />
+  <Hotjar />
+  <HeadFallback /> {/* ✅ Ensures one <title> is always present */}
+  <div className="main-page-wrapper">{children}</div>
+</body>
+
       </html>
     </ClerkProvider>
   );
