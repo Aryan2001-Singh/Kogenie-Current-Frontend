@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Header from "@/components/home-page/home-6/Header";
 import FooterMenu from "@/components/home-page/home-6/FooterMenu";
 import { Mail, MapPin } from "lucide-react";
@@ -7,17 +6,6 @@ import styles from "./RefundPolicy.module.css"; // ✅ CSS module import
 const RefundPolicy = () => {
   return (
     <>
-      <Head>
-        <title>KOgenie Refund Policy | Eligibility, Processing & Contact</title>
-
-        <meta
-          name="description"
-          content="KOgenie's refund policy outlines eligibility, exclusions, and how to request refunds for your AI-powered ads."
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.kogenie.com/policy/refund" />
-      </Head>
-
       <Header />
 
       <main className="bg-[#f9fafb] text-gray-700 py-24 px-4 sm:px-6 lg:px-8 font-[Poppins]">
