@@ -127,7 +127,8 @@ const Policy = () => {
   return (
     <>
       <Head>
-        <title>Privacy Policy | KOgenie</title>
+        <title>KOgenie Privacy Policy | Data Usage, Tracking & Rights</title>
+
         <meta
           name="description"
           content="KOgenie's privacy policy outlines data collection, usage, and protection practices."

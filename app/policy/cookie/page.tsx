@@ -41,7 +41,8 @@ const CookiePolicyPage = () => {
   return (
     <>
       <Head>
-        <title>Cookie Policy | KOgenie</title>
+        <title>How KOgenie Uses Cookies | Cookie Policy & Data Tracking</title>
+
         <meta
           name="description"
           content="KOgenie's cookie policy explains how and why cookies and similar technologies are used."
