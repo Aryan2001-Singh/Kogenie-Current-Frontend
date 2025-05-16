@@ -168,13 +168,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
               alt=""
             />
           </noscript>
+          <HeadFallback /> 
         </head>
-       <body className={poppins.className}>
-  <AOSInit />
-  <Hotjar />
-  <HeadFallback /> {/* ✅ Ensures one <title> is always present */}
-  <div className="main-page-wrapper">{children}</div>
-</body>
+        <body className={poppins.className}>
+      <AOSInit />
+      <Hotjar />
+      <div className="main-page-wrapper">{children}</div>
+    </body>
 
       </html>
     </ClerkProvider>
